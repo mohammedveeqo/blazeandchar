@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Blaze & Char — full logo, horizontal lockup, reversed (cream on tandoori red) -->
+<!-- Use on dark or coloured backgrounds. Fill bleeds to edge of viewBox; set page background where needed -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 160" width="640" height="160" role="img" aria-label="Blaze &amp; Char">
+  <title>Blaze &amp; Char</title>
+  <defs>
+    <style>
+      .brand-stroke { stroke: #f9ecd9; fill: none; }
+      .brand-fill   { fill: #f9ecd9; }
+      .brand-accent { fill: #f2c878; }
+    </style>
+  </defs>
+
+  <!-- Background plate: solid tandoori red -->
+  <rect width="640" height="160" fill="#c24a27" rx="6"/>
+
+  <!-- Monogram: circular medallion with italic ampersand in cream -->
+  <g transform="translate(80 80)">
+    <circle r="62" class="brand-stroke" stroke-width="3"/>
+    <circle r="52" class="brand-stroke" stroke-width="1" opacity="0.4"/>
+    <text x="0" y="0"
+          text-anchor="middle"
+          dominant-baseline="central"
+          font-family="'Fraunces', 'Iowan Old Style', Georgia, serif"
+          font-style="italic"
+          font-weight="400"
+          font-size="80"
+          font-variation-settings="'SOFT' 20, 'WONK' 1, 'opsz' 144"
+          class="brand-fill"
+          transform="translate(-2 2)">&amp;</text>
+  </g>
+
+  <!-- Wordmark: "Blaze & Char" in cream, with gold-amber ampersand accent -->
+  <g transform="translate(180 80)">
+    <text x="0" y="0"
+          dominant-baseline="central"
+          font-family="'Fraunces', 'Iowan Old Style', Georgia, serif"
+          font-weight="700"
+          font-size="58"
+          font-variation-settings="'SOFT' 20, 'WONK' 1, 'opsz' 144"
+          letter-spacing="-1.2"
+          class="brand-fill">Blaze<tspan font-style="italic" font-weight="400" font-size="62" class="brand-accent" dx="6" dy="0">&amp;</tspan><tspan dx="6" font-style="normal" font-weight="700" font-size="58" class="brand-fill">Char</tspan></text>
+  </g>
+</svg>

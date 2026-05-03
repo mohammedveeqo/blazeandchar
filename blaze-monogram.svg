@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Blaze & Char monogram — primary brand mark.
+  Italic Fraunces ampersand in a circular medallion.
+  Tandoori red on transparent. 512×512 viewBox, scales cleanly to any size.
+  Use <img src="blaze-monogram.svg"> or inline as <svg>.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Blaze &amp; Char">
+  <title>Blaze &amp; Char</title>
+  <!-- Outer medallion ring -->
+  <circle cx="256" cy="256" r="232" fill="none" stroke="#c24a27" stroke-width="10"/>
+  <!-- Inner ring (optical refinement, like a real stamp) -->
+  <circle cx="256" cy="256" r="220" fill="none" stroke="#c24a27" stroke-width="2" opacity="0.5"/>
+  <!-- Ampersand glyph: Fraunces italic 400, SOFT 20, WONK 1, loaded from Google Fonts. -->
+  <text x="256" y="256"
+        text-anchor="middle"
+        dominant-baseline="central"
+        font-family="'Fraunces', 'Iowan Old Style', Georgia, serif"
+        font-style="italic"
+        font-weight="400"
+        font-size="340"
+        font-variation-settings="'SOFT' 20, 'WONK' 1"
+        fill="#c24a27">&amp;</text>
+</svg>

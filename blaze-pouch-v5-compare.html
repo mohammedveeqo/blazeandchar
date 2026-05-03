@@ -1,0 +1,411 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Blaze & Char — 50g Pouch (v5, editorial tan vs butcher-shop)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,800;0,9..144,900;1,9..144,400;1,9..144,500;1,9..144,600;1,9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet" />
+<style>
+:root {
+  --bg: oklch(90% 0.035 75);
+  --bg-deep: oklch(84% 0.045 72);
+  --ed-stock: oklch(90% 0.045 75);
+  --ed-stock-hi: oklch(93% 0.038 75);
+  --ed-stock-lo: oklch(85% 0.05 72);
+  --bu-stock: oklch(74% 0.07 65);
+  --bu-stock-hi: oklch(78% 0.062 68);
+  --bu-stock-lo: oklch(68% 0.08 62);
+  --ink: oklch(22% 0.03 40);
+  --ink-dim: oklch(40% 0.04 45);
+  --ink-soft: oklch(55% 0.04 50);
+  --ink-bu: oklch(18% 0.035 42);
+  --ink-bu-dim: oklch(34% 0.045 45);
+  --tandoori: oklch(58% 0.18 32);
+  --tandoori-deep: oklch(46% 0.16 30);
+  --masala: oklch(62% 0.14 75);
+  --masala-deep: oklch(50% 0.12 70);
+  --coriander: oklch(42% 0.11 145);
+  --font-display: 'Fraunces','Newsreader','Iowan Old Style',Georgia,serif;
+  --font-body: 'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;
+  --font-mono: 'JetBrains Mono',ui-monospace,Menlo,monospace;
+}
+*,*::before,*::after{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{min-height:100vh;background:radial-gradient(ellipse at 50% 20%,oklch(92% 0.03 75) 0%,var(--bg) 60%,var(--bg-deep) 120%);color:var(--ink);font-family:var(--font-body);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;padding:64px 24px 80px;overflow-x:hidden;}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.5;mix-blend-mode:multiply;z-index:0;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.18  0 0 0 0 0.12  0 0 0 0 0.08  0 0 0 0.05 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");}
+.stage{position:relative;z-index:1;max-width:1280px;margin:0 auto;}
+.crest{text-align:center;margin-bottom:40px;}
+.crest .eyebrow{font-family:var(--font-mono);font-size:11px;letter-spacing:.34em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:14px;font-weight:600;}
+.crest .mark{font-family:var(--font-display);font-weight:500;font-size:36px;letter-spacing:-.02em;display:inline-flex;align-items:baseline;gap:.18em;font-variation-settings:"SOFT" 30,"WONK" 1,"opsz" 144;color:var(--ink);}
+.crest .mark .amp{font-style:italic;font-weight:400;color:var(--tandoori);}
+.crest .caption{margin-top:14px;font-family:var(--font-display);font-style:italic;font-weight:400;font-size:18px;color:var(--ink-dim);font-variation-settings:"opsz" 36;max-width:620px;margin-left:auto;margin-right:auto;}
+.crest .caption em{font-style:normal;color:var(--ink);font-weight:500;}
+.version-head{max-width:1080px;margin:72px auto 28px;padding:18px 24px;background:oklch(22% 0.03 40 / 0.04);border-left:3px solid var(--tandoori);border-radius:0 4px 4px 0;}
+.version-head .num{font-family:var(--font-mono);font-size:10px;letter-spacing:.36em;text-transform:uppercase;font-weight:700;color:var(--tandoori);margin-bottom:4px;}
+.version-head .title{font-family:var(--font-display);font-weight:600;font-size:24px;letter-spacing:-.01em;line-height:1.15;color:var(--ink);font-variation-settings:"opsz" 48,"SOFT" 30;margin:0 0 6px;}
+.version-head .title em{font-style:italic;color:var(--tandoori);font-weight:500;}
+.version-head .desc{font-family:var(--font-body);font-size:14px;line-height:1.55;color:var(--ink-dim);margin:0;}
+.version-head .desc strong{font-family:var(--font-display);font-weight:600;color:var(--ink);font-variation-settings:"opsz" 18;}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:end;justify-items:center;position:relative;}
+@media (max-width:880px){.pair{grid-template-columns:1fr;gap:60px;}}
+.pouch-cell{display:flex;flex-direction:column;align-items:center;gap:24px;width:100%;}
+.shadow{width:82%;height:30px;margin-top:-20px;background:radial-gradient(ellipse at 50% 50%,oklch(22% 0.03 40 / 0.35) 0%,oklch(22% 0.03 40 / 0.12) 45%,transparent 70%);filter:blur(7px);transform:translateY(-2px);}
+.pouch{--accent:var(--tandoori); --accent-deep:var(--tandoori-deep);--stock:var(--ed-stock); --stock-hi:var(--ed-stock-hi); --stock-lo:var(--ed-stock-lo);--fg:var(--ink); --fg-dim:var(--ink-dim); --fg-soft:var(--ink-soft);position:relative;width:min(440px,42vw);aspect-ratio:130/208;border-radius:26px 26px 10px 10px;overflow:hidden;background:linear-gradient(180deg,var(--stock-hi) 0%,var(--stock) 32%,var(--stock) 70%,var(--stock-lo) 100%);box-shadow:0 70px 90px -40px oklch(22% 0.03 40 / 0.38),0 22px 44px -20px oklch(22% 0.03 40 / 0.24),inset 0 0 0 1px oklch(22% 0.03 40 / 0.06),inset 0 -50px 80px -40px oklch(22% 0.03 40 / 0.14),inset 0 50px 80px -40px oklch(22% 0.03 40 / 0.05);}
+.pouch.masala{--accent:var(--masala);--accent-deep:var(--masala-deep);}
+.pouch.butcher{--stock:var(--bu-stock); --stock-hi:var(--bu-stock-hi); --stock-lo:var(--bu-stock-lo);--fg:var(--ink-bu); --fg-dim:var(--ink-bu-dim);}
+.pouch::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.32;mix-blend-mode:multiply;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='1.4' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.16  0 0 0 0 0.08  0 0 0 0 0.05  0 0 0 0.08 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");}
+.pouch.butcher::before{opacity:.55;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='k'><feTurbulence type='fractalNoise' baseFrequency='1.1' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.3  0 0 0 0 0.18  0 0 0 0 0.1  0 0 0 0.18 0'/></filter><rect width='100%' height='100%' filter='url(%23k)'/></svg>");}
+.pouch::after{content:"";position:absolute;inset:0;pointer-events:none;mix-blend-mode:multiply;background:linear-gradient(90deg,oklch(100% 0 0 / 0.35) 0,transparent 6%,transparent 94%,oklch(22% 0.03 40 / 0.08) 100%),linear-gradient(90deg,transparent 49.6%,oklch(22% 0.03 40 / 0.04) 50%,transparent 50.4%);}
+.seal{position:absolute;top:0;left:0;right:0;height:8%;border-bottom:1px solid oklch(22% 0.03 40 / 0.14);background-image:linear-gradient(180deg,var(--stock-lo) 0%,var(--stock) 80%),repeating-linear-gradient(90deg,oklch(22% 0.03 40 / 0.08) 0 1px,transparent 1px 6px);}
+.seal::before{content:"";position:absolute;top:32%;left:50%;transform:translate(-50%,0);width:22px;height:10px;background:oklch(22% 0.03 40 / 0.92);border-radius:999px;box-shadow:inset 0 1px 2px oklch(0% 0 0 / 0.6),0 1px 0 oklch(100% 0 0 / 0.4);}
+.gusset{position:absolute;left:0;right:0;bottom:0;height:4%;background:linear-gradient(180deg,transparent,oklch(22% 0.03 40 / 0.08)),var(--stock-lo);border-top:1px solid oklch(22% 0.03 40 / 0.09);}
+.art{position:absolute;top:8%;left:0;right:0;bottom:4%;padding:16px 24px 0;display:flex;flex-direction:column;color:var(--fg);}
+.wordmark{text-align:center;padding:6px 0 8px;}
+.wordmark .bc{font-family:var(--font-display);font-weight:700;font-size:clamp(28px,4.6vw,40px);letter-spacing:-.025em;line-height:1;color:var(--fg);font-variation-settings:"SOFT" 30,"WONK" 1,"opsz" 144;display:inline-flex;align-items:baseline;gap:.14em;}
+.wordmark .bc .amp{font-style:italic;font-weight:500;color:var(--accent);font-variation-settings:"SOFT" 80,"WONK" 1,"opsz" 144;font-size:1.1em;margin:0 .02em;}
+.wordmark-rule{display:flex;align-items:center;justify-content:center;gap:10px;margin:4px 0 6px;color:oklch(22% 0.03 40 / 0.5);}
+.wordmark-rule::before,.wordmark-rule::after{content:"";flex:1;height:.75px;background:oklch(22% 0.03 40 / 0.4);max-width:32%;}
+.wordmark-rule svg{width:9px;height:12px;color:var(--accent);flex-shrink:0;}
+.wordmark .tagline{font-family:var(--font-mono);font-size:8px;letter-spacing:.32em;text-transform:uppercase;color:var(--fg-dim);font-weight:600;margin-top:2px;}
+.wordmark-bu{text-align:center;padding:4px 0 6px;position:relative;}
+.wordmark-bu::before,.wordmark-bu::after{content:"";display:block;height:0;border-top:1.5px solid var(--ink-bu);border-bottom:.75px solid var(--ink-bu);width:100%;padding:1.5px 0 0;}
+.wordmark-bu::before{margin-bottom:6px;}
+.wordmark-bu::after{margin-top:6px;}
+.wordmark-bu .bc{font-family:var(--font-display);font-weight:800;font-size:clamp(30px,4.8vw,42px);letter-spacing:-.028em;line-height:.95;color:var(--ink-bu);font-variation-settings:"SOFT" 20,"WONK" 1,"opsz" 144;display:inline-flex;align-items:baseline;gap:.12em;text-transform:uppercase;}
+.wordmark-bu .bc .amp{font-style:italic;font-weight:500;color:var(--accent);font-variation-settings:"SOFT" 80,"WONK" 1,"opsz" 144;font-size:1.18em;margin:0 .02em;text-transform:none;}
+.wordmark-bu .tagline{font-family:var(--font-mono);font-size:8px;letter-spacing:.36em;text-transform:uppercase;color:var(--ink-bu-dim);font-weight:700;margin-top:4px;display:flex;align-items:center;gap:8px;justify-content:center;}
+.wordmark-bu .tagline::before,.wordmark-bu .tagline::after{content:"";width:12px;height:.75px;background:var(--ink-bu-dim);}
+.hero-band{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:10px;padding:12px 0 6px;min-height:78px;border-top:.75px solid oklch(22% 0.03 40 / 0.2);border-bottom:.75px solid oklch(22% 0.03 40 / 0.2);margin:2px 0 14px;}
+.hero-band-bu{border-top-style:double;border-bottom-style:double;border-width:3.5px;border-color:var(--ink-bu);padding:10px 0 4px;margin:4px 0 12px;}
+.numeral{font-family:var(--font-display);font-style:italic;font-weight:500;font-size:20px;letter-spacing:.02em;color:var(--fg-dim);font-variation-settings:"opsz" 36,"SOFT" 50;line-height:1;text-align:center;justify-self:end;padding-right:6px;}
+.numeral .n{color:var(--accent);font-weight:700;font-size:26px;}
+.flame-icon{width:56px;height:62px;display:grid;place-items:center;}
+.flame-icon svg{width:100%;height:100%;}
+.stamp{width:62px;height:62px;border-radius:999px;border:1.25px solid var(--accent);display:grid;place-items:center;position:relative;justify-self:start;margin-left:6px;color:var(--accent);transform:rotate(-4deg);}
+.stamp::before{content:"";position:absolute;inset:3px;border-radius:999px;border:.6px solid var(--accent);opacity:.5;}
+.stamp::after{content:"";position:absolute;inset:0;border-radius:999px;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='62' height='62'><filter id='s'><feTurbulence type='fractalNoise' baseFrequency='2.2' numOctaves='2'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.8 0'/></filter><rect width='100%' height='100%' filter='url(%23s)' opacity='0.22'/></svg>");mix-blend-mode:screen;opacity:.85;pointer-events:none;}
+.stamp .ring{position:absolute;inset:0;}
+.stamp .ring text{font-family:var(--font-mono);font-size:5.2px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;fill:var(--accent);}
+.stamp .core{font-family:var(--font-display);font-style:italic;font-weight:600;font-size:13px;line-height:1;text-align:center;color:var(--accent);font-variation-settings:"opsz" 36,"SOFT" 50;}
+.stamp .core small{display:block;font-family:var(--font-mono);font-style:normal;font-size:5px;font-weight:700;letter-spacing:.18em;margin-top:2px;opacity:.75;}
+.hero-name{text-align:center;font-family:var(--font-display);font-weight:700;font-size:clamp(38px,5.4vw,52px);letter-spacing:.14em;line-height:1;color:var(--fg);margin:4px 0 4px;font-variation-settings:"SOFT" 30,"WONK" 0,"opsz" 144;text-transform:uppercase;font-feature-settings:"kern" 1;text-indent:.14em;}
+.hero-name-bu{font-weight:800;font-variation-settings:"SOFT" 0,"WONK" 0,"opsz" 144;letter-spacing:.08em;text-indent:.08em;font-size:clamp(40px,5.8vw,56px);color:var(--ink-bu);}
+.sub-name{text-align:center;font-family:var(--font-display);font-style:italic;font-weight:400;font-size:clamp(16px,2vw,20px);color:var(--fg-dim);letter-spacing:.005em;margin:0 0 10px;font-variation-settings:"opsz" 60,"SOFT" 60;}
+.sub-name-bu{color:var(--ink-bu);font-weight:500;}
+.category{text-align:center;font-family:var(--font-mono);font-size:9.5px;letter-spacing:.34em;text-transform:uppercase;font-weight:700;color:var(--accent);margin:0 0 14px;display:flex;align-items:center;gap:10px;justify-content:center;width:100%;}
+.category::before,.category::after{content:"";flex:0 1 54px;height:.75px;background:var(--accent);opacity:.55;}
+.category-bu::before,.category-bu::after{background:var(--accent);opacity:.8;height:1px;}
+.window{position:relative;margin:0 -2px 10px;aspect-ratio:24/14;border-radius:3px;background:radial-gradient(ellipse at 50% 35%,oklch(22% 0.04 35) 0%,oklch(14% 0.03 30) 60%,oklch(8% 0.02 30) 100%);box-shadow:inset 0 0 0 1.5px oklch(22% 0.03 40 / 0.9),inset 0 2px 6px oklch(0% 0 0 / 0.6),inset 0 -2px 4px oklch(0% 0 0 / 0.4),0 2px 4px oklch(100% 0 0 / 0.4);overflow:hidden;}
+.window-bu{border-radius:14px;box-shadow:inset 0 0 0 2px var(--ink-bu),inset 0 2px 6px oklch(0% 0 0 / 0.6),inset 0 -2px 4px oklch(0% 0 0 / 0.4),0 2px 4px oklch(100% 0 0 / 0.4);}
+.window::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:2;background:linear-gradient(135deg,oklch(100% 0 0 / 0.14) 0%,transparent 30%,transparent 70%,oklch(100% 0 0 / 0.05) 100%);}
+.window::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:3;opacity:.2;mix-blend-mode:overlay;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='1.8' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.95  0 0 0 0 0.88  0 0 0 0 0.78  0 0 0 0.8 0'/></filter><rect width='100%' height='100%' filter='url(%23g)'/></svg>");}
+.window .film-label{position:absolute;top:5px;left:8px;font-family:var(--font-mono);font-size:6.5px;letter-spacing:.28em;text-transform:uppercase;color:oklch(88% 0.02 60 / 0.55);z-index:4;font-weight:600;}
+.window .film-seal{position:absolute;top:5px;right:8px;font-family:var(--font-mono);font-size:6.5px;letter-spacing:.28em;text-transform:uppercase;color:oklch(88% 0.02 60 / 0.55);z-index:4;font-weight:600;}
+.window svg.strips{position:absolute;inset:0;width:100%;height:100%;z-index:1;}
+.meta{display:flex;justify-content:space-between;align-items:center;margin:0 -2px 12px;font-family:var(--font-mono);font-size:8.5px;letter-spacing:.26em;text-transform:uppercase;font-weight:600;color:var(--fg-dim);}
+.meta .tag{display:inline-flex;align-items:center;gap:5px;color:var(--fg);}
+.meta .tag::before{content:"";width:4px;height:4px;border-radius:999px;background:var(--accent);}
+.creds{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-bottom:12px;border-top:.75px solid oklch(22% 0.03 40 / 0.35);border-bottom:.75px solid oklch(22% 0.03 40 / 0.35);padding:10px 0;}
+.creds-bu{border-top-width:2px;border-bottom-width:2px;border-color:var(--ink-bu);border-style:solid;}
+.creds .cell{text-align:center;padding:0 6px;position:relative;}
+.creds .cell + .cell::before{content:"";position:absolute;left:0;top:20%;bottom:20%;width:.75px;background:oklch(22% 0.03 40 / 0.3);}
+.creds-bu .cell + .cell::before{background:var(--ink-bu);opacity:.5;}
+.creds .k{font-family:var(--font-display);font-weight:600;font-size:13px;line-height:1.1;letter-spacing:-.01em;color:var(--fg);font-variation-settings:"opsz" 36,"SOFT" 40;}
+.creds .k em{font-style:italic;font-weight:400;color:var(--fg);}
+.creds .v{font-family:var(--font-mono);font-size:7px;letter-spacing:.22em;text-transform:uppercase;color:var(--fg-dim);margin-top:3px;font-weight:600;}
+.heat{display:flex;justify-content:center;align-items:center;gap:10px;margin:4px 0 10px;}
+.heat .lbl{font-family:var(--font-mono);font-size:8.5px;letter-spacing:.3em;text-transform:uppercase;font-weight:700;color:var(--fg);}
+.heat .flames{display:inline-flex;gap:3px;align-items:center;}
+.heat .flame{width:11px;height:14px;color:oklch(22% 0.03 40 / 0.18);flex-shrink:0;}
+.heat .flame.on{color:var(--accent);}
+.heat .flame.on:nth-of-type(2){transform:scale(1.08);}
+.heat .flame.on:nth-of-type(3){transform:scale(1.16);}
+.heat .score{font-family:var(--font-display);font-weight:600;font-size:13px;letter-spacing:-.01em;color:var(--accent);font-variation-settings:"opsz" 24;}
+.art .flex{flex:1;min-height:2px;}
+.certs{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:6px 4px 8px;}
+.cert{display:flex;flex-direction:column;align-items:center;gap:4px;flex:1;text-align:center;}
+.cert .mark{width:30px;height:30px;display:grid;place-items:center;border-radius:999px;border:1.25px solid oklch(22% 0.03 40 / 0.55);font-family:var(--font-display);font-weight:600;font-size:11px;line-height:1;color:var(--fg);font-variation-settings:"opsz" 24,"SOFT" 50;background:transparent;letter-spacing:-.01em;}
+.cert.wales .mark{background:var(--coriander);color:var(--ed-stock);border-color:var(--coriander);}
+.cert .t{font-family:var(--font-mono);font-size:6.5px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:var(--fg-dim);line-height:1.35;}
+.certs-bu .cert.protein .mark{width:42px;height:42px;font-size:15px;font-weight:800;background:var(--ink-bu);color:var(--bu-stock-hi);border-color:var(--ink-bu);}
+.certs-bu .cert.protein .t{font-weight:700;}
+.foot{margin:4px -24px 0;background:var(--ink);color:var(--ed-stock);padding:10px 24px 12px;border-top:1px solid oklch(22% 0.03 40 / 0.6);display:flex;justify-content:space-between;align-items:baseline;gap:12px;}
+.foot-bu{background:oklch(32% 0.05 40);color:var(--bu-stock-hi);}
+.foot .wt{font-family:var(--font-display);font-weight:600;font-size:17px;letter-spacing:-.01em;font-variation-settings:"opsz" 36;}
+.foot .wt em{font-style:italic;color:oklch(96% 0.026 85 / 0.55);font-weight:400;margin-right:2px;}
+.foot-bu .wt em{color:oklch(78% 0.062 68 / 0.6);}
+.foot .wt .oz{font-family:var(--font-mono);font-size:8.5px;letter-spacing:.2em;text-transform:uppercase;color:oklch(96% 0.026 85 / 0.55);font-weight:700;margin-left:6px;}
+.foot-bu .wt .oz{color:oklch(78% 0.062 68 / 0.6);}
+.foot .halal{font-family:var(--font-mono);font-size:9px;letter-spacing:.26em;text-transform:uppercase;font-weight:700;}
+.foot .halal em{font-style:normal;color:var(--accent);}
+.caption{display:flex;flex-direction:column;align-items:center;gap:4px;margin-top:6px;}
+.caption .a{font-family:var(--font-display);font-style:italic;font-weight:400;font-size:22px;letter-spacing:-.01em;color:var(--ink);font-variation-settings:"opsz" 48,"SOFT" 50;}
+.caption .a em{font-style:normal;font-weight:500;}
+.caption .b{font-family:var(--font-mono);font-size:10px;letter-spacing:.28em;text-transform:uppercase;font-weight:600;color:var(--ink-dim);}
+.caption .b .accent{color:var(--tandoori);}
+.caption.masala .b .accent{color:var(--masala-deep);}
+.how-to-choose{max-width:960px;margin:56px auto 0;padding:22px 26px;border:.75px solid oklch(22% 0.03 40 / 0.25);border-radius:6px;background:oklch(22% 0.03 40 / 0.025);}
+.how-to-choose h3{font-family:var(--font-display);font-weight:600;font-size:18px;letter-spacing:-.01em;margin:0 0 10px;color:var(--ink);font-variation-settings:"opsz" 36,"SOFT" 30;}
+.how-to-choose h3 em{font-style:italic;color:var(--tandoori);}
+.how-to-choose p{font-family:var(--font-body);font-size:14px;line-height:1.6;color:var(--ink-dim);margin:0 0 10px;}
+.how-to-choose p:last-child{margin-bottom:0;}
+.how-to-choose p strong{font-family:var(--font-display);font-weight:600;color:var(--ink);font-variation-settings:"opsz" 18;}
+.how-to-choose p em{font-style:italic;color:var(--tandoori);font-weight:500;}
+@media (max-width:640px){body{padding:40px 14px 60px;}.crest{margin-bottom:32px;}.crest .mark{font-size:28px;}.pouch{width:min(420px,92vw);}.hero-band{min-height:66px;}.stamp{width:54px;height:54px;}.stamp .core{font-size:11px;}.flame-icon{width:46px;height:52px;}}
+</style>
+</head>
+<body>
+  <main class="stage">
+    <header class="crest">
+      <div class="eyebrow">Packaging · 50g stand-up pouch · v5 · compare two directions</div>
+      <div class="mark">Blaze <span class="amp">&amp;</span> Char</div>
+      <p class="caption">Two finishes. Same bag, same copy — <em>different personality</em>. Pick the one that wins on a shop shelf.</p>
+    </header>
+    <div class="version-head">
+      <div class="num">Option A</div>
+      <h2 class="title">Editorial · <em>warm tan</em></h2>
+      <p class="desc">The v4 design, <strong>fixed and warmer</strong>. Cream shifted to oatmeal-tan so it reads as deli paper, not stationery. "Small batch" swapped for "<strong>Hand cut</strong>". Everything else — wordmark, wide-tracked flavour name, window, Welsh stamp — kept as-is. Quiet, confident, magazine-led.</p>
+    </div>
+    <section class="pair" aria-label="Editorial tan version">
+      <div class="pouch-cell">
+        <article class="pouch tandoori">
+          <div class="seal"></div>
+          <div class="art">
+            <div class="wordmark">
+              <div class="bc">Blaze<span class="amp">&amp;</span>Char</div>
+              <div class="wordmark-rule" aria-hidden="true"><svg viewBox="0 0 9 12" fill="currentColor"><path d="M4.5 0.5 C4.5 2 6 3 6.8 4.3 C7.6 5.6 7.8 6.8 7.6 7.8 C7.2 9.4 6 10.4 4.5 11.4 C3 10.4 1.8 9.4 1.4 7.8 C1.2 6.8 1.4 5.6 2.2 4.3 C3 3 4.5 2 4.5 0.5 Z"/></svg></div>
+              <div class="tagline">Hand-made in Wales · Est. 2024</div>
+            </div>
+            <div class="hero-band">
+              <div class="numeral">№&thinsp;<span class="n">01</span></div>
+              <div class="flame-icon" aria-hidden="true"><svg viewBox="0 0 56 62" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="fl-at" x1="0.5" x2="0.5" y1="0" y2="1"><stop offset="0%" stop-color="oklch(66% 0.2 34)"/><stop offset="55%" stop-color="oklch(58% 0.18 32)"/><stop offset="100%" stop-color="oklch(44% 0.14 28)"/></linearGradient></defs><path d="M 28 3 C 28 10 34 14 38 20 C 42 26 44 32 43 38 C 42 46 36 52 28 58 C 20 52 14 46 13 38 C 12 32 14 26 18 20 C 22 14 28 10 28 3 Z" fill="url(#fl-at)"/><path d="M 28 14 C 28 18 31 21 33 25 C 35 29 36 33 35 37 C 34 42 31 46 28 50 C 25 46 22 42 21 37 C 20 33 21 29 23 25 C 25 21 28 18 28 14 Z" fill="oklch(78% 0.19 48)" opacity="0.82"/><ellipse cx="28" cy="38" rx="3" ry="5" fill="oklch(92% 0.12 85)" opacity="0.75"/></svg></div>
+              <div class="stamp"><svg class="ring" viewBox="0 0 62 62"><defs><path id="rp-at" d="M 31 31 m -24 0 a 24 24 0 1 1 48 0 a 24 24 0 1 1 -48 0"/></defs><text><textPath href="#rp-at" startOffset="2%">Hand-made · In Wales · Hand-made ·</textPath></text></svg><div class="core">Cymru<small>Est. 2024</small></div></div>
+            </div>
+            <h1 class="hero-name">Tandoori</h1>
+            <p class="sub-name">Original</p>
+            <div class="category"><span>Beef Jerky · Hand-Made</span></div>
+            <div class="window">
+              <span class="film-label">See inside</span><span class="film-seal">Batch 03</span>
+              <svg class="strips" viewBox="0 0 240 140" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                <defs><linearGradient id="st-at" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stop-color="oklch(44% 0.15 32)"/><stop offset="45%" stop-color="oklch(34% 0.11 28)"/><stop offset="100%" stop-color="oklch(22% 0.08 26)"/></linearGradient></defs>
+                <g><path d="M 18 22 C 22 14 42 10 64 14 C 86 18 110 12 128 18 C 146 24 168 22 188 18 C 204 15 220 22 224 34 C 228 48 222 60 208 64 C 186 70 160 62 138 68 C 114 74 88 66 62 70 C 38 74 20 68 16 54 C 12 40 14 30 18 22 Z" fill="url(#st-at)" opacity="0.98"/><ellipse cx="62" cy="28" rx="8" ry="2.5" fill="oklch(10% 0.03 30)" opacity="0.6"/><ellipse cx="140" cy="40" rx="10" ry="3" fill="oklch(8% 0.02 28)" opacity="0.65"/><g fill="oklch(68% 0.2 45)" opacity="0.8"><circle cx="40" cy="36" r="1.1"/><circle cx="72" cy="48" r="0.8"/><circle cx="118" cy="54" r="0.9"/><circle cx="152" cy="30" r="1.1"/><circle cx="208" cy="44" r="0.9"/></g></g>
+                <g transform="translate(0 58)"><path d="M 14 18 C 26 10 52 16 78 12 C 102 8 130 18 156 14 C 178 10 204 18 218 26 C 230 34 228 52 218 58 C 202 66 174 58 150 64 C 124 70 98 62 72 66 C 48 70 22 64 14 52 C 8 42 8 28 14 18 Z" fill="url(#st-at)" opacity="0.97"/><ellipse cx="48" cy="26" rx="7" ry="2" fill="oklch(8% 0.02 28)" opacity="0.6"/><g fill="oklch(68% 0.2 45)" opacity="0.8"><circle cx="32" cy="32" r="0.9"/><circle cx="92" cy="30" r="1.1"/><circle cx="156" cy="36" r="1"/></g></g>
+                <g transform="translate(0 106)"><path d="M 22 14 C 36 6 66 12 96 10 C 126 8 156 14 184 12 C 206 10 226 18 230 32 L 230 42 L -2 42 L -2 32 C 2 22 12 18 22 14 Z" fill="url(#st-at)" opacity="0.95"/></g>
+              </svg>
+            </div>
+            <div class="meta"><span class="tag">Silverside cut</span><span>14h marinade · 9h dried</span></div>
+            <div class="creds">
+              <div class="cell"><div class="k">Halal <em>beef</em></div><div class="v">British sourced</div></div>
+              <div class="cell"><div class="k">Slow-<em>dried</em></div><div class="v">70°C · 9 hours</div></div>
+              <div class="cell"><div class="k">No soy <em>no MSG</em></div><div class="v">No preservatives</div></div>
+            </div>
+            <div class="heat">
+              <span class="lbl">Heat</span>
+              <span class="flames" aria-hidden="true">
+                <svg class="flame on" viewBox="0 0 14 18" fill="currentColor"><path d="M7 0.5 C7 3 9.2 4.5 10.5 6.6 C11.7 8.6 12.2 10.4 11.8 12 C11.2 14.4 9.4 16 7 17.5 C4.6 16 2.8 14.4 2.2 12 C1.8 10.4 2.3 8.6 3.5 6.6 C4.8 4.5 7 3 7 0.5 Z"/></svg>
+                <svg class="flame on" viewBox="0 0 14 18" fill="currentColor"><path d="M7 0.5 C7 3 9.2 4.5 10.5 6.6 C11.7 8.6 12.2 10.4 11.8 12 C11.2 14.4 9.4 16 7 17.5 C4.6 16 2.8 14.4 2.2 12 C1.8 10.4 2.3 8.6 3.5 6.6 C4.8 4.5 7 3 7 0.5 Z"/></svg>
+                <svg class="flame on" viewBox="0 0 14 18" fill="currentColor"><path d="M7 0.5 C7 3 9.2 4.5 10.5 6.6 C11.7 8.6 12.2 10.4 11.8 12 C11.2 14.4 9.4 16 7 17.5 C4.6 16 2.8 14.4 2.2 12 C1.8 10.4 2.3 8.6 3.5 6.6 C4.8 4.5 7 3 7 0.5 Z"/></svg>
+                <svg class="flame" viewBox="0 0 14 18" fill="currentColor"><path d="M7 0.5 C7 3 9.2 4.5 10.5 6.6 C11.7 8.6 12.2 10.4 11.8 12 C11.2 14.4 9.4 16 7 17.5 C4.6 16 2.8 14.4 2.2 12 C1.8 10.4 2.3 8.6 3.5 6.6 C4.8 4.5 7 3 7 0.5 Z"/></svg>
+                <svg class="flame" viewBox="0 0 14 18" fill="currentColor"><path d="M7 0.5 C7 3 9.2 4.5 10.5 6.6 C11.7 8.6 12.2 10.4 11.8 12 C11.2 14.4 9.4 16 7 17.5 C4.6 16 2.8 14.4 2.2 12 C1.8 10.4 2.3 8.6 3.5 6.6 C4.8 4.5 7 3 7 0.5 Z"/></svg>
+              </span>
+              <span class="score">3/5</span>
+            </div>
+            <div class="flex"></div>
+            <div class="certs">
+              <div class="cert"><div class="mark">✂</div><div class="t">Hand<br/>Cut</div></div>
+              <div class="cert"><div class="mark">24g</div><div class="t">Protein<br/>per pouch</div></div>
+              <div class="cert wales"><div class="mark">⌂</div><div class="t">Made<br/>in Wales</div></div>
+            </div>
+            <div class="foot"><div class="wt"><em>Net</em> 50 g <span class="oz">1.76 oz · e</span></div><div class="halal">Made with <em>halal</em> beef</div></div>
+          </div>
+          <div class="gusset"></div>
+        </article>
+        <div class="shadow"></div>
+        <div class="caption"><div class="a"><em>The Fire</em> · Option A</div><div class="b">Tandoori · <span class="accent">Editorial Tan</span></div></div>
+      </div>
+      <div class="pouch-cell">
+        <article class="pouch masala">
+          <div class="seal"></div>
+          <div class="art">
+            <div class="wordmark">
+              <div class="bc">Blaze<span class="amp">&amp;</span>Char</div>
+              <div class="wordmark-rule" aria-hidden="true"><svg viewBox="0 0 9 12" fill="currentColor"><path d="M4.5 0.5 C4.5 2 6 3 6.8 4.3 C7.6 5.6 7.8 6.8 7.6 7.8 C7.2 9.4 6 10.4 4.5 11.4 C3 10.4 1.8 9.4 1.4 7.8 C1.2 6.8 1.4 5.6 2.2 4.3 C3 3 4.5 2 4.5 0.5 Z"/></svg></div>
+              <div class="tagline">Hand-made in Wales · Est. 2024</div>
+            </div>
+            <div class="hero-band">
+              <div class="numeral">№&thinsp;<span class="n">02</span></div>
+              <div class="flame-icon" aria-hidden="true"><svg viewBox="0 0 56 62"><defs><linearGradient id="fl-am" x1="0.5" x2="0.5" y1="0" y2="1"><stop offset="0%" stop-color="oklch(72% 0.16 78)"/><stop offset="55%" stop-color="oklch(62% 0.14 75)"/><stop offset="100%" stop-color="oklch(48% 0.1 68)"/></linearGradient></defs><path d="M 28 3 C 28 10 34 14 38 20 C 42 26 44 32 43 38 C 42 46 36 52 28 58 C 20 52 14 46 13 38 C 12 32 14 26 18 20 C 22 14 28 10 28 3 Z" fill="url(#fl-am)"/><path d="M 28 14 C 28 18 31 21 33 25 C 35 29 36 33 35 37 C 34 42 31 46 28 50 C 25 46 22 42 21 37 C 20 33 21 29 23 25 C 25 21 28 18 28 14 Z" fill="oklch(82% 0.14 82)" opacity="0.82"/><ellipse cx="28" cy="38" rx="3" ry="5" fill="oklch(94% 0.1 88)" opacity="0.75"/></svg></div>
+              <div class="stamp"><svg class="ring" viewBox="0 0 62 62"><defs><path id="rp-am" d="M 31 31 m -24 0 a 24 24 0 1 1 48 0 a 24 24 0 1 1 -48 0"/></defs><text><textPath href="#rp-am" startOffset="2%">Hand-made · In Wales · Hand-made ·</textPath></text></svg><div class="core">Cymru<small>Est. 2024</small></div></div>
+            </div>
+            <h1 class="hero-name">Masala</h1>
+            <p class="sub-name">Warm &amp; Rich</p>
+            <div class="category"><span>Beef Jerky · Hand-Made</span></div>
+            <div class="window">
+              <span class="film-label">See inside</span><span class="film-seal">Batch 03</span>
+              <svg class="strips" viewBox="0 0 240 140" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                <defs><linearGradient id="sm-at" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stop-color="oklch(42% 0.11 60)"/><stop offset="45%" stop-color="oklch(32% 0.09 55)"/><stop offset="100%" stop-color="oklch(22% 0.06 50)"/></linearGradient></defs>
+                <g><path d="M 18 22 C 22 14 42 10 64 14 C 86 18 110 12 128 18 C 146 24 168 22 188 18 C 204 15 220 22 224 34 C 228 48 222 60 208 64 C 186 70 160 62 138 68 C 114 74 88 66 62 70 C 38 74 20 68 16 54 C 12 40 14 30 18 22 Z" fill="url(#sm-at)" opacity="0.98"/><ellipse cx="62" cy="28" rx="8" ry="2.5" fill="oklch(12% 0.04 50)" opacity="0.6"/><ellipse cx="140" cy="40" rx="10" ry="3" fill="oklch(10% 0.03 48)" opacity="0.65"/><g fill="oklch(76% 0.16 78)" opacity="0.82"><circle cx="40" cy="36" r="1.1"/><circle cx="118" cy="54" r="0.9"/><circle cx="178" cy="50" r="0.7"/></g></g>
+                <g transform="translate(0 58)"><path d="M 14 18 C 26 10 52 16 78 12 C 102 8 130 18 156 14 C 178 10 204 18 218 26 C 230 34 228 52 218 58 C 202 66 174 58 150 64 C 124 70 98 62 72 66 C 48 70 22 64 14 52 C 8 42 8 28 14 18 Z" fill="url(#sm-at)" opacity="0.97"/><ellipse cx="48" cy="26" rx="7" ry="2" fill="oklch(10% 0.03 48)" opacity="0.6"/></g>
+                <g transform="translate(0 106)"><path d="M 22 14 C 36 6 66 12 96 10 C 126 8 156 14 184 12 C 206 10 226 18 230 32 L 230 42 L -2 42 L -2 32 C 2 22 12 18 22 14 Z" fill="url(#sm-at)" opacity="0.95"/></g>
+              </svg>
+            </div>
+            <div class="meta"><span class="tag">Silverside cut</span><span>18h marinade · 9h dried</span></div>
+            <div class="creds">
+              <div class="cell"><div class="k">Halal <em>beef</em></div><div class="v">British sourced</div></div>
+              <div class="cell"><div class="k">Slow-<em>dried</em></div><div class="v">70°C · 9 hours</div></div>
+              <div class="cell"><div class="k">No soy <em>no MSG</em></div><div class="v">No preservatives</div></div>
+            </div>
+            <div class="heat">
+              <span class="lbl">Heat</span>
+              <span class="flames" aria-hidden="true">
+                <svg class="flame on" viewBox="0 0 14 18" fill="currentColor"><path d="M7 0.5 C7 3 9.2 4.5 10.5 6.6 C11.7 8.6 12.2 10.4 11.8 12 C11.2 14.4 9.4 16 7 17.5 C4.6 16 2.8 14.4 2.2 12 C1.8 10.4 2.3 8.6 3.5 6.6 C4.8 4.5 7 3 7 0.5 Z"/></svg>
+                <svg class="flame on" viewBox="0 0 14 18" fill="currentColor"><path d="M7 0.5 C7 3 9.2 4.5 10.5 6.6 C11.7 8.6 12.2 10.4 11.8 12 C11.2 14.4 9.4 16 7 17.5 C4.6 16 2.8 14.4 2.2 12 C1.8 10.4 2.3 8.6 3.5 6.6 C4.8 4.5 7 3 7 0.5 Z"/></svg>
+                <svg class="flame" viewBox="0 0 14 18" fill="currentColor"><path d="M7 0.5 C7 3 9.2 4.5 10.5 6.6 C11.7 8.6 12.2 10.4 11.8 12 C11.2 14.4 9.4 16 7 17.5 C4.6 16 2.8 14.4 2.2 12 C1.8 10.4 2.3 8.6 3.5 6.6 C4.8 4.5 7 3 7 0.5 Z"/></svg>
+                <svg class="flame" viewBox="0 0 14 18" fill="currentColor"><path d="M7 0.5 C7 3 9.2 4.5 10.5 6.6 C11.7 8.6 12.2 10.4 11.8 12 C11.2 14.4 9.4 16 7 17.5 C4.6 16 2.8 14.4 2.2 12 C1.8 10.4 2.3 8.6 3.5 6.6 C4.8 4.5 7 3 7 0.5 Z"/></svg>
+                <svg class="flame" viewBox="0 0 14 18" fill="currentColor"><path d="M7 0.5 C7 3 9.2 4.5 10.5 6.6 C11.7 8.6 12.2 10.4 11.8 12 C11.2 14.4 9.4 16 7 17.5 C4.6 16 2.8 14.4 2.2 12 C1.8 10.4 2.3 8.6 3.5 6.6 C4.8 4.5 7 3 7 0.5 Z"/></svg>
+              </span>
+              <span class="score">2/5</span>
+            </div>
+            <div class="flex"></div>
+            <div class="certs">
+              <div class="cert"><div class="mark">✂</div><div class="t">Hand<br/>Cut</div></div>
+              <div class="cert"><div class="mark">24g</div><div class="t">Protein<br/>per pouch</div></div>
+              <div class="cert wales"><div class="mark">⌂</div><div class="t">Made<br/>in Wales</div></div>
+            </div>
+            <div class="foot"><div class="wt"><em>Net</em> 50 g <span class="oz">1.76 oz · e</span></div><div class="halal">Made with <em>halal</em> beef</div></div>
+          </div>
+          <div class="gusset"></div>
+        </article>
+        <div class="shadow"></div>
+        <div class="caption masala"><div class="a"><em>The Ember</em> · Option A</div><div class="b">Masala · <span class="accent">Editorial Tan</span></div></div>
+      </div>
+    </section>
+    <div class="version-head" style="border-left-color:var(--ink);">
+      <div class="num" style="color:var(--ink);">Option B</div>
+      <h2 class="title">Butcher-shop · <em>kraft</em></h2>
+      <p class="desc">Louder, <strong>meatier</strong>. Stock shifts to deep kraft paper — the colour of a real butcher wrap. Wordmark gets double-rule borders like a deli sign. Hero band framed in heavy double borders. Window is bigger with softened corners like a paper cutout. "<strong>24g protein</strong>" treated as a hero medal — heavier weight, bigger mark, ink-on-kraft contrast. Same typography family so it still feels part of Blaze &amp; Char, but the posture is deli/butcher not magazine.</p>
+    </div>
+    <section class="pair" aria-label="Butcher-shop kraft version">
+      <div class="pouch-cell">
+        <article class="pouch butcher tandoori">
+          <div class="seal"></div>
+          <div class="art">
+            <div class="wordmark-bu">
+              <div class="bc">Blaze<span class="amp">&amp;</span>Char</div>
+              <div class="tagline">Hand-made · Wales · Est. 2024</div>
+            </div>
+            <div class="hero-band hero-band-bu">
+              <div class="numeral">№&thinsp;<span class="n">01</span></div>
+              <div class="flame-icon" aria-hidden="true"><svg viewBox="0 0 56 62"><defs><linearGradient id="fl-bt" x1="0.5" x2="0.5" y1="0" y2="1"><stop offset="0%" stop-color="oklch(66% 0.2 34)"/><stop offset="55%" stop-color="oklch(54% 0.18 32)"/><stop offset="100%" stop-color="oklch(40% 0.14 28)"/></linearGradient></defs><path d="M 28 3 C 28 10 34 14 38 20 C 42 26 44 32 43 38 C 42 46 36 52 28 58 C 20 52 14 46 13 38 C 12 32 14 26 18 20 C 22 14 28 10 28 3 Z" fill="url(#fl-bt)"/><path d="M 28 14 C 28 18 31 21 33 25 C 35 29 36 33 35 37 C 34 42 31 46 28 50 C 25 46 22 42 21 37 C 20 33 21 29 23 25 C 25 21 28 18 28 14 Z" fill="oklch(76% 0.19 48)" opacity="0.82"/><ellipse cx="28" cy="38" rx="3" ry="5" fill="oklch(90% 0.12 85)" opacity="0.75"/></svg></div>
+              <div class="stamp"><svg class="ring" viewBox="0 0 62 62"><defs><path id="rp-bt" d="M 31 31 m -24 0 a 24 24 0 1 1 48 0 a 24 24 0 1 1 -48 0"/></defs><text><textPath href="#rp-bt" startOffset="2%">Hand-made · In Wales · Hand-made ·</textPath></text></svg><div class="core">Cymru<small>Est. 2024</small></div></div>
+            </div>
+            <h1 class="hero-name hero-name-bu">Tandoori</h1>
+            <p class="sub-name sub-name-bu">Original</p>
+            <div class="category category-bu"><span>Beef Jerky · Hand-Cut</span></div>
+            <div class="window window-bu">
+              <span class="film-label">See inside</span><span class="film-seal">Batch 03</span>
+              <svg class="strips" viewBox="0 0 240 140" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                <defs><linearGradient id="st-bt" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stop-color="oklch(44% 0.15 32)"/><stop offset="45%" stop-color="oklch(34% 0.11 28)"/><stop offset="100%" stop-color="oklch(22% 0.08 26)"/></linearGradient></defs>
+                <g><path d="M 18 22 C 22 14 42 10 64 14 C 86 18 110 12 128 18 C 146 24 168 22 188 18 C 204 15 220 22 224 34 C 228 48 222 60 208 64 C 186 70 160 62 138 68 C 114 74 88 66 62 70 C 38 74 20 68 16 54 C 12 40 14 30 18 22 Z" fill="url(#st-bt)" opacity="0.98"/><ellipse cx="62" cy="28" rx="8" ry="2.5" fill="oklch(10% 0.03 30)" opacity="0.6"/><ellipse cx="140" cy="40" rx="10" ry="3" fill="oklch(8% 0.02 28)" opacity="0.65"/><g fill="oklch(68% 0.2 45)" opacity="0.8"><circle cx="40" cy="36" r="1.1"/><circle cx="118" cy="54" r="0.9"/><circle cx="208" cy="44" r="0.9"/></g></g>
+                <g transform="translate(0 58)"><path d="M 14 18 C 26 10 52 16 78 12 C 102 8 130 18 156 14 C 178 10 204 18 218 26 C 230 34 228 52 218 58 C 202 66 174 58 150 64 C 124 70 98 62 72 66 C 48 70 22 64 14 52 C 8 42 8 28 14 18 Z" fill="url(#st-bt)" opacity="0.97"/></g>
+                <g transform="translate(0 106)"><path d="M 22 14 C 36 6 66 12 96 10 C 126 8 156 14 184 12 C 206 10 226 18 230 32 L 230 42 L -2 42 L -2 32 C 2 22 12 18 22 14 Z" fill="url(#st-bt)" opacity="0.95"/></g>
+              </svg>
+            </div>
+            <div class="meta"><span class="tag">Silverside cut</span><span>14h marinade · 9h dried</span></div>
+            <div class="creds creds-bu">
+              <div class="cell"><div class="k">Halal <em>beef</em></div><div class="v">British sourced</div></div>
+              <div class="cell"><div class="k">Slow-<em>dried</em></div><div class="v">70°C · 9 hours</div></div>
+              <div class="cell"><div class="k">No soy <em>no MSG</em></div><div class="v">No preservatives</div></div>
+            </div>
+            <div class="heat">
+              <span class="lbl">Heat</span>
+              <span class="flames" aria-hidden="true">
+                <svg class="flame on" viewBox="0 0 14 18" fill="currentColor"><path d="M7 0.5 C7 3 9.2 4.5 10.5 6.6 C11.7 8.6 12.2 10.4 11.8 12 C11.2 14.4 9.4 16 7 17.5 C4.6 16 2.8 14.4 2.2 12 C1.8 10.4 2.3 8.6 3.5 6.6 C4.8 4.5 7 3 7 0.5 Z"/></svg>
+                <svg class="flame on" viewBox="0 0 14 18" fill="currentColor"><path d="M7 0.5 C7 3 9.2 4.5 10.5 6.6 C11.7 8.6 12.2 10.4 11.8 12 C11.2 14.4 9.4 16 7 17.5 C4.6 16 2.8 14.4 2.2 12 C1.8 10.4 2.3 8.6 3.5 6.6 C4.8 4.5 7 3 7 0.5 Z"/></svg>
+                <svg class="flame on" viewBox="0 0 14 18" fill="currentColor"><path d="M7 0.5 C7 3 9.2 4.5 10.5 6.6 C11.7 8.6 12.2 10.4 11.8 12 C11.2 14.4 9.4 16 7 17.5 C4.6 16 2.8 14.4 2.2 12 C1.8 10.4 2.3 8.6 3.5 6.6 C4.8 4.5 7 3 7 0.5 Z"/></svg>
+                <svg class="flame" viewBox="0 0 14 18" fill="currentColor"><path d="M7 0.5 C7 3 9.2 4.5 10.5 6.6 C11.7 8.6 12.2 10.4 11.8 12 C11.2 14.4 9.4 16 7 17.5 C4.6 16 2.8 14.4 2.2 12 C1.8 10.4 2.3 8.6 3.5 6.6 C4.8 4.5 7 3 7 0.5 Z"/></svg>
+                <svg class="flame" viewBox="0 0 14 18" fill="currentColor"><path d="M7 0.5 C7 3 9.2 4.5 10.5 6.6 C11.7 8.6 12.2 10.4 11.8 12 C11.2 14.4 9.4 16 7 17.5 C4.6 16 2.8 14.4 2.2 12 C1.8 10.4 2.3 8.6 3.5 6.6 C4.8 4.5 7 3 7 0.5 Z"/></svg>
+              </span>
+              <span class="score">3/5</span>
+            </div>
+            <div class="flex"></div>
+            <div class="certs certs-bu">
+              <div class="cert"><div class="mark">✂</div><div class="t">Hand<br/>Cut</div></div>
+              <div class="cert protein"><div class="mark">24g</div><div class="t">Protein<br/>per pouch</div></div>
+              <div class="cert wales"><div class="mark">⌂</div><div class="t">Made<br/>in Wales</div></div>
+            </div>
+            <div class="foot foot-bu"><div class="wt"><em>Net</em> 50 g <span class="oz">1.76 oz · e</span></div><div class="halal">Made with <em>halal</em> beef</div></div>
+          </div>
+          <div class="gusset"></div>
+        </article>
+        <div class="shadow"></div>
+        <div class="caption"><div class="a"><em>The Fire</em> · Option B</div><div class="b">Tandoori · <span class="accent">Butcher Kraft</span></div></div>
+      </div>
+      <div class="pouch-cell">
+        <article class="pouch butcher masala">
+          <div class="seal"></div>
+          <div class="art">
+            <div class="wordmark-bu">
+              <div class="bc">Blaze<span class="amp">&amp;</span>Char</div>
+              <div class="tagline">Hand-made · Wales · Est. 2024</div>
+            </div>
+            <div class="hero-band hero-band-bu">
+              <div class="numeral">№&thinsp;<span class="n">02</span></div>
+              <div class="flame-icon" aria-hidden="true"><svg viewBox="0 0 56 62"><defs><linearGradient id="fl-bm" x1="0.5" x2="0.5" y1="0" y2="1"><stop offset="0%" stop-color="oklch(72% 0.16 78)"/><stop offset="55%" stop-color="oklch(60% 0.14 72)"/><stop offset="100%" stop-color="oklch(44% 0.1 65)"/></linearGradient></defs><path d="M 28 3 C 28 10 34 14 38 20 C 42 26 44 32 43 38 C 42 46 36 52 28 58 C 20 52 14 46 13 38 C 12 32 14 26 18 20 C 22 14 28 10 28 3 Z" fill="url(#fl-bm)"/><path d="M 28 14 C 28 18 31 21 33 25 C 35 29 36 33 35 37 C 34 42 31 46 28 50 C 25 46 22 42 21 37 C 20 33 21 29 23 25 C 25 21 28 18 28 14 Z" fill="oklch(82% 0.14 82)" opacity="0.82"/><ellipse cx="28" cy="38" rx="3" ry="5" fill="oklch(94% 0.1 88)" opacity="0.75"/></svg></div>
+              <div class="stamp"><svg class="ring" viewBox="0 0 62 62"><defs><path id="rp-bm" d="M 31 31 m -24 0 a 24 24 0 1 1 48 0 a 24 24 0 1 1 -48 0"/></defs><text><textPath href="#rp-bm" startOffset="2%">Hand-made · In Wales · Hand-made ·</textPath></text></svg><div class="core">Cymru<small>Est. 2024</small></div></div>
+            </div>
+            <h1 class="hero-name hero-name-bu">Masala</h1>
+            <p class="sub-name sub-name-bu">Warm &amp; Rich</p>
+            <div class="category category-bu"><span>Beef Jerky · Hand-Cut</span></div>
+            <div class="window window-bu">
+              <span class="film-label">See inside</span><span class="film-seal">Batch 03</span>
+              <svg class="strips" viewBox="0 0 240 140" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                <defs><linearGradient id="sm-bt" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stop-color="oklch(42% 0.11 60)"/><stop offset="45%" stop-color="oklch(32% 0.09 55)"/><stop offset="100%" stop-color="oklch(22% 0.06 50)"/></linearGradient></defs>
+                <g><path d="M 18 22 C 22 14 42 10 64 14 C 86 18 110 12 128 18 C 146 24 168 22 188 18 C 204 15 220 22 224 34 C 228 48 222 60 208 64 C 186 70 160 62 138 68 C 114 74 88 66 62 70 C 38 74 20 68 16 54 C 12 40 14 30 18 22 Z" fill="url(#sm-bt)" opacity="0.98"/><ellipse cx="62" cy="28" rx="8" ry="2.5" fill="oklch(12% 0.04 50)" opacity="0.6"/><g fill="oklch(76% 0.16 78)" opacity="0.82"><circle cx="40" cy="36" r="1.1"/><circle cx="118" cy="54" r="0.9"/></g></g>
+                <g transform="translate(0 58)"><path d="M 14 18 C 26 10 52 16 78 12 C 102 8 130 18 156 14 C 178 10 204 18 218 26 C 230 34 228 52 218 58 C 202 66 174 58 150 64 C 124 70 98 62 72 66 C 48 70 22 64 14 52 C 8 42 8 28 14 18 Z" fill="url(#sm-bt)" opacity="0.97"/></g>
+                <g transform="translate(0 106)"><path d="M 22 14 C 36 6 66 12 96 10 C 126 8 156 14 184 12 C 206 10 226 18 230 32 L 230 42 L -2 42 L -2 32 C 2 22 12 18 22 14 Z" fill="url(#sm-bt)" opacity="0.95"/></g>
+              </svg>
+            </div>
+            <div class="meta"><span class="tag">Silverside cut</span><span>18h marinade · 9h dried</span></div>
+            <div class="creds creds-bu">
+              <div class="cell"><div class="k">Halal <em>beef</em></div><div class="v">British sourced</div></div>
+              <div class="cell"><div class="k">Slow-<em>dried</em></div><div class="v">70°C · 9 hours</div></div>
+              <div class="cell"><div class="k">No soy <em>no MSG</em></div><div class="v">No preservatives</div></div>
+            </div>
+            <div class="heat">
+              <span class="lbl">Heat</span>
+              <span class="flames" aria-hidden="true">
+                <svg class="flame on" viewBox="0 0 14 18" fill="currentColor"><path d="M7 0.5 C7 3 9.2 4.5 10.5 6.6 C11.7 8.6 12.2 10.4 11.8 12 C11.2 14.4 9.4 16 7 17.5 C4.6 16 2.8 14.4 2.2 12 C1.8 10.4 2.3 8.6 3.5 6.6 C4.8 4.5 7 3 7 0.5 Z"/></svg>
+                <svg class="flame on" viewBox="0 0 14 18" fill="currentColor"><path d="M7 0.5 C7 3 9.2 4.5 10.5 6.6 C11.7 8.6 12.2 10.4 11.8 12 C11.2 14.4 9.4 16 7 17.5 C4.6 16 2.8 14.4 2.2 12 C1.8 10.4 2.3 8.6 3.5 6.6 C4.8 4.5 7 3 7 0.5 Z"/></svg>
+                <svg class="flame" viewBox="0 0 14 18" fill="currentColor"><path d="M7 0.5 C7 3 9.2 4.5 10.5 6.6 C11.7 8.6 12.2 10.4 11.8 12 C11.2 14.4 9.4 16 7 17.5 C4.6 16 2.8 14.4 2.2 12 C1.8 10.4 2.3 8.6 3.5 6.6 C4.8 4.5 7 3 7 0.5 Z"/></svg>
+                <svg class="flame" viewBox="0 0 14 18" fill="currentColor"><path d="M7 0.5 C7 3 9.2 4.5 10.5 6.6 C11.7 8.6 12.2 10.4 11.8 12 C11.2 14.4 9.4 16 7 17.5 C4.6 16 2.8 14.4 2.2 12 C1.8 10.4 2.3 8.6 3.5 6.6 C4.8 4.5 7 3 7 0.5 Z"/></svg>
+                <svg class="flame" viewBox="0 0 14 18" fill="currentColor"><path d="M7 0.5 C7 3 9.2 4.5 10.5 6.6 C11.7 8.6 12.2 10.4 11.8 12 C11.2 14.4 9.4 16 7 17.5 C4.6 16 2.8 14.4 2.2 12 C1.8 10.4 2.3 8.6 3.5 6.6 C4.8 4.5 7 3 7 0.5 Z"/></svg>
+              </span>
+              <span class="score">2/5</span>
+            </div>
+            <div class="flex"></div>
+            <div class="certs certs-bu">
+              <div class="cert"><div class="mark">✂</div><div class="t">Hand<br/>Cut</div></div>
+              <div class="cert protein"><div class="mark">24g</div><div class="t">Protein<br/>per pouch</div></div>
+              <div class="cert wales"><div class="mark">⌂</div><div class="t">Made<br/>in Wales</div></div>
+            </div>
+            <div class="foot foot-bu"><div class="wt"><em>Net</em> 50 g <span class="oz">1.76 oz · e</span></div><div class="halal">Made with <em>halal</em> beef</div></div>
+          </div>
+          <div class="gusset"></div>
+        </article>
+        <div class="shadow"></div>
+        <div class="caption masala"><div class="a"><em>The Ember</em> · Option B</div><div class="b">Masala · <span class="accent">Butcher Kraft</span></div></div>
+      </div>
+    </section>
+    <aside class="how-to-choose">
+      <h3>How to <em>choose</em></h3>
+      <p><strong>A (editorial tan)</strong> — quieter, closer to how your website looks. Feels like a premium deli counter. Best if you're going to sell alongside speciality food (cheese shops, wine merchants, posh farm shops).</p>
+      <p><strong>B (butcher kraft)</strong> — warmer, louder. Reads as <em>meat product</em> from across a shelf. The double-rule borders, heavier wordmark and chunky "24g" medal work harder when the pouch has to compete with Peperami, Biltong Co, Jack Link's etc. Best if you're pitching to mainstream grocers / petrol forecourts / gyms.</p>
+      <p>Both use the same copy, same ingredients, same legal wording, same Welsh stamp — swap in either for the print-ready artwork. Let me know which one and I'll build its back panel to match.</p>
+    </aside>
+  </main>
+</body>
+</html>

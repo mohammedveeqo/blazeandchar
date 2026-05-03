@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Blaze & Char — full logo, stacked lockup (monogram above wordmark) -->
+<!-- Use for square-ish surfaces: Instagram avatar, business card, product tag, swing tags -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400" role="img" aria-label="Blaze &amp; Char">
+  <title>Blaze &amp; Char</title>
+  <defs>
+    <style>
+      .brand-stroke { stroke: #c24a27; fill: none; }
+      .brand-fill   { fill: #c24a27; }
+      .brand-ink    { fill: #2d1a12; }
+    </style>
+  </defs>
+
+  <!-- Monogram: circular medallion, centred, upper third -->
+  <g transform="translate(200 150)">
+    <circle r="90" class="brand-stroke" stroke-width="4"/>
+    <circle r="76" class="brand-stroke" stroke-width="1.5" opacity="0.5"/>
+    <text x="0" y="0"
+          text-anchor="middle"
+          dominant-baseline="central"
+          font-family="'Fraunces', 'Iowan Old Style', Georgia, serif"
+          font-style="italic"
+          font-weight="400"
+          font-size="116"
+          font-variation-settings="'SOFT' 20, 'WONK' 1, 'opsz' 144"
+          class="brand-fill"
+          transform="translate(-3 3)">&amp;</text>
+  </g>
+
+  <!-- Divider rule -->
+  <line x1="140" y1="272" x2="260" y2="272" stroke="#c24a27" stroke-width="1" opacity="0.4"/>
+
+  <!-- Wordmark: "Blaze & Char" centred below -->
+  <g transform="translate(200 316)">
+    <text x="0" y="0"
+          text-anchor="middle"
+          dominant-baseline="central"
+          font-family="'Fraunces', 'Iowan Old Style', Georgia, serif"
+          font-weight="700"
+          font-size="44"
+          font-variation-settings="'SOFT' 20, 'WONK' 1, 'opsz' 144"
+          letter-spacing="-0.9"
+          class="brand-ink">Blaze<tspan font-style="italic" font-weight="400" font-size="48" class="brand-fill" dx="5" dy="0">&amp;</tspan><tspan dx="5" font-style="normal" font-weight="700" font-size="44" class="brand-ink">Char</tspan></text>
+  </g>
+
+  <!-- Kicker: HAND-MADE · IN WALES -->
+  <text x="200" y="352"
+        text-anchor="middle"
+        dominant-baseline="central"
+        font-family="ui-monospace, 'JetBrains Mono', Menlo, monospace"
+        font-weight="600"
+        font-size="11"
+        letter-spacing="3.2"
+        fill="#7a5a3c">HAND-MADE · IN WALES</text>
+</svg>

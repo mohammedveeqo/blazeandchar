@@ -1,0 +1,289 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Blaze & Char — 50g Pouch (v7, warm tan · legal-fixed)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,400;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet" />
+<style>
+:root {
+  --bg: oklch(88% 0.04 72);
+  --bg-deep: oklch(82% 0.05 70);
+  --stock: oklch(86% 0.055 68);
+  --stock-hi: oklch(89% 0.048 68);
+  --stock-lo: oklch(80% 0.065 65);
+  --ink: oklch(22% 0.03 40);
+  --ink-dim: oklch(40% 0.04 45);
+  --ink-soft: oklch(55% 0.04 50);
+  --tandoori: oklch(54% 0.19 32);
+  --tandoori-deep: oklch(42% 0.16 30);
+  --masala: oklch(60% 0.15 72);
+  --masala-deep: oklch(48% 0.13 68);
+  --font-display: 'Fraunces','Newsreader','Iowan Old Style',Georgia,serif;
+  --font-body: 'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;
+  --font-mono: 'JetBrains Mono',ui-monospace,Menlo,monospace;
+}
+*,*::before,*::after{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{min-height:100vh;background:radial-gradient(ellipse at 50% 20%,oklch(90% 0.035 72) 0%,var(--bg) 60%,var(--bg-deep) 120%);color:var(--ink);font-family:var(--font-body);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;padding:64px 24px 80px;overflow-x:hidden;}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.5;mix-blend-mode:multiply;z-index:0;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.22  0 0 0 0 0.14  0 0 0 0 0.08  0 0 0 0.06 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");}
+.stage{position:relative;z-index:1;max-width:1280px;margin:0 auto;}
+.crest{text-align:center;margin-bottom:40px;}
+.crest .eyebrow{font-family:var(--font-mono);font-size:11px;letter-spacing:.34em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:14px;font-weight:600;}
+.crest .mark{font-family:var(--font-display);font-weight:500;font-size:36px;letter-spacing:-.02em;display:inline-flex;align-items:baseline;gap:.18em;font-variation-settings:"SOFT" 30,"WONK" 1,"opsz" 144;color:var(--ink);}
+.crest .mark .amp{font-style:italic;font-weight:400;color:var(--tandoori);}
+.crest .caption{margin-top:14px;font-family:var(--font-display);font-style:italic;font-weight:400;font-size:18px;color:var(--ink-dim);font-variation-settings:"opsz" 36;max-width:640px;margin-left:auto;margin-right:auto;}
+.crest .caption em{font-style:normal;color:var(--ink);font-weight:500;}
+.section-label{display:flex;align-items:center;gap:16px;max-width:1000px;margin:48px auto 24px;color:var(--ink-dim);}
+.section-label::before,.section-label::after{content:"";flex:1;height:.75px;background:oklch(22% 0.03 40 / 0.25);}
+.section-label span{font-family:var(--font-mono);font-size:11px;letter-spacing:.36em;text-transform:uppercase;font-weight:700;color:var(--ink);white-space:nowrap;}
+.section-label em{font-family:var(--font-display);font-style:italic;font-weight:400;font-size:15px;color:var(--ink-dim);font-variation-settings:"opsz" 24;margin-left:6px;letter-spacing:0;text-transform:none;}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:end;justify-items:center;position:relative;}
+@media (max-width:880px){.pair{grid-template-columns:1fr;gap:60px;}}
+.pouch-cell{display:flex;flex-direction:column;align-items:center;gap:24px;width:100%;}
+.shadow{width:82%;height:30px;margin-top:-20px;background:radial-gradient(ellipse at 50% 50%,oklch(22% 0.03 40 / 0.35) 0%,oklch(22% 0.03 40 / 0.12) 45%,transparent 70%);filter:blur(7px);transform:translateY(-2px);}
+.pouch{--accent:var(--tandoori);--accent-deep:var(--tandoori-deep);position:relative;width:min(460px,44vw);aspect-ratio:130/208;border-radius:26px 26px 10px 10px;overflow:hidden;background:linear-gradient(180deg,var(--stock-hi) 0%,var(--stock) 32%,var(--stock) 70%,var(--stock-lo) 100%);box-shadow:0 70px 90px -40px oklch(22% 0.03 40 / 0.4),0 22px 44px -20px oklch(22% 0.03 40 / 0.26),inset 0 0 0 1px oklch(22% 0.03 40 / 0.08),inset 0 -50px 80px -40px oklch(22% 0.03 40 / 0.16),inset 0 50px 80px -40px oklch(22% 0.03 40 / 0.06);}
+.pouch.masala{--accent:var(--masala);--accent-deep:var(--masala-deep);}
+.pouch::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.42;mix-blend-mode:multiply;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='1.3' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.22  0 0 0 0 0.13  0 0 0 0 0.07  0 0 0 0.12 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");}
+.pouch::after{content:"";position:absolute;inset:0;pointer-events:none;mix-blend-mode:multiply;background:linear-gradient(90deg,oklch(100% 0 0 / 0.32) 0,transparent 6%,transparent 94%,oklch(22% 0.03 40 / 0.1) 100%),linear-gradient(90deg,transparent 49.6%,oklch(22% 0.03 40 / 0.05) 50%,transparent 50.4%);}
+.seal{position:absolute;top:0;left:0;right:0;height:8%;border-bottom:1px solid oklch(22% 0.03 40 / 0.16);background-image:linear-gradient(180deg,var(--stock-lo) 0%,var(--stock) 80%),repeating-linear-gradient(90deg,oklch(22% 0.03 40 / 0.1) 0 1px,transparent 1px 6px);}
+.seal::before{content:"";position:absolute;top:32%;left:50%;transform:translate(-50%,0);width:22px;height:10px;background:oklch(22% 0.03 40 / 0.92);border-radius:999px;box-shadow:inset 0 1px 2px oklch(0% 0 0 / 0.6),0 1px 0 oklch(100% 0 0 / 0.4);}
+.gusset{position:absolute;left:0;right:0;bottom:0;height:4%;background:linear-gradient(180deg,transparent,oklch(22% 0.03 40 / 0.1)),var(--stock-lo);border-top:1px solid oklch(22% 0.03 40 / 0.11);}
+.art{position:absolute;top:8%;left:0;right:0;bottom:4%;padding:16px 24px 0;display:flex;flex-direction:column;color:var(--ink);}
+.wordmark{text-align:center;padding:6px 0 8px;}
+.wordmark .bc{font-family:var(--font-display);font-weight:700;font-size:clamp(28px,4.6vw,40px);letter-spacing:-.025em;line-height:1;color:var(--ink);font-variation-settings:"SOFT" 30,"WONK" 1,"opsz" 144;display:inline-flex;align-items:baseline;gap:.14em;}
+.wordmark .bc .amp{font-style:italic;font-weight:500;color:var(--accent);font-variation-settings:"SOFT" 80,"WONK" 1,"opsz" 144;font-size:1.1em;margin:0 .02em;}
+.wordmark-rule{display:flex;align-items:center;justify-content:center;gap:10px;margin:4px 0 6px;color:oklch(22% 0.03 40 / 0.5);}
+.wordmark-rule::before,.wordmark-rule::after{content:"";flex:1;height:.75px;background:oklch(22% 0.03 40 / 0.4);max-width:32%;}
+.wordmark-rule svg{width:9px;height:12px;color:var(--accent);flex-shrink:0;}
+.wordmark .tagline{font-family:var(--font-mono);font-size:8px;letter-spacing:.32em;text-transform:uppercase;color:var(--ink-dim);font-weight:600;margin-top:2px;}
+.hero-band{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:10px;padding:12px 0 6px;min-height:78px;border-top:.75px solid oklch(22% 0.03 40 / 0.22);border-bottom:.75px solid oklch(22% 0.03 40 / 0.22);margin:2px 0 14px;}
+.numeral{font-family:var(--font-display);font-style:italic;font-weight:500;font-size:20px;letter-spacing:.02em;color:var(--ink-dim);font-variation-settings:"opsz" 36,"SOFT" 50;line-height:1;text-align:center;justify-self:end;padding-right:6px;}
+.numeral .n{color:var(--accent);font-weight:700;font-size:26px;}
+.flame-icon{width:56px;height:62px;display:grid;place-items:center;}
+.flame-icon svg{width:100%;height:100%;}
+.stamp{width:62px;height:62px;border-radius:999px;border:1.25px solid var(--accent);display:grid;place-items:center;position:relative;justify-self:start;margin-left:6px;color:var(--accent);transform:rotate(-4deg);}
+.stamp::before{content:"";position:absolute;inset:3px;border-radius:999px;border:.6px solid var(--accent);opacity:.5;}
+.stamp::after{content:"";position:absolute;inset:0;border-radius:999px;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='62' height='62'><filter id='s'><feTurbulence type='fractalNoise' baseFrequency='2.2' numOctaves='2'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.8 0'/></filter><rect width='100%' height='100%' filter='url(%23s)' opacity='0.22'/></svg>");mix-blend-mode:screen;opacity:.85;pointer-events:none;}
+.stamp .ring{position:absolute;inset:0;}
+.stamp .ring text{font-family:var(--font-mono);font-size:5.2px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;fill:var(--accent);}
+.stamp .core{font-family:var(--font-display);font-style:italic;font-weight:600;font-size:13px;line-height:1;text-align:center;color:var(--accent);font-variation-settings:"opsz" 36,"SOFT" 50;}
+.stamp .core small{display:block;font-family:var(--font-mono);font-style:normal;font-size:5px;font-weight:700;letter-spacing:.18em;margin-top:2px;opacity:.75;}
+.hero-name{text-align:center;font-family:var(--font-display);font-weight:700;font-size:clamp(38px,5.4vw,52px);letter-spacing:.14em;line-height:1;color:var(--ink);margin:4px 0 4px;font-variation-settings:"SOFT" 30,"WONK" 0,"opsz" 144;text-transform:uppercase;font-feature-settings:"kern" 1;text-indent:.14em;}
+.sub-name{text-align:center;font-family:var(--font-display);font-style:italic;font-weight:400;font-size:clamp(16px,2vw,20px);color:var(--ink-dim);letter-spacing:.005em;margin:0 0 10px;font-variation-settings:"opsz" 60,"SOFT" 60;}
+.category{text-align:center;font-family:var(--font-mono);font-size:9.5px;letter-spacing:.34em;text-transform:uppercase;font-weight:700;color:var(--accent);margin:0 0 14px;display:flex;align-items:center;gap:10px;justify-content:center;width:100%;}
+.category::before,.category::after{content:"";flex:0 1 54px;height:.75px;background:var(--accent);opacity:.55;}
+.window{position:relative;margin:0 -2px 10px;aspect-ratio:24/14;border-radius:3px;background:radial-gradient(ellipse at 50% 35%,oklch(22% 0.04 35) 0%,oklch(14% 0.03 30) 60%,oklch(8% 0.02 30) 100%);box-shadow:inset 0 0 0 1.5px oklch(22% 0.03 40 / 0.9),inset 0 2px 6px oklch(0% 0 0 / 0.6),inset 0 -2px 4px oklch(0% 0 0 / 0.4),0 2px 4px oklch(100% 0 0 / 0.4);overflow:hidden;}
+.window::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:2;background:linear-gradient(135deg,oklch(100% 0 0 / 0.14) 0%,transparent 30%,transparent 70%,oklch(100% 0 0 / 0.05) 100%);}
+.window::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:3;opacity:.2;mix-blend-mode:overlay;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='1.8' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.95  0 0 0 0 0.88  0 0 0 0 0.78  0 0 0 0.8 0'/></filter><rect width='100%' height='100%' filter='url(%23g)'/></svg>");}
+.window .film-label{position:absolute;top:5px;left:8px;font-family:var(--font-mono);font-size:6.5px;letter-spacing:.28em;text-transform:uppercase;color:oklch(88% 0.02 60 / 0.5);z-index:4;font-weight:600;}
+.window svg.strips{position:absolute;inset:0;width:100%;height:100%;z-index:1;}
+.meta{display:flex;justify-content:space-between;align-items:center;margin:0 -2px 12px;font-family:var(--font-mono);font-size:8.5px;letter-spacing:.26em;text-transform:uppercase;font-weight:600;color:var(--ink-dim);}
+.meta .tag{display:inline-flex;align-items:center;gap:5px;color:var(--ink);}
+.meta .tag::before{content:"";width:4px;height:4px;border-radius:999px;background:var(--accent);}
+.creds{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-bottom:12px;border-top:.75px solid oklch(22% 0.03 40 / 0.35);border-bottom:.75px solid oklch(22% 0.03 40 / 0.35);padding:10px 0;}
+.creds .cell{text-align:center;padding:0 6px;position:relative;}
+.creds .cell + .cell::before{content:"";position:absolute;left:0;top:20%;bottom:20%;width:.75px;background:oklch(22% 0.03 40 / 0.3);}
+.creds .k{font-family:var(--font-display);font-weight:600;font-size:13px;line-height:1.1;letter-spacing:-.01em;color:var(--ink);font-variation-settings:"opsz" 36,"SOFT" 40;}
+.creds .k em{font-style:italic;font-weight:400;color:var(--ink);}
+.creds .v{font-family:var(--font-mono);font-size:7px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-dim);margin-top:3px;font-weight:600;}
+.heat{display:flex;justify-content:center;align-items:center;gap:10px;margin:4px 0 10px;}
+.heat .lbl{font-family:var(--font-mono);font-size:8.5px;letter-spacing:.3em;text-transform:uppercase;font-weight:700;color:var(--ink);}
+.heat .flames{display:inline-flex;gap:3px;align-items:center;}
+.heat .flame{width:11px;height:14px;color:oklch(22% 0.03 40 / 0.2);flex-shrink:0;}
+.heat .flame.on{color:var(--accent);}
+.heat .flame.on:nth-of-type(2){transform:scale(1.08);}
+.heat .flame.on:nth-of-type(3){transform:scale(1.16);}
+.heat .score{font-family:var(--font-display);font-weight:600;font-size:13px;letter-spacing:-.01em;color:var(--accent);font-variation-settings:"opsz" 24;}
+.art .flex{flex:1;min-height:2px;}
+.certs{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:6px 4px 8px;}
+.cert{display:flex;flex-direction:column;align-items:center;gap:4px;flex:1;text-align:center;}
+.cert .mark{width:30px;height:30px;display:grid;place-items:center;border-radius:999px;border:1.25px solid oklch(22% 0.03 40 / 0.55);font-family:var(--font-display);font-weight:600;font-size:11px;line-height:1;color:var(--ink);font-variation-settings:"opsz" 24,"SOFT" 50;background:transparent;letter-spacing:-.01em;}
+.cert.wales{--wales-green:oklch(46% 0.16 148);}
+.cert.wales .mark{border:none;background:transparent;width:auto;height:30px;display:flex;align-items:center;justify-content:center;}
+.cert.wales .mark svg{width:22px;height:28px;color:var(--wales-green);display:block;shape-rendering:geometricPrecision;}
+.cert.wales .mark svg path{fill:currentColor;}
+.cert .t{font-family:var(--font-mono);font-size:6.5px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:var(--ink-dim);line-height:1.35;}
+.foot{margin:4px -24px 0;background:var(--ink);color:var(--stock);padding:10px 24px 12px;border-top:1px solid oklch(22% 0.03 40 / 0.6);display:flex;justify-content:space-between;align-items:baseline;gap:12px;}
+.foot .wt{font-family:var(--font-display);font-weight:600;font-size:17px;letter-spacing:-.01em;font-variation-settings:"opsz" 36;}
+.foot .wt em{font-style:italic;color:oklch(86% 0.055 68 / 0.55);font-weight:400;margin-right:2px;}
+.foot .halal{font-family:var(--font-mono);font-size:9px;letter-spacing:.26em;text-transform:uppercase;font-weight:700;color:var(--stock);}
+.foot .halal em{font-style:normal;color:var(--accent);}
+.art.back{padding:14px 22px 0;}
+.back-head{text-align:center;padding:4px 0 8px;border-bottom:.75px solid oklch(22% 0.03 40 / 0.25);margin-bottom:12px;}
+.back-head .bc{font-family:var(--font-display);font-weight:700;font-size:22px;letter-spacing:-.025em;line-height:1;color:var(--ink);font-variation-settings:"SOFT" 30,"WONK" 1,"opsz" 144;display:inline-flex;align-items:baseline;gap:.1em;}
+.back-head .bc .amp{font-style:italic;font-weight:500;color:var(--accent);font-variation-settings:"SOFT" 80,"WONK" 1,"opsz" 144;font-size:1.1em;margin:0 .02em;}
+.back-head .sku{font-family:var(--font-mono);font-size:8px;letter-spacing:.32em;text-transform:uppercase;color:var(--ink-dim);font-weight:700;margin-top:6px;}
+.back-head .sku .accent{color:var(--accent);font-weight:700;}
+.block{margin-bottom:11px;}
+.block-head{display:flex;align-items:center;gap:8px;margin:0 0 5px;}
+.block-head::after{content:"";flex:1;height:.5px;background:oklch(22% 0.03 40 / 0.3);}
+.block-head .lbl{font-family:var(--font-mono);font-size:7.5px;letter-spacing:.32em;text-transform:uppercase;font-weight:700;color:var(--accent);white-space:nowrap;}
+.story p{font-family:var(--font-display);font-size:10px;line-height:1.5;color:var(--ink);margin:0 0 5px;font-variation-settings:"opsz" 14,"SOFT" 40;}
+.story p em{font-style:italic;color:var(--ink);}
+.story .q{font-family:var(--font-display);font-style:italic;font-weight:500;font-size:11px;line-height:1.35;color:var(--accent);margin:6px 0 0;font-variation-settings:"opsz" 24,"SOFT" 60;border-left:1.5px solid var(--accent);padding-left:8px;}
+.ingredients{font-family:var(--font-body);font-size:8.5px;line-height:1.55;color:var(--ink);font-weight:400;}
+.ingredients strong{font-weight:700;text-transform:uppercase;letter-spacing:.04em;}
+.ingredients .allergen-line{font-family:var(--font-mono);font-size:7px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:var(--accent);margin-top:5px;}
+.nutrition{font-family:var(--font-mono);font-size:8.5px;line-height:1.4;border:1px solid var(--ink);padding:7px 8px;}
+.nutrition .nt-title{font-family:var(--font-display);font-weight:700;font-size:11px;letter-spacing:-.01em;color:var(--ink);padding-bottom:4px;margin-bottom:5px;border-bottom:1.5px solid var(--ink);display:flex;justify-content:space-between;align-items:baseline;font-variation-settings:"opsz" 24;}
+.nutrition .nt-title small{font-family:var(--font-mono);font-size:7px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-dim);}
+.nutrition .nt-body{font-family:var(--font-body);font-size:9px;line-height:1.5;color:var(--ink);}
+.nutrition .nt-body em{font-style:italic;color:var(--ink-dim);}
+.storage{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.storage .s{background:oklch(22% 0.03 40 / 0.04);padding:6px 8px;border-left:2px solid var(--accent);}
+.storage .s .k{font-family:var(--font-mono);font-size:6.5px;letter-spacing:.26em;text-transform:uppercase;font-weight:700;color:var(--ink-dim);margin-bottom:2px;}
+.storage .s .v{font-family:var(--font-display);font-weight:500;font-size:10px;line-height:1.3;color:var(--ink);font-variation-settings:"opsz" 14;}
+.storage .s .v em{font-style:italic;color:var(--accent);}
+.batch-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px;}
+.batch-row .b{border:1px dashed oklch(22% 0.03 40 / 0.5);padding:5px 7px;text-align:center;}
+.batch-row .b .k{font-family:var(--font-mono);font-size:6.5px;letter-spacing:.26em;text-transform:uppercase;font-weight:700;color:var(--ink-dim);margin-bottom:2px;}
+.batch-row .b .v{font-family:var(--font-mono);font-size:10px;letter-spacing:.04em;font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums;}
+.batch-row .b .v .p{color:var(--ink-soft);font-weight:400;}
+.maker-block{font-family:var(--font-body);font-size:7.5px;line-height:1.55;color:var(--ink-dim);font-weight:500;}
+.maker-block strong{font-weight:700;color:var(--ink);font-family:var(--font-display);font-size:9px;letter-spacing:-.01em;display:block;margin-bottom:2px;font-variation-settings:"opsz" 14;}
+.maker-block a{color:var(--ink);text-decoration:none;font-weight:600;}
+.maker-block .line{display:block;margin-top:2px;}
+.barcode{margin:0 -22px 0;padding:8px 22px 4px;background:var(--stock-hi);border-top:.5px solid oklch(22% 0.03 40 / 0.18);display:flex;justify-content:center;align-items:center;gap:10px;}
+.barcode .placeholder{display:flex;flex-direction:column;align-items:center;gap:3px;padding:5px 12px;border:1px dashed oklch(22% 0.03 40 / 0.5);border-radius:3px;}
+.barcode .placeholder .k{font-family:var(--font-mono);font-size:6.5px;letter-spacing:.26em;text-transform:uppercase;font-weight:700;color:var(--accent);}
+.barcode .placeholder .v{font-family:var(--font-mono);font-size:8px;letter-spacing:.14em;font-weight:600;color:var(--ink-dim);}
+.caption{display:flex;flex-direction:column;align-items:center;gap:4px;margin-top:6px;}
+.caption .a{font-family:var(--font-display);font-style:italic;font-weight:400;font-size:22px;letter-spacing:-.01em;color:var(--ink);font-variation-settings:"opsz" 48,"SOFT" 50;}
+.caption .a em{font-style:normal;font-weight:500;}
+.caption .b{font-family:var(--font-mono);font-size:10px;letter-spacing:.28em;text-transform:uppercase;font-weight:600;color:var(--ink-dim);}
+.caption .b .accent{color:var(--tandoori);}
+.caption.masala .b .accent{color:var(--masala-deep);}
+@media (max-width:640px){body{padding:40px 14px 60px;}.crest{margin-bottom:32px;}.crest .mark{font-size:28px;}.pouch{width:min(420px,92vw);}.hero-band{min-height:66px;}.stamp{width:54px;height:54px;}.stamp .core{font-size:11px;}.flame-icon{width:46px;height:52px;}}
+</style>
+</head>
+<body>
+<main class="stage">
+  <header class="crest">
+    <div class="eyebrow">Packaging · 50g stand-up pouch · v7 · warm tan · legal-fixed</div>
+    <div class="mark">Blaze <span class="amp">&amp;</span> Char</div>
+    <p class="caption">The UK's first tandoori <em>beef jerky</em>. Hand-made in Wales, made with halal beef.</p>
+  </header>
+
+  <div class="section-label" role="presentation"><span>Front panel</span><em>— what the customer sees first</em></div>
+
+  <section class="pair" aria-label="Front panels, both flavours">
+
+    <div class="pouch-cell">
+      <article class="pouch tandoori" aria-label="Tandoori Original, 50g front">
+        <div class="seal"></div>
+        <div class="art">
+          <div class="wordmark">
+            <div class="bc">Blaze<span class="amp">&amp;</span>Char</div>
+            <div class="wordmark-rule" aria-hidden="true"><svg viewBox="0 0 9 12" fill="currentColor"><path d="M4.5 0.5 C4.5 2 6 3 6.8 4.3 C7.6 5.6 7.8 6.8 7.6 7.8 C7.2 9.4 6 10.4 4.5 11.4 C3 10.4 1.8 9.4 1.4 7.8 C1.2 6.8 1.4 5.6 2.2 4.3 C3 3 4.5 2 4.5 0.5 Z"/></svg></div>
+            <div class="tagline">Hand-made in Wales · Est. [YYYY]</div>
+          </div>
+          <div class="hero-band">
+            <div class="numeral">№&thinsp;<span class="n">01</span></div>
+            <div class="flame-icon" aria-hidden="true"><svg viewBox="0 0 56 62"><defs><linearGradient id="fl-tf" x1="0.5" x2="0.5" y1="0" y2="1"><stop offset="0%" stop-color="oklch(64% 0.2 34)"/><stop offset="55%" stop-color="oklch(54% 0.19 32)"/><stop offset="100%" stop-color="oklch(40% 0.14 28)"/></linearGradient></defs><path d="M 28 3 C 28 10 34 14 38 20 C 42 26 44 32 43 38 C 42 46 36 52 28 58 C 20 52 14 46 13 38 C 12 32 14 26 18 20 C 22 14 28 10 28 3 Z" fill="url(#fl-tf)"/><path d="M 28 14 C 28 18 31 21 33 25 C 35 29 36 33 35 37 C 34 42 31 46 28 50 C 25 46 22 42 21 37 C 20 33 21 29 23 25 C 25 21 28 18 28 14 Z" fill="oklch(76% 0.19 48)" opacity="0.82"/><ellipse cx="28" cy="38" rx="3" ry="5" fill="oklch(90% 0.12 85)" opacity="0.75"/></svg></div>
+            <div class="stamp" aria-label="Hand-made in Wales"><svg class="ring" viewBox="0 0 62 62"><defs><path id="rp-tf" d="M 31 31 m -24 0 a 24 24 0 1 1 48 0 a 24 24 0 1 1 -48 0"/></defs><text><textPath href="#rp-tf" startOffset="2%">Hand-made · In Wales · Hand-made ·</textPath></text></svg><div class="core">Cymru<small>Est. [YYYY]</small></div></div>
+          </div>
+          <h1 class="hero-name">Tandoori</h1>
+          <p class="sub-name">Original</p>
+          <div class="category"><span>Beef Jerky · Hand-Cut</span></div>
+          <div class="window" aria-label="Window showing strips of tandoori jerky">
+            <span class="film-label">Batch 03</span>
+            <svg class="strips" viewBox="0 0 240 140" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+              <defs><linearGradient id="st-tf" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stop-color="oklch(44% 0.15 32)"/><stop offset="45%" stop-color="oklch(34% 0.11 28)"/><stop offset="100%" stop-color="oklch(22% 0.08 26)"/></linearGradient></defs>
+              <g><path d="M 18 22 C 22 14 42 10 64 14 C 86 18 110 12 128 18 C 146 24 168 22 188 18 C 204 15 220 22 224 34 C 228 48 222 60 208 64 C 186 70 160 62 138 68 C 114 74 88 66 62 70 C 38 74 20 68 16 54 C 12 40 14 30 18 22 Z" fill="url(#st-tf)" opacity="0.98"/></g>
+            </svg>
+          </div>
+          <div class="meta"><span class="tag">Topside cut</span><span>Slow-marinated · Slow-dried</span></div>
+          <div class="creds">
+            <div class="cell"><div class="k">Halal <em>beef</em></div><div class="v">Born, reared &amp; slaughtered UK</div></div>
+            <div class="cell"><div class="k">Slow-<em>dried</em></div><div class="v">70°C · 9 hours</div></div>
+            <div class="cell"><div class="k">No soy <em>no MSG</em></div><div class="v">No artificial preservatives</div></div>
+          </div>
+          <div class="heat" aria-label="Heat 3 of 5">
+            <span class="lbl">Heat</span>
+            <span class="flames" aria-hidden="true">
+              <svg class="flame on" viewBox="0 0 14 18" fill="currentColor"><path d="M7 0.5 C7 3 9.2 4.5 10.5 6.6 C11.7 8.6 12.2 10.4 11.8 12 C11.2 14.4 9.4 16 7 17.5 C4.6 16 2.8 14.4 2.2 12 C1.8 10.4 2.3 8.6 3.5 6.6 C4.8 4.5 7 3 7 0.5 Z"/></svg>
+              <svg class="flame on" viewBox="0 0 14 18" fill="currentColor"><path d="M7 0.5 C7 3 9.2 4.5 10.5 6.6 C11.7 8.6 12.2 10.4 11.8 12 C11.2 14.4 9.4 16 7 17.5 C4.6 16 2.8 14.4 2.2 12 C1.8 10.4 2.3 8.6 3.5 6.6 C4.8 4.5 7 3 7 0.5 Z"/></svg>
+              <svg class="flame on" viewBox="0 0 14 18" fill="currentColor"><path d="M7 0.5 C7 3 9.2 4.5 10.5 6.6 C11.7 8.6 12.2 10.4 11.8 12 C11.2 14.4 9.4 16 7 17.5 C4.6 16 2.8 14.4 2.2 12 C1.8 10.4 2.3 8.6 3.5 6.6 C4.8 4.5 7 3 7 0.5 Z"/></svg>
+              <svg class="flame" viewBox="0 0 14 18" fill="currentColor"><path d="M7 0.5 C7 3 9.2 4.5 10.5 6.6 C11.7 8.6 12.2 10.4 11.8 12 C11.2 14.4 9.4 16 7 17.5 C4.6 16 2.8 14.4 2.2 12 C1.8 10.4 2.3 8.6 3.5 6.6 C4.8 4.5 7 3 7 0.5 Z"/></svg>
+              <svg class="flame" viewBox="0 0 14 18" fill="currentColor"><path d="M7 0.5 C7 3 9.2 4.5 10.5 6.6 C11.7 8.6 12.2 10.4 11.8 12 C11.2 14.4 9.4 16 7 17.5 C4.6 16 2.8 14.4 2.2 12 C1.8 10.4 2.3 8.6 3.5 6.6 C4.8 4.5 7 3 7 0.5 Z"/></svg>
+            </span>
+            <span class="score">3/5</span>
+          </div>
+          <div class="flex"></div>
+          <div class="certs">
+            <div class="cert"><div class="mark">✂</div><div class="t">Hand<br/>Cut</div></div>
+            <div class="cert"><div class="mark">◎</div><div class="t">No Artificial<br/>Preservatives</div></div>
+            <div class="cert wales"><div class="mark" aria-hidden="true"><svg viewBox="0 0 1004 1280" xmlns="http://www.w3.org/2000/svg" aria-label="Wales" preserveAspectRatio="xMidYMid meet"><g transform="translate(0,1280) scale(0.1,-0.1)" fill="currentColor" stroke="none"><path d="M3073 12702 l-453 -96 0 -368 0 -368 288 -385 287 -384 228 -1 c175 0 227 -3 227 -12 0 -7 -30 -103 -67 -213 l-68 -200 -296 -410 -297 -410 -120 -5 -120 -5 -425 -500 c-234 -275 -424 -501 -422 -503 1 -2 175 20 386 48 l384 51 154 -51 c85 -28 155 -49 157 -48 1 2 13 101 27 221 13 119 26 219 28 221 2 1 113 62 245 135 l242 131 380 0 c354 0 381 -1 386 -17 2 -10 12 -55 21 -101 16 -78 15 -93 -4 -295 -12 -116 -23 -224 -25 -238 -4 -21 28 -66 180 -257 l185 -231 -135 -203 -136 -203 -25 -152 -26 -153 125 -149 c140 -166 108 -145 314 -203 45 -13 82 -25 82 -28 -1 -3 -42 -38 -93 -77 l-93 -73 -212 -589 -211 -588 -161 -229 -160 -229 -324 -255 -325 -255 -428 -149 c-235 -82 -478 -166 -540 -188 l-112 -40 -256 -279 c-141 -153 -257 -279 -258 -279 -1 0 -54 -9 -117 -20 -86 -15 -161 -20 -295 -20 l-180 0 -505 -289 -505 -288 -3 -92 c-3 -87 -2 -91 19 -91 21 0 21 -1 3 -46 -3 -6 105 -57 256 -119 143 -60 260 -111 260 -115 0 -3 -94 -152 -209 -330 -193 -300 -207 -326 -187 -332 11 -4 237 -48 501 -98 264 -49 490 -92 502 -95 18 -4 37 13 104 95 46 55 84 98 86 96 2 -2 -2 -53 -8 -114 l-12 -111 -46 -10 c-25 -5 -188 -37 -361 -72 -173 -34 -318 -65 -323 -69 -4 -3 95 -98 220 -211 126 -112 245 -219 266 -238 l38 -34 123 122 123 122 354 -23 c195 -14 356 -21 359 -17 3 4 36 111 74 237 l68 230 534 134 c506 126 533 132 538 113 2 -11 12 -98 22 -193 10 -96 23 -179 29 -186 5 -7 212 -49 477 -97 258 -46 468 -87 468 -91 0 -3 -6 -8 -13 -10 -7 -2 -151 -77 -320 -167 l-308 -163 17 -27 c10 -14 82 -123 162 -243 l144 -216 125 125 125 126 282 -22 c154 -12 293 -21 308 -21 26 0 34 12 118 180 50 99 93 180 97 180 4 0 91 -28 193 -62 l186 -61 185 -348 186 -349 332 -261 332 -261 312 -120 312 -120 315 97 315 97 345 364 c190 200 379 400 420 444 l75 81 351 93 350 93 337 264 337 264 0 312 0 312 70 256 c39 141 70 261 69 268 0 11 -895 767 -916 774 -6 2 -59 -25 -118 -61 -60 -36 -112 -63 -116 -61 -4 3 -142 187 -308 409 l-301 404 0 438 0 439 140 162 140 162 124 273 c109 241 122 274 107 284 -9 6 -211 133 -448 283 l-433 273 0 77 1 76 349 185 350 185 0 123 0 122 -162 0 -163 0 118 118 117 117 0 121 0 121 70 187 70 186 0 128 -1 127 -279 209 -280 208 0 178 0 177 196 284 c108 156 198 286 201 288 2 3 56 -5 121 -17 93 -18 500 -62 573 -62 12 0 20 -30 39 -147 13 -82 26 -151 29 -155 4 -4 91 65 194 153 l187 161 -2 160 -3 160 -210 117 -210 117 -187 583 c-103 322 -191 587 -196 590 -4 3 -146 102 -315 219 -169 116 -311 212 -316 212 -5 0 -69 -70 -142 -155 -73 -85 -136 -155 -140 -155 -5 0 -121 101 -629 550 l-156 138 -312 -144 -312 -143 -322 -46 -323 -47 -297 125 -298 124 -2 -155 -3 -156 -313 -179 -314 -180 -127 22 c-90 15 -135 19 -152 12 -21 -7 -256 -188 -619 -475 -35 -28 -60 -44 -55 -37 5 8 201 248 437 533 235 285 428 522 428 526 0 5 -9 17 -20 27 -19 18 -25 16 -216 -69 -183 -81 -197 -86 -209 -69 -7 10 -132 176 -277 370 -192 256 -268 351 -283 351 -11 0 -224 -43 -472 -96z m742 -347 c221 -296 283 -374 297 -369 10 3 77 32 150 65 72 32 133 57 135 55 2 -2 -170 -216 -384 -474 l-388 -471 -195 0 -195 -1 -273 364 -272 363 2 334 3 334 405 86 c223 48 412 87 420 87 9 1 135 -160 295 -373z m3677 -351 c199 -176 379 -335 399 -352 l36 -31 129 150 c71 83 134 157 141 166 10 13 53 -13 300 -185 l288 -199 186 -583 c103 -320 191 -586 195 -590 5 -5 100 -59 212 -120 l202 -112 0 -122 0 -121 -117 -100 c-64 -55 -127 -108 -139 -117 l-21 -17 -18 117 c-10 64 -21 120 -24 124 -3 4 -130 18 -281 32 -151 14 -309 33 -350 42 -41 8 -94 19 -118 23 l-42 8 -220 -318 -220 -317 0 -200 0 -200 280 -208 279 -209 1 -112 0 -113 -70 -186 -70 -187 0 -111 0 -111 -162 -162 -163 -163 213 0 213 0 -3 -67 -3 -68 -350 -186 -350 -187 0 -113 0 -114 437 -275 c241 -151 438 -278 438 -282 0 -4 -49 -115 -108 -246 l-109 -239 -141 -164 -142 -164 0 -477 c0 -262 4 -478 9 -480 4 -1 151 -194 326 -428 174 -234 322 -424 328 -422 7 2 60 32 118 68 59 35 110 64 113 64 4 0 787 -655 849 -709 4 -4 -24 -123 -63 -264 l-70 -257 0 -292 0 -293 -317 -249 -316 -249 -351 -93 c-193 -52 -352 -94 -352 -94 -1 0 -189 -198 -418 -440 -230 -242 -425 -444 -434 -449 -9 -5 -145 -48 -301 -96 l-283 -87 -296 113 -296 114 -325 255 -324 255 -184 345 c-101 190 -189 350 -196 356 -14 14 -455 161 -459 154 -2 -3 -44 -88 -94 -190 l-92 -186 -303 24 -303 23 -108 -108 c-59 -59 -109 -105 -111 -102 -17 18 -227 340 -227 347 0 4 163 95 363 201 199 106 365 196 369 200 4 4 -237 51 -537 106 l-545 98 -5 31 c-3 17 -14 114 -25 215 -11 102 -22 186 -23 187 -1 0 -265 -65 -586 -145 -377 -95 -587 -152 -593 -161 -4 -8 -35 -109 -69 -225 -34 -115 -64 -213 -68 -216 -3 -4 -159 4 -346 17 l-340 23 -112 -111 c-105 -104 -113 -111 -130 -96 -102 89 -369 331 -371 336 -1 4 143 36 320 71 178 35 325 66 327 68 7 5 67 493 61 493 -3 0 -68 -76 -145 -169 -88 -107 -146 -168 -155 -166 -8 2 -213 41 -455 86 -242 46 -442 84 -443 85 -2 1 90 148 204 325 114 178 203 324 198 326 -5 2 -135 57 -288 121 l-279 117 2 75 c1 41 3 75 4 76 1 1 216 124 477 273 l475 271 165 0 c129 0 196 6 309 25 79 13 147 28 151 32 80 89 478 524 494 538 12 12 247 98 554 205 l533 185 332 261 332 260 122 175 c68 95 143 203 168 239 45 65 84 168 393 1030 l69 195 132 107 c72 59 132 111 133 115 0 4 -82 32 -183 60 -100 29 -186 56 -189 60 -4 5 -53 63 -109 131 l-103 123 21 127 22 127 145 218 c86 130 142 223 137 230 -4 7 -86 111 -183 232 -97 121 -179 225 -182 231 -4 5 4 112 16 237 l23 226 -26 133 -27 133 -412 3 -412 2 -273 -149 -272 -149 -21 -191 c-12 -105 -24 -194 -27 -197 -3 -4 -60 12 -127 34 l-121 41 -296 -40 c-163 -22 -302 -39 -308 -37 -6 2 152 196 353 431 l364 428 117 -2 116 -1 307 423 307 424 71 213 72 213 296 232 c164 128 314 246 335 262 l39 29 135 -22 135 -22 339 192 338 193 1 129 c0 98 3 127 13 123 6 -3 125 -53 264 -111 l252 -106 338 49 338 49 290 136 c160 74 293 134 297 133 3 -1 170 -146 370 -323z"/><path d="M2233 12136 l-91 -123 194 -169 c107 -93 199 -170 203 -172 4 -1 18 5 30 15 l22 18 -125 275 c-69 151 -129 276 -133 277 -4 1 -49 -53 -100 -121z m161 -155 c36 -80 64 -146 62 -148 -2 -2 -53 39 -114 92 l-110 97 41 58 c23 32 45 55 49 51 3 -3 36 -71 72 -150z"/></g></svg></div><div class="t">Made<br/>in Wales</div></div>
+          </div>
+          <div class="foot"><div class="wt"><em>Net</em> 50 g</div><div class="halal">Made with <em>halal</em> beef</div></div>
+        </div>
+        <div class="gusset"></div>
+      </article>
+      <div class="shadow"></div>
+      <div class="caption"><div class="a"><em>The Fire</em></div><div class="b">Tandoori · Original · <span class="accent">3/5 Heat</span> · Front</div></div>
+    </div>
+
+    <div class="pouch-cell">
+      <article class="pouch masala" aria-label="Masala Warm &amp; Rich, 50g front">
+        <div class="seal"></div>
+        <div class="art">
+          <div class="wordmark">
+            <div class="bc">Blaze<span class="amp">&amp;</span>Char</div>
+            <div class="wordmark-rule" aria-hidden="true"><svg viewBox="0 0 9 12" fill="currentColor"><path d="M4.5 0.5 C4.5 2 6 3 6.8 4.3 C7.6 5.6 7.8 6.8 7.6 7.8 C7.2 9.4 6 10.4 4.5 11.4 C3 10.4 1.8 9.4 1.4 7.8 C1.2 6.8 1.4 5.6 2.2 4.3 C3 3 4.5 2 4.5 0.5 Z"/></svg></div>
+            <div class="tagline">Hand-made in Wales · Est. [YYYY]</div>
+          </div>
+          <div class="hero-band">
+            <div class="numeral">№&thinsp;<span class="n">02</span></div>
+            <div class="flame-icon" aria-hidden="true"><svg viewBox="0 0 56 62"><defs><linearGradient id="fl-mf" x1="0.5" x2="0.5" y1="0" y2="1"><stop offset="0%" stop-color="oklch(72% 0.16 78)"/><stop offset="55%" stop-color="oklch(60% 0.15 72)"/><stop offset="100%" stop-color="oklch(46% 0.11 65)"/></linearGradient></defs><path d="M 28 3 C 28 10 34 14 38 20 C 42 26 44 32 43 38 C 42 46 36 52 28 58 C 20 52 14 46 13 38 C 12 32 14 26 18 20 C 22 14 28 10 28 3 Z" fill="url(#fl-mf)"/><path d="M 28 14 C 28 18 31 21 33 25 C 35 29 36 33 35 37 C 34 42 31 46 28 50 C 25 46 22 42 21 37 C 20 33 21 29 23 25 C 25 21 28 18 28 14 Z" fill="oklch(82% 0.14 82)" opacity="0.82"/><ellipse cx="28" cy="38" rx="3" ry="5" fill="oklch(94% 0.1 88)" opacity="0.75"/></svg></div>
+            <div class="stamp" aria-label="Hand-made in Wales"><svg class="ring" viewBox="0 0 62 62"><defs><path id="rp-mf" d="M 31 31 m -24 0 a 24 24 0 1 1 48 0 a 24 24 0 1 1 -48 0"/></defs><text><textPath href="#rp-mf" startOffset="2%">Hand-made · In Wales · Hand-made ·</textPath></text></svg><div class="core">Cymru<small>Est. [YYYY]</small></div></div>
+          </div>
+          <h1 class="hero-name">Masala</h1>
+          <p class="sub-name">Warm &amp; Rich</p>
+          <div class="category"><span>Beef Jerky · Hand-Cut</span></div>
+          <div class="window" aria-label="Window showing strips of masala jerky">
+            <span class="film-label">Batch 03</span>
+            <svg class="strips" viewBox="0 0 240 140" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+              <defs><linearGradient id="sm-mf" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stop-color="oklch(42% 0.11 60)"/><stop offset="45%" stop-color="oklch(32% 0.09 55)"/><stop offset="100%" stop-color="oklch(22% 0.06 50)"/></linearGradient></defs>
+              <g><path d="M 18 22 C 22 14 42 10 64 14 C 86 18 110 12 128 18 C 146 24 168 22 188 18 C 204 15 220 22 224 34 C 228 48 222 60 208 64 C 186 70 160 62 138 68 C 114 74 88 66 62 70 C 38 74 20 68 16 54 C 12 40 14 30 18 22 Z" fill="url(#sm-mf)" opacity="0.98"/></g>
+            </svg>
+          </div>
+          <div class="meta"><span class="tag">Topside cut</span><span>Slow-marinated · Slow-dried</span></div>
+          <div class="creds">
+            <div class="cell"><div class="k">Halal <em>beef</em></div><div class="v">Born, reared &amp; slaughtered UK</div></div>
+            <div class="cell"><div class="k">Slow-<em>dried</em></div><div class="v">70°C · 9 hours</div></div>
+            <div class="cell"><div class="k">No soy <em>no MSG</em></div><div class="v">No artificial preservatives</div></div>
+          </div>
+          <div class="heat" aria-label="Heat 2 of 5">
+            <span class="lbl">Heat</span>
+            <span class="flames" aria-hidden="true">
+              <svg class="flame on" viewBox="0 0 14 18" fill="currentColor"><path d="M7 0.5 C7 3 9.2 4.5 10.5 6.6 C11.7 8.6 12.2 10.4 11.8 12 C11.2 14.4 9.4 16 7 17.5 C4.6 16 2.8 14.4 2.2 12 C1.8 10.4 2.3 8.6 3.5 6.6 C4.8 4.5 7 3 7 0.5 Z"/></svg>
+              <svg class="flame on" viewBox="0 0 14 18" fill="currentColor"><path d="M7 0.5 C7 3 9.2 4.5 10.5 6.6 C11.7 8.6 12.2 10.4 11.8 12 C11.2 14.4 9.4 16 7 17.5 C4.6 16 2.8 14.4 2.2 12 C1.8 10.4 2.3 8.6 3.5 6.6 C4.8 4.5 7 3 7 0.5 Z"/></svg>
+              <svg class="flame" viewBox="0 0 14 18" fill="currentColor"><path d="M7 0.5 C7 3 9.2 4.5 10.5 6.6 C11.7 8.6 12.2 10.4 11.8 12 C11.2 14.4 9.4 16 7 17.5 C4.6 16 2.8 14.4 2.2 12 C1.8 10.4 2.3 8.6 3.5 6.6 C4.8 4.5 7 3 7 0.5 Z"/></svg>
+              <svg class="flame" viewBox="0 0 14 18" fill="currentColor"><path d="M7 0.5 C7 3 9.2 4.5 10.5 6.6 C11.7 8.6 12.2 10.4 11.8 12 C11.2 14.4 9.4 16 7 17.5 C4.6 16 2.8 14.4 2.2 12 C1.8 10.4 2.3 8.6 3.5 6.6 C4.8 4.5 7 3 7 0.5 Z"/></svg>
+              <svg class="flame" viewBox="0 0 14 18" fill="currentColor"><path d="M7 0.5 C7 3 9.2 4.5 10.5 6.6 C11.7 8.6 12.2 10.4 11.8 12 C11.2 14.4 9.4 16 7 17.5 C4.6 16 2.8 14.4 2.2 12 C1.8 10.4 2.3 8.6 3.5 6.6 C4.8 4.5 7 3 7 0.5 Z"/></svg>
+            </span>
+            <span class="score">2/5</span>
+          </div>
+          <div class="flex"></div>
+          <div class="certs">
+            <div class="cert"><div class="mark">✂</div><div class="t">Hand<br/>Cut</div></div>
+            <div class="cert"><div class="mark">◎</div><div class="t">No Artificial<br/>Preservatives</div></div>
+            <div class="cert wales"><div class="mark" aria-hidden="true"><svg viewBox="0 0 1004 1280" xmlns="http://www.w3.org/2000/svg" aria-label="Wales" preserveAspectRatio="xMidYMid meet"><g transform="translate(0,1280) scale(0.1,-0.1)" fill="currentColor" stroke="none"><path d="M3073 12702 l-453 -96 0 -368 0 -368 288 -385 287 -384 228 -1 c175 0 227 -3 227 -12 0 -7 -30 -103 -67 -213 l-68 -200 -296 -410 -297 -410 -120 -5 -120 -5 -425 -500 c-234 -275 -424 -501 -422 -503 1 -2 175 20 386 48 l384 51 154 -51 c85 -28 155 -49 157 -48 1 2 13 101 27 221 13 119 26 219 28 221 2 1 113 62 245 135 l242 131 380 0 c354 0 381 -1 386 -17 2 -10 12 -55 21 -101 16 -78 15 -93 -4 -295 -12 -116 -23 -224 -25 -238 -4 -21 28 -66 180 -257 l185 -231 -135 -203 -136 -203 -25 -152 -26 -153 125 -149 c140 -166 108 -145 314 -203 45 -13 82 -25 82 -28 -1 -3 -42 -38 -93 -77 l-93 -73 -212 -589 -211 -588 -161 -229 -160 -229 -324 -255 -325 -255 -428 -149 c-235 -82 -478 -166 -540 -188 l-112 -40 -256 -279 c-141 -153 -257 -279 -258 -279 -1 0 -54 -9 -117 -20 -86 -15 -161 -20 -295 -20 l-180 0 -505 -289 -505 -288 -3 -92 c-3 -87 -2 -91 19 -91 21 0 21 -1 3 -46 -3 -6 105 -57 256 -119 143 -60 260 -111 260 -115 0 -3 -94 -152 -209 -330 -193 -300 -207 -326 -187 -332 11 -4 237 -48 501 -98 264 -49 490 -92 502 -95 18 -4 37 13 104 95 46 55 84 98 86 96 2 -2 -2 -53 -8 -114 l-12 -111 -46 -10 c-25 -5 -188 -37 -361 -72 -173 -34 -318 -65 -323 -69 -4 -3 95 -98 220 -211 126 -112 245 -219 266 -238 l38 -34 123 122 123 122 354 -23 c195 -14 356 -21 359 -17 3 4 36 111 74 237 l68 230 534 134 c506 126 533 132 538 113 2 -11 12 -98 22 -193 10 -96 23 -179 29 -186 5 -7 212 -49 477 -97 258 -46 468 -87 468 -91 0 -3 -6 -8 -13 -10 -7 -2 -151 -77 -320 -167 l-308 -163 17 -27 c10 -14 82 -123 162 -243 l144 -216 125 125 125 126 282 -22 c154 -12 293 -21 308 -21 26 0 34 12 118 180 50 99 93 180 97 180 4 0 91 -28 193 -62 l186 -61 185 -348 186 -349 332 -261 332 -261 312 -120 312 -120 315 97 315 97 345 364 c190 200 379 400 420 444 l75 81 351 93 350 93 337 264 337 264 0 312 0 312 70 256 c39 141 70 261 69 268 0 11 -895 767 -916 774 -6 2 -59 -25 -118 -61 -60 -36 -112 -63 -116 -61 -4 3 -142 187 -308 409 l-301 404 0 438 0 439 140 162 140 162 124 273 c109 241 122 274 107 284 -9 6 -211 133 -448 283 l-433 273 0 77 1 76 349 185 350 185 0 123 0 122 -162 0 -163 0 118 118 117 117 0 121 0 121 70 187 70 186 0 128 -1 127 -279 209 -280 208 0 178 0 177 196 284 c108 156 198 286 201 288 2 3 56 -5 121 -17 93 -18 500 -62 573 -62 12 0 20 -30 39 -147 13 -82 26 -151 29 -155 4 -4 91 65 194 153 l187 161 -2 160 -3 160 -210 117 -210 117 -187 583 c-103 322 -191 587 -196 590 -4 3 -146 102 -315 219 -169 116 -311 212 -316 212 -5 0 -69 -70 -142 -155 -73 -85 -136 -155 -140 -155 -5 0 -121 101 -629 550 l-156 138 -312 -144 -312 -143 -322 -46 -323 -47 -297 125 -298 124 -2 -155 -3 -156 -313 -179 -314 -180 -127 22 c-90 15 -135 19 -152 12 -21 -7 -256 -188 -619 -475 -35 -28 -60 -44 -55 -37 5 8 201 248 437 533 235 285 428 522 428 526 0 5 -9 17 -20 27 -19 18 -25 16 -216 -69 -183 -81 -197 -86 -209 -69 -7 10 -132 176 -277 370 -192 256 -268 351 -283 351 -11 0 -224 -43 -472 -96z m742 -347 c221 -296 283 -374 297 -369 10 3 77 32 150 65 72 32 133 57 135 55 2 -2 -170 -216 -384 -474 l-388 -471 -195 0 -195 -1 -273 364 -272 363 2 334 3 334 405 86 c223 48 412 87 420 87 9 1 135 -160 295 -373z m3677 -351 c199 -176 379 -335 399 -352 l36 -31 129 150 c71 83 134 157 141 166 10 13 53 -13 300 -185 l288 -199 186 -583 c103 -320 191 -586 195 -590 5 -5 100 -59 212 -120 l202 -112 0 -122 0 -121 -117 -100 c-64 -55 -127 -108 -139 -117 l-21 -17 -18 117 c-10 64 -21 120 -24 124 -3 4 -130 18 -281 32 -151 14 -309 33 -350 42 -41 8 -94 19 -118 23 l-42 8 -220 -318 -220 -317 0 -200 0 -200 280 -208 279 -209 1 -112 0 -113 -70 -186 -70 -187 0 -111 0 -111 -162 -162 -163 -163 213 0 213 0 -3 -67 -3 -68 -350 -186 -350 -187 0 -113 0 -114 437 -275 c241 -151 438 -278 438 -282 0 -4 -49 -115 -108 -246 l-109 -239 -141 -164 -142 -164 0 -477 c0 -262 4 -478 9 -480 4 -1 151 -194 326 -428 174 -234 322 -424 328 -422 7 2 60 32 118 68 59 35 110 64 113 64 4 0 787 -655 849 -709 4 -4 -24 -123 -63 -264 l-70 -257 0 -292 0 -293 -317 -249 -316 -249 -351 -93 c-193 -52 -352 -94 -352 -94 -1 0 -189 -198 -418 -440 -230 -242 -425 -444 -434 -449 -9 -5 -145 -48 -301 -96 l-283 -87 -296 113 -296 114 -325 255 -324 255 -184 345 c-101 190 -189 350 -196 356 -14 14 -455 161 -459 154 -2 -3 -44 -88 -94 -190 l-92 -186 -303 24 -303 23 -108 -108 c-59 -59 -109 -105 -111 -102 -17 18 -227 340 -227 347 0 4 163 95 363 201 199 106 365 196 369 200 4 4 -237 51 -537 106 l-545 98 -5 31 c-3 17 -14 114 -25 215 -11 102 -22 186 -23 187 -1 0 -265 -65 -586 -145 -377 -95 -587 -152 -593 -161 -4 -8 -35 -109 -69 -225 -34 -115 -64 -213 -68 -216 -3 -4 -159 4 -346 17 l-340 23 -112 -111 c-105 -104 -113 -111 -130 -96 -102 89 -369 331 -371 336 -1 4 143 36 320 71 178 35 325 66 327 68 7 5 67 493 61 493 -3 0 -68 -76 -145 -169 -88 -107 -146 -168 -155 -166 -8 2 -213 41 -455 86 -242 46 -442 84 -443 85 -2 1 90 148 204 325 114 178 203 324 198 326 -5 2 -135 57 -288 121 l-279 117 2 75 c1 41 3 75 4 76 1 1 216 124 477 273 l475 271 165 0 c129 0 196 6 309 25 79 13 147 28 151 32 80 89 478 524 494 538 12 12 247 98 554 205 l533 185 332 261 332 260 122 175 c68 95 143 203 168 239 45 65 84 168 393 1030 l69 195 132 107 c72 59 132 111 133 115 0 4 -82 32 -183 60 -100 29 -186 56 -189 60 -4 5 -53 63 -109 131 l-103 123 21 127 22 127 145 218 c86 130 142 223 137 230 -4 7 -86 111 -183 232 -97 121 -179 225 -182 231 -4 5 4 112 16 237 l23 226 -26 133 -27 133 -412 3 -412 2 -273 -149 -272 -149 -21 -191 c-12 -105 -24 -194 -27 -197 -3 -4 -60 12 -127 34 l-121 41 -296 -40 c-163 -22 -302 -39 -308 -37 -6 2 152 196 353 431 l364 428 117 -2 116 -1 307 423 307 424 71 213 72 213 296 232 c164 128 314 246 335 262 l39 29 135 -22 135 -22 339 192 338 193 1 129 c0 98 3 127 13 123 6 -3 125 -53 264 -111 l252 -106 338 49 338 49 290 136 c160 74 293 134 297 133 3 -1 170 -146 370 -323z"/><path d="M2233 12136 l-91 -123 194 -169 c107 -93 199 -170 203 -172 4 -1 18 5 30 15 l22 18 -125 275 c-69 151 -129 276 -133 277 -4 1 -49 -53 -100 -121z m161 -155 c36 -80 64 -146 62 -148 -2 -2 -53 39 -114 92 l-110 97 41 58 c23 32 45 55 49 51 3 -3 36 -71 72 -150z"/></g></svg></div><div class="t">Made<br/>in Wales</div></div>
+          </div>
+          <div class="foot"><div class="wt"><em>Net</em> 50 g</div><div class="halal">Made with <em>halal</em> beef</div></div>
+        </div>
+        <div class="gusset"></div>
+      </article>
+      <div class="shadow"></div>
+      <div class="caption masala"><div class="a"><em>The Ember</em></div><div class="b">Masala · Warm &amp; Rich · <span class="accent">2/5 Heat</span> · Front</div></div>
+    </div>
+
+  </section>
+
+</main>
+</body>
+</html>

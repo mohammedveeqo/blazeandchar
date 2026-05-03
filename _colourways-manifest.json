@@ -1,0 +1,122 @@
+[
+  {
+    "id": "01-cream-pair",
+    "file": "blaze-pouch-v7-pair-01-cream-pair.html",
+    "name": "Cream Pair \u2014 pomegranate + saffron",
+    "mood": "Both on cream. Tandoori = pomegranate-red accents; Masala = saffron-gold. Shared editorial base, heat-coded.",
+    "refs": "Monocle \u00b7 Ottolenghi \u00b7 Diptyque",
+    "swatches": [
+      "oklch(97% 0.012 80)",
+      "oklch(46% 0.2 25)",
+      "oklch(58% 0.15 72)"
+    ]
+  },
+  {
+    "id": "02-dark-pair",
+    "file": "blaze-pouch-v7-pair-02-dark-pair.html",
+    "name": "Dark Pair \u2014 oxblood + espresso",
+    "mood": "Premium dark shelf. Tandoori = deep oxblood, Masala = charcoal-espresso. Both read expensive and night-market.",
+    "refs": "Patagonia Provisions \u00b7 Beavertown \u00b7 Omsom",
+    "swatches": [
+      "oklch(22% 0.08 28)",
+      "oklch(20% 0.03 50)",
+      "oklch(64% 0.22 28)"
+    ]
+  },
+  {
+    "id": "03-earth-pair",
+    "file": "blaze-pouch-v7-pair-03-earth-pair.html",
+    "name": "Earth Pair \u2014 terracotta + bone",
+    "mood": "Warm neutrals, farm-shop heritage. Tandoori = clay terracotta, Masala = bone-cream. Both artisanal, heat-coded by warmth.",
+    "refs": "Pipers Farm \u00b7 Neal's Yard \u00b7 Bramley",
+    "swatches": [
+      "oklch(72% 0.13 38)",
+      "oklch(90% 0.022 85)",
+      "oklch(42% 0.16 30)"
+    ]
+  },
+  {
+    "id": "04-herbal-pair",
+    "file": "blaze-pouch-v7-pair-04-herbal-pair.html",
+    "name": "Herbal Pair \u2014 chilli-green + sage-cream",
+    "mood": "Spice-grocer lineage. Tandoori = deep chilli-green stock, Masala = sage-on-cream. Herbal, the explicit anti-MRE.",
+    "refs": "The Spiceworks \u00b7 Natoora \u00b7 Jing Tea",
+    "swatches": [
+      "oklch(32% 0.11 150)",
+      "oklch(95% 0.018 120)",
+      "oklch(48% 0.22 28)"
+    ]
+  },
+  {
+    "id": "05-saffron-pair",
+    "file": "blaze-pouch-v7-pair-05-saffron-pair.html",
+    "name": "Saffron Pair \u2014 deep saffron + cardamom gold",
+    "mood": "Warm golds, different saturations. Tandoori = deep saffron, Masala = softer cardamom-gold. South-Asian kitchen confidence, calibrated.",
+    "refs": "East End \u00b7 TRS \u00b7 Dishoom",
+    "swatches": [
+      "oklch(78% 0.16 82)",
+      "oklch(86% 0.1 90)",
+      "oklch(22% 0.04 40)"
+    ]
+  },
+  {
+    "id": "06-sunset-pair",
+    "file": "blaze-pouch-v7-pair-06-sunset-pair.html",
+    "name": "Sunset Pair \u2014 blush-peach + dusk-lilac",
+    "mood": "Soft pastels, unexpected. Tandoori = blush-peach stock, Masala = dusk-lilac. Reads young, DTC, photo-friendly.",
+    "refs": "Fishwife \u00b7 Graza \u00b7 Haus",
+    "swatches": [
+      "oklch(88% 0.08 40)",
+      "oklch(86% 0.04 300)",
+      "oklch(44% 0.18 30)"
+    ]
+  },
+  {
+    "id": "07-paper-pair",
+    "file": "blaze-pouch-v7-pair-07-paper-pair.html",
+    "name": "Paper Pair \u2014 warm ivory + cool ecru",
+    "mood": "Near-white on near-white. Tandoori = warm ivory, Masala = cool ecru. Editorial restraint, accent does all the work.",
+    "refs": "Aesop \u00b7 Le Labo \u00b7 Margaret Howell",
+    "swatches": [
+      "oklch(96% 0.012 80)",
+      "oklch(96% 0.008 100)",
+      "oklch(46% 0.2 25)"
+    ]
+  },
+  {
+    "id": "08-spice-market-pair",
+    "file": "blaze-pouch-v7-pair-08-spice-market-pair.html",
+    "name": "Spice-Market Pair \u2014 brick-red + mustard",
+    "mood": "Shouty market-stall colour. Tandoori = deep brick-red stock, Masala = mustard stock. Reads from across the shop.",
+    "refs": "Dishoom \u00b7 Brindisa \u00b7 Borough Market",
+    "swatches": [
+      "oklch(42% 0.18 28)",
+      "oklch(76% 0.16 85)",
+      "oklch(96% 0.01 80)"
+    ]
+  },
+  {
+    "id": "09-monochrome-pair",
+    "file": "blaze-pouch-v7-pair-09-monochrome-pair.html",
+    "name": "Monochrome Pair \u2014 warm grey + cool grey",
+    "mood": "Both neutral. Tandoori = warm-toned grey stock, Masala = cool-toned grey. Minimalist, accent colour is the only signal.",
+    "refs": "Muji \u00b7 Aesop \u00b7 COS",
+    "swatches": [
+      "oklch(76% 0.015 60)",
+      "oklch(76% 0.008 240)",
+      "oklch(50% 0.2 28)"
+    ]
+  },
+  {
+    "id": "10-night-market-pair",
+    "file": "blaze-pouch-v7-pair-10-night-market-pair.html",
+    "name": "Night-Market Pair \u2014 burgundy + ink-teal",
+    "mood": "Both deep, pub-shelf confident. Tandoori = deep burgundy, Masala = ink-teal. Premium, masculine, after-dark.",
+    "refs": "Brewdog \u00b7 Meatsmith \u00b7 Pitt Cue",
+    "swatches": [
+      "oklch(26% 0.1 22)",
+      "oklch(26% 0.06 210)",
+      "oklch(72% 0.16 72)"
+    ]
+  }
+]

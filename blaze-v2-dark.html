@@ -1,0 +1,1256 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Blaze &amp; Char — The UK's first tandoori beef jerky</title>
+<meta name="description" content="Slow-marinated in Kashmiri chilli, tamarind and tandoor spice. Halal British beef. No soy, no nonsense. £5 a pouch." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* Dark, warm, filmic — smoke and embers, not goth */
+    --bg:        #0d0907;        /* almost-black, warm-biased */
+    --bg-2:      #1a1009;        /* maroon-tinged charcoal */
+    --surface:   #17110c;
+    --fg:        #f4ead8;        /* warm cream, not white */
+    --muted:     #a99583;
+    --faint:     #5c4d3f;
+    --border:    rgba(244, 234, 216, 0.12);
+
+    --ember:     #c83a22;        /* deep ember red */
+    --ember-hot: #e85a3c;        /* hotter ember for hover */
+    --gold:      #d4a656;        /* warm antique gold */
+    --gold-hot:  #e8bd6a;
+    --tandoori:  #c83a22;
+    --masala:    #d4a656;
+
+    --font-display: 'Fraunces', 'Iowan Old Style', 'Charter', Georgia, serif;
+    --font-body:    'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+
+    --wrap: 1360px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+  a { color: inherit; text-decoration: none; }
+  button { font: inherit; color: inherit; cursor: pointer; border: none; background: none; }
+  ::selection { background: var(--ember); color: var(--fg); }
+
+  /* ---------- Filmic, smoky background wash ---------- */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(ellipse 80% 60% at 20% 10%, rgba(200, 58, 34, 0.18), transparent 60%),
+      radial-gradient(ellipse 90% 70% at 85% 90%, rgba(40, 18, 10, 0.9), transparent 50%),
+      linear-gradient(180deg, #1a0f09 0%, #0d0907 50%, #080604 100%);
+    z-index: -2;
+  }
+  /* jali / lattice motif, extremely subtle */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0.035;
+    background-image:
+      radial-gradient(circle at 50% 50%, var(--gold) 1px, transparent 1.5px),
+      radial-gradient(circle at 0 0,   var(--gold) 1px, transparent 1.5px),
+      radial-gradient(circle at 100% 100%, var(--gold) 1px, transparent 1.5px);
+    background-size: 28px 28px;
+  }
+
+  /* ---------- Layout ---------- */
+  .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 32px; }
+  @media (max-width: 700px) { .wrap { padding: 0 20px; } }
+
+  /* ---------- Top bar ---------- */
+  .top {
+    position: sticky; top: 0; z-index: 20;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    background: rgba(13, 9, 7, 0.65);
+    border-bottom: 1px solid var(--border);
+  }
+  .top-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px;
+  }
+  .wordmark {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 20px;
+    letter-spacing: 0.005em;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .wordmark .amp {
+    color: var(--ember);
+    font-style: italic;
+    font-weight: 500;
+    padding: 0 2px;
+  }
+  .top-meta {
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    display: flex; align-items: center; gap: 18px;
+  }
+  .top-meta .dot { width: 4px; height: 4px; border-radius: 50%; background: var(--ember); }
+  @media (max-width: 760px) {
+    .top-meta .hide-sm { display: none; }
+  }
+
+  /* ---------- Hero / product block (above the fold) ---------- */
+  .hero {
+    min-height: calc(100vh - 64px);
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap: 64px;
+    align-items: center;
+    padding: 40px 0 64px;
+    position: relative;
+  }
+  @media (max-width: 960px) {
+    .hero { grid-template-columns: 1fr; gap: 24px; padding: 24px 0 48px; min-height: auto; }
+  }
+
+  /* Smoke drifting behind the pouch */
+  .smoke { position: absolute; inset: 0; pointer-events: none; overflow: hidden; z-index: 0; }
+  .smoke svg { position: absolute; width: 700px; height: 700px; left: 10%; top: 10%;
+    filter: blur(28px); opacity: 0.55; mix-blend-mode: screen; }
+  .smoke .s2 { left: 30%; top: 35%; width: 500px; height: 500px; opacity: 0.35; animation-delay: -8s; }
+  @keyframes drift {
+    0%   { transform: translate(0, 0) scale(1);    opacity: 0.55; }
+    50%  { transform: translate(80px, -60px) scale(1.08); opacity: 0.75; }
+    100% { transform: translate(0, 0) scale(1);    opacity: 0.55; }
+  }
+  .smoke svg { animation: drift 22s ease-in-out infinite; }
+
+  /* --- Left: pouch hero --- */
+  .pouch-stage {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    max-height: 78vh;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 1;
+  }
+  @media (max-width: 960px) {
+    .pouch-stage { aspect-ratio: 4 / 5; max-height: 60vh; }
+  }
+
+  .pouch {
+    position: absolute;
+    inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    transition: opacity 500ms ease, transform 700ms cubic-bezier(.2,.8,.3,1);
+  }
+  .pouch[aria-hidden="true"] {
+    opacity: 0;
+    transform: scale(0.96) rotate(-2deg);
+    pointer-events: none;
+  }
+  .pouch[aria-hidden="false"] {
+    opacity: 1;
+    transform: scale(1) rotate(0);
+  }
+
+  /* --- Right: buy block --- */
+  .buy { z-index: 1; max-width: 520px; }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+  .eyebrow::before {
+    content: '';
+    width: 28px; height: 1px; background: var(--gold);
+  }
+  .brand-name {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(56px, 8vw, 104px);
+    line-height: 0.92;
+    letter-spacing: -0.025em;
+    margin: 0 0 24px;
+  }
+  .brand-name .amp {
+    color: var(--ember);
+    font-style: italic;
+    font-weight: 400;
+    padding: 0 0.05em;
+  }
+  .hook {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-style: italic;
+    font-size: clamp(20px, 1.9vw, 26px);
+    line-height: 1.35;
+    color: var(--fg);
+    max-width: 440px;
+    margin: 0 0 28px;
+    opacity: 0.95;
+  }
+  .hook strong { font-style: normal; font-weight: 600; color: var(--ember-hot); }
+
+  /* Flavour toggle */
+  .flavour-label {
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.16em;
+    color: var(--muted); margin-bottom: 10px;
+  }
+  .flavours {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+    margin-bottom: 24px;
+  }
+  .flavour {
+    position: relative;
+    padding: 14px 16px;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    text-align: left;
+    transition: border-color 200ms, background 200ms;
+    background: rgba(244, 234, 216, 0.015);
+  }
+  .flavour:hover { border-color: rgba(244, 234, 216, 0.28); }
+  .flavour[aria-pressed="true"] {
+    border-color: var(--fg);
+    background: rgba(244, 234, 216, 0.05);
+  }
+  .flavour[aria-pressed="true"]::after {
+    content: '';
+    position: absolute; top: 10px; right: 10px;
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--ember);
+  }
+  .flavour[data-flavour="masala"][aria-pressed="true"]::after { background: var(--gold); }
+  .flavour .f-name {
+    font-family: var(--font-display); font-weight: 600; font-size: 18px; line-height: 1.1;
+    display: block; margin-bottom: 4px;
+  }
+  .flavour .f-heat {
+    font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--muted);
+  }
+  .flavour .f-heat .pip {
+    display: inline-block; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--faint); margin-right: 3px; vertical-align: middle;
+  }
+  .flavour .f-heat .pip.on { background: var(--ember); }
+
+  /* Stat strip */
+  .stats {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    margin: 4px 0 28px;
+  }
+  .stats > div {
+    padding: 14px 0;
+    border-right: 1px solid var(--border);
+  }
+  .stats > div:last-child { border-right: none; }
+  .stat-n {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 1;
+    color: var(--fg);
+    font-variant-numeric: tabular-nums;
+  }
+  .stat-l {
+    display: block;
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 6px;
+  }
+
+  /* Qty + add to bag */
+  .buy-row {
+    display: flex; align-items: stretch; gap: 10px;
+    margin-bottom: 14px;
+  }
+  .qty {
+    display: flex; align-items: center;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    background: rgba(244, 234, 216, 0.02);
+  }
+  .qty button {
+    width: 48px; height: 56px;
+    font-size: 20px;
+    color: var(--muted);
+    transition: color 120ms, background 120ms;
+  }
+  .qty button:hover { color: var(--fg); background: rgba(244, 234, 216, 0.04); }
+  .qty button:disabled { color: var(--faint); cursor: not-allowed; }
+  .qty input {
+    width: 44px;
+    height: 56px;
+    background: transparent;
+    border: none;
+    text-align: center;
+    color: var(--fg);
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 20px;
+    font-variant-numeric: tabular-nums;
+    -moz-appearance: textfield;
+  }
+  .qty input::-webkit-outer-spin-button,
+  .qty input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+
+  .add {
+    flex: 1;
+    height: 56px;
+    background: var(--ember);
+    color: #fff;
+    font-weight: 600;
+    font-size: 14.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    border-radius: 2px;
+    display: flex; align-items: center; justify-content: center; gap: 12px;
+    transition: background 160ms, transform 80ms;
+  }
+  .add:hover { background: var(--ember-hot); }
+  .add:active { transform: translateY(1px); }
+  .add .price {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 18px;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+  .add .sep {
+    width: 1px; height: 22px; background: rgba(255,255,255,0.35);
+  }
+
+  .ship {
+    font-size: 12.5px;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+    display: flex; align-items: center; gap: 8px;
+    margin-bottom: 24px;
+  }
+  .ship .ico { width: 14px; height: 14px; color: var(--gold); flex: 0 0 auto; }
+
+  /* Bundle upsell — visually distinct, gold rule */
+  .bundle {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 16px;
+    padding: 16px 18px;
+    border: 1px solid var(--gold);
+    border-radius: 2px;
+    background: linear-gradient(180deg, rgba(212, 166, 86, 0.08), rgba(212, 166, 86, 0.02));
+    position: relative;
+  }
+  .bundle::before {
+    content: 'Best value';
+    position: absolute; top: -10px; left: 16px;
+    background: var(--bg);
+    color: var(--gold);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 0 8px;
+    font-weight: 600;
+  }
+  .bundle-copy { flex: 1; }
+  .bundle-title {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 17px;
+    line-height: 1.2;
+    margin-bottom: 2px;
+  }
+  .bundle-sub {
+    font-size: 12.5px;
+    color: var(--muted);
+  }
+  .bundle-sub strong {
+    color: var(--gold);
+    font-weight: 600;
+  }
+  .bundle-btn {
+    height: 42px;
+    padding: 0 18px;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 600;
+    border-radius: 2px;
+    white-space: nowrap;
+    transition: background 160ms, color 160ms;
+  }
+  .bundle-btn:hover { background: var(--gold); color: #1a1009; }
+
+  /* ---------- Below the fold ---------- */
+  .scroll-hint {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 10.5px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    opacity: 0.7;
+  }
+  .scroll-hint .line {
+    width: 1px; height: 32px;
+    background: linear-gradient(180deg, var(--muted), transparent);
+  }
+  @media (max-width: 960px) { .scroll-hint { display: none; } }
+
+  section.story {
+    padding: 120px 0 100px;
+    position: relative;
+    border-top: 1px solid var(--border);
+  }
+  @media (max-width: 700px) { section.story { padding: 72px 0 56px; } }
+  .story-inner {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 80px;
+    align-items: start;
+  }
+  @media (max-width: 960px) {
+    .story-inner { grid-template-columns: 1fr; gap: 32px; }
+  }
+  .story h2 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(36px, 4.2vw, 56px);
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+    margin: 0;
+  }
+  .story h2 em {
+    font-style: italic;
+    color: var(--gold);
+    font-weight: 400;
+  }
+  .story p.lede {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(18px, 1.6vw, 21px);
+    line-height: 1.55;
+    color: var(--fg);
+    margin: 0 0 20px;
+  }
+  .story p.body {
+    color: var(--muted);
+    font-size: 15.5px;
+    line-height: 1.75;
+    margin: 0 0 14px;
+    max-width: 56ch;
+  }
+  .story p.body strong { color: var(--fg); font-weight: 500; }
+
+  /* Process strip */
+  section.process { padding: 80px 0 100px; border-top: 1px solid var(--border); }
+  @media (max-width: 700px) { section.process { padding: 56px 0 64px; } }
+  .process-head {
+    font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 36px; text-align: center; font-weight: 600;
+  }
+  .process-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+    background: var(--border);
+  }
+  @media (max-width: 760px) { .process-grid { grid-template-columns: 1fr; } }
+  .step {
+    background: var(--bg);
+    padding: 36px 32px;
+    display: flex; flex-direction: column; gap: 14px;
+    min-height: 220px;
+  }
+  .step-n {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-style: italic;
+    font-size: 42px;
+    color: var(--ember);
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+  .step-t {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 1.1;
+    margin: 0;
+  }
+  .step-d {
+    font-size: 14.5px;
+    color: var(--muted);
+    line-height: 1.6;
+    max-width: 34ch;
+  }
+
+  /* Ingredients tabs */
+  section.ingredients { padding: 80px 0 100px; border-top: 1px solid var(--border); }
+  @media (max-width: 700px) { section.ingredients { padding: 56px 0 64px; } }
+  .ing-head h3 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(28px, 3vw, 40px);
+    line-height: 1.05;
+    letter-spacing: -0.015em;
+    margin: 0 0 24px;
+  }
+  .tabs {
+    display: flex; gap: 0;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 32px;
+  }
+  .tab {
+    padding: 14px 22px 14px 0;
+    margin-right: 28px;
+    font-size: 13px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 600;
+    position: relative;
+    transition: color 160ms;
+  }
+  .tab:hover { color: var(--fg); }
+  .tab[aria-selected="true"] { color: var(--fg); }
+  .tab[aria-selected="true"]::after {
+    content: '';
+    position: absolute; left: 0; right: 28px; bottom: -1px;
+    height: 2px; background: var(--ember);
+  }
+  .tab[data-flavour="masala"][aria-selected="true"]::after { background: var(--gold); }
+  .tab-panel { display: none; }
+  .tab-panel.is-active { display: grid; }
+  .tab-panel {
+    grid-template-columns: 1.2fr 1fr;
+    gap: 56px;
+  }
+  @media (max-width: 760px) { .tab-panel.is-active { grid-template-columns: 1fr; gap: 24px; } }
+  .ing-list {
+    font-size: 14.5px;
+    color: var(--muted);
+    line-height: 1.75;
+  }
+  .ing-list b { color: var(--fg); font-weight: 500; }
+  .ing-list .allergen {
+    color: var(--ember-hot);
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+  .nutri {
+    border: 1px solid var(--border);
+  }
+  .nutri .nutri-title {
+    font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--muted); padding: 14px 16px; border-bottom: 1px solid var(--border);
+  }
+  .nutri-row {
+    display: flex; justify-content: space-between;
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--border);
+    font-size: 13.5px;
+  }
+  .nutri-row:last-child { border-bottom: none; }
+  .nutri-row .k { color: var(--muted); }
+  .nutri-row .v { color: var(--fg); font-variant-numeric: tabular-nums; font-weight: 500; }
+  .halal-note {
+    margin-top: 28px;
+    padding: 14px 18px;
+    border-left: 2px solid var(--gold);
+    color: var(--muted);
+    font-size: 13.5px;
+    line-height: 1.6;
+    font-style: italic;
+  }
+  .halal-note b { color: var(--fg); font-style: normal; font-weight: 500; }
+
+  /* Footer */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 56px 0 40px;
+    margin-top: 40px;
+  }
+  .foot {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 1fr;
+    gap: 48px;
+    margin-bottom: 40px;
+  }
+  @media (max-width: 760px) { .foot { grid-template-columns: 1fr; gap: 32px; } }
+  .foot-brand .brand-name-sm {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 28px;
+    letter-spacing: -0.01em;
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+  .foot-brand .brand-name-sm .amp { color: var(--ember); font-style: italic; font-weight: 400; }
+  .foot-brand p {
+    color: var(--muted);
+    font-size: 13.5px;
+    line-height: 1.6;
+    max-width: 38ch;
+    margin: 0;
+  }
+  .foot-col h4 {
+    font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--gold); font-weight: 600; margin: 0 0 14px;
+  }
+  .foot-col a, .foot-col .meta {
+    display: block; color: var(--muted); font-size: 14px; line-height: 1.9;
+    transition: color 120ms;
+  }
+  .foot-col a:hover { color: var(--fg); }
+  .socials { display: flex; gap: 14px; }
+  .socials a {
+    width: 38px; height: 38px;
+    border: 1px solid var(--border); border-radius: 50%;
+    display: inline-flex; align-items: center; justify-content: center;
+    transition: border-color 160ms, color 160ms;
+  }
+  .socials a:hover { border-color: var(--gold); color: var(--gold); }
+  .foot-legal {
+    border-top: 1px solid var(--border);
+    padding-top: 24px;
+    display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap;
+    font-size: 12px;
+    color: var(--faint);
+    letter-spacing: 0.02em;
+  }
+  .foot-legal a:hover { color: var(--muted); }
+
+  /* Mini bag toast */
+  .toast {
+    position: fixed;
+    bottom: 28px; left: 50%;
+    transform: translate(-50%, 120px);
+    background: var(--fg);
+    color: var(--bg);
+    padding: 14px 20px;
+    border-radius: 2px;
+    font-size: 13.5px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    display: flex; align-items: center; gap: 12px;
+    transition: transform 280ms cubic-bezier(.2,.9,.3,1);
+    z-index: 30;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+  }
+  .toast.show { transform: translate(-50%, 0); }
+  .toast .pip { width: 8px; height: 8px; border-radius: 50%; background: var(--ember); }
+</style>
+</head>
+<body>
+
+<!-- ================= TOP BAR ================= -->
+<header class="top">
+  <div class="wrap top-inner">
+    <div class="wordmark">Blaze<span class="amp">&amp;</span>Char</div>
+    <div class="top-meta">
+      <span class="hide-sm">Ships UK</span>
+      <span class="dot hide-sm"></span>
+      <span>Halal British Beef</span>
+      <span class="dot"></span>
+      <span>50g · £5</span>
+    </div>
+  </div>
+</header>
+
+<!-- ================= HERO / BUY ================= -->
+<main>
+<section class="hero wrap" aria-label="Buy Blaze and Char tandoori beef jerky">
+
+  <!-- drifting smoke -->
+  <div class="smoke" aria-hidden="true">
+    <svg viewBox="0 0 700 700">
+      <defs>
+        <radialGradient id="s1" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#c83a22" stop-opacity="0.55"/>
+          <stop offset="45%" stop-color="#6a2010" stop-opacity="0.25"/>
+          <stop offset="100%" stop-color="#000" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <circle cx="350" cy="350" r="300" fill="url(#s1)"/>
+    </svg>
+    <svg class="s2" viewBox="0 0 700 700">
+      <defs>
+        <radialGradient id="s2" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#d4a656" stop-opacity="0.4"/>
+          <stop offset="60%" stop-color="#4a3418" stop-opacity="0.15"/>
+          <stop offset="100%" stop-color="#000" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <circle cx="350" cy="350" r="280" fill="url(#s2)"/>
+    </svg>
+  </div>
+
+  <!-- ========= Left: pouch hero ========= -->
+  <div class="pouch-stage">
+
+    <!-- ---- Tandoori Original pouch ---- -->
+    <div class="pouch" data-flavour="tandoori" aria-hidden="false">
+      <svg viewBox="0 0 520 640" width="100%" height="100%" role="img" aria-label="Blaze & Char Tandoori Original 50g pouch">
+        <defs>
+          <!-- kraft paper gradient -->
+          <linearGradient id="kraft-t" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#8a5a36"/>
+            <stop offset="35%" stop-color="#6f4323"/>
+            <stop offset="65%" stop-color="#4e2e16"/>
+            <stop offset="100%" stop-color="#2f1b0b"/>
+          </linearGradient>
+          <linearGradient id="kraft-sheen-t" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#fff" stop-opacity="0.1"/>
+            <stop offset="50%" stop-color="#fff" stop-opacity="0"/>
+            <stop offset="100%" stop-color="#000" stop-opacity="0.3"/>
+          </linearGradient>
+          <!-- noise for spice texture -->
+          <filter id="grain-t" x="0" y="0" width="100%" height="100%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="4"/>
+            <feColorMatrix values="0 0 0 0 0.2  0 0 0 0 0.1  0 0 0 0 0.05  0 0 0 0.35 0"/>
+            <feComposite in2="SourceGraphic" operator="in"/>
+          </filter>
+          <!-- drop shadow -->
+          <filter id="shadow-t" x="-20%" y="-10%" width="140%" height="130%">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="18"/>
+            <feOffset dx="0" dy="30"/>
+            <feComponentTransfer><feFuncA type="linear" slope="0.55"/></feComponentTransfer>
+            <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+
+        <!-- pouch shape with crimped top -->
+        <g filter="url(#shadow-t)">
+          <!-- crimped seal top -->
+          <path d="M90 48 Q 260 24 430 48 L 430 98 L 90 98 Z" fill="#3a2211" opacity="0.95"/>
+          <!-- crimp teeth -->
+          <g fill="#2a1808" opacity="0.7">
+            <rect x="100" y="52" width="6" height="12"/>
+            <rect x="120" y="50" width="6" height="14"/>
+            <rect x="140" y="52" width="6" height="12"/>
+            <rect x="160" y="50" width="6" height="14"/>
+            <rect x="180" y="52" width="6" height="12"/>
+            <rect x="200" y="50" width="6" height="14"/>
+            <rect x="220" y="52" width="6" height="12"/>
+            <rect x="240" y="50" width="6" height="14"/>
+            <rect x="260" y="52" width="6" height="12"/>
+            <rect x="280" y="50" width="6" height="14"/>
+            <rect x="300" y="52" width="6" height="12"/>
+            <rect x="320" y="50" width="6" height="14"/>
+            <rect x="340" y="52" width="6" height="12"/>
+            <rect x="360" y="50" width="6" height="14"/>
+            <rect x="380" y="52" width="6" height="12"/>
+            <rect x="400" y="50" width="6" height="14"/>
+            <rect x="420" y="50" width="6" height="14"/>
+          </g>
+
+          <!-- main pouch body -->
+          <path d="M70 98 Q 60 98 60 112 L 60 588 Q 60 608 82 608 L 438 608 Q 460 608 460 588 L 460 112 Q 460 98 450 98 Z"
+                fill="url(#kraft-t)"/>
+          <!-- sheen -->
+          <path d="M70 98 Q 60 98 60 112 L 60 588 Q 60 608 82 608 L 438 608 Q 460 608 460 588 L 460 112 Q 460 98 450 98 Z"
+                fill="url(#kraft-sheen-t)" opacity="0.9"/>
+          <!-- grain texture -->
+          <rect x="60" y="98" width="400" height="510" fill="url(#kraft-t)" filter="url(#grain-t)" opacity="0.4"/>
+
+          <!-- ember label window -->
+          <rect x="100" y="180" width="320" height="330" fill="#0d0907" stroke="#d4a656" stroke-width="1.5"/>
+          <!-- inner hairline -->
+          <rect x="108" y="188" width="304" height="314" fill="none" stroke="#d4a656" stroke-width="0.5" opacity="0.5"/>
+
+          <!-- label content -->
+          <!-- top tag -->
+          <text x="260" y="218" font-family="Inter, sans-serif" font-size="10" font-weight="700"
+                letter-spacing="3" text-anchor="middle" fill="#d4a656">EST. 2025 · LONDON</text>
+
+          <!-- gold rule -->
+          <line x1="170" y1="234" x2="350" y2="234" stroke="#d4a656" stroke-width="0.5"/>
+
+          <!-- brand -->
+          <text x="260" y="276" font-family="Fraunces, Georgia, serif" font-size="38" font-weight="500"
+                letter-spacing="-1" text-anchor="middle" fill="#f4ead8">Blaze</text>
+          <text x="260" y="308" font-family="Fraunces, Georgia, serif" font-size="22" font-weight="400"
+                font-style="italic" text-anchor="middle" fill="#c83a22">&amp;</text>
+          <text x="260" y="346" font-family="Fraunces, Georgia, serif" font-size="38" font-weight="500"
+                letter-spacing="-1" text-anchor="middle" fill="#f4ead8">Char</text>
+
+          <!-- gold rule -->
+          <line x1="190" y1="372" x2="330" y2="372" stroke="#d4a656" stroke-width="0.5"/>
+
+          <!-- flavour -->
+          <text x="260" y="410" font-family="Fraunces, Georgia, serif" font-size="22" font-weight="600"
+                font-style="italic" text-anchor="middle" fill="#d4a656">Tandoori Original</text>
+
+          <!-- descriptor -->
+          <text x="260" y="444" font-family="Inter, sans-serif" font-size="9.5" font-weight="500"
+                letter-spacing="2.2" text-anchor="middle" fill="#a99583">KASHMIRI CHILLI · TAMARIND · SMOKE</text>
+
+          <!-- chilli icon -->
+          <g transform="translate(250 460)">
+            <path d="M0 0 Q 3 -8 10 -10 Q 8 -4 12 0 Q 6 8 -2 8 Q -4 4 0 0 Z" fill="#c83a22"/>
+            <path d="M8 -10 Q 12 -14 16 -12 L 10 -10 Z" fill="#2a5a2a"/>
+          </g>
+
+          <!-- bottom info row -->
+          <line x1="140" y1="486" x2="380" y2="486" stroke="#d4a656" stroke-width="0.3" opacity="0.5"/>
+          <text x="260" y="500" font-family="Inter, sans-serif" font-size="9" font-weight="600"
+                letter-spacing="2" text-anchor="middle" fill="#a99583">NET WT. 50g e · HALAL</text>
+        </g>
+
+        <!-- spice specks floating -->
+        <g opacity="0.8">
+          <circle cx="120" cy="540" r="2" fill="#c83a22"/>
+          <circle cx="140" cy="560" r="1.5" fill="#d4a656"/>
+          <circle cx="160" cy="548" r="1" fill="#8a3010"/>
+          <circle cx="380" cy="550" r="1.5" fill="#c83a22"/>
+          <circle cx="400" cy="570" r="2" fill="#d4a656"/>
+          <circle cx="360" cy="572" r="1" fill="#8a3010"/>
+        </g>
+      </svg>
+    </div>
+
+    <!-- ---- Masala pouch ---- -->
+    <div class="pouch" data-flavour="masala" aria-hidden="true">
+      <svg viewBox="0 0 520 640" width="100%" height="100%" role="img" aria-label="Blaze & Char Masala 50g pouch">
+        <defs>
+          <linearGradient id="kraft-m" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#8a5a36"/>
+            <stop offset="35%" stop-color="#6f4323"/>
+            <stop offset="65%" stop-color="#4e2e16"/>
+            <stop offset="100%" stop-color="#2f1b0b"/>
+          </linearGradient>
+          <linearGradient id="kraft-sheen-m" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#fff" stop-opacity="0.1"/>
+            <stop offset="50%" stop-color="#fff" stop-opacity="0"/>
+            <stop offset="100%" stop-color="#000" stop-opacity="0.3"/>
+          </linearGradient>
+          <filter id="grain-m" x="0" y="0" width="100%" height="100%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="9"/>
+            <feColorMatrix values="0 0 0 0 0.2  0 0 0 0 0.1  0 0 0 0 0.05  0 0 0 0.35 0"/>
+            <feComposite in2="SourceGraphic" operator="in"/>
+          </filter>
+          <filter id="shadow-m" x="-20%" y="-10%" width="140%" height="130%">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="18"/>
+            <feOffset dx="0" dy="30"/>
+            <feComponentTransfer><feFuncA type="linear" slope="0.55"/></feComponentTransfer>
+            <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+        <g filter="url(#shadow-m)">
+          <path d="M90 48 Q 260 24 430 48 L 430 98 L 90 98 Z" fill="#3a2211" opacity="0.95"/>
+          <g fill="#2a1808" opacity="0.7">
+            <rect x="100" y="52" width="6" height="12"/>
+            <rect x="120" y="50" width="6" height="14"/>
+            <rect x="140" y="52" width="6" height="12"/>
+            <rect x="160" y="50" width="6" height="14"/>
+            <rect x="180" y="52" width="6" height="12"/>
+            <rect x="200" y="50" width="6" height="14"/>
+            <rect x="220" y="52" width="6" height="12"/>
+            <rect x="240" y="50" width="6" height="14"/>
+            <rect x="260" y="52" width="6" height="12"/>
+            <rect x="280" y="50" width="6" height="14"/>
+            <rect x="300" y="52" width="6" height="12"/>
+            <rect x="320" y="50" width="6" height="14"/>
+            <rect x="340" y="52" width="6" height="12"/>
+            <rect x="360" y="50" width="6" height="14"/>
+            <rect x="380" y="52" width="6" height="12"/>
+            <rect x="400" y="50" width="6" height="14"/>
+            <rect x="420" y="50" width="6" height="14"/>
+          </g>
+          <path d="M70 98 Q 60 98 60 112 L 60 588 Q 60 608 82 608 L 438 608 Q 460 608 460 588 L 460 112 Q 460 98 450 98 Z"
+                fill="url(#kraft-m)"/>
+          <path d="M70 98 Q 60 98 60 112 L 60 588 Q 60 608 82 608 L 438 608 Q 460 608 460 588 L 460 112 Q 460 98 450 98 Z"
+                fill="url(#kraft-sheen-m)" opacity="0.9"/>
+          <rect x="60" y="98" width="400" height="510" fill="url(#kraft-m)" filter="url(#grain-m)" opacity="0.4"/>
+
+          <!-- gold label window for Masala -->
+          <rect x="100" y="180" width="320" height="330" fill="#0d0907" stroke="#d4a656" stroke-width="1.5"/>
+          <rect x="108" y="188" width="304" height="314" fill="none" stroke="#d4a656" stroke-width="0.5" opacity="0.5"/>
+
+          <text x="260" y="218" font-family="Inter, sans-serif" font-size="10" font-weight="700"
+                letter-spacing="3" text-anchor="middle" fill="#d4a656">EST. 2025 · LONDON</text>
+          <line x1="170" y1="234" x2="350" y2="234" stroke="#d4a656" stroke-width="0.5"/>
+
+          <text x="260" y="276" font-family="Fraunces, Georgia, serif" font-size="38" font-weight="500"
+                letter-spacing="-1" text-anchor="middle" fill="#f4ead8">Blaze</text>
+          <text x="260" y="308" font-family="Fraunces, Georgia, serif" font-size="22" font-weight="400"
+                font-style="italic" text-anchor="middle" fill="#c83a22">&amp;</text>
+          <text x="260" y="346" font-family="Fraunces, Georgia, serif" font-size="38" font-weight="500"
+                letter-spacing="-1" text-anchor="middle" fill="#f4ead8">Char</text>
+
+          <line x1="190" y1="372" x2="330" y2="372" stroke="#d4a656" stroke-width="0.5"/>
+
+          <text x="260" y="410" font-family="Fraunces, Georgia, serif" font-size="22" font-weight="600"
+                font-style="italic" text-anchor="middle" fill="#d4a656">Masala</text>
+
+          <text x="260" y="444" font-family="Inter, sans-serif" font-size="9.5" font-weight="500"
+                letter-spacing="2.2" text-anchor="middle" fill="#a99583">GARAM MASALA · CUMIN · AMCHUR</text>
+
+          <!-- star anise icon in gold -->
+          <g transform="translate(260 466)">
+            <g fill="#d4a656" opacity="0.9">
+              <path d="M0 -10 L 2 -3 L 9 -3 L 3.5 1 L 6 8 L 0 4 L -6 8 L -3.5 1 L -9 -3 L -2 -3 Z"/>
+            </g>
+          </g>
+
+          <line x1="140" y1="486" x2="380" y2="486" stroke="#d4a656" stroke-width="0.3" opacity="0.5"/>
+          <text x="260" y="500" font-family="Inter, sans-serif" font-size="9" font-weight="600"
+                letter-spacing="2" text-anchor="middle" fill="#a99583">NET WT. 50g e · HALAL</text>
+        </g>
+        <g opacity="0.8">
+          <circle cx="120" cy="540" r="2" fill="#d4a656"/>
+          <circle cx="140" cy="560" r="1.5" fill="#8a6a2a"/>
+          <circle cx="160" cy="548" r="1" fill="#c89040"/>
+          <circle cx="380" cy="550" r="1.5" fill="#d4a656"/>
+          <circle cx="400" cy="570" r="2" fill="#8a6a2a"/>
+          <circle cx="360" cy="572" r="1" fill="#c89040"/>
+        </g>
+      </svg>
+    </div>
+
+  </div>
+
+  <!-- ========= Right: buy block ========= -->
+  <div class="buy">
+    <div class="eyebrow">The UK's first tandoori beef jerky</div>
+
+    <h1 class="brand-name">Blaze<br><span class="amp">&amp;</span>Char</h1>
+
+    <p class="hook">
+      Not a gas-station snack. Not a gym-bro protein stick.<br>
+      <strong>Proper jerky</strong>, marinated for <em>14 hours</em> in a spice blend we make by hand.
+    </p>
+
+    <div class="flavour-label">Pick your flavour</div>
+    <div class="flavours" role="radiogroup" aria-label="Flavour">
+      <button class="flavour" data-flavour="tandoori" aria-pressed="true">
+        <span class="f-name">Tandoori Original</span>
+        <span class="f-heat">
+          <span class="pip on"></span><span class="pip on"></span><span class="pip on"></span><span class="pip"></span>
+          &nbsp; Medium heat
+        </span>
+      </button>
+      <button class="flavour" data-flavour="masala" aria-pressed="false">
+        <span class="f-name">Masala</span>
+        <span class="f-heat">
+          <span class="pip on"></span><span class="pip on"></span><span class="pip"></span><span class="pip"></span>
+          &nbsp; Warm &amp; aromatic
+        </span>
+      </button>
+    </div>
+
+    <div class="stats">
+      <div>
+        <span class="stat-n">50g</span>
+        <span class="stat-l">Resealable</span>
+      </div>
+      <div>
+        <span class="stat-n">14h</span>
+        <span class="stat-l">Marinated</span>
+      </div>
+      <div>
+        <span class="stat-n">0g</span>
+        <span class="stat-l">Soy · Sugar*</span>
+      </div>
+      <div>
+        <span class="stat-n">100%</span>
+        <span class="stat-l">British Beef</span>
+      </div>
+    </div>
+
+    <div class="buy-row">
+      <div class="qty" role="group" aria-label="Quantity">
+        <button data-qty="-1" aria-label="Decrease quantity">−</button>
+        <input id="qty" type="number" min="1" max="12" value="1" aria-label="Quantity" />
+        <button data-qty="+1" aria-label="Increase quantity">+</button>
+      </div>
+      <button class="add" id="add-to-bag" data-stripe="single">
+        <span>Add to bag</span>
+        <span class="sep"></span>
+        <span class="price" id="total-price">£5.00</span>
+      </button>
+    </div>
+
+    <div class="ship">
+      <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M3 7h13v10H3zM16 10h3l2 3v4h-5"/>
+        <circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/>
+      </svg>
+      + £1.55 Royal Mail Tracked · ships within 2 working days
+    </div>
+
+    <div class="bundle">
+      <div class="bundle-copy">
+        <div class="bundle-title">Try both — 2-pack</div>
+        <div class="bundle-sub">One of each, <strong>£9</strong> <span style="text-decoration:line-through;color:var(--faint)">£10</span> · free shipping</div>
+      </div>
+      <button class="bundle-btn" data-stripe="bundle">Buy bundle</button>
+    </div>
+  </div>
+
+  <div class="scroll-hint" aria-hidden="true">
+    <span>More on the jerky</span>
+    <span class="line"></span>
+  </div>
+
+</section>
+
+<!-- ================= STORY ================= -->
+<section class="story">
+  <div class="wrap story-inner">
+    <div>
+      <h2>Slow-marinated.<br>Small-batch.<br><em>Halal-sourced.</em></h2>
+    </div>
+    <div>
+      <p class="lede">
+        We started Blaze &amp; Char because nobody in the UK was making jerky that tasted like home.
+      </p>
+      <p class="body">
+        The supermarket stuff is sweet, soy-soaked, and has never been anywhere near a spice. We wanted something that tasted like the kind of food we actually eat — <strong>Kashmiri chilli, tamarind, smoked paprika, garam masala</strong>. So we built it.
+      </p>
+      <p class="body">
+        Every batch is marinated for <strong>14 hours</strong> in a spice paste we mix by hand, then slow-dehydrated at 70°C until it's tender but still got bite. No teriyaki. No maple syrup. No "bold flavour" that means <em>slightly more salt</em>.
+      </p>
+      <p class="body">
+        The beef is <strong>halal-sourced from a single British farm</strong>. We get it, we trim it, we spice it, we pack it. Small kitchen in East London, two people, one flavour obsession.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROCESS ================= -->
+<section class="process">
+  <div class="wrap">
+    <div class="process-head">How it's made</div>
+    <div class="process-grid">
+      <div class="step">
+        <div class="step-n">01</div>
+        <h3 class="step-t">Hand-mixed spice paste</h3>
+        <p class="step-d">Kashmiri chilli, tamarind, smoked paprika, ginger, garlic, black pepper. Ground fresh each week.</p>
+      </div>
+      <div class="step">
+        <div class="step-n">02</div>
+        <h3 class="step-t">Slow marinate · 14 hours</h3>
+        <p class="step-d">Silverside slices, hand-trimmed, rubbed through the paste and rested overnight so the spice actually gets in.</p>
+      </div>
+      <div class="step">
+        <div class="step-n">03</div>
+        <h3 class="step-t">Low &amp; slow dehydrate</h3>
+        <p class="step-d">Dried at 70°C for 6 hours. Tender, not chewy leather. Resealable pouch, eat within 2 months.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= INGREDIENTS ================= -->
+<section class="ingredients">
+  <div class="wrap">
+    <div class="ing-head">
+      <h3>What's in each pouch</h3>
+    </div>
+
+    <div class="tabs" role="tablist">
+      <button class="tab" data-flavour="tandoori" aria-selected="true" role="tab">Tandoori Original</button>
+      <button class="tab" data-flavour="masala" aria-selected="false" role="tab">Masala</button>
+    </div>
+
+    <!-- Tandoori panel -->
+    <div class="tab-panel is-active" data-flavour="tandoori" role="tabpanel">
+      <div class="ing-list">
+        <p><b>Ingredients:</b> Halal British beef silverside (78%), tamarind paste, Kashmiri chilli, smoked paprika, <span class="allergen">MUSTARD</span> seed, garlic, ginger, cumin, coriander, sea salt, black pepper, sunflower oil, white wine vinegar.</p>
+        <p style="margin-top:16px;"><b>Allergens:</b> contains <span class="allergen">MUSTARD</span>. Made in a kitchen that handles sesame and celery.</p>
+        <p style="margin-top:16px; font-size:13px; color:var(--faint);">* Contains naturally-occurring sugars from tamarind. No added sugar.</p>
+      </div>
+      <div class="nutri">
+        <div class="nutri-title">Typical values / 100g</div>
+        <div class="nutri-row"><span class="k">Energy</span><span class="v">1460 kJ / 348 kcal</span></div>
+        <div class="nutri-row"><span class="k">Fat</span><span class="v">8.4 g</span></div>
+        <div class="nutri-row"><span class="k">— of which saturates</span><span class="v">3.2 g</span></div>
+        <div class="nutri-row"><span class="k">Carbohydrate</span><span class="v">6.1 g</span></div>
+        <div class="nutri-row"><span class="k">— of which sugars</span><span class="v">4.8 g</span></div>
+        <div class="nutri-row"><span class="k">Protein</span><span class="v">56 g</span></div>
+        <div class="nutri-row"><span class="k">Salt</span><span class="v">2.1 g</span></div>
+      </div>
+    </div>
+
+    <!-- Masala panel -->
+    <div class="tab-panel" data-flavour="masala" role="tabpanel">
+      <div class="ing-list">
+        <p><b>Ingredients:</b> Halal British beef silverside (78%), garam masala (cumin, coriander, cardamom, cloves, cinnamon, nutmeg, bay), amchur (dried mango), toasted cumin, <span class="allergen">MUSTARD</span> seed, garlic, ginger, sea salt, black pepper, sunflower oil.</p>
+        <p style="margin-top:16px;"><b>Allergens:</b> contains <span class="allergen">MUSTARD</span>. Made in a kitchen that handles sesame and celery.</p>
+        <p style="margin-top:16px; font-size:13px; color:var(--faint);">Naturally gluten-free · no soy · no preservatives.</p>
+      </div>
+      <div class="nutri">
+        <div class="nutri-title">Typical values / 100g</div>
+        <div class="nutri-row"><span class="k">Energy</span><span class="v">1440 kJ / 343 kcal</span></div>
+        <div class="nutri-row"><span class="k">Fat</span><span class="v">8.0 g</span></div>
+        <div class="nutri-row"><span class="k">— of which saturates</span><span class="v">3.0 g</span></div>
+        <div class="nutri-row"><span class="k">Carbohydrate</span><span class="v">5.2 g</span></div>
+        <div class="nutri-row"><span class="k">— of which sugars</span><span class="v">3.9 g</span></div>
+        <div class="nutri-row"><span class="k">Protein</span><span class="v">57 g</span></div>
+        <div class="nutri-row"><span class="k">Salt</span><span class="v">2.0 g</span></div>
+      </div>
+    </div>
+
+    <div class="halal-note">
+      <b>Halal-sourced British beef.</b> Single farm, West Country. HMC-certified supplier. Full paperwork available on request.
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div class="foot-brand">
+        <div class="brand-name-sm">Blaze<span class="amp">&amp;</span>Char</div>
+        <p>Hand-made in East London. Halal British beef, South Asian spice, no shortcuts. Small batches, shipped within the week.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Say hi</h4>
+        <a href="mailto:hello@blazeandchar.co.uk">hello@blazeandchar.co.uk</a>
+        <div class="socials" style="margin-top:14px;">
+          <a href="https://instagram.com/blazeandchar" aria-label="Instagram @blazeandchar">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <rect x="3" y="3" width="18" height="18" rx="5"/>
+              <circle cx="12" cy="12" r="4"/>
+              <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor"/>
+            </svg>
+          </a>
+          <a href="https://tiktok.com/@blazeandchar" aria-label="TikTok @blazeandchar">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M16 3v3a4 4 0 0 0 4 4v3a7 7 0 0 1-4-1.3V15a6 6 0 1 1-6-6v3a3 3 0 1 0 3 3V3z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+      <div class="foot-col">
+        <h4>The fine print</h4>
+        <a href="#">Shipping &amp; returns</a>
+        <a href="#">Allergen info</a>
+        <a href="#">Wholesale</a>
+      </div>
+    </div>
+    <div class="foot-legal">
+      <span>© 2025 Blaze &amp; Char Ltd · Registered food business · 0800 123 4567</span>
+      <span>All allergen information available before purchase.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- Toast -->
+<div class="toast" id="toast" role="status" aria-live="polite">
+  <span class="pip"></span>
+  <span id="toast-msg">Added to bag</span>
+</div>
+
+<script>
+(function(){
+  // ---------- Flavour toggle (hero) ----------
+  const flavourBtns = document.querySelectorAll('.flavour');
+  const pouches = document.querySelectorAll('.pouch');
+  const tabs = document.querySelectorAll('.tab');
+  const panels = document.querySelectorAll('.tab-panel');
+
+  function setFlavour(f) {
+    flavourBtns.forEach(b => b.setAttribute('aria-pressed', b.dataset.flavour === f ? 'true' : 'false'));
+    pouches.forEach(p => p.setAttribute('aria-hidden', p.dataset.flavour === f ? 'false' : 'true'));
+    tabs.forEach(t => t.setAttribute('aria-selected', t.dataset.flavour === f ? 'true' : 'false'));
+    panels.forEach(pn => pn.classList.toggle('is-active', pn.dataset.flavour === f));
+  }
+  flavourBtns.forEach(b => b.addEventListener('click', () => setFlavour(b.dataset.flavour)));
+  tabs.forEach(t => t.addEventListener('click', () => setFlavour(t.dataset.flavour)));
+
+  // ---------- Qty ----------
+  const qtyInput = document.getElementById('qty');
+  const totalPrice = document.getElementById('total-price');
+  const UNIT = 5.00;
+
+  function updateTotal() {
+    const n = Math.max(1, Math.min(12, parseInt(qtyInput.value, 10) || 1));
+    qtyInput.value = n;
+    totalPrice.textContent = '£' + (n * UNIT).toFixed(2);
+    document.querySelectorAll('[data-qty]').forEach(b => {
+      if (b.dataset.qty === '-1') b.disabled = (n <= 1);
+      if (b.dataset.qty === '+1') b.disabled = (n >= 12);
+    });
+  }
+  document.querySelectorAll('[data-qty]').forEach(b => {
+    b.addEventListener('click', () => {
+      const delta = parseInt(b.dataset.qty, 10);
+      qtyInput.value = (parseInt(qtyInput.value, 10) || 1) + delta;
+      updateTotal();
+    });
+  });
+  qtyInput.addEventListener('input', updateTotal);
+  updateTotal();
+
+  // ---------- Toast ----------
+  const toast = document.getElementById('toast');
+  const toastMsg = document.getElementById('toast-msg');
+  let toastTimer;
+  function showToast(msg) {
+    toastMsg.textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove('show'), 2400);
+  }
+
+  // ---------- Buy (stub — wire to Stripe Payment Links) ----------
+  // Replace these with real Stripe Payment Link URLs
+  const STRIPE_LINKS = {
+    tandoori_1: '#stripe-tandoori',
+    masala_1:   '#stripe-masala',
+    bundle:     '#stripe-bundle'
+  };
+
+  document.getElementById('add-to-bag').addEventListener('click', () => {
+    const flavour = document.querySelector('.flavour[aria-pressed="true"]').dataset.flavour;
+    const qty = parseInt(qtyInput.value, 10) || 1;
+    const name = flavour === 'tandoori' ? 'Tandoori Original' : 'Masala';
+    showToast(`Added ${qty} × ${name} to bag`);
+    // In production: window.location.href = STRIPE_LINKS[flavour + '_1'] + `?quantity=${qty}`;
+    console.log('[stripe]', { flavour, qty, link: STRIPE_LINKS[flavour + '_1'] });
+  });
+
+  document.querySelector('[data-stripe="bundle"]').addEventListener('click', () => {
+    showToast('Bundle added — 1 × Tandoori + 1 × Masala');
+    console.log('[stripe]', { bundle: true, link: STRIPE_LINKS.bundle });
+  });
+
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,25 @@
+# OS cruft
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Icon?
+
+# Editor junk
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Node / build artefacts (none expected, but future-proofing)
+node_modules/
+dist/
+build/
+.cache/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Chat tool artefacts (internal metadata, not part of the design)
+*.artifact.json

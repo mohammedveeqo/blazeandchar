@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Blaze & Char monogram — reversed variant.
+  Cream ampersand on solid tandoori fill. For use on dark or coloured backgrounds.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Blaze &amp; Char">
+  <title>Blaze &amp; Char</title>
+  <!-- Solid medallion -->
+  <circle cx="256" cy="256" r="240" fill="#c24a27"/>
+  <!-- Inner ring -->
+  <circle cx="256" cy="256" r="220" fill="none" stroke="#f6efe4" stroke-width="2" opacity="0.55"/>
+  <!-- Ampersand glyph -->
+  <text x="256" y="256"
+        text-anchor="middle"
+        dominant-baseline="central"
+        font-family="'Fraunces', 'Iowan Old Style', Georgia, serif"
+        font-style="italic"
+        font-weight="400"
+        font-size="340"
+        font-variation-settings="'SOFT' 20, 'WONK' 1"
+        fill="#f6efe4">&amp;</text>
+</svg>

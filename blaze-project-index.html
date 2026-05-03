@@ -1,0 +1,480 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Blaze & Char — project index</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,400;1,9..144,500;1,9..144,600;1,9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --page-bg:oklch(96% 0.01 80);
+  --page-surface:oklch(99% 0.005 80);
+  --page-fg:oklch(18% 0.02 60);
+  --page-dim:oklch(45% 0.02 60);
+  --page-soft:oklch(62% 0.02 60);
+  --page-rule:oklch(18% 0.02 60 / 0.14);
+  --page-rule-strong:oklch(18% 0.02 60 / 0.3);
+  --accent:oklch(54% 0.19 32);
+  --accent-soft:oklch(54% 0.19 32 / 0.08);
+  --gold:oklch(60% 0.15 72);
+  --font-display:'Fraunces','Newsreader','Iowan Old Style',Georgia,serif;
+  --font-body:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;
+  --font-mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
+}
+*,*::before,*::after{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{min-height:100vh;background:var(--page-bg);color:var(--page-fg);font-family:var(--font-body);font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;padding:56px 28px 120px;}
+.shell{max-width:1480px;margin:0 auto;}
+
+.masthead{display:grid;grid-template-columns:1fr auto;align-items:start;gap:32px;margin-bottom:56px;padding-bottom:28px;border-bottom:.75px solid var(--page-rule-strong);}
+.masthead .eyebrow{font-family:var(--font-mono);font-size:11px;letter-spacing:.34em;text-transform:uppercase;color:var(--page-dim);font-weight:600;display:flex;align-items:center;gap:14px;}
+.masthead .eyebrow img{width:22px;height:22px;}
+.masthead h1{font-family:var(--font-display);font-weight:500;font-size:clamp(34px,4.6vw,56px);letter-spacing:-.025em;margin:14px 0 14px;font-variation-settings:"SOFT" 30,"WONK" 1,"opsz" 144;line-height:1.02;}
+.masthead h1 em{font-style:italic;font-weight:400;color:var(--accent);}
+.masthead p{max-width:58ch;font-family:var(--font-display);font-style:italic;font-size:19px;color:var(--page-dim);margin:0;font-variation-settings:"opsz" 36;}
+.masthead p em{font-style:normal;color:var(--page-fg);font-weight:500;}
+.stat{text-align:right;font-family:var(--font-mono);font-size:10.5px;letter-spacing:.28em;text-transform:uppercase;color:var(--page-dim);font-weight:600;line-height:1.7;white-space:nowrap;}
+.stat strong{display:block;font-family:var(--font-display);font-weight:600;font-size:32px;letter-spacing:-.02em;color:var(--page-fg);font-variation-settings:"opsz" 36;margin-bottom:2px;}
+@media (max-width:760px){.masthead{grid-template-columns:1fr;}.stat{text-align:left;}}
+
+.toc{display:grid;grid-template-columns:repeat(4,1fr);gap:8px 24px;padding:20px 24px;margin:0 0 56px;background:var(--page-surface);border:1px solid var(--page-rule);border-radius:10px;}
+@media (max-width:880px){.toc{grid-template-columns:repeat(2,1fr);}}
+.toc a{text-decoration:none;font-family:var(--font-mono);font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;color:var(--page-dim);padding:4px 0;display:flex;justify-content:space-between;align-items:baseline;gap:10px;transition:color .12s;}
+.toc a:hover{color:var(--accent);}
+.toc a .n{color:var(--page-soft);}
+.toc a .c{font-family:var(--font-body);font-size:11px;letter-spacing:.02em;text-transform:none;font-weight:500;color:var(--page-soft);}
+
+.section{margin:72px 0 0;}
+.section-head{display:flex;align-items:baseline;gap:20px;margin-bottom:10px;}
+.section-head .sn{font-family:var(--font-mono);font-size:11px;letter-spacing:.34em;text-transform:uppercase;color:var(--accent);font-weight:700;flex-shrink:0;}
+.section-head h2{font-family:var(--font-display);font-weight:600;font-size:30px;letter-spacing:-.02em;margin:0;line-height:1.1;font-variation-settings:"opsz" 48,"SOFT" 40;color:var(--page-fg);}
+.section-head h2 em{font-style:italic;font-weight:500;color:var(--accent);}
+.section-blurb{font-family:var(--font-display);font-style:italic;font-size:16.5px;color:var(--page-dim);max-width:70ch;margin:0 0 22px;padding-left:calc(11px * 4 + 20px);font-variation-settings:"opsz" 24;}
+@media (max-width:760px){.section-blurb{padding-left:0;}}
+
+.row{display:grid;gap:24px;}
+.row-4{grid-template-columns:repeat(4,1fr);}
+.row-3{grid-template-columns:repeat(3,1fr);}
+.row-2{grid-template-columns:repeat(2,1fr);}
+@media (max-width:1200px){.row-4{grid-template-columns:repeat(3,1fr);}}
+@media (max-width:900px){.row-4,.row-3{grid-template-columns:repeat(2,1fr);}}
+@media (max-width:640px){.row-4,.row-3,.row-2{grid-template-columns:1fr;}}
+
+.card{display:flex;flex-direction:column;gap:10px;text-decoration:none;color:inherit;cursor:pointer;border-radius:12px;padding:14px 14px 16px;margin:-14px;transition:background .18s ease, transform .18s ease, box-shadow .18s ease;}
+.card:hover{background:var(--page-surface);box-shadow:0 16px 32px -24px oklch(18% 0.02 60 / 0.28);transform:translateY(-2px);}
+.card:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+.thumb{position:relative;width:100%;aspect-ratio:4/3;border-radius:8px;overflow:hidden;border:1px solid var(--page-rule);background:var(--page-bg);box-shadow:0 14px 30px -22px oklch(18% 0.02 60 / 0.22), 0 4px 10px -6px oklch(18% 0.02 60 / 0.1);}
+.thumb iframe{position:absolute;top:0;left:0;width:400%;height:400%;border:0;transform:scale(0.25);transform-origin:0 0;pointer-events:none;}
+.thumb.tall{aspect-ratio:3/4;}
+.thumb.tall iframe{width:300%;height:300%;transform:scale(0.333);}
+.thumb.wide{aspect-ratio:16/10;}
+.card .kicker{font-family:var(--font-mono);font-size:9px;letter-spacing:.28em;text-transform:uppercase;color:var(--page-soft);font-weight:700;margin:0;display:flex;align-items:center;gap:8px;}
+.card .kicker .tag{font-family:var(--font-mono);font-size:8.5px;letter-spacing:.22em;padding:2px 7px;border-radius:999px;background:var(--accent-soft);color:var(--accent);font-weight:700;}
+.card .kicker .tag-fallback{background:oklch(18% 0.02 60 / 0.06);color:var(--page-dim);}
+.card h3{font-family:var(--font-display);font-weight:600;font-size:17px;letter-spacing:-.01em;margin:0;line-height:1.2;font-variation-settings:"opsz" 24,"SOFT" 40;}
+.card h3 em{font-style:italic;font-weight:500;color:var(--accent);}
+.card .desc{font-family:var(--font-display);font-style:italic;font-size:13.5px;line-height:1.4;color:var(--page-dim);margin:0;font-variation-settings:"opsz" 18;}
+.card .file{font-family:var(--font-mono);font-size:9.5px;letter-spacing:.06em;color:var(--page-soft);font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-top:auto;padding-top:4px;}
+
+.hero-card{display:grid;grid-template-columns:1.2fr 1fr;gap:36px;align-items:stretch;padding:32px 36px;background:var(--page-surface);border:1px solid var(--page-rule);border-radius:16px;text-decoration:none;color:inherit;transition:border-color .2s;}
+.hero-card:hover{border-color:var(--accent);}
+@media (max-width:880px){.hero-card{grid-template-columns:1fr;}}
+.hero-card .thumb{aspect-ratio:4/3;}
+.hero-card .text{display:flex;flex-direction:column;gap:12px;justify-content:center;}
+.hero-card .text .kicker{color:var(--accent);}
+.hero-card .text h3{font-size:28px;}
+.hero-card .text .desc{font-size:16px;}
+.hero-card .cta{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;font-weight:700;color:var(--page-fg);display:inline-flex;align-items:center;gap:8px;margin-top:8px;}
+.hero-card .cta::after{content:"→";font-family:var(--font-body);transition:transform .18s;}
+.hero-card:hover .cta::after{transform:translateX(4px);}
+
+/* Identity-specific styles */
+.id-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:20px;}
+@media (max-width:960px){.id-grid{grid-template-columns:repeat(6,1fr);}}
+.id-cell{display:flex;flex-direction:column;gap:10px;padding:20px;background:var(--page-surface);border:1px solid var(--page-rule);border-radius:12px;text-decoration:none;color:inherit;transition:border-color .2s;}
+.id-cell:hover{border-color:var(--accent);}
+.id-cell .k{font-family:var(--font-mono);font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:var(--page-soft);font-weight:700;}
+.id-cell .n{font-family:var(--font-display);font-weight:600;font-size:16px;letter-spacing:-.01em;color:var(--page-fg);font-variation-settings:"opsz" 24,"SOFT" 40;}
+.id-cell .n em{font-style:italic;color:var(--accent);font-weight:500;}
+.id-cell .desc{font-family:var(--font-display);font-style:italic;font-size:13px;color:var(--page-dim);font-variation-settings:"opsz" 18;line-height:1.4;}
+.id-cell .file{font-family:var(--font-mono);font-size:9.5px;color:var(--page-soft);font-weight:500;}
+.id-cell .preview{display:grid;place-items:center;background:var(--page-bg);border-radius:8px;padding:28px 20px;border:1px solid var(--page-rule);min-height:140px;}
+.id-cell .preview.dark{background:oklch(18% 0.02 60);border-color:oklch(18% 0.02 60);}
+.id-cell .preview.accent{background:var(--accent);border-color:var(--accent);}
+.id-cell .preview img{max-width:80%;max-height:140px;display:block;}
+.id-cell.span-4{grid-column:span 4;}
+.id-cell.span-6{grid-column:span 6;}
+.id-cell.span-12{grid-column:span 12;}
+@media (max-width:960px){.id-cell.span-4,.id-cell.span-6,.id-cell.span-12{grid-column:span 6;}}
+@media (max-width:640px){.id-cell.span-4,.id-cell.span-6{grid-column:span 6;}}
+
+.palette-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;}
+.palette-grid .sw{display:flex;flex-direction:column;gap:6px;}
+.palette-grid .sw-box{aspect-ratio:1;border-radius:8px;border:1px solid var(--page-rule);}
+.palette-grid .sw .k{font-family:var(--font-mono);font-size:8.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--page-dim);font-weight:600;text-align:center;}
+
+.type-sample{display:grid;grid-template-columns:auto 1fr;gap:16px 24px;align-items:baseline;}
+.type-sample .label{font-family:var(--font-mono);font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--page-soft);font-weight:600;padding-top:8px;}
+.type-sample .demo{padding-bottom:12px;border-bottom:.75px dashed var(--page-rule);}
+.type-sample .demo:last-child{border-bottom:0;}
+.type-sample .demo.display{font-family:var(--font-display);font-size:36px;font-weight:600;letter-spacing:-.02em;font-variation-settings:"opsz" 48,"SOFT" 40;line-height:1.1;}
+.type-sample .demo.display em{font-style:italic;color:var(--accent);font-weight:500;}
+.type-sample .demo.body{font-family:var(--font-body);font-size:15px;line-height:1.55;color:var(--page-fg);max-width:60ch;}
+.type-sample .demo.mono{font-family:var(--font-mono);font-size:11px;letter-spacing:.3em;text-transform:uppercase;font-weight:700;color:var(--accent);}
+
+.wordmark-demo{display:inline-flex;align-items:baseline;gap:.12em;font-family:var(--font-display);font-weight:700;letter-spacing:-.025em;font-variation-settings:"SOFT" 30,"WONK" 1,"opsz" 144;line-height:1;color:oklch(22% 0.03 40);}
+.wordmark-demo .amp{font-style:italic;font-weight:500;color:var(--accent);font-variation-settings:"SOFT" 80,"WONK" 1,"opsz" 144;font-size:1.12em;}
+.wordmark-demo.reversed{color:oklch(97% 0.02 85);}
+.wordmark-demo.reversed .amp{color:var(--gold);}
+
+.assets{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
+@media (max-width:900px){.assets{grid-template-columns:repeat(2,1fr);}}
+.asset{display:flex;flex-direction:column;gap:8px;padding:16px;background:var(--page-surface);border:1px solid var(--page-rule);border-radius:10px;text-decoration:none;color:inherit;transition:border-color .15s;}
+.asset:hover{border-color:var(--accent);}
+.asset .swatch-box{width:100%;aspect-ratio:1;border-radius:6px;display:grid;place-items:center;background:var(--page-bg);border:1px solid var(--page-rule);overflow:hidden;padding:20px;}
+.asset .swatch-box.dark{background:oklch(18% 0.02 60);border-color:oklch(18% 0.02 60);}
+.asset .swatch-box.accent{background:var(--accent);border-color:var(--accent);}
+.asset .swatch-box img{max-width:100%;max-height:100%;display:block;}
+.asset .k{font-family:var(--font-mono);font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:var(--page-soft);font-weight:700;}
+.asset .k strong{color:var(--accent);}
+.asset .n{font-family:var(--font-display);font-weight:600;font-size:14px;letter-spacing:-.01em;color:var(--page-fg);}
+.asset .f{font-family:var(--font-mono);font-size:9.5px;color:var(--page-soft);font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+
+.list{display:grid;grid-template-columns:repeat(2,1fr);gap:2px 32px;padding:16px 20px;background:var(--page-surface);border:1px solid var(--page-rule);border-radius:10px;}
+@media (max-width:720px){.list{grid-template-columns:1fr;}}
+.list a{display:grid;grid-template-columns:auto 1fr auto;gap:16px;padding:10px 4px;text-decoration:none;color:inherit;border-bottom:.75px solid var(--page-rule);font-size:13.5px;align-items:baseline;}
+.list a:last-child{border-bottom:0;}
+.list a:hover .nm{color:var(--accent);}
+.list .vsn{font-family:var(--font-mono);font-size:10px;letter-spacing:.14em;color:var(--page-soft);font-weight:700;white-space:nowrap;}
+.list .nm{font-family:var(--font-display);font-weight:500;color:var(--page-fg);font-variation-settings:"opsz" 18;transition:color .15s;}
+.list .nm em{font-style:normal;color:var(--accent);font-weight:600;}
+.list .fn{font-family:var(--font-mono);font-size:9.5px;color:var(--page-soft);font-weight:500;}
+
+.foot{margin-top:96px;padding-top:28px;border-top:.75px solid var(--page-rule-strong);display:flex;justify-content:space-between;align-items:baseline;gap:20px;flex-wrap:wrap;}
+.foot .path{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.08em;color:var(--page-soft);font-weight:500;}
+.foot .sig{font-family:var(--font-display);font-style:italic;font-size:14px;color:var(--page-dim);font-variation-settings:"opsz" 18;display:flex;align-items:center;gap:10px;}
+.foot .sig img{width:18px;height:18px;}
+.foot .sig em{font-style:normal;color:var(--accent);font-weight:500;}
+</style>
+</head>
+<body>
+<div class="shell">
+
+  <header class="masthead">
+    <div>
+      <div class="eyebrow"><img src="blaze-monogram.svg" alt="" /><span>Project index · <span class="wordmark-demo" style="font-size:14px;">Blaze<span class="amp">&amp;</span>Char</span></span></div>
+      <h1>Everything we've <em>made so far</em></h1>
+      <p>A complete map of the project — <em>identity</em>, <em>website</em>, <em>pouch design</em>, <em>logo set</em>, and <em>history</em>. Click any card to open that file in the same tab; use the browser back button to return here.</p>
+    </div>
+    <div class="stat"><strong>60+</strong>Live files<br/>7 logo SVGs<br/>Updated May 2026</div>
+  </header>
+
+  <nav class="toc" aria-label="Jump to section">
+    <a href="#start-here"><span><span class="n">00 ·</span> Start here</span><span class="c">3</span></a>
+    <a href="#identity"><span><span class="n">01 ·</span> Identity</span><span class="c">Logo set + brand</span></a>
+    <a href="#website"><span><span class="n">02 ·</span> Website</span><span class="c">v6 + v5.3</span></a>
+    <a href="#pouch-master"><span><span class="n">03 ·</span> Pouch master</span><span class="c">v7 final</span></a>
+    <a href="#pair-variants"><span><span class="n">04 ·</span> Pair variants</span><span class="c">10</span></a>
+    <a href="#galleries"><span><span class="n">05 ·</span> Galleries</span><span class="c">4</span></a>
+    <a href="#solo-variants"><span><span class="n">06 ·</span> Solo colour-ways</span><span class="c">6</span></a>
+    <a href="#pouch-history"><span><span class="n">07 ·</span> Pouch history</span><span class="c">v3→v6</span></a>
+    <a href="#website-history"><span><span class="n">08 ·</span> Website history</span><span class="c">v1→v5.3</span></a>
+    <a href="#wales-lab"><span><span class="n">09 ·</span> Wales SVG lab</span><span class="c">Debugging</span></a>
+    <a href="#assets"><span><span class="n">10 ·</span> Assets</span><span class="c">Logo + SVGs</span></a>
+    <a href="#artwork-sandbox"><span><span class="n">11 ·</span> Artwork sandbox</span><span class="c">2</span></a>
+  </nav>
+
+  <section class="section" id="start-here">
+    <div class="section-head"><span class="sn">00</span><h2>Start here — <em>the three files that matter</em></h2></div>
+    <p class="section-blurb">If you're sharing this project with anyone (investor, printer, partner), these are the only three links they need. Everything else below is exploration, history, or backup.</p>
+    <div class="row row-3">
+      <a class="card" href="blaze-v6.html">
+        <div class="thumb"><iframe src="blaze-v6.html" loading="lazy" title="Website v6"></iframe></div>
+        <p class="kicker"><span class="tag">Current</span> Website · v6</p>
+        <h3>The <em>working website</em></h3>
+        <p class="desc">v5.3 + hybrid "What we're serious about" section + monogram logo in nav. This is where you edit forward.</p>
+        <p class="file">blaze-v6.html</p>
+      </a>
+      <a class="card" href="blaze-pouch-v7-final.html">
+        <div class="thumb"><iframe src="blaze-pouch-v7-final.html" loading="lazy" title="Pouch master"></iframe></div>
+        <p class="kicker"><span class="tag">Canonical</span> Pouch · v7 final</p>
+        <h3>The <em>pouch master</em></h3>
+        <p class="desc">Canonical Tandoori + Masala pouches in the Chilli &amp; Honey palette. Labelling-legal, 30g protein cert.</p>
+        <p class="file">blaze-pouch-v7-final.html</p>
+      </a>
+      <a class="card" href="blaze-logo-set.html">
+        <div class="thumb"><iframe src="blaze-logo-set.html" loading="lazy" title="Logo set"></iframe></div>
+        <p class="kicker"><span class="tag">New</span> Logo · Brand guide</p>
+        <h3>The <em>logo set</em></h3>
+        <p class="desc">All seven logo SVGs (monogram + full-logo variants) on one page with usage rules and downloads.</p>
+        <p class="file">blaze-logo-set.html</p>
+      </a>
+    </div>
+  </section>
+
+  <section class="section" id="identity">
+    <div class="section-head"><span class="sn">01</span><h2>Identity — <em>logo set, wordmark, type, colour</em></h2></div>
+    <p class="section-blurb">The full brand kit as it stands today. Seven logo SVGs (three monogram variants + four full-logo variants), the wordmark-only file, the colour palette, and the type stack. All files are ready to drop into invoices, decks, emails, or print.</p>
+
+    <div class="id-grid">
+
+      <a class="id-cell span-4" href="blaze-monogram.svg">
+        <span class="k">Monogram · Primary</span>
+        <div class="preview"><img src="blaze-monogram.svg" alt="Blaze & Char monogram" /></div>
+        <span class="n">The <em>&amp;</em> monogram</span>
+        <p class="desc">The most distinctive glyph in the wordmark promoted to a standalone brand mark. Italic Fraunces 400, SOFT 20, WONK 1, tandoori red on transparent.</p>
+        <span class="file">blaze-monogram.svg</span>
+      </a>
+
+      <a class="id-cell span-4" href="blaze-monogram-reversed.svg">
+        <span class="k">Monogram · Reversed</span>
+        <div class="preview accent"><img src="blaze-monogram-reversed.svg" alt="Monogram reversed" /></div>
+        <span class="n">Reversed <em>for dark backgrounds</em></span>
+        <p class="desc">Cream glyph on solid tandoori red. Use when the standard version would disappear into a coloured or dark background.</p>
+        <span class="file">blaze-monogram-reversed.svg</span>
+      </a>
+
+      <a class="id-cell span-4" href="favicon.svg">
+        <span class="k">Monogram · Favicon</span>
+        <div class="preview"><img src="favicon.svg" alt="Favicon" style="width:64px;height:64px;" /></div>
+        <span class="n">Tuned for <em>tab rendering</em></span>
+        <p class="desc">Thicker ring weight, larger glyph ratio. Holds up at 16–32px where the primary monogram would get too fine. Wired into every website file.</p>
+        <span class="file">favicon.svg</span>
+      </a>
+
+      <a class="id-cell span-6" href="blaze-logo-horizontal.svg">
+        <span class="k">Full logo · Horizontal · <strong>Primary</strong></span>
+        <div class="preview"><img src="blaze-logo-horizontal.svg" alt="Horizontal logo" /></div>
+        <span class="n">Monogram <em>+ wordmark</em>, side-by-side</span>
+        <p class="desc">The working logo. Use this 90% of the time — site headers, email signatures, invoices, letterheads. Tandoori red on transparent.</p>
+        <span class="file">blaze-logo-horizontal.svg</span>
+      </a>
+
+      <a class="id-cell span-6" href="blaze-logo-horizontal-reversed.svg">
+        <span class="k">Full logo · Horizontal · Reversed</span>
+        <div class="preview dark"><img src="blaze-logo-horizontal-reversed.svg" alt="Horizontal logo reversed" /></div>
+        <span class="n">Cream on <em>dark / coloured</em></span>
+        <p class="desc">Same lockup on a solid tandoori red rectangle with a gold-amber &amp; accent. For dark backgrounds.</p>
+        <span class="file">blaze-logo-horizontal-reversed.svg</span>
+      </a>
+
+      <a class="id-cell span-4" href="blaze-logo-stacked.svg">
+        <span class="k">Full logo · Stacked</span>
+        <div class="preview"><img src="blaze-logo-stacked.svg" alt="Stacked logo" style="max-height:220px;" /></div>
+        <span class="n">Stacked <em>for square surfaces</em></span>
+        <p class="desc">Monogram on top, wordmark below, with the "Hand-made in Wales" kicker. For Instagram avatars, business cards, product tags.</p>
+        <span class="file">blaze-logo-stacked.svg</span>
+      </a>
+
+      <a class="id-cell span-4" href="blaze-wordmark.svg">
+        <span class="k">Wordmark · Standalone</span>
+        <div class="preview"><img src="blaze-wordmark.svg" alt="Wordmark alone" /></div>
+        <span class="n">Wordmark <em>alone</em></span>
+        <p class="desc">Just "Blaze &amp; Char" as SVG — use when the monogram is already on-panel (the pouch itself, where the Cymru stamp does that job).</p>
+        <span class="file">blaze-wordmark.svg</span>
+      </a>
+
+      <div class="id-cell span-4">
+        <span class="k">Type stack</span>
+        <div class="type-sample">
+          <span class="label">Display</span>
+          <div class="demo display">Blaze<em>&amp;</em>Char</div>
+          <span class="label">Body</span>
+          <div class="demo body">Fraunces SOFT 30 WONK 1 for display; Inter 400–700 for body; JetBrains Mono for kickers and meta.</div>
+          <span class="label">Mono</span>
+          <div class="demo mono">Hand-made in Wales</div>
+        </div>
+      </div>
+
+      <div class="id-cell span-6">
+        <span class="k">Palette · Six tokens</span>
+        <div class="palette-grid">
+          <div class="sw"><div class="sw-box" style="background:oklch(97% 0.03 85);"></div><span class="k">Cream</span></div>
+          <div class="sw"><div class="sw-box" style="background:oklch(22% 0.03 40);"></div><span class="k">Ink</span></div>
+          <div class="sw"><div class="sw-box" style="background:oklch(58% 0.19 32);"></div><span class="k">Tandoori</span></div>
+          <div class="sw"><div class="sw-box" style="background:oklch(82% 0.16 88);"></div><span class="k">Masala</span></div>
+          <div class="sw"><div class="sw-box" style="background:oklch(46% 0.16 148);"></div><span class="k">Wales</span></div>
+          <div class="sw"><div class="sw-box" style="background:oklch(96% 0.01 80);"></div><span class="k">Paper</span></div>
+        </div>
+        <p class="desc" style="margin-top:12px;">Six tokens across every file. <strong>Tandoori</strong> red and <strong>Masala</strong> gold are the SKU accents and define the Chilli &amp; Honey pair; <strong>Cream</strong> is the pouch stock; <strong>Ink</strong> is primary type; <strong>Wales</strong> tints the country mark; <strong>Paper</strong> is the landing-page background.</p>
+      </div>
+
+      <div class="id-cell span-6">
+        <span class="k">Wordmark · Live render</span>
+        <div class="preview" style="padding:32px 20px;"><div class="wordmark-demo" style="font-size:44px;">Blaze<span class="amp">&amp;</span>Char</div></div>
+        <span class="n">Wordmark <em>on cream</em></span>
+        <p class="desc">Fraunces 700 for the word letters, Fraunces italic 400 for the ampersand (1.12× size, SOFT 80), tandoori red accent. The italic <em>&amp;</em> is the single piece of visual flourish the brand carries.</p>
+      </div>
+
+      <div class="id-cell span-6">
+        <span class="k">Wordmark · Reversed</span>
+        <div class="preview dark" style="padding:32px 20px;"><div class="wordmark-demo reversed" style="font-size:44px;">Blaze<span class="amp">&amp;</span>Char</div></div>
+        <span class="n">Wordmark <em>on ink</em></span>
+        <p class="desc">On dark backgrounds the wordmark inverts to cream, with the ampersand lifting to Masala gold for visibility. Used on the footer of the website and the black foot-bar of the pouch.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section" id="website">
+    <div class="section-head"><span class="sn">02</span><h2>Website — <em>the public-facing landing page</em></h2></div>
+    <p class="section-blurb">The current canonical is <strong>v6</strong> — honest copy + "What we're serious about" hybrid + monogram logo in nav. <strong>v5.3</strong> is the safe fallback currently served as <code style="font-family:var(--font-mono);font-size:12px;">index.html</code>. Promote v6 to index.html when you're ready.</p>
+    <div class="row row-2">
+      <a class="hero-card" href="blaze-v6.html">
+        <div class="thumb wide"><iframe src="blaze-v6.html" loading="lazy"></iframe></div>
+        <div class="text">
+          <p class="kicker" style="color:var(--accent);">Current canonical · v6</p>
+          <h3>v6 — <em>working canonical</em></h3>
+          <p class="desc">v5.3 structure + the new "What we're serious about" hybrid section (4-card editorial honest-proof block replacing the reviews slot) + monogram mark in the nav. Favicon wired. Ready to promote to index.html.</p>
+          <span class="cta">Open v6</span>
+        </div>
+      </a>
+      <a class="hero-card" href="blaze-v5-3-honest-copy.html">
+        <div class="thumb wide"><iframe src="blaze-v5-3-honest-copy.html" loading="lazy"></iframe></div>
+        <div class="text">
+          <p class="kicker">Safe fallback · v5.3 · currently live at index.html</p>
+          <h3>v5.3 — <em>honest copy baseline</em></h3>
+          <p class="desc">Pre-launch honest copy pass on v5.2 — fake reviews / certifications / supplier stories all removed, UK labelling fixes landed, Wales location claims correct. Identical to index.html right now.</p>
+          <span class="cta">Open v5.3</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <section class="section" id="pouch-master">
+    <div class="section-head"><span class="sn">03</span><h2>Pouch master — <em>the canonical artwork</em></h2></div>
+    <p class="section-blurb">The single source of truth for the pouch design. Every pair variant and colour-way below is generated from this file by overriding palette tokens — structure, copy, legal, and layout all flow from here.</p>
+    <a class="hero-card" href="blaze-pouch-v7-final.html">
+      <div class="thumb wide"><iframe src="blaze-pouch-v7-final.html" loading="lazy"></iframe></div>
+      <div class="text">
+        <p class="kicker">Pouch · Canonical master (v7 final)</p>
+        <h3>Tandoori + Masala — <em>front &amp; back</em></h3>
+        <p class="desc">50g stand-up pouch, warm tan stock. <strong>Front</strong>: wordmark, hero name, BEEF JERKY category line, window, nutrition creds row, heat scale, three certs (hand-cut / 30g protein / Wales). <strong>Back</strong>: story, ingredients, nutrition panel, storage, batch + best-before, maker block, barcode placeholder, halal footer.</p>
+        <p class="desc" style="font-size:13px;opacity:.8;">UK-labelling compliant (mustard allergen emphasis, topside not silverside, "born/reared/slaughtered UK" provenance language). The Wales silhouette is filled solid green via your clean single-path SVG.</p>
+        <span class="cta">Open pouch master</span>
+      </div>
+    </a>
+  </section>
+
+  <section class="section" id="pair-variants">
+    <div class="section-head"><span class="sn">04</span><h2>Pair variants — <em>10 full-body colour directions</em></h2></div>
+    <p class="section-blurb">Each variant re-themes the <strong>whole pouch body</strong> per SKU: Tandoori gets a red-family stock, Masala gets a yellow/gold-family stock. Same structure, same copy, only the palette tokens change. <strong>v02 Chilli &amp; Honey</strong> is the current canonical pick.</p>
+    <div class="row row-4">
+      <a class="card" href="blaze-pouch-v7-pair-v01-cream-classic.html"><div class="thumb tall"><iframe src="blaze-pouch-v7-pair-v01-cream-classic.html" loading="lazy"></iframe></div><p class="kicker">01 · Cream Classic</p><h3>Cream classic</h3><p class="desc">Soft cream pair, baseline.</p><p class="file">v7-pair-v01-cream-classic.html</p></a>
+      <a class="card" href="blaze-pouch-v7-pair-v02-chilli-honey.html"><div class="thumb tall"><iframe src="blaze-pouch-v7-pair-v02-chilli-honey.html" loading="lazy"></iframe></div><p class="kicker"><span class="tag">Picked</span> 02 · Chilli &amp; Honey</p><h3>Chilli &amp; <em>honey</em></h3><p class="desc">Full-body red + full-body gold. The canonical pair.</p><p class="file">v7-pair-v02-chilli-honey.html</p></a>
+      <a class="card" href="blaze-pouch-v7-pair-v03-wine-turmeric.html"><div class="thumb tall"><iframe src="blaze-pouch-v7-pair-v03-wine-turmeric.html" loading="lazy"></iframe></div><p class="kicker">03 · Wine &amp; Turmeric</p><h3>Wine &amp; <em>turmeric</em></h3><p class="desc">Deep red + amber. Moodier, grown-up.</p><p class="file">v7-pair-v03-wine-turmeric.html</p></a>
+      <a class="card" href="blaze-pouch-v7-pair-v04-pomegranate-saffron.html"><div class="thumb tall"><iframe src="blaze-pouch-v7-pair-v04-pomegranate-saffron.html" loading="lazy"></iframe></div><p class="kicker">04 · Pomegranate &amp; Saffron</p><h3>Pomegranate &amp; <em>saffron</em></h3><p class="desc">Jewel tones — spice-market loud.</p><p class="file">v7-pair-v04-pomegranate-saffron.html</p></a>
+      <a class="card" href="blaze-pouch-v7-pair-v05-brick-mustard.html"><div class="thumb tall"><iframe src="blaze-pouch-v7-pair-v05-brick-mustard.html" loading="lazy"></iframe></div><p class="kicker">05 · Brick &amp; Mustard</p><h3>Brick &amp; <em>mustard</em></h3><p class="desc">Heritage farm-shop. Quiet, earnest.</p><p class="file">v7-pair-v05-brick-mustard.html</p></a>
+      <a class="card" href="blaze-pouch-v7-pair-v06-raspberry-butter.html"><div class="thumb tall"><iframe src="blaze-pouch-v7-pair-v06-raspberry-butter.html" loading="lazy"></iframe></div><p class="kicker">06 · Raspberry &amp; Butter</p><h3>Raspberry &amp; <em>butter</em></h3><p class="desc">Soft bright pair. DTC-cool.</p><p class="file">v7-pair-v06-raspberry-butter.html</p></a>
+      <a class="card" href="blaze-pouch-v7-pair-v07-oxblood-antique.html"><div class="thumb tall"><iframe src="blaze-pouch-v7-pair-v07-oxblood-antique.html" loading="lazy"></iframe></div><p class="kicker">07 · Oxblood &amp; Antique Brass</p><h3>Oxblood &amp; <em>antique</em></h3><p class="desc">Premium dark. Apothecary-shelf.</p><p class="file">v7-pair-v07-oxblood-antique.html</p></a>
+      <a class="card" href="blaze-pouch-v7-pair-v08-cherry-goldleaf.html"><div class="thumb tall"><iframe src="blaze-pouch-v7-pair-v08-cherry-goldleaf.html" loading="lazy"></iframe></div><p class="kicker">08 · Cherry &amp; Gold-Leaf</p><h3>Cherry &amp; <em>gold-leaf</em></h3><p class="desc">Glossy luxe. Gift-box premium.</p><p class="file">v7-pair-v08-cherry-goldleaf.html</p></a>
+      <a class="card" href="blaze-pouch-v7-pair-v09-terracotta-wheat.html"><div class="thumb tall"><iframe src="blaze-pouch-v7-pair-v09-terracotta-wheat.html" loading="lazy"></iframe></div><p class="kicker">09 · Terracotta &amp; Wheat</p><h3>Terracotta &amp; <em>wheat</em></h3><p class="desc">Soft earthy. Editorial magazine.</p><p class="file">v7-pair-v09-terracotta-wheat.html</p></a>
+      <a class="card" href="blaze-pouch-v7-pair-v10-charred-ember.html"><div class="thumb tall"><iframe src="blaze-pouch-v7-pair-v10-charred-ember.html" loading="lazy"></iframe></div><p class="kicker">10 · Charred &amp; Ember</p><h3>Charred &amp; <em>ember</em></h3><p class="desc">Fire-forward dark. Tandoor story.</p><p class="file">v7-pair-v10-charred-ember.html</p></a>
+    </div>
+  </section>
+
+  <section class="section" id="galleries">
+    <div class="section-head"><span class="sn">05</span><h2>Galleries — <em>picker / comparison pages</em></h2></div>
+    <p class="section-blurb">Pages that compose multiple variants side-by-side. The first one is the latest and most useful; the others are earlier iterations.</p>
+    <div class="row row-2">
+      <a class="card" href="blaze-pouch-pairs-gallery-2.html"><div class="thumb wide"><iframe src="blaze-pouch-pairs-gallery-2.html" loading="lazy"></iframe></div><p class="kicker"><span class="tag">Latest</span> Gallery · Pair picker</p><h3>10 full-body pair variants <em>(current)</em></h3><p class="desc">Tandoori = red body, Masala = gold body. The latest picker — used to choose Chilli &amp; Honey as canonical.</p><p class="file">blaze-pouch-pairs-gallery-2.html</p></a>
+      <a class="card" href="blaze-pouch-pairs-gallery.html"><div class="thumb wide"><iframe src="blaze-pouch-pairs-gallery.html" loading="lazy"></iframe></div><p class="kicker">Gallery · Previous · Accent-only</p><h3>10 red+gold accent variants</h3><p class="desc">Earlier exploration where only the accent hue changed on a shared cream stock. Superseded by gallery-2.</p><p class="file">blaze-pouch-pairs-gallery.html</p></a>
+      <a class="card" href="blaze-pouch-colourways-v3.html"><div class="thumb wide"><iframe src="blaze-pouch-colourways-v3.html" loading="lazy"></iframe></div><p class="kicker">Gallery · v3 · Solo colour-ways</p><h3>6 solo colour-ways <em>(iframes)</em></h3><p class="desc">Earlier 6-way exploration — single stock, no red/gold split. Each card embeds the full pouch design.</p><p class="file">blaze-pouch-colourways-v3.html</p></a>
+      <a class="card" href="blaze-pouch-colourways-v2.html"><div class="thumb wide"><iframe src="blaze-pouch-colourways-v2.html" loading="lazy"></iframe></div><p class="kicker">Gallery · v2 · Simplified cards</p><h3>6 colour-ways <em>(summary cards)</em></h3><p class="desc">Older gallery where each card was a simplified pouch summary, not the full design. Kept for reference.</p><p class="file">blaze-pouch-colourways-v2.html</p></a>
+    </div>
+  </section>
+
+  <section class="section" id="solo-variants">
+    <div class="section-head"><span class="sn">06</span><h2>Solo colour-ways — <em>6 earlier single-stock variants</em></h2></div>
+    <p class="section-blurb">An earlier exploration where <strong>both</strong> Tandoori and Masala shared the same stock colour, and only the accents differentiated them. Kept for reference — the pair variants in section 04 superseded this approach.</p>
+    <div class="row row-3">
+      <a class="card" href="blaze-pouch-v7-cw-01-pomegranate-cream.html"><div class="thumb tall"><iframe src="blaze-pouch-v7-cw-01-pomegranate-cream.html" loading="lazy"></iframe></div><p class="kicker">cw-01 · Pomegranate on cream</p><h3>Cream stock, <em>pomegranate accent</em></h3><p class="file">v7-cw-01-pomegranate-cream.html</p></a>
+      <a class="card" href="blaze-pouch-v7-cw-02-saffron-ink.html"><div class="thumb tall"><iframe src="blaze-pouch-v7-cw-02-saffron-ink.html" loading="lazy"></iframe></div><p class="kicker">cw-02 · Saffron &amp; ink</p><h3>Saffron stock, <em>ink type</em></h3><p class="file">v7-cw-02-saffron-ink.html</p></a>
+      <a class="card" href="blaze-pouch-v7-cw-03-cardamom-cream.html"><div class="thumb tall"><iframe src="blaze-pouch-v7-cw-03-cardamom-cream.html" loading="lazy"></iframe></div><p class="kicker">cw-03 · Cardamom on cream</p><h3>Cream stock, <em>cardamom green</em></h3><p class="file">v7-cw-03-cardamom-cream.html</p></a>
+      <a class="card" href="blaze-pouch-v7-cw-04-aubergine-peach.html"><div class="thumb tall"><iframe src="blaze-pouch-v7-cw-04-aubergine-peach.html" loading="lazy"></iframe></div><p class="kicker">cw-04 · Aubergine on peach</p><h3>Peach stock, <em>aubergine type</em></h3><p class="file">v7-cw-04-aubergine-peach.html</p></a>
+      <a class="card" href="blaze-pouch-v7-cw-05-charcoal-chilli.html"><div class="thumb tall"><iframe src="blaze-pouch-v7-cw-05-charcoal-chilli.html" loading="lazy"></iframe></div><p class="kicker">cw-05 · Charcoal &amp; chilli</p><h3>Charcoal stock, <em>chilli accent</em></h3><p class="file">v7-cw-05-charcoal-chilli.html</p></a>
+      <a class="card" href="blaze-pouch-v7-cw-06-terracotta-bone.html"><div class="thumb tall"><iframe src="blaze-pouch-v7-cw-06-terracotta-bone.html" loading="lazy"></iframe></div><p class="kicker">cw-06 · Terracotta &amp; bone</p><h3>Terracotta stock, <em>bone type</em></h3><p class="file">v7-cw-06-terracotta-bone.html</p></a>
+    </div>
+  </section>
+
+  <section class="section" id="pouch-history">
+    <div class="section-head"><span class="sn">07</span><h2>Pouch history — <em>how we got here</em></h2></div>
+    <p class="section-blurb">The design trail from v3 through v7. Kept in case we ever want to revert a decision or pull a detail back.</p>
+    <div class="row row-3">
+      <a class="card" href="blaze-pouch-v3-dark-charred.html"><div class="thumb tall"><iframe src="blaze-pouch-v3-dark-charred.html" loading="lazy"></iframe></div><p class="kicker">v3 · Dark charred</p><h3>Pouch v3 — <em>dark</em></h3><p class="desc">Earliest dark/charred direction.</p><p class="file">blaze-pouch-v3-dark-charred.html</p></a>
+      <a class="card" href="blaze-pouch-v4-warm-cream.html"><div class="thumb tall"><iframe src="blaze-pouch-v4-warm-cream.html" loading="lazy"></iframe></div><p class="kicker">v4 · Warm cream</p><h3>Pouch v4 — <em>cream</em></h3><p class="desc">First warm cream direction.</p><p class="file">blaze-pouch-v4-warm-cream.html</p></a>
+      <a class="card" href="blaze-pouch-v4-1-front-back.html"><div class="thumb tall"><iframe src="blaze-pouch-v4-1-front-back.html" loading="lazy"></iframe></div><p class="kicker">v4.1 · Front + back</p><h3>Pouch v4.1 — <em>both panels</em></h3><p class="desc">First time showing front + back together.</p><p class="file">blaze-pouch-v4-1-front-back.html</p></a>
+      <a class="card" href="blaze-pouch-v5-compare.html"><div class="thumb wide"><iframe src="blaze-pouch-v5-compare.html" loading="lazy"></iframe></div><p class="kicker">v5 · Comparison</p><h3>Pouch v5 — <em>side-by-side</em></h3><p class="desc">Tandoori vs Masala compared in one layout.</p><p class="file">blaze-pouch-v5-compare.html</p></a>
+      <a class="card" href="blaze-pouch-v7-final-3.html"><div class="thumb tall"><iframe src="blaze-pouch-v7-final-3.html" loading="lazy"></iframe></div><p class="kicker">v7 · Intermediate pass</p><h3>Pouch v7 — <em>final-3</em></h3><p class="desc">Mid-v7 snapshot before the canonical master.</p><p class="file">blaze-pouch-v7-final-3.html</p></a>
+      <a class="card" href="blaze-pouch-colourways.html"><div class="thumb wide"><iframe src="blaze-pouch-colourways.html" loading="lazy"></iframe></div><p class="kicker">Colourways · v1</p><h3>First <em>colour-way</em> explore</h3><p class="desc">Original 6-way colour-way page.</p><p class="file">blaze-pouch-colourways.html</p></a>
+    </div>
+  </section>
+
+  <section class="section" id="website-history">
+    <div class="section-head"><span class="sn">08</span><h2>Website history — <em>v1 → v5.3 snapshots</em></h2></div>
+    <p class="section-blurb">Every major version of the landing page kept as a snapshot. v6 and v5.3 are in the <a href="#website" style="color:var(--accent);">Website section</a> above; the older ones are here for reference.</p>
+    <div class="list">
+      <a href="blaze-v5-3-honest-copy.html"><span class="vsn">v5.3</span><span class="nm">Honest-copy pass <em>— currently served as index.html</em></span><span class="fn">blaze-v5-3-honest-copy.html</span></a>
+      <a href="blaze-v5-2-final-polish.html"><span class="vsn">v5.2</span><span class="nm">Final polish</span><span class="fn">blaze-v5-2-final-polish.html</span></a>
+      <a href="blaze-v5-1-flavour-discoverability.html"><span class="vsn">v5.1</span><span class="nm">Flavour discoverability pass</span><span class="fn">blaze-v5-1-flavour-discoverability.html</span></a>
+      <a href="blaze-v5-1-pre-polish-snapshot.html"><span class="vsn">v5.1</span><span class="nm">Pre-polish snapshot</span><span class="fn">blaze-v5-1-pre-polish-snapshot.html</span></a>
+      <a href="blaze-v5-snapshot.html"><span class="vsn">v5.0</span><span class="nm">First v5 snapshot</span><span class="fn">blaze-v5-snapshot.html</span></a>
+      <a href="blaze-v5-pre-mobile-snapshot.html"><span class="vsn">v5.0</span><span class="nm">Pre-mobile pass</span><span class="fn">blaze-v5-pre-mobile-snapshot.html</span></a>
+      <a href="blaze-v5-mobile-snapshot.html"><span class="vsn">v5.0</span><span class="nm">Mobile snapshot</span><span class="fn">blaze-v5-mobile-snapshot.html</span></a>
+      <a href="blaze-v5-mobile-pre-picker-snapshot.html"><span class="vsn">v5.0</span><span class="nm">Mobile, pre-flavour-picker</span><span class="fn">blaze-v5-mobile-pre-picker-snapshot.html</span></a>
+      <a href="blaze-v4-animated-two-products.html"><span class="vsn">v4</span><span class="nm">Animated, both products</span><span class="fn">blaze-v4-animated-two-products.html</span></a>
+      <a href="blaze-v4-animated-snapshot.html"><span class="vsn">v4</span><span class="nm">Animated snapshot</span><span class="fn">blaze-v4-animated-snapshot.html</span></a>
+      <a href="blaze-v4-snapshot.html"><span class="vsn">v4</span><span class="nm">v4 snapshot</span><span class="fn">blaze-v4-snapshot.html</span></a>
+      <a href="blaze-v3-1-snapshot.html"><span class="vsn">v3.1</span><span class="nm">v3.1 snapshot</span><span class="fn">blaze-v3-1-snapshot.html</span></a>
+      <a href="blaze-v3-snapshot.html"><span class="vsn">v3</span><span class="nm">v3 snapshot</span><span class="fn">blaze-v3-snapshot.html</span></a>
+      <a href="blaze-v2-dark.html"><span class="vsn">v2</span><span class="nm">Dark theme</span><span class="fn">blaze-v2-dark.html</span></a>
+      <a href="blaze-v1.html"><span class="vsn">v1</span><span class="nm">First draft</span><span class="fn">blaze-v1.html</span></a>
+    </div>
+  </section>
+
+  <section class="section" id="wales-lab">
+    <div class="section-head"><span class="sn">09</span><h2>Wales SVG lab — <em>debugging trail</em></h2></div>
+    <p class="section-blurb">The long road to a solid-green Wales silhouette. The winning fix was <strong>your</strong> single-path SVG with <code style="font-family:var(--font-mono);font-size:12px;">fill-rule="evenodd"</code> — kept here for reference.</p>
+    <div class="row row-3">
+      <a class="card" href="blaze-pouch-v7-wales-img.html"><div class="thumb tall"><iframe src="blaze-pouch-v7-wales-img.html" loading="lazy"></iframe></div><p class="kicker">Wales · &lt;img&gt; approach</p><h3>Wales via <em>&lt;img&gt;</em></h3><p class="desc">Rendered as plain image tag.</p><p class="file">blaze-pouch-v7-wales-img.html</p></a>
+      <a class="card" href="blaze-pouch-v7-wales-clean.html"><div class="thumb tall"><iframe src="blaze-pouch-v7-wales-clean.html" loading="lazy"></iframe></div><p class="kicker">Wales · Clean silhouette</p><h3>Wales <em>clean</em></h3><p class="desc">Hand-drawn attempt — blob phase.</p><p class="file">blaze-pouch-v7-wales-clean.html</p></a>
+      <a class="card" href="blaze-pouch-v7-wales-clean-2.html"><div class="thumb tall"><iframe src="blaze-pouch-v7-wales-clean-2.html" loading="lazy"></iframe></div><p class="kicker">Wales · Clean v2</p><h3>Wales clean <em>v2</em></h3><p class="desc">Second hand-drawn pass.</p><p class="file">blaze-pouch-v7-wales-clean-2.html</p></a>
+      <a class="card" href="wales-test.html"><div class="thumb"><iframe src="wales-test.html" loading="lazy"></iframe></div><p class="kicker">Wales · Test rig</p><h3>Wales test rig</h3><p class="desc">Isolated test page for fill-rule debugging.</p><p class="file">wales-test.html</p></a>
+    </div>
+  </section>
+
+  <section class="section" id="assets">
+    <div class="section-head"><span class="sn">10</span><h2>Assets — <em>logo SVGs + raw source files</em></h2></div>
+    <p class="section-blurb">All raw asset files. Logo SVGs first (the new brand kit), then the Wales mark source files. Every link opens the raw SVG in a new tab so you can right-click → save.</p>
+    <div class="assets">
+      <a class="asset" href="blaze-logo-horizontal.svg"><div class="swatch-box"><img src="blaze-logo-horizontal.svg" alt="Horizontal logo" /></div><span class="k">Logo · <strong>Primary</strong></span><span class="n">Horizontal logo</span><span class="f">blaze-logo-horizontal.svg</span></a>
+      <a class="asset" href="blaze-logo-horizontal-reversed.svg"><div class="swatch-box dark"><img src="blaze-logo-horizontal-reversed.svg" alt="Horizontal reversed" /></div><span class="k">Logo · Reversed</span><span class="n">Horizontal reversed</span><span class="f">blaze-logo-horizontal-reversed.svg</span></a>
+      <a class="asset" href="blaze-logo-stacked.svg"><div class="swatch-box"><img src="blaze-logo-stacked.svg" alt="Stacked logo" /></div><span class="k">Logo · Stacked</span><span class="n">Stacked (square)</span><span class="f">blaze-logo-stacked.svg</span></a>
+      <a class="asset" href="blaze-wordmark.svg"><div class="swatch-box"><img src="blaze-wordmark.svg" alt="Wordmark alone" /></div><span class="k">Wordmark · Alone</span><span class="n">Wordmark only</span><span class="f">blaze-wordmark.svg</span></a>
+      <a class="asset" href="blaze-monogram.svg"><div class="swatch-box"><img src="blaze-monogram.svg" alt="Monogram" /></div><span class="k">Monogram · Primary</span><span class="n">&amp; monogram</span><span class="f">blaze-monogram.svg</span></a>
+      <a class="asset" href="blaze-monogram-reversed.svg"><div class="swatch-box accent"><img src="blaze-monogram-reversed.svg" alt="Monogram reversed" /></div><span class="k">Monogram · Reversed</span><span class="n">&amp; reversed</span><span class="f">blaze-monogram-reversed.svg</span></a>
+      <a class="asset" href="favicon.svg"><div class="swatch-box"><img src="favicon.svg" alt="Favicon" style="width:64px;height:64px;" /></div><span class="k">Favicon · <strong>Tab</strong></span><span class="n">Browser tab icon</span><span class="f">favicon.svg</span></a>
+      <a class="asset" href="mopnsvgx-svgviewer-output-_1_.svg"><div class="swatch-box"><img src="mopnsvgx-svgviewer-output-_1_.svg" alt="Wales mark" /></div><span class="k">Wales · <strong>Current</strong></span><span class="n">Wales silhouette</span><span class="f">mopnsvgx-svgviewer-output-_1_.svg</span></a>
+    </div>
+  </section>
+
+  <section class="section" id="artwork-sandbox">
+    <div class="section-head"><span class="sn">11</span><h2>Artwork sandbox — <em>earliest packaging studies</em></h2></div>
+    <p class="section-blurb">Pre-pouch artwork explorations. These pre-date v3 and are mostly loose layouts / mood studies.</p>
+    <div class="row row-2">
+      <a class="card" href="blaze-pouch-artwork.html"><div class="thumb wide"><iframe src="blaze-pouch-artwork.html" loading="lazy"></iframe></div><p class="kicker">Sandbox · Artwork v1</p><h3>Artwork v1</h3><p class="desc">Earliest packaging artwork study.</p><p class="file">blaze-pouch-artwork.html</p></a>
+      <a class="card" href="blaze-pouch-artwork-2.html"><div class="thumb wide"><iframe src="blaze-pouch-artwork-2.html" loading="lazy"></iframe></div><p class="kicker">Sandbox · Artwork v2</p><h3>Artwork v2</h3><p class="desc">Second artwork pass, more refined.</p><p class="file">blaze-pouch-artwork-2.html</p></a>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <div class="path">Project folder · /Users/islamhm/open-design/.od/projects/512e4cc6-de30-4692-951a-419760576f94</div>
+    <div class="sig"><img src="blaze-monogram.svg" alt="" /><span><span class="wordmark-demo" style="font-size:13px;">Blaze<span class="amp">&amp;</span>Char</span> · <em>Project index · Hand-made in Wales</em></span></div>
+  </footer>
+
+</div>
+</body>
+</html>

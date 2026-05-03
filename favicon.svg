@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Blaze & Char favicon — tuned for 16–32px rendering.
+  Thicker ring weight and larger glyph ratio so it holds up in browser tabs.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img">
+  <title>Blaze &amp; Char</title>
+  <circle cx="32" cy="32" r="29" fill="#f6efe4" stroke="#c24a27" stroke-width="2.5"/>
+  <text x="32" y="32"
+        text-anchor="middle"
+        dominant-baseline="central"
+        font-family="'Fraunces', 'Iowan Old Style', Georgia, serif"
+        font-style="italic"
+        font-weight="400"
+        font-size="48"
+        font-variation-settings="'SOFT' 20, 'WONK' 1"
+        fill="#c24a27">&amp;</text>
+</svg>

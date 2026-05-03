@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Blaze & Char — wordmark only (no monogram) -->
+<!-- Use when the monogram is already elsewhere in the same view (e.g. pouch pack where stamp is on-panel) -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 120" width="520" height="120" role="img" aria-label="Blaze &amp; Char">
+  <title>Blaze &amp; Char</title>
+  <defs>
+    <style>
+      .brand-fill { fill: #c24a27; }
+      .brand-ink  { fill: #2d1a12; }
+    </style>
+  </defs>
+
+  <g transform="translate(260 60)">
+    <text x="0" y="0"
+          text-anchor="middle"
+          dominant-baseline="central"
+          font-family="'Fraunces', 'Iowan Old Style', Georgia, serif"
+          font-weight="700"
+          font-size="72"
+          font-variation-settings="'SOFT' 20, 'WONK' 1, 'opsz' 144"
+          letter-spacing="-1.6"
+          class="brand-ink">Blaze<tspan font-style="italic" font-weight="400" font-size="78" class="brand-fill" dx="7" dy="0">&amp;</tspan><tspan dx="7" font-style="normal" font-weight="700" font-size="72" class="brand-ink">Char</tspan></text>
+  </g>
+</svg>

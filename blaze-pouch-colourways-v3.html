@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Blaze & Char — 6 colour-ways of the v7-final pouch</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,400;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --page-bg:oklch(96% 0.008 80);
+  --page-fg:oklch(18% 0.02 60);
+  --page-dim:oklch(45% 0.02 60);
+  --page-rule:oklch(18% 0.02 60 / 0.18);
+  --accent:oklch(54% 0.19 32);
+  --font-display:'Fraunces','Newsreader','Iowan Old Style',Georgia,serif;
+  --font-body:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;
+  --font-mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
+}
+*,*::before,*::after{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{min-height:100vh;background:var(--page-bg);color:var(--page-fg);font-family:var(--font-body);font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;padding:48px 28px 96px;}
+
+.header{max-width:1480px;margin:0 auto 40px;}
+.header .eyebrow{font-family:var(--font-mono);font-size:11px;letter-spacing:.34em;text-transform:uppercase;color:var(--page-dim);font-weight:600;}
+.header h1{font-family:var(--font-display);font-weight:500;font-size:42px;letter-spacing:-.025em;margin:8px 0 10px;font-variation-settings:"SOFT" 30,"WONK" 1,"opsz" 144;line-height:1.05;}
+.header h1 em{font-style:italic;font-weight:400;color:var(--accent);}
+.header p{max-width:720px;font-family:var(--font-display);font-style:italic;font-size:18px;color:var(--page-dim);margin:0;font-variation-settings:"opsz" 36;}
+.header p em{font-style:normal;color:var(--page-fg);font-weight:500;}
+
+.grid{max-width:1480px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:48px 40px;}
+@media (max-width:1200px){.grid{grid-template-columns:repeat(2,1fr);gap:48px 36px;}}
+@media (max-width:780px){.grid{grid-template-columns:1fr;gap:56px;}}
+
+.variant{display:flex;flex-direction:column;gap:16px;text-decoration:none;color:inherit;cursor:pointer;border-radius:14px;padding:18px 18px 22px;margin:-18px;transition:background .18s ease, transform .18s ease, box-shadow .18s ease;}
+.variant:hover{background:oklch(100% 0 0 / 0.6);box-shadow:0 16px 32px -20px oklch(18% 0.02 60 / 0.25);transform:translateY(-2px);}
+.variant:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+.variant .meta-row{display:flex;justify-content:space-between;align-items:baseline;gap:12px;}
+.variant .num{font-family:var(--font-mono);font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--page-dim);font-weight:700;}
+.variant .swatches{display:flex;gap:4px;}
+.variant .swatch{width:14px;height:14px;border-radius:999px;border:1px solid oklch(18% 0.02 60 / 0.2);}
+.variant h2{font-family:var(--font-display);font-weight:600;font-size:22px;letter-spacing:-.015em;margin:0;line-height:1.2;font-variation-settings:"opsz" 36,"SOFT" 40;color:var(--page-fg);}
+.variant h2 em{font-style:italic;font-weight:500;}
+.variant .mood{font-family:var(--font-display);font-style:italic;font-size:14.5px;line-height:1.45;color:var(--page-dim);margin:-6px 0 2px;font-variation-settings:"opsz" 18;}
+
+.preview-frame{position:relative;width:100%;aspect-ratio:10/7;border-radius:10px;overflow:hidden;border:1px solid var(--page-rule);background:var(--page-bg);box-shadow:0 20px 36px -20px oklch(18% 0.02 60 / 0.2), 0 6px 14px -8px oklch(18% 0.02 60 / 0.14);}
+.preview-frame iframe{position:absolute;top:0;left:0;width:250%;height:250%;border:0;transform:scale(0.4);transform-origin:0 0;pointer-events:none;}
+
+.open-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:6px;}
+.open-row .filename{font-family:var(--font-mono);font-size:10px;letter-spacing:.12em;color:var(--page-dim);font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1;min-width:0;}
+.open-row .open-cta{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.28em;text-transform:uppercase;font-weight:700;color:var(--page-fg);display:inline-flex;align-items:center;gap:6px;}
+.open-row .open-cta::after{content:"→";font-family:var(--font-body);transition:transform .15s ease;}
+.variant:hover .open-row .open-cta::after{transform:translateX(3px);}
+
+.footer-note{max-width:780px;margin:80px auto 0;padding:24px 28px;border:1px solid var(--page-rule);border-radius:10px;font-family:var(--font-display);font-size:15px;line-height:1.55;color:var(--page-dim);font-variation-settings:"opsz" 18;}
+.footer-note strong{color:var(--page-fg);font-weight:600;}
+.footer-note em{font-style:italic;color:var(--accent);}
+.footer-note code{font-family:var(--font-mono);font-size:12px;background:oklch(18% 0.02 60 / 0.05);padding:1px 6px;border-radius:3px;color:var(--page-fg);}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="eyebrow">Blaze &amp; Char · Pouch colour-ways · v3 · full design · JERKY prominent</div>
+  <h1>Six colour directions, <em>full pouch design preserved</em></h1>
+  <p>Each card below embeds the <em>real</em> <code style="font-family:var(--font-mono);font-size:12px">blaze-pouch-v7-final.html</code> design — seal, hero band, circular Welsh stamp, window, nutrition creds, 30g protein cert, prominent <em>JERKY</em> category line, solid-green Wales mark — just with a different palette. <em>Click anywhere on a card</em> to open that colour-way full size.</p>
+</header>
+
+<main class="grid">
+
+  <a class="variant" href="blaze-pouch-v7-cw-01-pomegranate-cream.html">
+    <div class="meta-row"><div class="num">01 · Pomegranate on cream</div><div class="swatches" aria-hidden="true"><span class="swatch" style="background:oklch(97% 0.009 78)"></span><span class="swatch" style="background:oklch(46% 0.2 25)"></span><span class="swatch" style="background:oklch(22% 0.05 28)"></span></div></div>
+    <h2>Cream stock, <em>pomegranate</em> accent</h2>
+    <p class="mood">Cream stock, pomegranate + clay accents. Print-magazine calm.</p>
+    <div class="preview-frame"><iframe src="blaze-pouch-v7-cw-01-pomegranate-cream.html" loading="lazy" title="Pomegranate on cream preview"></iframe></div>
+    <div class="open-row"><span class="filename">blaze-pouch-v7-cw-01-pomegranate-cream.html</span><span class="open-cta">Open</span></div>
+  </a>
+
+  <a class="variant" href="blaze-pouch-v7-cw-02-saffron-ink.html">
+    <div class="meta-row"><div class="num">02 · Saffron &amp; ink</div><div class="swatches" aria-hidden="true"><span class="swatch" style="background:oklch(86% 0.14 88)"></span><span class="swatch" style="background:oklch(14% 0.02 40)"></span><span class="swatch" style="background:oklch(48% 0.22 28)"></span></div></div>
+    <h2>Saffron stock, <em>ink-black</em> type</h2>
+    <p class="mood">Saffron-gold stock, ink-black type, chilli-red accent. South-Asian kitchen confidence.</p>
+    <div class="preview-frame"><iframe src="blaze-pouch-v7-cw-02-saffron-ink.html" loading="lazy" title="Saffron & ink preview"></iframe></div>
+    <div class="open-row"><span class="filename">blaze-pouch-v7-cw-02-saffron-ink.html</span><span class="open-cta">Open</span></div>
+  </a>
+
+  <a class="variant" href="blaze-pouch-v7-cw-03-cardamom-cream.html">
+    <div class="meta-row"><div class="num">03 · Cardamom on cream</div><div class="swatches" aria-hidden="true"><span class="swatch" style="background:oklch(97% 0.008 80)"></span><span class="swatch" style="background:oklch(24% 0.06 150)"></span><span class="swatch" style="background:oklch(46% 0.2 28)"></span></div></div>
+    <h2>Cream stock, <em>cardamom</em> green type</h2>
+    <p class="mood">Cream stock, deep cardamom green type. Herbal spice-grocer — the explicit anti-MRE.</p>
+    <div class="preview-frame"><iframe src="blaze-pouch-v7-cw-03-cardamom-cream.html" loading="lazy" title="Cardamom on cream preview"></iframe></div>
+    <div class="open-row"><span class="filename">blaze-pouch-v7-cw-03-cardamom-cream.html</span><span class="open-cta">Open</span></div>
+  </a>
+
+  <a class="variant" href="blaze-pouch-v7-cw-04-aubergine-peach.html">
+    <div class="meta-row"><div class="num">04 · Aubergine on peach</div><div class="swatches" aria-hidden="true"><span class="swatch" style="background:oklch(86% 0.09 40)"></span><span class="swatch" style="background:oklch(32% 0.16 320)"></span><span class="swatch" style="background:oklch(44% 0.14 30)"></span></div></div>
+    <h2>Peach stock, <em>aubergine</em> type</h2>
+    <p class="mood">Warm peach pouch, deep aubergine-purple type. Young DTC energy, stands out in a photo.</p>
+    <div class="preview-frame"><iframe src="blaze-pouch-v7-cw-04-aubergine-peach.html" loading="lazy" title="Aubergine on peach preview"></iframe></div>
+    <div class="open-row"><span class="filename">blaze-pouch-v7-cw-04-aubergine-peach.html</span><span class="open-cta">Open</span></div>
+  </a>
+
+  <a class="variant" href="blaze-pouch-v7-cw-05-charcoal-chilli.html">
+    <div class="meta-row"><div class="num">05 · Charcoal &amp; chilli</div><div class="swatches" aria-hidden="true"><span class="swatch" style="background:oklch(20% 0.025 40)"></span><span class="swatch" style="background:oklch(64% 0.22 28)"></span><span class="swatch" style="background:oklch(94% 0.01 80)"></span></div></div>
+    <h2>Charcoal stock, <em>chilli-red</em> accent</h2>
+    <p class="mood">Near-black pouch, warm chilli-vermillion glow, cream type. Premium dark-shelf.</p>
+    <div class="preview-frame"><iframe src="blaze-pouch-v7-cw-05-charcoal-chilli.html" loading="lazy" title="Charcoal & chilli preview"></iframe></div>
+    <div class="open-row"><span class="filename">blaze-pouch-v7-cw-05-charcoal-chilli.html</span><span class="open-cta">Open</span></div>
+  </a>
+
+  <a class="variant" href="blaze-pouch-v7-cw-06-terracotta-bone.html">
+    <div class="meta-row"><div class="num">06 · Terracotta &amp; bone</div><div class="swatches" aria-hidden="true"><span class="swatch" style="background:oklch(72% 0.13 38)"></span><span class="swatch" style="background:oklch(96% 0.012 80)"></span><span class="swatch" style="background:oklch(42% 0.16 38)"></span></div></div>
+    <h2>Terracotta stock, <em>bone</em> type</h2>
+    <p class="mood">Warm clay-orange pouch, bone-white type. Heritage farm-shop, dialled brighter.</p>
+    <div class="preview-frame"><iframe src="blaze-pouch-v7-cw-06-terracotta-bone.html" loading="lazy" title="Terracotta & bone preview"></iframe></div>
+    <div class="open-row"><span class="filename">blaze-pouch-v7-cw-06-terracotta-bone.html</span><span class="open-cta">Open</span></div>
+  </a>
+
+</main>
+
+<aside class="footer-note">
+  <p><strong>How to use this.</strong> Click anywhere on a card to open the full-size colour-way — the whole card is a link now, so the preview pane navigates in place (fixes the earlier "Open full size" button that was being blocked by the sandbox). To get back to this gallery, use your browser's back button.</p>
+  <p><strong>Hierarchy update.</strong> "JERKY" is now a prominent category line between the flavour name (Tandoori / Masala) and the sub-flavour (Original / Warm &amp; Rich) — letter-spaced, in the accent colour, flanked by rules. This is the word a shopper reads first at shelf distance.</p>
+  <p>Tell me a number (or two) and I'll lock it in. If one is <strong>close</strong> but not right — e.g. <em>"03 but cream → warm off-white"</em>, or <em>"05 but gold-amber accent instead of chilli"</em> — describe the tweak and I'll retune that single variant.</p>
+</aside>
+
+</body>
+</html>
