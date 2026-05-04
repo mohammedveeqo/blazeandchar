@@ -175,6 +175,27 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.5;mi
 .legal-notes .ok{color:var(--ink);font-weight:600;}
 .legal-notes del{color:oklch(22% 0.03 40 / 0.45);}
 @media (max-width:640px){body{padding:40px 14px 60px;}.crest{margin-bottom:32px;}.crest .mark{font-size:28px;}.pouch{width:min(420px,92vw);}.hero-band{min-height:66px;}.stamp{width:54px;height:54px;}.stamp .core{font-size:11px;}.flame-icon{width:46px;height:52px;}}
+
+/* PRINT MODE — clean A4 reference sheet for suppliers (page 1 = front pair, page 2 = back pair) */
+@media print{
+  @page{size:A4 landscape;margin:12mm;}
+  html,body{background:#fff!important;color:#000;}
+  body{padding:0!important;margin:0!important;}
+  body::before{display:none!important;}
+  .crest{display:none!important;}
+  .section-label{display:none!important;}
+  .legal-notes{display:none!important;}
+  .shadow{display:none!important;}
+  .caption{display:none!important;}
+  .stage{max-width:none!important;margin:0!important;padding:0!important;}
+  .pair{grid-template-columns:1fr 1fr!important;gap:12mm!important;align-items:start!important;justify-items:center!important;page-break-inside:avoid;break-inside:avoid;page-break-after:always;}
+  .pair:last-of-type{page-break-after:auto;}
+  .pouch-cell{gap:0!important;width:100%!important;}
+  .pouch{width:100%!important;max-width:120mm!important;box-shadow:0 0 0 0.5pt #000!important;page-break-inside:avoid;break-inside:avoid;}
+  .pouch::before{display:none!important;}
+  .pouch::after{display:none!important;}
+  *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;color-adjust:exact!important;}
+}
 </style>
 <style>
 /* Embed modes — driven by ?mode=front-only&sku=tandoori|masala|both query params.
