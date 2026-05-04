@@ -2688,7 +2688,7 @@ footer::before {
 /* flavour-specific copy blocks — crossfade */
 .flavour-copy {
   position: relative;
-  min-height: 78px;
+  min-height: 128px;
   margin-bottom: 14px;
 }
 .flavour-copy .fc {
@@ -2705,8 +2705,39 @@ footer::before {
   position: relative;
   pointer-events: auto;
 }
+
+/* product identity — weight is part of the name */
+.flavour-copy .fc-id {
+  margin-bottom: 10px;
+  line-height: 1.1;
+}
+.flavour-copy .fc-name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(22px, 2.2vw, 28px);
+  letter-spacing: -0.015em;
+  color: var(--fg);
+  font-variation-settings: "SOFT" 30, "WONK" 1, "opsz" 144;
+}
+.flavour-copy .fc-name em {
+  font-style: italic;
+  font-weight: 500;
+  color: var(--tandoori);
+  font-variation-settings: "SOFT" 80, "WONK" 1, "opsz" 144;
+  margin: 0 0.08em;
+}
+.hero-buy[data-flavour="m"] .flavour-copy .fc-name em { color: var(--masala-deep); }
+.flavour-copy .fc-sub {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 600;
+  margin-top: 4px;
+}
 .flavour-copy p {
-  font-size: clamp(16.5px, 1.3vw, 19px);
+  font-size: clamp(15.5px, 1.25vw, 18px);
   line-height: 1.5;
   color: var(--muted);
   margin: 0;
@@ -3307,11 +3338,11 @@ footer::before {
         <div class="hero-pouches">
           <!-- Full canonical pouch via iframe — Tandoori front only -->
           <div class="pouch-frame p-tandoori">
-            <iframe src="blaze-pouch-v7-final.html?mode=front-only&amp;sku=tandoori" title="Tandoori Original, 60g pouch front" loading="eager" frameborder="0" scrolling="no"></iframe>
+            <iframe src="blaze-pouch-v7-final.html?mode=front-only&amp;sku=tandoori" title="Tandoori · 60g — front" loading="eager" frameborder="0" scrolling="no"></iframe>
           </div>
           <!-- Full canonical pouch via iframe — Masala front only -->
           <div class="pouch-frame p-masala">
-            <iframe src="blaze-pouch-v7-final.html?mode=front-only&amp;sku=masala" title="Masala Warm &amp; Rich, 60g pouch front" loading="eager" frameborder="0" scrolling="no"></iframe>
+            <iframe src="blaze-pouch-v7-final.html?mode=front-only&amp;sku=masala" title="Masala · 60g — front" loading="eager" frameborder="0" scrolling="no"></iframe>
           </div>
         </div>
         <div class="stage-vignette"></div>
@@ -3350,21 +3381,29 @@ footer::before {
           <button type="button" role="tab" data-fl="t" aria-selected="true" onclick="pickFlavour('t')">
             <span class="fdot"></span>
             The&nbsp;Fire
-            <span class="fsub">· Tandoori</span>
+            <span class="fsub">· Tandoori · 60g</span>
           </button>
           <button type="button" role="tab" data-fl="m" aria-selected="false" onclick="pickFlavour('m')">
             <span class="fdot"></span>
             The&nbsp;Ember
-            <span class="fsub">· Masala</span>
+            <span class="fsub">· Masala · 60g</span>
           </button>
         </div>
 
         <!-- flavour-specific description crossfade -->
         <div class="flavour-copy">
           <div class="fc active" data-fl="t">
+            <div class="fc-id">
+              <div class="fc-name">Tandoori <em>·</em> 60g</div>
+              <div class="fc-sub">Original · 3/5 heat</div>
+            </div>
             <p>Smoky Kashmiri chilli, charred spice, tamarind tang. The flavour you get when a clay oven meets a proper cut of topside. <em>Bold heat, clean finish.</em></p>
           </div>
           <div class="fc" data-fl="m">
+            <div class="fc-id">
+              <div class="fc-name">Masala <em>·</em> 60g</div>
+              <div class="fc-sub">Warm &amp; Rich · 2/5 heat</div>
+            </div>
             <p>Warm garam masala, toasted cumin, dried mango tang. Aromatic, deeper, less about heat and more about depth. <em>Our slower-burn flavour.</em></p>
           </div>
         </div>
@@ -3771,8 +3810,8 @@ footer::before {
       </div>
       <div class="footer-col">
         <h4>Shop</h4>
-        <a href="#shop" onclick="pickFlavour('t')">Tandoori Original</a>
-        <a href="#shop" onclick="pickFlavour('m')">Masala Warm &amp; Rich</a>
+        <a href="#shop" onclick="pickFlavour('t')">Tandoori · 60g</a>
+        <a href="#shop" onclick="pickFlavour('m')">Masala · 60g</a>
         <a href="#shop">The Pair bundle</a>
         <a href="#">Gift a pouch</a>
       </div>
@@ -3807,7 +3846,7 @@ footer::before {
 <div class="sticky-buy" id="stickyBuy" data-flavour="t" aria-hidden="true">
   <div class="thumb" aria-hidden="true"></div>
   <div class="sb-meta">
-    <div class="sb-name" id="stickyName"><em>The Fire</em> · Tandoori Original</div>
+    <div class="sb-name" id="stickyName"><em>The Fire</em> · Tandoori · 60g</div>
     <div class="sb-price">60g pouch · <strong id="stickyPrice">£6.00</strong></div>
   </div>
   <button type="button" class="sb-btn" onclick="heroAddToCart()" aria-label="Add to bag">
@@ -3827,8 +3866,8 @@ function smoothScrollTo(id) {
 /* ========= Flavour + buy state ========= */
 /* FLAVOURS[k] drives the hero crossfade, spec strip, proof, and CTA colouring */
 const FLAVOURS = {
-  t: { name: 'Tandoori Original', nick: 'The Fire',  no: '№ 01', tag: 'Launching soon · Be the first to try it', heat: 3, marinade: '4&ndash;6', protein: 30 },
-  m: { name: 'Masala Warm & Rich', nick: 'The Ember', no: '№ 02', tag: 'Launching soon · Be the first to try it', heat: 2, marinade: '4&ndash;6', protein: 30 }
+  t: { name: 'Tandoori · 60g', sub: 'Original · 3/5 heat', nick: 'The Fire',  no: '№ 01', tag: 'Launching soon · Be the first to try it', heat: 3, marinade: '4&ndash;6', protein: 30 },
+  m: { name: 'Masala · 60g',   sub: 'Warm & Rich · 2/5 heat', nick: 'The Ember', no: '№ 02', tag: 'Launching soon · Be the first to try it', heat: 2, marinade: '4&ndash;6', protein: 30 }
 };
 const state = { flavour: 't', qty: 1, bag: 0 };
 const PRICE = 6.00;
