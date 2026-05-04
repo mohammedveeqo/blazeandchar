@@ -3307,11 +3307,11 @@ footer::before {
         <div class="hero-pouches">
           <!-- Full canonical pouch via iframe — Tandoori front only -->
           <div class="pouch-frame p-tandoori">
-            <iframe src="blaze-pouch-v7-final.html?mode=front-only&amp;sku=tandoori" title="Tandoori Original, 50g pouch front" loading="eager" frameborder="0" scrolling="no"></iframe>
+            <iframe src="blaze-pouch-v7-final.html?mode=front-only&amp;sku=tandoori" title="Tandoori Original, 60g pouch front" loading="eager" frameborder="0" scrolling="no"></iframe>
           </div>
           <!-- Full canonical pouch via iframe — Masala front only -->
           <div class="pouch-frame p-masala">
-            <iframe src="blaze-pouch-v7-final.html?mode=front-only&amp;sku=masala" title="Masala Warm &amp; Rich, 50g pouch front" loading="eager" frameborder="0" scrolling="no"></iframe>
+            <iframe src="blaze-pouch-v7-final.html?mode=front-only&amp;sku=masala" title="Masala Warm &amp; Rich, 60g pouch front" loading="eager" frameborder="0" scrolling="no"></iframe>
           </div>
         </div>
         <div class="stage-vignette"></div>
@@ -3381,7 +3381,7 @@ footer::before {
           </div>
           <div class="cell">
             <div class="value"><span id="specPro">30</span><em>g</em></div>
-            <span class="slabel">Protein / 50g</span>
+            <span class="slabel">Protein / 60g</span>
           </div>
         </div>
 
@@ -3401,7 +3401,7 @@ footer::before {
           </div>
           <button type="button" class="atc-hero" id="heroAtc" onclick="heroAddToCart()">
             <span class="atc-label"><span class="atc-plus">+</span> Add to bag</span>
-            <span class="atc-price">£<span id="heroPrice">5.00</span></span>
+            <span class="atc-price">£<span id="heroPrice">6.00</span></span>
           </button>
         </div>
 
@@ -3413,7 +3413,7 @@ footer::before {
         <div class="hero-bundle-up">
           <div class="bundle-label">
             <span class="bundle-title">Or get <em>both pouches</em></span>
-            <span class="bundle-pricing"><span class="now">£9.00</span> · £1 off vs singles</span>
+            <span class="bundle-pricing"><span class="now">£11.00</span> · £1 off vs singles</span>
           </div>
           <button type="button" onclick="heroBuyBundle()">Add the pair →</button>
         </div>
@@ -3569,7 +3569,7 @@ footer::before {
         </div>
       </div>
       <div class="nut-list">
-        <h4>Per 50g pouch</h4>
+        <h4>Per 60g pouch</h4>
         <table>
           <tr><td>Nutrition</td><td>Available on request</td></tr>
           <tr><td>Protein (est.)</td><td>~30 g</td></tr>
@@ -3589,7 +3589,7 @@ footer::before {
         </div>
       </div>
       <div class="nut-list">
-        <h4>Per 50g pouch</h4>
+        <h4>Per 60g pouch</h4>
         <table>
           <tr><td>Nutrition</td><td>Available on request</td></tr>
           <tr><td>Protein (est.)</td><td>~30 g</td></tr>
@@ -3726,9 +3726,9 @@ footer::before {
       </details>
 
       <details class="faq-item">
-        <summary>Why is it £5 for 50g? That's not cheap.</summary>
+        <summary>Why is it £6 for 60g? That's not cheap.</summary>
         <div class="answer">
-          It isn't. 50g of finished jerky starts as about <strong>160g of raw topside</strong> &mdash; nearly 70% of the weight dries out. Halal British topside, a 4&ndash;6 hour marinade, slow dehydrate, hand-packed in small batches means there's a floor to what this can cost to make properly. We'd rather charge £5 for a pouch you finish in one sitting than £3 for a pouch you don't finish at all.
+          It isn't. 60g of finished jerky starts as about <strong>190g of raw topside</strong> &mdash; nearly 70% of the weight dries out. Halal British topside, a 4&ndash;6 hour marinade, slow dehydrate, hand-packed in small batches means there's a floor to what this can cost to make properly. We'd rather charge £6 for a proper portion you finish in one sitting than £3 for a nibble that leaves you hungry.
         </div>
       </details>
 
@@ -3808,7 +3808,7 @@ footer::before {
   <div class="thumb" aria-hidden="true"></div>
   <div class="sb-meta">
     <div class="sb-name" id="stickyName"><em>The Fire</em> · Tandoori Original</div>
-    <div class="sb-price">50g pouch · <strong id="stickyPrice">£5.00</strong></div>
+    <div class="sb-price">60g pouch · <strong id="stickyPrice">£6.00</strong></div>
   </div>
   <button type="button" class="sb-btn" onclick="heroAddToCart()" aria-label="Add to bag">
     + Add
@@ -3831,7 +3831,7 @@ const FLAVOURS = {
   m: { name: 'Masala Warm & Rich', nick: 'The Ember', no: '№ 02', tag: 'Launching soon · Be the first to try it', heat: 2, marinade: '4&ndash;6', protein: 30 }
 };
 const state = { flavour: 't', qty: 1, bag: 0 };
-const PRICE = 5.00;
+const PRICE = 6.00;
 
 function pickFlavour(k) {
   if (!(k in FLAVOURS) || state.flavour === k) return;
@@ -3879,7 +3879,7 @@ function heroAddToCart() {
 }
 
 function heroBuyBundle() {
-  _addToBag('Bundle — Both Pouches', 2, 9.00);
+  _addToBag('Bundle — Both Pouches', 2, 11.00);
 }
 
 /* shared bag-update helper */

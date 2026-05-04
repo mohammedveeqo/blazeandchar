@@ -50,7 +50,7 @@ The brand mark is an italic Fraunces ampersand in a tandoori-red medallion, echo
 
 ## Pouch design
 
-- 50g resealable stand-up pouch, Chilli &amp; Honey palette (red Tandoori, gold Masala)
+- 60g resealable stand-up pouch, Chilli &amp; Honey palette (red Tandoori, gold Masala)
 - Canonical: [`blaze-pouch-v7-final.html`](./blaze-pouch-v7-final.html)
 - 10 alternative colour-ways in the `blaze-pouch-v7-pair-v**-*.html` files
 - Picked direction: **v02 Chilli &amp; Honey**
