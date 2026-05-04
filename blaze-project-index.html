@@ -54,6 +54,12 @@ body{min-height:100vh;background:var(--page-bg);color:var(--page-fg);font-family
 .section-head h2 em{font-style:italic;font-weight:500;color:var(--accent);}
 .section-blurb{font-family:var(--font-display);font-style:italic;font-size:16.5px;color:var(--page-dim);max-width:70ch;margin:0 0 22px;padding-left:calc(11px * 4 + 20px);font-variation-settings:"opsz" 24;}
 @media (max-width:760px){.section-blurb{padding-left:0;}}
+.callout{display:grid;grid-template-columns:auto 1fr;gap:18px 20px;padding:18px 22px;margin:0 0 28px;background:oklch(54% 0.19 32 / 0.05);border:1px solid oklch(54% 0.19 32 / 0.2);border-left:3px solid var(--accent);border-radius:8px;}
+@media (max-width:760px){.callout{grid-template-columns:1fr;gap:8px;padding:16px 18px;}}
+.callout-k{font-family:var(--font-mono);font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--accent);font-weight:700;white-space:nowrap;padding-top:3px;}
+.callout-v{font-family:var(--font-display);font-size:14.5px;line-height:1.55;color:var(--page-fg);font-variation-settings:"opsz" 18;}
+.callout-v em{font-style:italic;color:var(--accent);font-weight:500;}
+.callout-v code{font-family:var(--font-mono);font-size:12.5px;background:var(--page-surface);color:var(--page-fg);padding:1px 6px;border-radius:3px;border:1px solid var(--page-rule);}
 
 .row{display:grid;gap:24px;}
 .row-4{grid-template-columns:repeat(4,1fr);}
@@ -190,6 +196,10 @@ body{min-height:100vh;background:var(--page-bg);color:var(--page-fg);font-family
   <section class="section" id="start-here">
     <div class="section-head"><span class="sn">00</span><h2>Start here — <em>the four files that matter</em></h2></div>
     <p class="section-blurb">If you're sharing this project with anyone (investor, printer, partner), these are the only four links they need. Everything else below is exploration, history, or backup.</p>
+    <aside class="callout">
+      <div class="callout-k">Heads up · Downloading files</div>
+      <div class="callout-v">The ZIP bundle and other file downloads <em>won't work</em> from inside the preview pane (sandbox doesn't serve binaries). To actually grab a file: open the project folder in Finder at <code>~/open-design/.od/projects/512e4cc6-de30-4692-951a-419760576f94/</code> and drag files out directly, or open <code>blaze-pouch-supplier-download.html</code> in a real browser (Chrome / Safari) and click download there. The ZIP sits at <code>blazeandchar-supplier-bundle.zip</code> (46KB) — just grab it straight from the folder.</div>
+    </aside>
     <div class="row row-4">
       <a class="card" href="blaze-pouch-supplier-download.html">
         <div class="thumb"><iframe src="blaze-pouch-supplier-download.html" loading="lazy" title="Supplier download"></iframe></div>
