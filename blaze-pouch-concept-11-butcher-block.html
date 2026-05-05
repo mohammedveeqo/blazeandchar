@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Blaze & Char — Concept 11 · Butcher's Block</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,400;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet" />
+<style>
+:root { --bg: oklch(88% 0.04 72); --bg-deep: oklch(82% 0.05 70); --ink-global: oklch(22% 0.03 40); --font-display: 'Fraunces','Newsreader','Iowan Old Style',Georgia,serif; --font-body: 'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif; --font-mono: 'JetBrains Mono',ui-monospace,Menlo,monospace; }
+*,*::before,*::after{box-sizing:border-box;} html,body{margin:0;padding:0;}
+body{min-height:100vh;background:radial-gradient(ellipse at 50% 20%,oklch(90% 0.035 72) 0%,var(--bg) 60%,var(--bg-deep) 120%);color:var(--ink-global);font-family:var(--font-body);padding:64px 24px 80px;}
+.stage{position:relative;max-width:1280px;margin:0 auto;}
+.crest{text-align:center;margin-bottom:40px;}
+.crest .eyebrow{font-family:var(--font-mono);font-size:11px;letter-spacing:.34em;text-transform:uppercase;color:oklch(55% 0.04 50);margin-bottom:14px;font-weight:600;}
+.crest h1{font-family:var(--font-display);font-weight:500;font-size:42px;letter-spacing:-.025em;margin:0;font-variation-settings:"SOFT" 30,"WONK" 1,"opsz" 144;line-height:1.05;}
+.crest h1 em{font-style:italic;font-weight:400;color:oklch(54% 0.19 32);}
+.crest .caption{margin-top:14px;font-family:var(--font-display);font-style:italic;font-size:18px;color:oklch(40% 0.04 45);max-width:720px;margin-left:auto;margin-right:auto;}
+.crest .caption em{font-style:normal;color:var(--ink-global);font-weight:500;}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:end;justify-items:center;}
+@media (max-width:1100px){.pair{grid-template-columns:1fr;gap:60px;}.stage{max-width:560px;}}
+.pouch-cell{display:flex;flex-direction:column;align-items:center;gap:24px;width:100%;}
+.shadow{width:82%;height:30px;margin-top:-20px;background:radial-gradient(ellipse at 50% 50%,oklch(22% 0.03 40 / 0.35) 0%,oklch(22% 0.03 40 / 0.12) 45%,transparent 70%);filter:blur(7px);}
+.pouch{position:relative;width:min(460px,44vw);aspect-ratio:130/185;border-radius:4px;overflow:hidden;box-shadow:0 70px 90px -40px oklch(22% 0.03 40 / 0.4),0 22px 44px -20px oklch(22% 0.03 40 / 0.26);}
+.pouch.tandoori{--stock:oklch(58% 0.19 32);--stock-hi:oklch(62% 0.17 32);--stock-lo:oklch(50% 0.2 30);--ink:oklch(14% 0.06 30);--ink-dim:oklch(28% 0.08 30);--accent:oklch(94% 0.03 80);--board-1:oklch(42% 0.06 65);--board-2:oklch(52% 0.07 60);background:linear-gradient(180deg,var(--stock-hi) 0%,var(--stock) 32%,var(--stock) 70%,var(--stock-lo) 100%);}
+.pouch.masala{--stock:oklch(82% 0.16 88);--stock-hi:oklch(86% 0.14 88);--stock-lo:oklch(74% 0.18 85);--ink:oklch(18% 0.05 50);--ink-dim:oklch(32% 0.06 50);--accent:oklch(30% 0.1 50);--board-1:oklch(52% 0.08 60);--board-2:oklch(62% 0.09 62);background:linear-gradient(180deg,var(--stock-hi) 0%,var(--stock) 32%,var(--stock) 70%,var(--stock-lo) 100%);}
+.seal{position:absolute;top:0;left:0;right:0;height:8%;border-bottom:1px solid oklch(22% 0.03 40 / 0.16);background-image:linear-gradient(180deg,var(--stock-lo) 0%,var(--stock) 80%),repeating-linear-gradient(90deg,oklch(22% 0.03 40 / 0.1) 0 1px,transparent 1px 6px);z-index:2;}
+.hang-hole{position:absolute;top:1.6%;left:50%;transform:translateX(-50%);width:13px;height:13px;border-radius:50%;background:oklch(22% 0.03 40 / 0.22);box-shadow:inset 0 1px 2px oklch(0% 0 0 / 0.45);z-index:3;}
+.gusset{position:absolute;left:0;right:0;bottom:0;height:5.5%;background-image:linear-gradient(180deg,var(--stock) 0%,var(--stock-lo) 90%),repeating-linear-gradient(90deg,oklch(22% 0.03 40 / 0.1) 0 1px,transparent 1px 6px);border-top:1px solid oklch(22% 0.03 40 / 0.18);z-index:2;}
+.art{position:absolute;top:8%;left:0;right:0;bottom:5.5%;padding:10px 22px 0;display:flex;flex-direction:column;color:var(--ink);z-index:1;}
+.wordmark{text-align:center;padding:2px 0;}
+.wordmark .bc{font-family:var(--font-display);font-weight:700;font-size:clamp(20px,3.2vw,26px);letter-spacing:-.025em;line-height:1;color:var(--ink);font-variation-settings:"SOFT" 30,"WONK" 1,"opsz" 144;display:inline-flex;align-items:baseline;gap:.14em;}
+.wordmark .bc .amp{font-style:italic;font-weight:500;color:var(--accent);font-variation-settings:"SOFT" 80,"WONK" 1,"opsz" 144;font-size:1.1em;}
+.wordmark .tagline{font-family:var(--font-mono);font-size:7px;letter-spacing:.32em;text-transform:uppercase;color:var(--ink-dim);font-weight:600;margin-top:3px;}
+.foot{position:absolute;left:0;right:0;bottom:5.5%;background:var(--ink);color:var(--stock);padding:7px 22px 9px;display:flex;justify-content:space-between;align-items:baseline;gap:12px;z-index:2;}
+.foot .wt{font-family:var(--font-display);font-weight:600;font-size:15px;letter-spacing:-.01em;}
+.foot .wt em{font-style:italic;color:oklch(86% 0.055 68 / 0.55);font-weight:400;margin-right:2px;}
+.foot .halal{font-family:var(--font-mono);font-size:9px;letter-spacing:.26em;text-transform:uppercase;font-weight:700;}
+
+.est-strip{display:flex;justify-content:space-between;align-items:center;margin:2px 0 4px;padding-bottom:3px;border-bottom:1px solid var(--ink);font-family:var(--font-mono);font-size:7px;letter-spacing:.3em;text-transform:uppercase;font-weight:700;color:var(--ink);}
+.block-scene{position:relative;flex:1;display:flex;align-items:center;justify-content:center;margin:4px 0;min-height:0;}
+.block-scene svg{width:94%;max-width:280px;height:auto;filter:drop-shadow(0 4px 8px rgba(0,0,0,0.22));}
+.rubber-stamp{position:absolute;top:5%;right:3%;width:74px;height:30px;background:transparent;border:2px solid var(--ink);display:flex;align-items:center;justify-content:center;transform:rotate(-4deg);z-index:4;}
+.rubber-stamp::before{content:"";position:absolute;inset:2px;border:1px solid var(--ink);}
+.rubber-stamp span{font-family:var(--font-mono);font-size:9px;letter-spacing:.24em;font-weight:700;color:var(--ink);}
+.hero-band{text-align:center;margin:4px 0 2px;padding:4px 0;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);}
+.hero-band h2{font-family:var(--font-display);font-weight:700;font-size:30px;letter-spacing:.005em;line-height:1;color:var(--ink);text-transform:uppercase;font-variation-settings:"SOFT" 30,"opsz" 72;margin:0;}
+.hero-band .q{font-family:var(--font-display);font-style:italic;font-weight:500;font-size:12px;color:var(--ink-dim);margin-top:3px;font-variation-settings:"opsz" 18,"SOFT" 60;}
+.spec-mini{display:flex;justify-content:space-around;align-items:center;margin:4px 0;font-family:var(--font-mono);font-size:7px;letter-spacing:.24em;text-transform:uppercase;font-weight:700;color:var(--ink);}
+.spec-mini .item{text-align:center;flex:1;padding:0 4px;position:relative;}
+.spec-mini .item + .item::before{content:"";position:absolute;left:0;top:10%;bottom:10%;width:.75px;background:var(--ink);opacity:.4;}
+.spec-mini .item strong{display:block;font-family:var(--font-display);font-weight:700;font-size:13px;letter-spacing:-.01em;color:var(--ink);font-variation-settings:"opsz" 24;margin-bottom:1px;}
+.made-footer{text-align:center;font-family:var(--font-display);font-style:italic;font-weight:500;font-size:11px;color:var(--ink);margin:3px 0;font-variation-settings:"opsz" 18,"SOFT" 60;}
+</style>
+</head>
+<body>
+<main class="stage">
+  <header class="crest">
+    <div class="eyebrow">Concept 11 · Butcher's block · Craft signal</div>
+    <h1>The <em>butcher's block</em> — craft signal</h1>
+    <p class="caption">A wooden butcher's block with a cleaver, strips of jerky, and scattered whole spices. Reads as real hand-made craft — no factory could stage this. Lineage: <em>Traditional butcher shop, old-school Welsh signage, Jones' Dairy Farm packaging.</em></p>
+  </header>
+  <section class="pair">
+
+    <div class="pouch-cell">
+      <article class="pouch tandoori">
+        <div class="seal"></div><div class="hang-hole"></div>
+        <div class="art">
+          <div class="wordmark"><div class="bc">Blaze<span class="amp">&amp;</span>Char</div><div class="tagline">The Butcher's · Beef Jerky</div></div>
+          <div class="est-strip"><span>№ 01 Tandoori</span><span>Hand-Cut · Hand-Made</span></div>
+          <div class="block-scene" aria-label="Butcher's block with cleaver, jerky strips, and whole spices">
+            <div class="rubber-stamp"><span>36g PROTEIN</span></div>
+            <svg viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="board-grad-t" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stop-color="var(--board-2)"/>
+                  <stop offset="100%" stop-color="var(--board-1)"/>
+                </linearGradient>
+                <pattern id="wood-grain-t" patternUnits="userSpaceOnUse" width="120" height="10">
+                  <path d="M 0 5 Q 20 2 40 5 T 80 5 T 120 5" stroke="var(--board-1)" stroke-width="0.5" fill="none" opacity="0.4"/>
+                </pattern>
+              </defs>
+              <!-- Wooden block (with wood grain) -->
+              <rect x="20" y="70" width="240" height="90" rx="3" fill="url(#board-grad-t)" stroke="var(--ink)" stroke-width="2"/>
+              <rect x="20" y="70" width="240" height="90" rx="3" fill="url(#wood-grain-t)" opacity="0.6"/>
+              <!-- Wood grain details -->
+              <g stroke="var(--ink)" stroke-width="0.5" fill="none" opacity="0.4">
+                <path d="M 30 85 Q 60 82 90 86 T 160 85 T 250 87"/>
+                <path d="M 30 100 Q 70 97 110 102 T 180 101 T 250 103"/>
+                <path d="M 30 125 Q 60 122 100 126 T 180 124 T 250 126"/>
+                <path d="M 30 145 Q 80 142 130 146 T 220 144 T 260 146"/>
+              </g>
+              <!-- Cleaver (top-left corner) -->
+              <g transform="translate(35 45) rotate(-15)">
+                <!-- Blade -->
+                <path d="M 0 0 L 45 0 L 48 18 L 42 22 L 0 22 Z" fill="var(--stock-hi)" stroke="var(--ink)" stroke-width="1.5" stroke-linejoin="round"/>
+                <!-- Blade edge highlight -->
+                <line x1="3" y1="20" x2="40" y2="20" stroke="var(--stock)" stroke-width="0.6"/>
+                <!-- Blade dark shadow -->
+                <line x1="3" y1="4" x2="40" y2="4" stroke="var(--ink)" stroke-width="0.8" opacity="0.3"/>
+                <!-- Handle -->
+                <rect x="45" y="5" width="22" height="12" fill="var(--ink-dim)" stroke="var(--ink)" stroke-width="1.5" rx="2"/>
+                <!-- Rivets -->
+                <circle cx="52" cy="11" r="1.2" fill="var(--stock-hi)" stroke="var(--ink)" stroke-width="0.5"/>
+                <circle cx="60" cy="11" r="1.2" fill="var(--stock-hi)" stroke="var(--ink)" stroke-width="0.5"/>
+              </g>
+              <!-- Jerky strips on the block (3, stacked/overlapping) -->
+              <g>
+                <!-- Strip 1 (back) -->
+                <path d="M 110 95 Q 125 90 145 93 Q 170 95 190 92 Q 200 92 205 100 Q 208 108 200 112 Q 180 115 160 113 Q 140 110 120 112 Q 108 112 105 105 Q 103 98 110 95 Z" 
+                      fill="var(--ink-dim)" stroke="var(--ink)" stroke-width="1.2"/>
+                <circle cx="140" cy="102" r="1" fill="var(--accent)" opacity="0.5"/>
+                <circle cx="170" cy="100" r="1" fill="var(--accent)" opacity="0.5"/>
+                <!-- Strip 2 (front, angled slightly) -->
+                <path d="M 100 115 Q 118 108 142 112 Q 168 115 188 112 Q 200 112 205 120 Q 208 130 198 134 Q 175 138 150 134 Q 125 131 105 134 Q 95 134 92 126 Q 90 118 100 115 Z" 
+                      fill="var(--ink)" stroke="var(--ink)" stroke-width="1.2"/>
+                <circle cx="130" cy="122" r="1.2" fill="var(--accent)" opacity="0.6"/>
+                <circle cx="165" cy="124" r="1" fill="var(--accent)" opacity="0.5"/>
+                <circle cx="180" cy="120" r="0.8" fill="var(--accent)" opacity="0.4"/>
+                <!-- Edge curl highlight -->
+                <path d="M 100 116 Q 115 113 135 116" stroke="var(--ink-dim)" stroke-width="0.8" fill="none" opacity="0.7"/>
+              </g>
+              <!-- Whole spices scattered -->
+              <!-- Cardamom pods -->
+              <g fill="oklch(72% 0.15 90)" stroke="var(--ink)" stroke-width="0.8">
+                <ellipse cx="50" cy="140" rx="5" ry="8" transform="rotate(30 50 140)"/>
+                <line x1="50" y1="132" x2="50" y2="128" stroke="var(--ink)" stroke-width="0.8"/>
+                <ellipse cx="60" cy="144" rx="4" ry="7" transform="rotate(-20 60 144)"/>
+              </g>
+              <!-- Star anise (tiny) -->
+              <g fill="oklch(40% 0.08 50)" stroke="var(--ink)" stroke-width="0.6">
+                <g transform="translate(232 145)">
+                  <path d="M 0 -5 L 1.5 -1.5 L 5 0 L 1.5 1.5 L 0 5 L -1.5 1.5 L -5 0 L -1.5 -1.5 Z"/>
+                </g>
+              </g>
+              <!-- Chillies (dried) -->
+              <g fill="var(--ink)" stroke="var(--ink)" stroke-width="0.8">
+                <path d="M 38 150 Q 34 152 32 156 Q 32 160 36 162 Q 42 162 44 158 Q 45 153 42 151 Q 40 150 38 150 Z" opacity="0.8"/>
+                <line x1="42" y1="150" x2="44" y2="146" stroke-width="1"/>
+              </g>
+              <!-- Peppercorns (tiny dots) -->
+              <g fill="var(--ink)" opacity="0.7">
+                <circle cx="220" cy="150" r="1.5"/>
+                <circle cx="226" cy="155" r="1.3"/>
+                <circle cx="213" cy="154" r="1.5"/>
+                <circle cx="217" cy="146" r="1.2"/>
+              </g>
+              <!-- Fenugreek leaves (small) -->
+              <g fill="oklch(42% 0.08 120)" stroke="var(--ink)" stroke-width="0.6" opacity="0.75">
+                <path d="M 78 143 Q 75 145 76 149 Q 80 150 83 148 Q 85 144 82 142 Z"/>
+                <line x1="78" y1="147" x2="82" y2="145" stroke-width="0.5"/>
+              </g>
+            </svg>
+          </div>
+          <div class="hero-band">
+            <h2>Tandoori · 60g</h2>
+            <div class="q">3/5 heat · One cut · One method · One batch a day</div>
+          </div>
+          <div class="spec-mini">
+            <div class="item"><strong>Topside</strong>The cut</div>
+            <div class="item"><strong>70°C</strong>Slow-dried</div>
+            <div class="item"><strong>Halal</strong>UK beef</div>
+          </div>
+          <div class="made-footer">Hand-made by us · In Wales</div>
+        </div>
+        <div class="foot"><div class="wt"><em>Net</em> 60 g</div><div class="halal">Made with halal British beef</div></div>
+        <div class="gusset"></div>
+      </article>
+      <div class="shadow"></div>
+    </div>
+
+    <div class="pouch-cell">
+      <article class="pouch masala">
+        <div class="seal"></div><div class="hang-hole"></div>
+        <div class="art">
+          <div class="wordmark"><div class="bc">Blaze<span class="amp">&amp;</span>Char</div><div class="tagline">The Butcher's · Beef Jerky</div></div>
+          <div class="est-strip"><span>№ 02 Masala</span><span>Hand-Cut · Hand-Made</span></div>
+          <div class="block-scene" aria-label="Butcher's block with cleaver, jerky strips, and whole spices">
+            <div class="rubber-stamp"><span>36g PROTEIN</span></div>
+            <svg viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="board-grad-m" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stop-color="var(--board-2)"/>
+                  <stop offset="100%" stop-color="var(--board-1)"/>
+                </linearGradient>
+                <pattern id="wood-grain-m" patternUnits="userSpaceOnUse" width="120" height="10">
+                  <path d="M 0 5 Q 20 2 40 5 T 80 5 T 120 5" stroke="var(--board-1)" stroke-width="0.5" fill="none" opacity="0.4"/>
+                </pattern>
+              </defs>
+              <rect x="20" y="70" width="240" height="90" rx="3" fill="url(#board-grad-m)" stroke="var(--ink)" stroke-width="2"/>
+              <rect x="20" y="70" width="240" height="90" rx="3" fill="url(#wood-grain-m)" opacity="0.6"/>
+              <g stroke="var(--ink)" stroke-width="0.5" fill="none" opacity="0.4">
+                <path d="M 30 85 Q 60 82 90 86 T 160 85 T 250 87"/>
+                <path d="M 30 100 Q 70 97 110 102 T 180 101 T 250 103"/>
+                <path d="M 30 125 Q 60 122 100 126 T 180 124 T 250 126"/>
+                <path d="M 30 145 Q 80 142 130 146 T 220 144 T 260 146"/>
+              </g>
+              <g transform="translate(35 45) rotate(-15)">
+                <path d="M 0 0 L 45 0 L 48 18 L 42 22 L 0 22 Z" fill="var(--stock-hi)" stroke="var(--ink)" stroke-width="1.5" stroke-linejoin="round"/>
+                <line x1="3" y1="20" x2="40" y2="20" stroke="var(--stock)" stroke-width="0.6"/>
+                <line x1="3" y1="4" x2="40" y2="4" stroke="var(--ink)" stroke-width="0.8" opacity="0.3"/>
+                <rect x="45" y="5" width="22" height="12" fill="var(--ink-dim)" stroke="var(--ink)" stroke-width="1.5" rx="2"/>
+                <circle cx="52" cy="11" r="1.2" fill="var(--stock-hi)" stroke="var(--ink)" stroke-width="0.5"/>
+                <circle cx="60" cy="11" r="1.2" fill="var(--stock-hi)" stroke="var(--ink)" stroke-width="0.5"/>
+              </g>
+              <g>
+                <path d="M 110 95 Q 125 90 145 93 Q 170 95 190 92 Q 200 92 205 100 Q 208 108 200 112 Q 180 115 160 113 Q 140 110 120 112 Q 108 112 105 105 Q 103 98 110 95 Z" 
+                      fill="var(--ink-dim)" stroke="var(--ink)" stroke-width="1.2"/>
+                <circle cx="140" cy="102" r="1" fill="var(--accent)" opacity="0.5"/>
+                <circle cx="170" cy="100" r="1" fill="var(--accent)" opacity="0.5"/>
+                <path d="M 100 115 Q 118 108 142 112 Q 168 115 188 112 Q 200 112 205 120 Q 208 130 198 134 Q 175 138 150 134 Q 125 131 105 134 Q 95 134 92 126 Q 90 118 100 115 Z" 
+                      fill="var(--ink)" stroke="var(--ink)" stroke-width="1.2"/>
+                <circle cx="130" cy="122" r="1.2" fill="var(--accent)" opacity="0.6"/>
+                <circle cx="165" cy="124" r="1" fill="var(--accent)" opacity="0.5"/>
+                <circle cx="180" cy="120" r="0.8" fill="var(--accent)" opacity="0.4"/>
+                <path d="M 100 116 Q 115 113 135 116" stroke="var(--ink-dim)" stroke-width="0.8" fill="none" opacity="0.7"/>
+              </g>
+              <g fill="oklch(72% 0.15 90)" stroke="var(--ink)" stroke-width="0.8">
+                <ellipse cx="50" cy="140" rx="5" ry="8" transform="rotate(30 50 140)"/>
+                <line x1="50" y1="132" x2="50" y2="128" stroke="var(--ink)" stroke-width="0.8"/>
+                <ellipse cx="60" cy="144" rx="4" ry="7" transform="rotate(-20 60 144)"/>
+              </g>
+              <g fill="oklch(40% 0.08 50)" stroke="var(--ink)" stroke-width="0.6">
+                <g transform="translate(232 145)">
+                  <path d="M 0 -5 L 1.5 -1.5 L 5 0 L 1.5 1.5 L 0 5 L -1.5 1.5 L -5 0 L -1.5 -1.5 Z"/>
+                </g>
+              </g>
+              <g fill="var(--ink)" stroke="var(--ink)" stroke-width="0.8">
+                <path d="M 38 150 Q 34 152 32 156 Q 32 160 36 162 Q 42 162 44 158 Q 45 153 42 151 Q 40 150 38 150 Z" opacity="0.8"/>
+                <line x1="42" y1="150" x2="44" y2="146" stroke-width="1"/>
+              </g>
+              <g fill="var(--ink)" opacity="0.7">
+                <circle cx="220" cy="150" r="1.5"/>
+                <circle cx="226" cy="155" r="1.3"/>
+                <circle cx="213" cy="154" r="1.5"/>
+                <circle cx="217" cy="146" r="1.2"/>
+              </g>
+              <g fill="oklch(42% 0.08 120)" stroke="var(--ink)" stroke-width="0.6" opacity="0.75">
+                <path d="M 78 143 Q 75 145 76 149 Q 80 150 83 148 Q 85 144 82 142 Z"/>
+                <line x1="78" y1="147" x2="82" y2="145" stroke-width="0.5"/>
+              </g>
+            </svg>
+          </div>
+          <div class="hero-band">
+            <h2>Masala · 60g</h2>
+            <div class="q">2/5 heat · One cut · One method · One batch a day</div>
+          </div>
+          <div class="spec-mini">
+            <div class="item"><strong>Topside</strong>The cut</div>
+            <div class="item"><strong>70°C</strong>Slow-dried</div>
+            <div class="item"><strong>Halal</strong>UK beef</div>
+          </div>
+          <div class="made-footer">Hand-made by us · In Wales</div>
+        </div>
+        <div class="foot"><div class="wt"><em>Net</em> 60 g</div><div class="halal">Made with halal British beef</div></div>
+        <div class="gusset"></div>
+      </article>
+      <div class="shadow"></div>
+    </div>
+
+  </section>
+</main>
+</body>
+</html>

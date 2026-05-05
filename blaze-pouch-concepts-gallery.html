@@ -3,377 +3,350 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Blaze & Char — Pouch concepts · 4 new directions vs canonical</title>
-<link rel="icon" href="favicon.svg" type="image/svg+xml" />
+<title>Blaze & Char — 12 pouch concept directions</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,400;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet" />
 <style>
-  :root{
-    --page-bg: oklch(96% 0.01 80);
-    --page-surface: oklch(99% 0.005 80);
-    --page-fg: oklch(18% 0.02 60);
-    --page-dim: oklch(45% 0.02 60);
-    --page-soft: oklch(62% 0.02 60);
-    --page-rule: oklch(18% 0.02 60 / 0.14);
-    --page-rule-strong: oklch(18% 0.02 60 / 0.3);
-    --accent: oklch(54% 0.19 32);
-    --accent-soft: oklch(54% 0.19 32 / 0.08);
-    --masala: oklch(60% 0.15 72);
-    --font-display: 'Fraunces','Newsreader','Iowan Old Style',Georgia,serif;
-    --font-body: 'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;
-    --font-mono: 'JetBrains Mono',ui-monospace,Menlo,monospace;
-  }
-  *,*::before,*::after{box-sizing:border-box;}
-  html,body{margin:0;padding:0;}
-  body{
-    min-height:100vh;
-    background:var(--page-bg);
-    color:var(--page-fg);
-    font-family:var(--font-body);
-    font-size:15px;
-    line-height:1.55;
-    -webkit-font-smoothing:antialiased;
-    text-rendering:optimizeLegibility;
-    padding:56px 28px 120px;
-  }
-  .shell{max-width:1480px;margin:0 auto;}
-  .masthead{
-    display:grid;grid-template-columns:1fr auto;align-items:start;gap:32px;
-    margin-bottom:48px;padding-bottom:28px;
-    border-bottom:.75px solid var(--page-rule-strong);
-  }
-  .masthead .eyebrow{
-    font-family:var(--font-mono);font-size:11px;letter-spacing:.34em;
-    text-transform:uppercase;color:var(--page-dim);font-weight:600;
-  }
-  .masthead h1{
-    font-family:var(--font-display);font-weight:500;
-    font-size:clamp(34px,4.6vw,52px);letter-spacing:-.025em;
-    margin:10px 0 14px;font-variation-settings:"SOFT" 30,"WONK" 1,"opsz" 144;
-    line-height:1.02;
-  }
-  .masthead h1 em{font-style:italic;font-weight:400;color:var(--accent);}
-  .masthead p{
-    max-width:62ch;
-    font-family:var(--font-display);font-style:italic;font-size:18px;
-    color:var(--page-dim);margin:0;
-    font-variation-settings:"opsz" 36;
-  }
-  .masthead p em{font-style:normal;color:var(--page-fg);font-weight:500;}
-  .stat{text-align:right;font-family:var(--font-mono);font-size:10.5px;
-    letter-spacing:.28em;text-transform:uppercase;color:var(--page-dim);
-    font-weight:600;line-height:1.7;}
-  .stat strong{display:block;font-family:var(--font-display);font-weight:600;
-    font-size:32px;letter-spacing:-.02em;color:var(--page-fg);
-    font-variation-settings:"opsz" 36;margin-bottom:2px;}
+:root{
+  --page-bg:oklch(96% 0.01 80);
+  --page-surface:oklch(99% 0.005 80);
+  --page-fg:oklch(18% 0.02 60);
+  --page-dim:oklch(45% 0.02 60);
+  --page-soft:oklch(62% 0.02 60);
+  --page-rule:oklch(18% 0.02 60 / 0.14);
+  --accent:oklch(54% 0.19 32);
+  --font-display:'Fraunces','Newsreader','Iowan Old Style',Georgia,serif;
+  --font-body:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;
+  --font-mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
+}
+*,*::before,*::after{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{min-height:100vh;background:var(--page-bg);color:var(--page-fg);font-family:var(--font-body);font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;padding:56px 28px 120px;}
+.shell{max-width:1600px;margin:0 auto;}
 
-  .intro{
-    max-width:72ch;margin:0 0 56px;
-    font-size:16px;line-height:1.65;color:var(--page-dim);
-  }
-  .intro strong{color:var(--page-fg);font-weight:600;}
-  .intro em{font-style:italic;color:var(--accent);}
-  .intro code{
-    font-family:var(--font-mono);font-size:12.5px;
-    background:var(--page-rule);padding:2px 6px;border-radius:3px;
-    color:var(--page-fg);
-  }
+/* Masthead */
+.masthead{display:grid;grid-template-columns:1fr auto;align-items:start;gap:32px;margin-bottom:56px;padding-bottom:28px;border-bottom:.75px solid var(--page-rule);}
+.masthead .eyebrow{font-family:var(--font-mono);font-size:11px;letter-spacing:.34em;text-transform:uppercase;color:var(--page-dim);font-weight:600;}
+.masthead h1{font-family:var(--font-display);font-weight:500;font-size:clamp(32px,4.6vw,52px);letter-spacing:-.025em;margin:10px 0 14px;font-variation-settings:"SOFT" 30,"WONK" 1,"opsz" 144;line-height:1.02;}
+.masthead h1 em{font-style:italic;font-weight:400;color:var(--accent);}
+.masthead p{max-width:58ch;font-family:var(--font-display);font-style:italic;font-size:18px;color:var(--page-dim);margin:0;font-variation-settings:"opsz" 36;}
+.masthead p em{font-style:normal;color:var(--page-fg);font-weight:500;}
+.stat{text-align:right;font-family:var(--font-mono);font-size:10.5px;letter-spacing:.28em;text-transform:uppercase;color:var(--page-dim);font-weight:600;line-height:1.7;}
+.stat strong{display:block;font-family:var(--font-display);font-weight:600;font-size:32px;letter-spacing:-.02em;color:var(--page-fg);font-variation-settings:"opsz" 36;margin-bottom:2px;}
 
-  .grid{
-    display:grid;gap:48px;
-    grid-template-columns:repeat(2,1fr);
-  }
-  @media (max-width:1000px){.grid{grid-template-columns:1fr;}}
+/* Grid */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:32px;}
+@media(max-width:760px){.grid{grid-template-columns:1fr;gap:40px;}}
 
-  .card{
-    display:flex;flex-direction:column;gap:16px;
-    text-decoration:none;color:inherit;
-    padding:24px;border:1px solid var(--page-rule);border-radius:16px;
-    background:var(--page-surface);
-    transition:border-color .2s ease, transform .2s ease, box-shadow .2s ease;
-    cursor:pointer;
-  }
-  .card:hover{
-    border-color:var(--accent);
-    transform:translateY(-2px);
-    box-shadow:0 18px 38px -24px oklch(18% 0.02 60 / 0.25);
-  }
-  .card:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+/* Cards */
+.concept-card{display:flex;flex-direction:column;gap:14px;text-decoration:none;color:inherit;padding:22px;border-radius:12px;background:var(--page-surface);border:1px solid var(--page-rule);transition:transform .2s, box-shadow .2s, border-color .2s;cursor:pointer;}
+.concept-card:hover{transform:translateY(-4px);box-shadow:0 24px 48px -20px oklch(18% 0.02 60 / 0.15);border-color:var(--accent);}
+.card-head{display:flex;align-items:center;justify-content:space-between;gap:8px;}
+.card-num{font-family:var(--font-mono);font-size:10px;letter-spacing:.3em;font-weight:700;color:var(--page-dim);text-transform:uppercase;}
+.tag{font-family:var(--font-mono);font-size:8.5px;letter-spacing:.26em;text-transform:uppercase;font-weight:700;padding:3px 8px;border-radius:3px;}
+.tag-current{background:var(--accent);color:var(--page-bg);}
+.tag-new{background:oklch(48% 0.18 145);color:var(--page-bg);}
+.card-title{font-family:var(--font-display);font-weight:600;font-size:22px;letter-spacing:-.015em;line-height:1.15;margin:0;font-variation-settings:"opsz" 36,"SOFT" 40;color:var(--page-fg);}
+.card-mood{font-family:var(--font-display);font-style:italic;font-size:14px;color:var(--page-dim);font-variation-settings:"opsz" 18,"SOFT" 60;margin:-4px 0 0;}
+.preview-wrap{position:relative;width:100%;aspect-ratio:16/10;border-radius:8px;overflow:hidden;background:oklch(88% 0.04 72);border:1px solid var(--page-rule);}
+.preview-wrap iframe{position:absolute;top:-8%;left:-8%;width:116%;height:116%;border:0;transform:scale(0.4);transform-origin:top left;pointer-events:none;background:oklch(88% 0.04 72);}
+@media(max-width:760px){.preview-wrap iframe{transform:scale(0.45);}}
 
-  .card.canonical{
-    border-color:var(--accent);
-    border-width:1.5px;
-    background:oklch(54% 0.19 32 / 0.04);
-  }
+.card-features{margin:0;padding:0 0 0 18px;font-family:var(--font-body);font-size:12.5px;color:var(--page-dim);line-height:1.55;}
+.card-features li{margin-bottom:3px;}
+.card-note{font-family:var(--font-display);font-style:italic;font-size:13.5px;color:var(--page-fg);margin:0;line-height:1.4;font-variation-settings:"opsz" 18,"SOFT" 60;padding:8px 0 0;border-top:.75px solid var(--page-rule);}
+.card-foot{display:flex;justify-content:space-between;align-items:baseline;gap:8px;padding-top:6px;}
+.filename{font-family:var(--font-mono);font-size:9.5px;color:var(--page-soft);font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1;min-width:0;}
+.open-cta{font-family:var(--font-mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:var(--page-fg);white-space:nowrap;}
 
-  .card-head{display:flex;justify-content:space-between;align-items:baseline;gap:16px;}
-  .card-num{
-    font-family:var(--font-mono);font-size:11px;letter-spacing:.3em;
-    text-transform:uppercase;color:var(--page-dim);font-weight:700;
-  }
-  .card-tag{
-    font-family:var(--font-mono);font-size:9px;letter-spacing:.24em;
-    text-transform:uppercase;font-weight:700;
-    padding:3px 10px;border-radius:999px;
-    background:var(--accent);color:white;
-  }
-  .card-tag.neutral{background:var(--page-rule-strong);color:var(--page-bg);}
-
-  .card h2{
-    font-family:var(--font-display);font-weight:600;
-    font-size:24px;letter-spacing:-.015em;margin:0;line-height:1.2;
-    font-variation-settings:"opsz" 36,"SOFT" 40;color:var(--page-fg);
-  }
-  .card h2 em{font-style:italic;font-weight:500;color:var(--accent);}
-  .card .mood{
-    font-family:var(--font-display);font-style:italic;font-size:15px;
-    line-height:1.5;color:var(--page-dim);margin:-6px 0 2px;
-    font-variation-settings:"opsz" 18;max-width:52ch;
-  }
-
-  .preview-frame{
-    position:relative;width:100%;aspect-ratio:14/10;
-    border-radius:10px;overflow:hidden;border:1px solid var(--page-rule);
-    background:var(--page-bg);
-    box-shadow:0 20px 36px -20px oklch(18% 0.02 60 / 0.2);
-  }
-  .preview-frame iframe{
-    position:absolute;top:0;left:0;width:250%;height:250%;border:0;
-    transform:scale(0.4);transform-origin:0 0;pointer-events:none;
-  }
-
-  .features{
-    list-style:none;margin:0;padding:12px 0 0;
-    display:grid;grid-template-columns:1fr 1fr;gap:6px 16px;
-  }
-  .features li{
-    font-family:var(--font-mono);font-size:10.5px;letter-spacing:.08em;
-    color:var(--page-fg);font-weight:500;
-    padding-left:12px;position:relative;
-  }
-  .features li::before{
-    content:"";position:absolute;left:0;top:7px;width:5px;height:5px;
-    border-radius:999px;background:var(--accent);
-  }
-  .features li.off::before{background:var(--page-soft);opacity:.5;}
-  .features li.off{color:var(--page-soft);text-decoration:line-through;text-decoration-color:var(--page-soft);text-decoration-thickness:1px;}
-
-  .open-row{
-    display:flex;align-items:center;justify-content:space-between;
-    padding-top:8px;margin-top:auto;
-  }
-  .open-row .filename{
-    font-family:var(--font-mono);font-size:10px;letter-spacing:.06em;
-    color:var(--page-soft);font-weight:500;
-    overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
-    flex:1;min-width:0;
-  }
-  .open-row .open-cta{
-    font-family:var(--font-mono);font-size:10.5px;letter-spacing:.28em;
-    text-transform:uppercase;font-weight:700;color:var(--page-fg);
-    display:inline-flex;align-items:center;gap:6px;white-space:nowrap;
-  }
-  .open-row .open-cta::after{content:"→";font-family:var(--font-body);transition:transform .15s;}
-  .card:hover .open-cta::after{transform:translateX(3px);}
-
-  .callout{
-    margin:72px auto 0;max-width:820px;padding:28px 32px;
-    border:1px solid var(--page-rule-strong);border-radius:12px;
-    background:var(--page-surface);
-    font-family:var(--font-display);font-size:16px;line-height:1.65;
-    color:var(--page-dim);font-variation-settings:"opsz" 20;
-  }
-  .callout h3{
-    font-family:var(--font-display);font-weight:600;font-size:22px;
-    margin:0 0 12px;color:var(--page-fg);
-    font-variation-settings:"opsz" 36;
-  }
-  .callout h3 em{font-style:italic;color:var(--accent);}
-  .callout strong{color:var(--page-fg);font-weight:600;}
-  .callout p{margin:0 0 12px;}
-  .callout p:last-child{margin-bottom:0;}
-
-  .nav-back{
-    display:inline-flex;align-items:center;gap:8px;
-    font-family:var(--font-mono);font-size:10.5px;letter-spacing:.24em;
-    text-transform:uppercase;font-weight:600;color:var(--page-dim);
-    text-decoration:none;margin-bottom:24px;
-  }
-  .nav-back::before{content:"←";font-family:var(--font-body);}
-  .nav-back:hover{color:var(--accent);}
+/* Reading section */
+.reading{margin-top:96px;padding-top:32px;border-top:.75px solid var(--page-rule);}
+.reading h2{font-family:var(--font-display);font-weight:600;font-size:28px;letter-spacing:-.02em;margin:0 0 14px;font-variation-settings:"opsz" 36,"SOFT" 40;}
+.reading h2 em{font-style:italic;font-weight:500;color:var(--accent);}
+.reading p{max-width:65ch;color:var(--page-dim);font-family:var(--font-display);font-size:16px;line-height:1.55;margin:0 0 10px;font-variation-settings:"opsz" 20;}
+.reading p em{font-style:italic;color:var(--page-fg);font-weight:500;}
+.reading ul{max-width:65ch;padding-left:20px;color:var(--page-dim);font-family:var(--font-display);font-size:16px;line-height:1.65;margin:0;font-variation-settings:"opsz" 20;}
+.reading strong{color:var(--page-fg);font-weight:600;}
 </style>
 </head>
 <body>
 <div class="shell">
 
-<a href="blaze-project-index.html" class="nav-back">Back to project index</a>
-
-<header class="masthead">
-  <div>
-    <div class="eyebrow">Pouch design concepts · 5 directions to pick from</div>
-    <h1>Canonical + <em>four new directions</em></h1>
-    <p>Based on your shelf research — <em>none of the 11 jerky brands you photographed use a window</em> — I built four concept directions that address the shelf-competitiveness gaps. The <em>current canonical</em> sits alongside them so you can compare directly. Click any card to see that pouch full-size.</p>
-  </div>
-  <div class="stat"><strong>5</strong>Directions<br/>to pick from</div>
-</header>
-
-<div class="intro">
-  <strong>How to read this.</strong> Each card shows one pouch design — live iframe preview, a short mood note, and a bullet list of <em>design moves made</em>. The first card is the <em>current canonical</em> we've been working on. The next four are <em>new directions</em> — they don't touch any existing files. Click through to see either at full size, then tell me which direction feels right (or which combination, e.g. <em>"the typography of 01 with the spice scatter of 03 as a subtle background"</em>) and I'll ship a full system update.
-</div>
-
-<main class="grid">
-
-  <!-- Canonical — current state -->
-  <a class="card canonical" href="blaze-pouch-v7-final.html">
-    <div class="card-head">
-      <span class="card-num">00 · Current canonical</span>
-      <span class="card-tag">Current</span>
+  <header class="masthead">
+    <div>
+      <div class="eyebrow">Project · 12 pouch design directions</div>
+      <h1>Twelve concept pouches, <em>one canonical</em></h1>
+      <p>Pick the one that feels right — and I'll develop it into a full shippable design with colour variants, back panels, and supplier-ready artwork. Each card below is a <em>live preview</em> of the real pouch HTML file. Click any card to open full-size.</p>
     </div>
-    <h2>Chilli &amp; Honey — <em>the baseline</em></h2>
-    <p class="mood">What you have today. Die-cut window showing jerky strips, three circular certs at the foot, a hand-made-in-Wales Cymru stamp in the hero band, pillow-pouch format.</p>
-    <div class="preview-frame">
-      <iframe src="blaze-pouch-v7-final.html" loading="lazy" title="Current canonical preview"></iframe>
-    </div>
-    <ul class="features">
-      <li>Die-cut window</li>
-      <li>Jerky strips SVG</li>
-      <li>36g protein cert</li>
-      <li>3-cert row</li>
-      <li>Cymru wax stamp</li>
-      <li>Chilli &amp; Honey palette</li>
-      <li>Pillow-pouch + hang hole</li>
-      <li>Wales silhouette icon</li>
+    <div class="stat"><strong>12</strong>Directions<br/>+ 1 current<br/>1 will be picked</div>
+  </header>
+
+  <main class="grid">
+    
+      <a class="concept-card" href="blaze-pouch-v7-final.html" target="_self">
+        <div class="card-head">
+          <div class="card-num">00</div>
+          <span class="tag tag-current">Current</span>
+        </div>
+        <h3 class="card-title">Current canonical</h3>
+        <div class="card-mood">Chilli & Honey</div>
+        <div class="preview-wrap">
+          <iframe src="blaze-pouch-v7-final.html" loading="lazy" title="00 · Current canonical preview"></iframe>
+        </div>
+        <ul class="card-features">
+          <li>Window showing strips</li><li>3-circle certs row (Hand-cut / 36g Protein / Wales)</li><li>Numeral + flame + Welsh stamp in hero band</li><li>Tandoori red body + Masala gold body</li>
+        </ul>
+        <p class="card-note">Your current canonical. Full window, detailed certs row, established design. Keep if you want to ship what's already built.</p>
+        <div class="card-foot">
+          <span class="filename">blaze-pouch-v7-final.html</span>
+          <span class="open-cta">Open full size →</span>
+        </div>
+      </a>
+      <a class="concept-card" href="blaze-pouch-concept-01-typographic.html" target="_self">
+        <div class="card-head">
+          <div class="card-num">01</div>
+          
+        </div>
+        <h3 class="card-title">Typographic Hero</h3>
+        <div class="card-mood">Big type, no window</div>
+        <div class="preview-wrap">
+          <iframe src="blaze-pouch-concept-01-typographic.html" loading="lazy" title="01 · Typographic Hero preview"></iframe>
+        </div>
+        <ul class="card-features">
+          <li>TANDOORI / MASALA at ~108px — dominates the pack</li><li>No window — typography is the hero</li><li>Protein stamp top-right, Welsh stamp bottom-left</li><li>Foot banner repeating HAND-MADE · IN WALES · CYMRU</li>
+        </ul>
+        <p class="card-note">Ember × Ed Sheeran energy. Most restrained of the set. Reads confident, not shouty. Cheapest to print — no halftones.</p>
+        <div class="card-foot">
+          <span class="filename">blaze-pouch-concept-01-typographic.html</span>
+          <span class="open-cta">Open full size →</span>
+        </div>
+      </a>
+      <a class="concept-card" href="blaze-pouch-concept-02-flame.html" target="_self">
+        <div class="card-head">
+          <div class="card-num">02</div>
+          
+        </div>
+        <h3 class="card-title">Flame & Tandoor</h3>
+        <div class="card-mood">Watercolour flame</div>
+        <div class="preview-wrap">
+          <iframe src="blaze-pouch-concept-02-flame.html" loading="lazy" title="02 · Flame & Tandoor preview"></iframe>
+        </div>
+        <ul class="card-features">
+          <li>Large watercolour-style flame dead center</li><li>Red-orange gradient (Tandoori) / amber-yellow (Masala)</li><li>Rotated protein stamp, Welsh silhouette stamp</li>
+        </ul>
+        <p class="card-note">Most atmospheric. Flame ties directly to 'Blaze' in the name. Risk: can tip into 'sports drink' if printed too bright.</p>
+        <div class="card-foot">
+          <span class="filename">blaze-pouch-concept-02-flame.html</span>
+          <span class="open-cta">Open full size →</span>
+        </div>
+      </a>
+      <a class="concept-card" href="blaze-pouch-concept-03-spice.html" target="_self">
+        <div class="card-head">
+          <div class="card-num">03</div>
+          
+        </div>
+        <h3 class="card-title">Spice Arrangement</h3>
+        <div class="card-mood">Illustrated spices</div>
+        <div class="preview-wrap">
+          <iframe src="blaze-pouch-concept-03-spice.html" loading="lazy" title="03 · Spice Arrangement preview"></iframe>
+        </div>
+        <ul class="card-features">
+          <li>Scattered whole spices: cardamom, chilli, cloves, peppercorns, methi</li><li>Warm parchment cream stock option</li><li>Protein tag bottom-right</li>
+        </ul>
+        <p class="card-note">Diaspora Co. / Ottolenghi lineage. Premium food-photography lane. Spices ARE the brand. Least snacky.</p>
+        <div class="card-foot">
+          <span class="filename">blaze-pouch-concept-03-spice.html</span>
+          <span class="open-cta">Open full size →</span>
+        </div>
+      </a>
+      <a class="concept-card" href="blaze-pouch-concept-04-stamps.html" target="_self">
+        <div class="card-head">
+          <div class="card-num">04</div>
+          
+        </div>
+        <h3 class="card-title">Heritage Stamps</h3>
+        <div class="card-mood">Four rotated stamps</div>
+        <div class="preview-wrap">
+          <iframe src="blaze-pouch-concept-04-stamps.html" loading="lazy" title="04 · Heritage Stamps preview"></iframe>
+        </div>
+        <ul class="card-features">
+          <li>Four circular hand-applied stamps front-and-center</li><li>Each rotated at different small angle — looks stamped not printed</li><li>Foot banner: ONE BATCH A DAY · BY HAND · IN WALES</li>
+        </ul>
+        <p class="card-note">Most artisanal. Craft-butcher feel. Risk: can read as 'cluttered' if scale isn't right.</p>
+        <div class="card-foot">
+          <span class="filename">blaze-pouch-concept-04-stamps.html</span>
+          <span class="open-cta">Open full size →</span>
+        </div>
+      </a>
+      <a class="concept-card" href="blaze-pouch-concept-05-jerky-strips.html" target="_self">
+        <div class="card-head">
+          <div class="card-num">05</div>
+          <span class="tag tag-new">New</span>
+        </div>
+        <h3 class="card-title">Illustrated Jerky Strips</h3>
+        <div class="card-mood">Shows the actual jerky</div>
+        <div class="preview-wrap">
+          <iframe src="blaze-pouch-concept-05-jerky-strips.html" loading="lazy" title="05 · Illustrated Jerky Strips preview"></iframe>
+        </div>
+        <ul class="card-features">
+          <li>Hand-drawn jerky strip illustration — shows the product</li><li>Protein callout top-right, Welsh stamp top-left</li><li>Spice flecks on the strips</li><li>'8 hand-cut strips' line below</li>
+        </ul>
+        <p class="card-note">The Curators / Meatsnacks approach. Zero ambiguity about what's in the bag. Most literal category-signal.</p>
+        <div class="card-foot">
+          <span class="filename">blaze-pouch-concept-05-jerky-strips.html</span>
+          <span class="open-cta">Open full size →</span>
+        </div>
+      </a>
+      <a class="concept-card" href="blaze-pouch-concept-06-welsh-dragon.html" target="_self">
+        <div class="card-head">
+          <div class="card-num">06</div>
+          <span class="tag tag-new">New</span>
+        </div>
+        <h3 class="card-title">Welsh Dragon</h3>
+        <div class="card-mood">Heritage-forward</div>
+        <div class="preview-wrap">
+          <iframe src="blaze-pouch-concept-06-welsh-dragon.html" loading="lazy" title="06 · Welsh Dragon preview"></iframe>
+        </div>
+        <ul class="card-features">
+          <li>Stylised heraldic Welsh dragon breathing tandoor flame</li><li>Ties fire/spice story to Welsh provenance in ONE mark</li><li>Big flavour name 38px</li>
+        </ul>
+        <p class="card-note">Kings' crowned cow energy, but distinctly Welsh-Indian. Risk: can feel mascot-y if overused.</p>
+        <div class="card-foot">
+          <span class="filename">blaze-pouch-concept-06-welsh-dragon.html</span>
+          <span class="open-cta">Open full size →</span>
+        </div>
+      </a>
+      <a class="concept-card" href="blaze-pouch-concept-07-butcher-cow.html" target="_self">
+        <div class="card-head">
+          <div class="card-num">07</div>
+          <span class="tag tag-new">New</span>
+        </div>
+        <h3 class="card-title">Butcher Cow Diagram</h3>
+        <div class="card-mood">Cut-specific provenance</div>
+        <div class="preview-wrap">
+          <iframe src="blaze-pouch-concept-07-butcher-cow.html" loading="lazy" title="07 · Butcher Cow Diagram preview"></iframe>
+        </div>
+        <ul class="card-features">
+          <li>Cow anatomy diagram with TOPSIDE cut highlighted</li><li>Named cuts (Sirloin, Rib, Rump) labelled for context</li><li>Educational / butcher-shop aesthetic</li>
+        </ul>
+        <p class="card-note">Most informed about the meat. Differentiates from factory-formed jerky. Best story for premium deli buyers.</p>
+        <div class="card-foot">
+          <span class="filename">blaze-pouch-concept-07-butcher-cow.html</span>
+          <span class="open-cta">Open full size →</span>
+        </div>
+      </a>
+      <a class="concept-card" href="blaze-pouch-concept-08-tandoor-scene.html" target="_self">
+        <div class="card-head">
+          <div class="card-num">08</div>
+          <span class="tag tag-new">New</span>
+        </div>
+        <h3 class="card-title">Tandoor Scene</h3>
+        <div class="card-mood">Fire, clay, skewers</div>
+        <div class="preview-wrap">
+          <iframe src="blaze-pouch-concept-08-tandoor-scene.html" loading="lazy" title="08 · Tandoor Scene preview"></iframe>
+        </div>
+        <ul class="card-features">
+          <li>Clay tandoor oven with rising flame</li><li>Skewers sticking up with jerky strips hanging</li><li>Directly references the 'Blaze & Char' name + method</li>
+        </ul>
+        <p class="card-note">Most on-brand narrative hero. Ties name, cooking method, and Indian heritage into one scene.</p>
+        <div class="card-foot">
+          <span class="filename">blaze-pouch-concept-08-tandoor-scene.html</span>
+          <span class="open-cta">Open full size →</span>
+        </div>
+      </a>
+      <a class="concept-card" href="blaze-pouch-concept-09-chilli.html" target="_self">
+        <div class="card-head">
+          <div class="card-num">09</div>
+          <span class="tag tag-new">New</span>
+        </div>
+        <h3 class="card-title">Chilli Pepper</h3>
+        <div class="card-mood">Single iconic hero</div>
+        <div class="preview-wrap">
+          <iframe src="blaze-pouch-concept-09-chilli.html" loading="lazy" title="09 · Chilli Pepper preview"></iframe>
+        </div>
+        <ul class="card-features">
+          <li>One big Kashmiri chilli pepper as hero</li><li>Heat stamp top-left showing 3 or 2</li><li>Triple-spec stats row (60g / 36g protein / 9h dry)</li>
+        </ul>
+        <p class="card-note">Fly By Jing / Omsom / Graza playbook. Single motif does the work. Most iconic on a shelf.</p>
+        <div class="card-foot">
+          <span class="filename">blaze-pouch-concept-09-chilli.html</span>
+          <span class="open-cta">Open full size →</span>
+        </div>
+      </a>
+      <a class="concept-card" href="blaze-pouch-concept-10-welsh-valley.html" target="_self">
+        <div class="card-head">
+          <div class="card-num">10</div>
+          <span class="tag tag-new">New</span>
+        </div>
+        <h3 class="card-title">Welsh Valley</h3>
+        <div class="card-mood">Editorial landscape</div>
+        <div class="preview-wrap">
+          <iframe src="blaze-pouch-concept-10-welsh-valley.html" loading="lazy" title="10 · Welsh Valley preview"></iframe>
+        </div>
+        <ul class="card-features">
+          <li>Stylised Welsh valley: mountains, cottage, sheep, stone wall</li><li>Quiet, editorial, earns-attention-over-time</li><li>Tiptree / Fentimans / Daylesford lineage</li>
+        </ul>
+        <p class="card-note">British heritage-food brand lineage. Quiet and considered. Best for farm-shop / deli positioning.</p>
+        <div class="card-foot">
+          <span class="filename">blaze-pouch-concept-10-welsh-valley.html</span>
+          <span class="open-cta">Open full size →</span>
+        </div>
+      </a>
+      <a class="concept-card" href="blaze-pouch-concept-11-butcher-block.html" target="_self">
+        <div class="card-head">
+          <div class="card-num">11</div>
+          <span class="tag tag-new">New</span>
+        </div>
+        <h3 class="card-title">Butcher's Block</h3>
+        <div class="card-mood">Craft signal</div>
+        <div class="preview-wrap">
+          <iframe src="blaze-pouch-concept-11-butcher-block.html" loading="lazy" title="11 · Butcher's Block preview"></iframe>
+        </div>
+        <ul class="card-features">
+          <li>Wooden butcher's block with cleaver, jerky strips, whole spices</li><li>Rubber-stamp '36g PROTEIN' top-right</li><li>'Topside / 70°C / Halal' spec row</li>
+        </ul>
+        <p class="card-note">Reads as real hand-made craft — no factory could stage this. Jones' Dairy Farm / traditional butcher signage.</p>
+        <div class="card-foot">
+          <span class="filename">blaze-pouch-concept-11-butcher-block.html</span>
+          <span class="open-cta">Open full size →</span>
+        </div>
+      </a>
+      <a class="concept-card" href="blaze-pouch-concept-12-stamp-type.html" target="_self">
+        <div class="card-head">
+          <div class="card-num">12</div>
+          <span class="tag tag-new">New</span>
+        </div>
+        <h3 class="card-title">Rubber-Stamp Type</h3>
+        <div class="card-mood">All typography</div>
+        <div class="preview-wrap">
+          <iframe src="blaze-pouch-concept-12-stamp-type.html" loading="lazy" title="12 · Rubber-Stamp Type preview"></iframe>
+        </div>
+        <ul class="card-features">
+          <li>Huge TANDOORI / MASALA inside thick rubber-stamp frame</li><li>Three rotated badges below (60g / 36g / 9h)</li><li>No illustration at all — type IS the hero</li>
+        </ul>
+        <p class="card-note">Ember brand-block + Brat restaurant signage. Cheapest to print. Reads from across the room.</p>
+        <div class="card-foot">
+          <span class="filename">blaze-pouch-concept-12-stamp-type.html</span>
+          <span class="open-cta">Open full size →</span>
+        </div>
+      </a>
+  </main>
+
+  <section class="reading">
+    <h2>How to read this — <em>what to look for</em></h2>
+    <p>You're comparing twelve different answers to the same question: <em>what should the front of a premium hand-made jerky pouch look like?</em></p>
+    <p>Key things to weigh as you compare:</p>
+    <ul>
+      <li><strong>Shelf read at 2 metres</strong> — squint at each card. Which ones are clearly beef jerky? Which read as 'premium snack' but don't tell you what's in the bag?</li>
+      <li><strong>Protein as a hero stat</strong> — every concept (except current) promotes protein to a visible stamp, callout, or badge. Does it feel like the right weight?</li>
+      <li><strong>Graphic vs type</strong> — some concepts (01, 12) rely entirely on typography. Some (06, 08, 09) hero an illustration. Which direction fits the brand voice you have in your head?</li>
+      <li><strong>Heritage signalling</strong> — Wales is present in all concepts but handled differently. Concept 06 makes it mythical (dragon), concept 10 makes it landscape, concept 11 makes it rustic. Which is right for you?</li>
+      <li><strong>Print complexity</strong> — simpler concepts (01, 12) will print cheaper and be easier to reproduce on any supplier's kit. More detailed ones (02, 08, 10, 11) look richer but cost more per bag.</li>
     </ul>
-    <div class="open-row">
-      <span class="filename">blaze-pouch-v7-final.html</span>
-      <span class="open-cta">Open full size</span>
-    </div>
-  </a>
-
-  <!-- Concept 01 — Typographic Hero -->
-  <a class="card" href="blaze-pouch-concept-01-typographic.html">
-    <div class="card-head">
-      <span class="card-num">01 · Typographic Hero</span>
-      <span class="card-tag neutral">New</span>
-    </div>
-    <h2>Typographic hero — <em>let the word be the image</em></h2>
-    <p class="mood">The Ember × Ed Sheeran approach. No window. TANDOORI / MASALA set at ~108px dominates the entire front. Protein as a red circular stamp top-right. Cymru stamp bottom-left. Foot banner repeats "HAND-MADE · IN WALES · CYMRU" as a continuous ribbon. Most restrained / most confident of the four.</p>
-    <div class="preview-frame">
-      <iframe src="blaze-pouch-concept-01-typographic.html" loading="lazy" title="Typographic Hero preview"></iframe>
-    </div>
-    <ul class="features">
-      <li>No window</li>
-      <li>XL flavour name (108px)</li>
-      <li>Protein stamp (hero)</li>
-      <li>Foot ribbon banner</li>
-      <li>Bottom-left Cymru</li>
-      <li>Type-only front</li>
-      <li>Most restrained</li>
-      <li>Ember-lineage</li>
-    </ul>
-    <div class="open-row">
-      <span class="filename">blaze-pouch-concept-01-typographic.html</span>
-      <span class="open-cta">Open full size</span>
-    </div>
-  </a>
-
-  <!-- Concept 02 — Flame & Tandoor -->
-  <a class="card" href="blaze-pouch-concept-02-flame.html">
-    <div class="card-head">
-      <span class="card-num">02 · Flame &amp; Tandoor</span>
-      <span class="card-tag neutral">New</span>
-    </div>
-    <h2>Flame illustration — <em>answer the name</em></h2>
-    <p class="mood">Answers "Blaze &amp; Char" directly. A watercolour-feel SVG flame sits center — red-orange gradient for Tandoori, amber-yellow for Masala. Protein callout stamped top-right rotated 4°. Wales silhouette lower-left. Most atmospheric of the four — leans into the heat / fire story.</p>
-    <div class="preview-frame">
-      <iframe src="blaze-pouch-concept-02-flame.html" loading="lazy" title="Flame & Tandoor preview"></iframe>
-    </div>
-    <ul class="features">
-      <li>Illustrated flame</li>
-      <li>Watercolour gradient</li>
-      <li>Protein stamp rotated</li>
-      <li>Wales silhouette</li>
-      <li>Atmospheric</li>
-      <li>Fire/heat story</li>
-      <li>No window</li>
-      <li>Most characterful</li>
-    </ul>
-    <div class="open-row">
-      <span class="filename">blaze-pouch-concept-02-flame.html</span>
-      <span class="open-cta">Open full size</span>
-    </div>
-  </a>
-
-  <!-- Concept 03 — Spice Arrangement -->
-  <a class="card" href="blaze-pouch-concept-03-spice.html">
-    <div class="card-head">
-      <span class="card-num">03 · Spice Arrangement</span>
-      <span class="card-tag neutral">New</span>
-    </div>
-    <h2>Spice arrangement — <em>the Diaspora Co. lineage</em></h2>
-    <p class="mood">Let the spices be the design. Illustrated scatter of Kashmiri chilli, cardamom pods, whole cloves, peppercorns, kasuri methi leaves across the front. Warm parchment-cream stock. Protein tag bottom-right. Most distinctive — closest to premium food-photography brands like Ottolenghi &amp; Diaspora Co.</p>
-    <div class="preview-frame">
-      <iframe src="blaze-pouch-concept-03-spice.html" loading="lazy" title="Spice Arrangement preview"></iframe>
-    </div>
-    <ul class="features">
-      <li>Illustrated spice scatter</li>
-      <li>Parchment cream stock</li>
-      <li>Named ingredients</li>
-      <li>Protein tag subtle</li>
-      <li>Premium food-photo feel</li>
-      <li>Ottolenghi lineage</li>
-      <li>No window</li>
-      <li>Most distinctive</li>
-    </ul>
-    <div class="open-row">
-      <span class="filename">blaze-pouch-concept-03-spice.html</span>
-      <span class="open-cta">Open full size</span>
-    </div>
-  </a>
-
-  <!-- Concept 04 — Heritage Stamps -->
-  <a class="card" href="blaze-pouch-concept-04-stamps.html">
-    <div class="card-head">
-      <span class="card-num">04 · Heritage Stamps</span>
-      <span class="card-tag neutral">New</span>
-    </div>
-    <h2>Heritage stamps — <em>small-batch maker's aesthetic</em></h2>
-    <p class="mood">Four circular stamps front-and-center — flavour name, heat rating, protein, "Made in Wales." Each rotated at a different small angle so they feel hand-applied, not printed. Foot ticker: "ONE BATCH A DAY · BY HAND · IN WALES · EST. 2026" as a repeating banner. Most artisanal / craft-butcher feel.</p>
-    <div class="preview-frame">
-      <iframe src="blaze-pouch-concept-04-stamps.html" loading="lazy" title="Heritage Stamps preview"></iframe>
-    </div>
-    <ul class="features">
-      <li>Four hand-stamp seals</li>
-      <li>Rotated asymmetrically</li>
-      <li>"Hand-applied" feel</li>
-      <li>Foot ticker banner</li>
-      <li>Craft-butcher aesthetic</li>
-      <li>Most artisanal</li>
-      <li>No window</li>
-      <li>Best for small-batch story</li>
-    </ul>
-    <div class="open-row">
-      <span class="filename">blaze-pouch-concept-04-stamps.html</span>
-      <span class="open-cta">Open full size</span>
-    </div>
-  </a>
-
-</main>
-
-<aside class="callout">
-  <h3>What to do once you've <em>picked a direction</em></h3>
-  <p>Tell me which of the 5 feels right (or which combination — e.g. <strong>"the typography of 01 with the spice scatter of 03 as a subtle background"</strong>) and I'll ship the full system update in one pass:</p>
-  <p>1. Take your chosen concept and bake it into the canonical master, replacing the current design while keeping all the brand tokens, legal compliance, and system architecture. 2. Regenerate all 16 pair + shade variants with the new front design. 3. Update the supplier brief so the artwork reference reflects the new direction. 4. Update the website so the hero pouches match.</p>
-  <p><strong>What won't change:</strong> back panel layout, nutrition structure, legal claims, halal-beef sourcing language, Wales heritage — all preserved. These four concepts only explore the <em>front panel visual hierarchy</em>.</p>
-</aside>
-
-<aside class="callout">
-  <h3>Observations from your shelf research</h3>
-  <p><strong>Zero of the 11 jerky bags you photographed use a window</strong> — Jack Link's, Ember, Kings, The Curators, Cruga all chose a hero graphic (photograph, illustration, or typographic dominance) instead. All 4 new concepts follow this pattern.</p>
-  <p><strong>Protein as a hero stat, not a cert</strong> — every bag on the shelf makes protein prominent (Kings "30% PROTEIN", Ember "20g per pack", Curators "13G NATURAL PROTEIN"). Concepts 01, 02, and 04 promote this. Concept 03 keeps it subtle to match its editorial lineage.</p>
-  <p><strong>Every bag has provenance / heritage visible</strong> — Kings "PROUDLY MADE IN YORK", Cruga's savanna scene, Ember's Suffolk farm story. Concepts 01 and 04 foreground the Welsh heritage; 02 and 03 carry it more subtly via the Wales silhouette.</p>
-</aside>
+    <p style="margin-top:18px;">Tell me the <strong>number you want</strong> (or two you're torn between) and I'll develop it into the canonical — same treatment the current Chilli & Honey got, but with the new hero direction baked in.</p>
+  </section>
 
 </div>
 </body>
