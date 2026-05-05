@@ -47,7 +47,7 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.5;mi
 @media (max-width:1100px){.pair{grid-template-columns:1fr;gap:60px;}.stage{max-width:560px;}}
 .pouch-cell{display:flex;flex-direction:column;align-items:center;gap:24px;width:100%;}
 .shadow{width:82%;height:30px;margin-top:-20px;background:radial-gradient(ellipse at 50% 50%,oklch(22% 0.03 40 / 0.35) 0%,oklch(22% 0.03 40 / 0.12) 45%,transparent 70%);filter:blur(7px);transform:translateY(-2px);}
-.pouch{--accent:var(--tandoori);--accent-deep:var(--tandoori-deep);position:relative;width:min(460px,44vw);aspect-ratio:130/208;border-radius:26px 26px 10px 10px;overflow:hidden;background:linear-gradient(180deg,var(--stock-hi) 0%,var(--stock) 32%,var(--stock) 70%,var(--stock-lo) 100%);box-shadow:0 70px 90px -40px oklch(22% 0.03 40 / 0.4),0 22px 44px -20px oklch(22% 0.03 40 / 0.26),inset 0 0 0 1px oklch(22% 0.03 40 / 0.08),inset 0 -50px 80px -40px oklch(22% 0.03 40 / 0.16),inset 0 50px 80px -40px oklch(22% 0.03 40 / 0.06);}
+.pouch{--accent:var(--tandoori);--accent-deep:var(--tandoori-deep);position:relative;width:min(460px,44vw);aspect-ratio:130/185;border-radius:4px 4px 4px 4px;overflow:hidden;background:linear-gradient(180deg,var(--stock-hi) 0%,var(--stock) 32%,var(--stock) 70%,var(--stock-lo) 100%);box-shadow:0 70px 90px -40px oklch(22% 0.03 40 / 0.4),0 22px 44px -20px oklch(22% 0.03 40 / 0.26),inset 0 0 0 1px oklch(22% 0.03 40 / 0.08),inset 0 -50px 80px -40px oklch(22% 0.03 40 / 0.16),inset 0 50px 80px -40px oklch(22% 0.03 40 / 0.06);}
 .pouch.masala{--accent:var(--masala);--accent-deep:var(--masala-deep);}
 /* ===== CANONICAL PALETTE · Chilli & Honey ===== */
 .pouch.tandoori{--stock:oklch(58% 0.19 32);--stock-hi:oklch(62% 0.17 32);--stock-lo:oklch(50% 0.2 30);--ink:oklch(16% 0.06 30);--ink-dim:oklch(30% 0.08 30);--ink-soft:oklch(44% 0.08 32);--accent:oklch(94% 0.03 80);--accent-deep:oklch(94% 0.03 80);}
@@ -56,9 +56,10 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.5;mi
 .pouch::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.42;mix-blend-mode:multiply;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='1.3' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.22  0 0 0 0 0.13  0 0 0 0 0.07  0 0 0 0.12 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");}
 .pouch::after{content:"";position:absolute;inset:0;pointer-events:none;mix-blend-mode:multiply;background:linear-gradient(90deg,oklch(100% 0 0 / 0.32) 0,transparent 6%,transparent 94%,oklch(22% 0.03 40 / 0.1) 100%),linear-gradient(90deg,transparent 49.6%,oklch(22% 0.03 40 / 0.05) 50%,transparent 50.4%);}
 .seal{position:absolute;top:0;left:0;right:0;height:8%;border-bottom:1px solid oklch(22% 0.03 40 / 0.16);background-image:linear-gradient(180deg,var(--stock-lo) 0%,var(--stock) 80%),repeating-linear-gradient(90deg,oklch(22% 0.03 40 / 0.1) 0 1px,transparent 1px 6px);}
-.seal::before{content:"";position:absolute;top:32%;left:50%;transform:translate(-50%,0);width:22px;height:10px;background:oklch(22% 0.03 40 / 0.92);border-radius:999px;box-shadow:inset 0 1px 2px oklch(0% 0 0 / 0.6),0 1px 0 oklch(100% 0 0 / 0.4);}
-.gusset{position:absolute;left:0;right:0;bottom:0;height:4%;background:linear-gradient(180deg,transparent,oklch(22% 0.03 40 / 0.1)),var(--stock-lo);border-top:1px solid oklch(22% 0.03 40 / 0.11);}
-.art{position:absolute;top:8%;left:0;right:0;bottom:4%;padding:16px 24px 0;display:flex;flex-direction:column;color:var(--ink);}
+.seal::before{content:"";position:absolute;top:58%;left:50%;transform:translate(-50%,0);width:22px;height:8px;background:oklch(22% 0.03 40 / 0.92);border-radius:999px;box-shadow:inset 0 1px 2px oklch(0% 0 0 / 0.6),0 1px 0 oklch(100% 0 0 / 0.4);}
+.hang-hole{position:absolute;top:1.6%;left:50%;transform:translateX(-50%);width:13px;height:13px;border-radius:50%;background:oklch(22% 0.03 40 / 0.22);box-shadow:inset 0 1px 2px oklch(0% 0 0 / 0.45),inset 0 -1px 1px oklch(100% 0 0 / 0.2),0 0 0 1px oklch(22% 0.03 40 / 0.1);z-index:3;}
+.gusset{position:absolute;left:0;right:0;bottom:0;height:5.5%;background-image:linear-gradient(180deg,var(--stock) 0%,var(--stock-lo) 90%),repeating-linear-gradient(90deg,oklch(22% 0.03 40 / 0.1) 0 1px,transparent 1px 6px);border-top:1px solid oklch(22% 0.03 40 / 0.18);}
+.art{position:absolute;top:8%;left:0;right:0;bottom:5.5%;padding:16px 24px 0;display:flex;flex-direction:column;color:var(--ink);}
 .wordmark{text-align:center;padding:6px 0 8px;}
 .wordmark .bc{font-family:var(--font-display);font-weight:700;font-size:clamp(28px,4.6vw,40px);letter-spacing:-.025em;line-height:1;color:var(--ink);font-variation-settings:"SOFT" 30,"WONK" 1,"opsz" 144;display:inline-flex;align-items:baseline;gap:.14em;}
 .wordmark .bc .amp{font-style:italic;font-weight:500;color:var(--accent);font-variation-settings:"SOFT" 80,"WONK" 1,"opsz" 144;font-size:1.1em;margin:0 .02em;}
@@ -196,7 +197,6 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.5;mi
   .pouch::after{display:none!important;}
   *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;color-adjust:exact!important;}
 }
-
 /* === PAIR VARIANT OVERRIDE · Rose & Saffron === */
 .pouch.tandoori{--stock:oklch(58% 0.18 25);--stock-hi:oklch(62% 0.16 25);--stock-lo:oklch(50% 0.2 22);--ink:oklch(16% 0.06 30);--ink-dim:oklch(30% 0.08 30);--ink-soft:oklch(44% 0.08 32);--accent:oklch(94% 0.03 80);--accent-deep:oklch(94% 0.03 80);}
 .pouch.masala{--stock:oklch(80% 0.17 78);--stock-hi:oklch(84% 0.15 78);--stock-lo:oklch(72% 0.19 74);--ink:oklch(18% 0.05 50);--ink-dim:oklch(32% 0.06 50);--ink-soft:oklch(48% 0.06 52);--accent:oklch(30% 0.1 50);--accent-deep:oklch(30% 0.1 50);}
@@ -219,7 +219,7 @@ body.embed-front-only .pair:nth-of-type(2){display:none!important;}
 body.embed-front-only .pair{gap:0!important;grid-template-columns:1fr!important;justify-items:stretch;align-items:center;margin:0;padding:0;width:100%;height:100%;}
 body.embed-front-only .pouch-cell{gap:0;width:100%;height:100%;margin:0;padding:0;display:flex;justify-content:center;align-items:center;}
 /* Pouch fills the iframe viewport proportionally — aspect-ratio keeps shape, width/height auto-cap to container */
-body.embed-front-only .pouch{width:auto!important;max-width:100%!important;height:100%!important;max-height:100%!important;aspect-ratio:130/208;margin:0 auto;box-shadow:0 32px 60px -32px oklch(0% 0 0 / 0.6),0 10px 20px -8px oklch(0% 0 0 / 0.4),inset 0 0 0 1px oklch(0% 0 0 / 0.08);}
+body.embed-front-only .pouch{width:auto!important;max-width:100%!important;height:100%!important;max-height:100%!important;aspect-ratio:130/185;margin:0 auto;box-shadow:0 32px 60px -32px oklch(0% 0 0 / 0.6),0 10px 20px -8px oklch(0% 0 0 / 0.4),inset 0 0 0 1px oklch(0% 0 0 / 0.08);}
 /* Single-SKU: hide the other pouch-cell via :has() — modern browsers only. */
 body.embed-sku-tandoori .pair .pouch-cell:has(.pouch.masala){display:none!important;}
 body.embed-sku-masala   .pair .pouch-cell:has(.pouch.tandoori){display:none!important;}
@@ -260,7 +260,7 @@ body.embed-sku-masala   .pair .pouch-cell:has(.pouch.tandoori){display:none!impo
 <body>
 <main class="stage">
   <header class="crest">
-    <div class="eyebrow">Packaging · 60g stand-up pouch · v7 · warm tan · legal-fixed</div>
+    <div class="eyebrow">Packaging · 60g flat pillow pouch · v7 · Chilli &amp; Honey</div>
     <div class="mark">Blaze <span class="amp">&amp;</span> Char</div>
     <p class="caption">The UK's first tandoori <em>beef jerky</em>. Hand-made in Wales, made with halal beef. Artwork fixed against UK food-labelling rules.</p>
   </header>
@@ -272,6 +272,7 @@ body.embed-sku-masala   .pair .pouch-cell:has(.pouch.tandoori){display:none!impo
     <div class="pouch-cell">
       <article class="pouch tandoori" aria-label="Tandoori Original, 60g front">
         <div class="seal"></div>
+        <div class="hang-hole" aria-hidden="true"></div>
         <div class="art">
           <div class="wordmark">
             <div class="bc">Blaze<span class="amp">&amp;</span>Char</div>
@@ -329,6 +330,7 @@ body.embed-sku-masala   .pair .pouch-cell:has(.pouch.tandoori){display:none!impo
     <div class="pouch-cell">
       <article class="pouch masala" aria-label="Masala Warm &amp; Rich, 60g front">
         <div class="seal"></div>
+        <div class="hang-hole" aria-hidden="true"></div>
         <div class="art">
           <div class="wordmark">
             <div class="bc">Blaze<span class="amp">&amp;</span>Char</div>
@@ -392,6 +394,7 @@ body.embed-sku-masala   .pair .pouch-cell:has(.pouch.tandoori){display:none!impo
     <div class="pouch-cell">
       <article class="pouch tandoori" aria-label="Tandoori back">
         <div class="seal"></div>
+        <div class="hang-hole" aria-hidden="true"></div>
         <div class="art back">
           <div class="back-head">
             <div class="bc">Blaze<span class="amp">&amp;</span>Char</div>
@@ -445,6 +448,7 @@ body.embed-sku-masala   .pair .pouch-cell:has(.pouch.tandoori){display:none!impo
     <div class="pouch-cell">
       <article class="pouch masala" aria-label="Masala back">
         <div class="seal"></div>
+        <div class="hang-hole" aria-hidden="true"></div>
         <div class="art back">
           <div class="back-head">
             <div class="bc">Blaze<span class="amp">&amp;</span>Char</div>
