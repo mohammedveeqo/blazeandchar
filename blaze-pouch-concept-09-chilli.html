@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Blaze & Char — Concept 09 · Chilli Pepper Hero</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,400;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet" />
+<style>
+:root { --bg: oklch(88% 0.04 72); --bg-deep: oklch(82% 0.05 70); --ink-global: oklch(22% 0.03 40); --font-display: 'Fraunces','Newsreader','Iowan Old Style',Georgia,serif; --font-body: 'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif; --font-mono: 'JetBrains Mono',ui-monospace,Menlo,monospace; }
+*,*::before,*::after{box-sizing:border-box;} html,body{margin:0;padding:0;}
+body{min-height:100vh;background:radial-gradient(ellipse at 50% 20%,oklch(90% 0.035 72) 0%,var(--bg) 60%,var(--bg-deep) 120%);color:var(--ink-global);font-family:var(--font-body);padding:64px 24px 80px;}
+.stage{position:relative;max-width:1280px;margin:0 auto;}
+.crest{text-align:center;margin-bottom:40px;}
+.crest .eyebrow{font-family:var(--font-mono);font-size:11px;letter-spacing:.34em;text-transform:uppercase;color:oklch(55% 0.04 50);margin-bottom:14px;font-weight:600;}
+.crest h1{font-family:var(--font-display);font-weight:500;font-size:42px;letter-spacing:-.025em;margin:0;font-variation-settings:"SOFT" 30,"WONK" 1,"opsz" 144;line-height:1.05;}
+.crest h1 em{font-style:italic;font-weight:400;color:oklch(54% 0.19 32);}
+.crest .caption{margin-top:14px;font-family:var(--font-display);font-style:italic;font-size:18px;color:oklch(40% 0.04 45);max-width:720px;margin-left:auto;margin-right:auto;}
+.crest .caption em{font-style:normal;color:var(--ink-global);font-weight:500;}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:end;justify-items:center;}
+@media (max-width:1100px){.pair{grid-template-columns:1fr;gap:60px;}.stage{max-width:560px;}}
+.pouch-cell{display:flex;flex-direction:column;align-items:center;gap:24px;width:100%;}
+.shadow{width:82%;height:30px;margin-top:-20px;background:radial-gradient(ellipse at 50% 50%,oklch(22% 0.03 40 / 0.35) 0%,oklch(22% 0.03 40 / 0.12) 45%,transparent 70%);filter:blur(7px);}
+.pouch{position:relative;width:min(460px,44vw);aspect-ratio:130/185;border-radius:4px;overflow:hidden;box-shadow:0 70px 90px -40px oklch(22% 0.03 40 / 0.4),0 22px 44px -20px oklch(22% 0.03 40 / 0.26);}
+.pouch.tandoori{--stock:oklch(58% 0.19 32);--stock-hi:oklch(62% 0.17 32);--stock-lo:oklch(50% 0.2 30);--ink:oklch(14% 0.06 30);--ink-dim:oklch(28% 0.08 30);--accent:oklch(94% 0.03 80);--chilli-fill:oklch(32% 0.11 25);--chilli-hl:oklch(44% 0.15 28);background:linear-gradient(180deg,var(--stock-hi) 0%,var(--stock) 32%,var(--stock) 70%,var(--stock-lo) 100%);}
+.pouch.masala{--stock:oklch(82% 0.16 88);--stock-hi:oklch(86% 0.14 88);--stock-lo:oklch(74% 0.18 85);--ink:oklch(18% 0.05 50);--ink-dim:oklch(32% 0.06 50);--accent:oklch(30% 0.1 50);--chilli-fill:oklch(44% 0.1 55);--chilli-hl:oklch(54% 0.12 58);background:linear-gradient(180deg,var(--stock-hi) 0%,var(--stock) 32%,var(--stock) 70%,var(--stock-lo) 100%);}
+.seal{position:absolute;top:0;left:0;right:0;height:8%;border-bottom:1px solid oklch(22% 0.03 40 / 0.16);background-image:linear-gradient(180deg,var(--stock-lo) 0%,var(--stock) 80%),repeating-linear-gradient(90deg,oklch(22% 0.03 40 / 0.1) 0 1px,transparent 1px 6px);z-index:2;}
+.hang-hole{position:absolute;top:1.6%;left:50%;transform:translateX(-50%);width:13px;height:13px;border-radius:50%;background:oklch(22% 0.03 40 / 0.22);box-shadow:inset 0 1px 2px oklch(0% 0 0 / 0.45);z-index:3;}
+.gusset{position:absolute;left:0;right:0;bottom:0;height:5.5%;background-image:linear-gradient(180deg,var(--stock) 0%,var(--stock-lo) 90%),repeating-linear-gradient(90deg,oklch(22% 0.03 40 / 0.1) 0 1px,transparent 1px 6px);border-top:1px solid oklch(22% 0.03 40 / 0.18);z-index:2;}
+.art{position:absolute;top:8%;left:0;right:0;bottom:5.5%;padding:10px 22px 0;display:flex;flex-direction:column;color:var(--ink);z-index:1;}
+.wordmark{text-align:center;padding:2px 0;}
+.wordmark .bc{font-family:var(--font-display);font-weight:700;font-size:clamp(20px,3.2vw,26px);letter-spacing:-.025em;line-height:1;color:var(--ink);font-variation-settings:"SOFT" 30,"WONK" 1,"opsz" 144;display:inline-flex;align-items:baseline;gap:.14em;}
+.wordmark .bc .amp{font-style:italic;font-weight:500;color:var(--accent);font-variation-settings:"SOFT" 80,"WONK" 1,"opsz" 144;font-size:1.1em;}
+.wordmark .tagline{font-family:var(--font-mono);font-size:7px;letter-spacing:.32em;text-transform:uppercase;color:var(--ink-dim);font-weight:600;margin-top:3px;}
+.foot{position:absolute;left:0;right:0;bottom:5.5%;background:var(--ink);color:var(--stock);padding:7px 22px 9px;display:flex;justify-content:space-between;align-items:baseline;gap:12px;z-index:2;}
+.foot .wt{font-family:var(--font-display);font-weight:600;font-size:15px;letter-spacing:-.01em;}
+.foot .wt em{font-style:italic;color:oklch(86% 0.055 68 / 0.55);font-weight:400;margin-right:2px;}
+.foot .halal{font-family:var(--font-mono);font-size:9px;letter-spacing:.26em;text-transform:uppercase;font-weight:700;}
+
+.tag-strip{display:flex;justify-content:space-between;align-items:center;margin:2px 0 4px;padding-bottom:3px;border-bottom:1px solid var(--ink);font-family:var(--font-mono);font-size:7px;letter-spacing:.28em;text-transform:uppercase;font-weight:700;color:var(--ink);}
+.chilli-hero{position:relative;flex:1;display:flex;align-items:center;justify-content:center;margin:4px 0;min-height:0;}
+.chilli-hero svg{width:68%;max-width:180px;height:auto;filter:drop-shadow(0 4px 8px rgba(0,0,0,0.2));}
+.heat-stamp{position:absolute;top:8%;left:4%;width:50px;height:50px;border-radius:50%;border:2px solid var(--ink);background:var(--stock);display:flex;flex-direction:column;align-items:center;justify-content:center;transform:rotate(-8deg);z-index:4;}
+.heat-stamp .n{font-family:var(--font-display);font-weight:800;font-size:20px;line-height:1;color:var(--ink);font-variation-settings:"opsz" 36;}
+.heat-stamp .l{font-family:var(--font-mono);font-size:5px;letter-spacing:.2em;font-weight:700;color:var(--ink);margin-top:1px;}
+.flavour-hero{text-align:center;margin:2px 0;}
+.flavour-hero h2{font-family:var(--font-display);font-weight:800;font-size:42px;letter-spacing:-.01em;line-height:.92;margin:0;color:var(--ink);text-transform:uppercase;font-variation-settings:"SOFT" 30,"opsz" 144;}
+.flavour-hero .under{font-family:var(--font-mono);font-size:7.5px;letter-spacing:.32em;text-transform:uppercase;color:var(--ink-dim);font-weight:700;margin-top:4px;}
+.triple-spec{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;margin:5px 0;padding:5px 0;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);}
+.triple-spec .s{text-align:center;position:relative;padding:0 2px;}
+.triple-spec .s + .s::before{content:"";position:absolute;left:0;top:15%;bottom:15%;width:.75px;background:var(--ink);opacity:.5;}
+.triple-spec .s strong{display:block;font-family:var(--font-display);font-weight:800;font-size:15px;line-height:1;color:var(--ink);font-variation-settings:"opsz" 24;margin-bottom:2px;}
+.triple-spec .s span{font-family:var(--font-mono);font-size:6.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-dim);font-weight:700;}
+.origin-line{text-align:center;font-family:var(--font-display);font-style:italic;font-weight:500;font-size:11px;color:var(--ink);margin:3px 0 2px;font-variation-settings:"opsz" 18,"SOFT" 60;}
+</style>
+</head>
+<body>
+<main class="stage">
+  <header class="crest">
+    <div class="eyebrow">Concept 09 · Chilli pepper · Bold graphic</div>
+    <h1>The <em>chilli</em> — single iconic hero</h1>
+    <p class="caption">One big chilli pepper. That's it. Bold, graphic, impossible to mistake. Reads immediately as spice-forward and the Indian heritage without needing words. Lineage: <em>Fly By Jing, Graza, Omsom — brands that let a single motif do the work.</em></p>
+  </header>
+  <section class="pair">
+
+    <div class="pouch-cell">
+      <article class="pouch tandoori">
+        <div class="seal"></div><div class="hang-hole"></div>
+        <div class="art">
+          <div class="wordmark"><div class="bc">Blaze<span class="amp">&amp;</span>Char</div><div class="tagline">Halal · Hand-Made · Wales</div></div>
+          <div class="tag-strip"><span>Beef Jerky</span><span>№ 01 · 60g</span></div>
+          <div class="chilli-hero" aria-label="Large illustrated Kashmiri chilli pepper">
+            <div class="heat-stamp"><div class="n">3</div><div class="l">HEAT</div></div>
+            <svg viewBox="0 0 180 280" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="chilli-grad-t" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stop-color="var(--chilli-hl)"/>
+                  <stop offset="60%" stop-color="var(--chilli-fill)"/>
+                  <stop offset="100%" stop-color="var(--ink)"/>
+                </linearGradient>
+                <linearGradient id="chilli-hl-t" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="var(--stock-hi)" stop-opacity="0.2"/>
+                  <stop offset="40%" stop-color="var(--stock-hi)" stop-opacity="0.5"/>
+                  <stop offset="100%" stop-color="var(--stock-hi)" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+              <!-- Chilli body (curved teardrop) -->
+              <path d="M 90 50 Q 80 55 72 68 Q 62 90 62 130 Q 62 170 68 210 Q 75 245 90 260 Q 105 245 112 210 Q 118 170 118 130 Q 118 90 108 68 Q 100 55 90 50 Z" 
+                    fill="url(#chilli-grad-t)" stroke="var(--ink)" stroke-width="2.5" stroke-linejoin="round"/>
+              <!-- Highlight on left side -->
+              <path d="M 85 75 Q 72 95 70 130 Q 70 170 75 200" 
+                    stroke="url(#chilli-hl-t)" stroke-width="8" stroke-linecap="round" fill="none" opacity="0.7"/>
+              <!-- Stem -->
+              <path d="M 82 52 L 78 30 Q 76 22 82 18 L 92 18 Q 104 22 104 34 L 98 54" 
+                    fill="oklch(30% 0.08 140)" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/>
+              <!-- Stem highlight -->
+              <path d="M 84 35 L 82 48" stroke="oklch(45% 0.12 140)" stroke-width="2" stroke-linecap="round"/>
+              <!-- Cap/calyx on top of pepper body -->
+              <path d="M 78 50 Q 90 55 102 50 Q 108 52 108 58 Q 90 65 72 58 Q 72 52 78 50 Z" 
+                    fill="oklch(28% 0.08 140)" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/>
+              <!-- Small leaf -->
+              <path d="M 104 24 Q 120 22 128 30 Q 132 38 126 44 Q 116 46 108 38 Q 102 32 104 24 Z" 
+                    fill="oklch(34% 0.1 140)" stroke="var(--ink)" stroke-width="1.5" stroke-linejoin="round"/>
+              <!-- Leaf vein -->
+              <path d="M 107 30 L 124 38" stroke="var(--ink)" stroke-width="1" opacity="0.5"/>
+              <!-- Curl at bottom tip -->
+              <path d="M 88 258 Q 82 265 85 272" fill="none" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="flavour-hero">
+            <h2>Tandoori</h2>
+            <div class="under">Original · Kashmiri chilli · Slow-dried</div>
+          </div>
+          <div class="triple-spec">
+            <div class="s"><strong>60g</strong><span>Net</span></div>
+            <div class="s"><strong>36g</strong><span>Protein</span></div>
+            <div class="s"><strong>9h</strong><span>Dried at 70°C</span></div>
+          </div>
+          <div class="origin-line">UK-born halal beef topside · Made in Wales</div>
+        </div>
+        <div class="foot"><div class="wt"><em>Net</em> 60 g</div><div class="halal">Made with halal British beef</div></div>
+        <div class="gusset"></div>
+      </article>
+      <div class="shadow"></div>
+    </div>
+
+    <div class="pouch-cell">
+      <article class="pouch masala">
+        <div class="seal"></div><div class="hang-hole"></div>
+        <div class="art">
+          <div class="wordmark"><div class="bc">Blaze<span class="amp">&amp;</span>Char</div><div class="tagline">Halal · Hand-Made · Wales</div></div>
+          <div class="tag-strip"><span>Beef Jerky</span><span>№ 02 · 60g</span></div>
+          <div class="chilli-hero" aria-label="Large illustrated chilli pepper">
+            <div class="heat-stamp"><div class="n">2</div><div class="l">HEAT</div></div>
+            <svg viewBox="0 0 180 280" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="chilli-grad-m" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stop-color="var(--chilli-hl)"/>
+                  <stop offset="60%" stop-color="var(--chilli-fill)"/>
+                  <stop offset="100%" stop-color="var(--ink)"/>
+                </linearGradient>
+                <linearGradient id="chilli-hl-m" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="var(--stock-hi)" stop-opacity="0.2"/>
+                  <stop offset="40%" stop-color="var(--stock-hi)" stop-opacity="0.5"/>
+                  <stop offset="100%" stop-color="var(--stock-hi)" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+              <path d="M 90 50 Q 80 55 72 68 Q 62 90 62 130 Q 62 170 68 210 Q 75 245 90 260 Q 105 245 112 210 Q 118 170 118 130 Q 118 90 108 68 Q 100 55 90 50 Z" 
+                    fill="url(#chilli-grad-m)" stroke="var(--ink)" stroke-width="2.5" stroke-linejoin="round"/>
+              <path d="M 85 75 Q 72 95 70 130 Q 70 170 75 200" 
+                    stroke="url(#chilli-hl-m)" stroke-width="8" stroke-linecap="round" fill="none" opacity="0.7"/>
+              <path d="M 82 52 L 78 30 Q 76 22 82 18 L 92 18 Q 104 22 104 34 L 98 54" 
+                    fill="oklch(30% 0.08 140)" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/>
+              <path d="M 84 35 L 82 48" stroke="oklch(45% 0.12 140)" stroke-width="2" stroke-linecap="round"/>
+              <path d="M 78 50 Q 90 55 102 50 Q 108 52 108 58 Q 90 65 72 58 Q 72 52 78 50 Z" 
+                    fill="oklch(28% 0.08 140)" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/>
+              <path d="M 104 24 Q 120 22 128 30 Q 132 38 126 44 Q 116 46 108 38 Q 102 32 104 24 Z" 
+                    fill="oklch(34% 0.1 140)" stroke="var(--ink)" stroke-width="1.5" stroke-linejoin="round"/>
+              <path d="M 107 30 L 124 38" stroke="var(--ink)" stroke-width="1" opacity="0.5"/>
+              <path d="M 88 258 Q 82 265 85 272" fill="none" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="flavour-hero">
+            <h2>Masala</h2>
+            <div class="under">Warm &amp; Rich · Black cardamom · Aromatic</div>
+          </div>
+          <div class="triple-spec">
+            <div class="s"><strong>60g</strong><span>Net</span></div>
+            <div class="s"><strong>36g</strong><span>Protein</span></div>
+            <div class="s"><strong>9h</strong><span>Dried at 70°C</span></div>
+          </div>
+          <div class="origin-line">UK-born halal beef topside · Made in Wales</div>
+        </div>
+        <div class="foot"><div class="wt"><em>Net</em> 60 g</div><div class="halal">Made with halal British beef</div></div>
+        <div class="gusset"></div>
+      </article>
+      <div class="shadow"></div>
+    </div>
+
+  </section>
+</main>
+</body>
+</html>
