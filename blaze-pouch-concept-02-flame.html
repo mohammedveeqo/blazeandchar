@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Blaze & Char — Concept 02 · Flame & Tandoor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,400;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet" />
+<style>
+:root {
+  --bg: oklch(88% 0.04 72);
+  --bg-deep: oklch(82% 0.05 70);
+  --ink-global: oklch(22% 0.03 40);
+  --font-display: 'Fraunces','Newsreader','Iowan Old Style',Georgia,serif;
+  --font-body: 'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;
+  --font-mono: 'JetBrains Mono',ui-monospace,Menlo,monospace;
+}
+*,*::before,*::after{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{min-height:100vh;background:radial-gradient(ellipse at 50% 20%,oklch(90% 0.035 72) 0%,var(--bg) 60%,var(--bg-deep) 120%);color:var(--ink-global);font-family:var(--font-body);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;padding:64px 24px 80px;overflow-x:hidden;}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.5;mix-blend-mode:multiply;z-index:0;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.22  0 0 0 0 0.14  0 0 0 0 0.08  0 0 0 0.06 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");}
+.stage{position:relative;z-index:1;max-width:1280px;margin:0 auto;}
+.crest{text-align:center;margin-bottom:40px;}
+.crest .eyebrow{font-family:var(--font-mono);font-size:11px;letter-spacing:.34em;text-transform:uppercase;color:oklch(55% 0.04 50);margin-bottom:14px;font-weight:600;}
+.crest h1{font-family:var(--font-display);font-weight:500;font-size:42px;letter-spacing:-.025em;margin:0;font-variation-settings:"SOFT" 30,"WONK" 1,"opsz" 144;color:var(--ink-global);line-height:1.05;}
+.crest h1 em{font-style:italic;font-weight:400;color:oklch(54% 0.19 32);}
+.crest .caption{margin-top:14px;font-family:var(--font-display);font-style:italic;font-weight:400;font-size:18px;color:oklch(40% 0.04 45);font-variation-settings:"opsz" 36;max-width:640px;margin-left:auto;margin-right:auto;}
+.crest .caption em{font-style:normal;color:var(--ink-global);font-weight:500;}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:end;justify-items:center;position:relative;}
+@media (max-width:880px){.pair{grid-template-columns:1fr;gap:60px;}}
+@media (max-width:1100px){.pair{grid-template-columns:1fr;gap:60px;}.stage{max-width:560px;}}
+.pouch-cell{display:flex;flex-direction:column;align-items:center;gap:24px;width:100%;}
+.shadow{width:82%;height:30px;margin-top:-20px;background:radial-gradient(ellipse at 50% 50%,oklch(22% 0.03 40 / 0.35) 0%,oklch(22% 0.03 40 / 0.12) 45%,transparent 70%);filter:blur(7px);transform:translateY(-2px);}
+
+/* ========= POUCH BASE (flat pillow) ========= */
+.pouch{position:relative;width:min(460px,44vw);aspect-ratio:130/185;border-radius:4px;overflow:hidden;box-shadow:0 70px 90px -40px oklch(22% 0.03 40 / 0.4),0 22px 44px -20px oklch(22% 0.03 40 / 0.26),inset 0 0 0 1px oklch(22% 0.03 40 / 0.08),inset 0 -50px 80px -40px oklch(22% 0.03 40 / 0.16),inset 0 50px 80px -40px oklch(22% 0.03 40 / 0.06);}
+.pouch.tandoori{--stock:oklch(58% 0.19 32);--stock-hi:oklch(62% 0.17 32);--stock-lo:oklch(50% 0.2 30);--ink:oklch(14% 0.06 30);--ink-dim:oklch(28% 0.08 30);--ink-soft:oklch(42% 0.08 32);--accent:oklch(94% 0.03 80);--accent-deep:oklch(88% 0.03 80);background:linear-gradient(180deg,var(--stock-hi) 0%,var(--stock) 32%,var(--stock) 70%,var(--stock-lo) 100%);}
+.pouch.masala{--stock:oklch(82% 0.16 88);--stock-hi:oklch(86% 0.14 88);--stock-lo:oklch(74% 0.18 85);--ink:oklch(18% 0.05 50);--ink-dim:oklch(32% 0.06 50);--ink-soft:oklch(48% 0.06 52);--accent:oklch(30% 0.1 50);--accent-deep:oklch(22% 0.08 50);background:linear-gradient(180deg,var(--stock-hi) 0%,var(--stock) 32%,var(--stock) 70%,var(--stock-lo) 100%);}
+.pouch::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.42;mix-blend-mode:multiply;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='1.3' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.22  0 0 0 0 0.13  0 0 0 0 0.07  0 0 0 0.12 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");}
+.pouch::after{content:"";position:absolute;inset:0;pointer-events:none;mix-blend-mode:multiply;background:linear-gradient(90deg,oklch(100% 0 0 / 0.32) 0,transparent 6%,transparent 94%,oklch(22% 0.03 40 / 0.1) 100%),linear-gradient(90deg,transparent 49.6%,oklch(22% 0.03 40 / 0.05) 50%,transparent 50.4%);}
+
+/* Seals + hang hole */
+.seal{position:absolute;top:0;left:0;right:0;height:8%;border-bottom:1px solid oklch(22% 0.03 40 / 0.16);background-image:linear-gradient(180deg,var(--stock-lo) 0%,var(--stock) 80%),repeating-linear-gradient(90deg,oklch(22% 0.03 40 / 0.1) 0 1px,transparent 1px 6px);z-index:2;}
+.seal::before{content:"";position:absolute;top:58%;left:50%;transform:translate(-50%,0);width:22px;height:8px;background:oklch(22% 0.03 40 / 0.92);border-radius:999px;box-shadow:inset 0 1px 2px oklch(0% 0 0 / 0.6),0 1px 0 oklch(100% 0 0 / 0.4);}
+.hang-hole{position:absolute;top:1.6%;left:50%;transform:translateX(-50%);width:13px;height:13px;border-radius:50%;background:oklch(22% 0.03 40 / 0.22);box-shadow:inset 0 1px 2px oklch(0% 0 0 / 0.45),inset 0 -1px 1px oklch(100% 0 0 / 0.2),0 0 0 1px oklch(22% 0.03 40 / 0.1);z-index:3;}
+.gusset{position:absolute;left:0;right:0;bottom:0;height:5.5%;background-image:linear-gradient(180deg,var(--stock) 0%,var(--stock-lo) 90%),repeating-linear-gradient(90deg,oklch(22% 0.03 40 / 0.1) 0 1px,transparent 1px 6px);border-top:1px solid oklch(22% 0.03 40 / 0.18);z-index:2;}
+
+.art{position:absolute;top:8%;left:0;right:0;bottom:5.5%;padding:12px 22px 0;display:flex;flex-direction:column;color:var(--ink);z-index:1;}
+.wordmark{text-align:center;padding:2px 0 2px;}
+.wordmark .bc{font-family:var(--font-display);font-weight:700;font-size:clamp(22px,3.6vw,30px);letter-spacing:-.025em;line-height:1;color:var(--ink);font-variation-settings:"SOFT" 30,"WONK" 1,"opsz" 144;display:inline-flex;align-items:baseline;gap:.14em;}
+.wordmark .bc .amp{font-style:italic;font-weight:500;color:var(--accent);font-variation-settings:"SOFT" 80,"WONK" 1,"opsz" 144;font-size:1.1em;margin:0 .02em;}
+.wordmark .tagline{font-family:var(--font-mono);font-size:7px;letter-spacing:.32em;text-transform:uppercase;color:var(--ink-dim);font-weight:600;margin-top:4px;}
+
+/* Foot bar (used on most concepts) */
+.foot{position:absolute;left:0;right:0;bottom:5.5%;background:var(--ink);color:var(--stock);padding:7px 22px 9px;border-top:1px solid oklch(22% 0.03 40 / 0.6);display:flex;justify-content:space-between;align-items:baseline;gap:12px;z-index:2;}
+.foot .wt{font-family:var(--font-display);font-weight:600;font-size:15px;letter-spacing:-.01em;font-variation-settings:"opsz" 36;}
+.foot .wt em{font-style:italic;color:oklch(86% 0.055 68 / 0.55);font-weight:400;margin-right:2px;}
+.foot .halal{font-family:var(--font-mono);font-size:9px;letter-spacing:.26em;text-transform:uppercase;font-weight:700;color:var(--stock);}
+.foot .halal em{font-style:normal;color:var(--accent);}
+
+/* Captions below pouches (gallery context) */
+.caption{display:flex;flex-direction:column;align-items:center;gap:4px;margin-top:6px;}
+.caption .a{font-family:var(--font-display);font-style:italic;font-weight:400;font-size:22px;letter-spacing:-.01em;color:var(--ink-global);font-variation-settings:"opsz" 48,"SOFT" 50;}
+.caption .a em{font-style:normal;font-weight:500;}
+.caption .b{font-family:var(--font-mono);font-size:10px;letter-spacing:.28em;text-transform:uppercase;font-weight:600;color:oklch(40% 0.04 45);}
+.caption .b .accent{color:oklch(54% 0.19 32);}
+.caption.masala .b .accent{color:oklch(48% 0.13 68);}
+
+/* Mobile */
+@media (max-width:640px){body{padding:40px 14px 60px;}.crest h1{font-size:32px;}.pouch{width:min(420px,92vw);}}
+
+
+/* ===== CONCEPT 02: FLAME & TANDOOR ===== */
+.c02 .art{padding:12px 22px 0;}
+.c02 .wordmark{padding:4px 0 6px;}
+
+.c02 .badge-row{display:flex;justify-content:space-between;align-items:flex-start;padding:6px 0 2px;}
+.c02 .protein-badge{background:var(--ink);color:var(--stock);padding:6px 10px;border-radius:2px;text-align:center;transform:rotate(3deg);box-shadow:0 2px 0 oklch(0% 0 0 / 0.15);}
+.c02 .protein-badge .n{font-family:var(--font-display);font-weight:700;font-size:17px;line-height:.95;font-variation-settings:"opsz" 24;display:block;}
+.c02 .protein-badge .l{font-family:var(--font-mono);font-size:6px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;margin-top:2px;display:block;}
+.c02 .wales-badge{background:var(--accent);color:var(--stock);padding:6px 10px;border-radius:2px;text-align:center;transform:rotate(-3deg);box-shadow:0 2px 0 oklch(0% 0 0 / 0.1);}
+.c02 .wales-badge .n{font-family:var(--font-display);font-weight:700;font-size:11px;line-height:1;font-variation-settings:"opsz" 24;display:block;}
+.c02 .wales-badge .l{font-family:var(--font-mono);font-size:6px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;margin-top:2px;display:block;}
+
+/* Big flame illustration */
+.c02 .flame-hero{flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:8px 0 4px;position:relative;}
+.c02 .flame-hero .illu{width:75%;max-width:180px;aspect-ratio:1/1.1;color:var(--accent);}
+.c02 .flame-hero .illu svg{width:100%;height:100%;}
+.c02 .flame-hero .name{font-family:var(--font-display);font-weight:800;font-size:clamp(34px,5.8vw,46px);letter-spacing:-.015em;line-height:.92;color:var(--ink);text-transform:uppercase;font-variation-settings:"SOFT" 0,"opsz" 144;margin:6px 0 0;text-align:center;}
+.c02 .flame-hero .jerky{font-family:var(--font-mono);font-size:9.5px;letter-spacing:.38em;text-transform:uppercase;color:var(--ink-dim);font-weight:700;margin-top:6px;}
+.c02 .flame-hero .sub{margin-top:4px;font-family:var(--font-display);font-style:italic;font-weight:400;font-size:13px;color:var(--ink-dim);font-variation-settings:"opsz" 36,"SOFT" 60;}
+
+.c02 .creds-strip{padding:6px 0;border-top:1px solid oklch(22% 0.03 40 / 0.35);border-bottom:1px solid oklch(22% 0.03 40 / 0.35);margin:4px 0;text-align:center;font-family:var(--font-mono);font-size:7.5px;letter-spacing:.3em;text-transform:uppercase;font-weight:700;color:var(--ink-dim);}
+.c02 .creds-strip em{font-style:normal;color:var(--ink);}
+
+.c02 .heat-inline{display:flex;align-items:center;justify-content:center;gap:8px;margin:4px 0;}
+.c02 .heat-inline .lbl{font-family:var(--font-mono);font-size:8px;letter-spacing:.3em;text-transform:uppercase;font-weight:700;color:var(--ink);}
+.c02 .heat-inline .flame{width:9px;height:12px;color:var(--ink);opacity:.18;flex-shrink:0;}
+.c02 .heat-inline .flame.on{color:var(--accent);opacity:1;}
+
+.c02 .foot-banner{position:absolute;left:0;right:0;bottom:5.5%;height:24px;background:var(--ink);color:var(--stock);display:flex;align-items:center;overflow:hidden;z-index:2;border-top:1px solid oklch(22% 0.03 40 / 0.6);}
+.c02 .foot-banner .tape{display:flex;white-space:nowrap;animation:c02scroll 24s linear infinite;}
+.c02 .foot-banner .tape span{font-family:var(--font-mono);font-size:8.5px;letter-spacing:.32em;text-transform:uppercase;font-weight:700;padding:0 14px;}
+.c02 .foot-banner .tape em{font-style:normal;color:var(--accent);font-weight:700;}
+.c02 .foot-bottom{position:absolute;left:0;right:0;bottom:0;height:5.5%;background:var(--ink);display:flex;align-items:center;justify-content:space-between;padding:0 22px;z-index:3;}
+.c02 .foot-bottom .wt{font-family:var(--font-display);font-weight:700;color:var(--stock);font-size:12px;font-variation-settings:"opsz" 24;}
+.c02 .foot-bottom .wt em{font-style:italic;color:oklch(86% 0.055 68 / 0.55);font-weight:400;margin-right:2px;}
+.c02 .foot-bottom .halal{font-family:var(--font-mono);font-size:7.5px;letter-spacing:.26em;text-transform:uppercase;font-weight:700;color:var(--stock);}
+.c02 .foot-bottom .halal em{font-style:normal;color:var(--accent);}
+@keyframes c02scroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+</style>
+</head>
+<body>
+<main class="stage">
+  <header class="crest">
+    <div class="eyebrow">Concept · Flame & Tandoor</div>
+    <h1>Concept 02 — <em>Flame &amp; Tandoor</em></h1>
+    <p class="caption">Stylised flame as hero graphic — leans into the <em>Blaze &amp; Char</em> name. Two bold rectangular badges top, repeating-tape foot banner below. Most on-brand for the product story.</p>
+  </header>
+  <section class="pair" aria-label="Front panels, both flavours">
+    <div class="pouch-cell">
+      <article class="pouch tandoori" aria-label="Tandoori Original, 60g front">
+        <div class="seal"></div>
+        <div class="hang-hole" aria-hidden="true"></div>
+        <div class="art c02">
+          <div class="wordmark">
+            <div class="bc">Blaze<span class="amp">&amp;</span>Char</div>
+            <div class="tagline">Hand-made in Wales · Est. [YYYY]</div>
+          </div>
+          <div class="badge-row">
+            <div class="wales-badge"><span class="n">Hand-made</span><span class="l">In Wales</span></div>
+            <div class="protein-badge"><span class="n">36g</span><span class="l">Protein / Pack</span></div>
+          </div>
+          <div class="flame-hero">
+            <div class="illu"><svg viewBox="0 0 100 110" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <path d="M50 5 C50 18 62 26 68 38 C73 48 74 58 71 66 C68 74 61 80 50 86 C39 80 32 74 29 66 C26 58 27 48 32 38 C38 26 50 18 50 5 Z" fill="currentColor" opacity="0.92"/>
+  <path d="M50 22 C50 30 57 36 60 44 C63 51 63 58 61 64 C58 70 54 74 50 78 C46 74 42 70 39 64 C37 58 37 51 40 44 C43 36 50 30 50 22 Z" fill="currentColor" opacity="0.6"/>
+  <path d="M50 36 C50 42 54 46 55 52 C56 57 56 61 54 64 C52 67 51 69 50 71 C49 69 48 67 46 64 C44 61 44 57 45 52 C46 46 50 42 50 36 Z" fill="currentColor" opacity="0.35"/>
+  <ellipse cx="50" cy="92" rx="28" ry="4" fill="currentColor" opacity="0.18"/>
+  <ellipse cx="50" cy="97" rx="34" ry="3" fill="currentColor" opacity="0.1"/>
+</svg></div>
+            <h1 class="name">Tandoori</h1>
+            <div class="jerky">№&thinsp;01 · Beef Jerky</div>
+            <p class="sub">Original</p>
+          </div>
+          <div class="creds-strip"><em>Topside · Hand-Cut</em> · Halal Beef · <em>UK Born &amp; Reared</em> · No MSG · No Soy</div>
+          <div class="heat-inline" aria-label="Heat 3 of 5">
+            <span class="lbl">Heat 3/5</span>
+            <svg class="flame on" viewBox="0 0 14 18" fill="currentColor"><path d="M7 0.5 C7 3 9.2 4.5 10.5 6.6 C11.7 8.6 12.2 10.4 11.8 12 C11.2 14.4 9.4 16 7 17.5 C4.6 16 2.8 14.4 2.2 12 C1.8 10.4 2.3 8.6 3.5 6.6 C4.8 4.5 7 3 7 0.5 Z"/></svg><svg class="flame on" viewBox="0 0 14 18" fill="currentColor"><path d="M7 0.5 C7 3 9.2 4.5 10.5 6.6 C11.7 8.6 12.2 10.4 11.8 12 C11.2 14.4 9.4 16 7 17.5 C4.6 16 2.8 14.4 2.2 12 C1.8 10.4 2.3 8.6 3.5 6.6 C4.8 4.5 7 3 7 0.5 Z"/></svg><svg class="flame on" viewBox="0 0 14 18" fill="currentColor"><path d="M7 0.5 C7 3 9.2 4.5 10.5 6.6 C11.7 8.6 12.2 10.4 11.8 12 C11.2 14.4 9.4 16 7 17.5 C4.6 16 2.8 14.4 2.2 12 C1.8 10.4 2.3 8.6 3.5 6.6 C4.8 4.5 7 3 7 0.5 Z"/></svg><svg class="flame" viewBox="0 0 14 18" fill="currentColor"><path d="M7 0.5 C7 3 9.2 4.5 10.5 6.6 C11.7 8.6 12.2 10.4 11.8 12 C11.2 14.4 9.4 16 7 17.5 C4.6 16 2.8 14.4 2.2 12 C1.8 10.4 2.3 8.6 3.5 6.6 C4.8 4.5 7 3 7 0.5 Z"/></svg><svg class="flame" viewBox="0 0 14 18" fill="currentColor"><path d="M7 0.5 C7 3 9.2 4.5 10.5 6.6 C11.7 8.6 12.2 10.4 11.8 12 C11.2 14.4 9.4 16 7 17.5 C4.6 16 2.8 14.4 2.2 12 C1.8 10.4 2.3 8.6 3.5 6.6 C4.8 4.5 7 3 7 0.5 Z"/></svg>
+          </div>
+        </div>
+        <div class="foot-banner" aria-hidden="true"><div class="tape"><span><em>Hand-made in Wales</em> · Small batch · 70°C · 9 hours · Halal beef · No MSG · No soy · No artificial preservatives · </span><span><em>Hand-made in Wales</em> · Small batch · 70°C · 9 hours · Halal beef · No MSG · No soy · No artificial preservatives · </span><span><em>Hand-made in Wales</em> · Small batch · 70°C · 9 hours · Halal beef · No MSG · No soy · No artificial preservatives · </span><span><em>Hand-made in Wales</em> · Small batch · 70°C · 9 hours · Halal beef · No MSG · No soy · No artificial preservatives · </span><span><em>Hand-made in Wales</em> · Small batch · 70°C · 9 hours · Halal beef · No MSG · No soy · No artificial preservatives · </span><span><em>Hand-made in Wales</em> · Small batch · 70°C · 9 hours · Halal beef · No MSG · No soy · No artificial preservatives · </span></div></div>
+        <div class="foot-bottom"><div class="wt"><em>Net</em> 60 g</div><div class="halal">Made with <em>halal</em> beef</div></div>
+        <div class="gusset"></div>
+      </article>
+      <div class="shadow"></div>
+      <div class="caption"><div class="a"><em>The Fire</em></div><div class="b">Tandoori · <span class="accent">3/5 Heat</span> · Flame & Tandoor</div></div>
+    </div>
+    <div class="pouch-cell">
+      <article class="pouch masala" aria-label="Masala Warm &amp; Rich, 60g front">
+        <div class="seal"></div>
+        <div class="hang-hole" aria-hidden="true"></div>
+        <div class="art c02">
+          <div class="wordmark">
+            <div class="bc">Blaze<span class="amp">&amp;</span>Char</div>
+            <div class="tagline">Hand-made in Wales · Est. [YYYY]</div>
+          </div>
+          <div class="badge-row">
+            <div class="wales-badge"><span class="n">Hand-made</span><span class="l">In Wales</span></div>
+            <div class="protein-badge"><span class="n">36g</span><span class="l">Protein / Pack</span></div>
+          </div>
+          <div class="flame-hero">
+            <div class="illu"><svg viewBox="0 0 100 110" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <path d="M50 5 C50 18 62 26 68 38 C73 48 74 58 71 66 C68 74 61 80 50 86 C39 80 32 74 29 66 C26 58 27 48 32 38 C38 26 50 18 50 5 Z" fill="currentColor" opacity="0.92"/>
+  <path d="M50 22 C50 30 57 36 60 44 C63 51 63 58 61 64 C58 70 54 74 50 78 C46 74 42 70 39 64 C37 58 37 51 40 44 C43 36 50 30 50 22 Z" fill="currentColor" opacity="0.6"/>
+  <path d="M50 36 C50 42 54 46 55 52 C56 57 56 61 54 64 C52 67 51 69 50 71 C49 69 48 67 46 64 C44 61 44 57 45 52 C46 46 50 42 50 36 Z" fill="currentColor" opacity="0.35"/>
+  <ellipse cx="50" cy="92" rx="28" ry="4" fill="currentColor" opacity="0.18"/>
+  <ellipse cx="50" cy="97" rx="34" ry="3" fill="currentColor" opacity="0.1"/>
+</svg></div>
+            <h1 class="name">Masala</h1>
+            <div class="jerky">№&thinsp;02 · Beef Jerky</div>
+            <p class="sub">Warm &amp; Rich</p>
+          </div>
+          <div class="creds-strip"><em>Topside · Hand-Cut</em> · Halal Beef · <em>UK Born &amp; Reared</em> · No MSG · No Soy</div>
+          <div class="heat-inline" aria-label="Heat 2 of 5">
+            <span class="lbl">Heat 2/5</span>
+            <svg class="flame on" viewBox="0 0 14 18" fill="currentColor"><path d="M7 0.5 C7 3 9.2 4.5 10.5 6.6 C11.7 8.6 12.2 10.4 11.8 12 C11.2 14.4 9.4 16 7 17.5 C4.6 16 2.8 14.4 2.2 12 C1.8 10.4 2.3 8.6 3.5 6.6 C4.8 4.5 7 3 7 0.5 Z"/></svg><svg class="flame on" viewBox="0 0 14 18" fill="currentColor"><path d="M7 0.5 C7 3 9.2 4.5 10.5 6.6 C11.7 8.6 12.2 10.4 11.8 12 C11.2 14.4 9.4 16 7 17.5 C4.6 16 2.8 14.4 2.2 12 C1.8 10.4 2.3 8.6 3.5 6.6 C4.8 4.5 7 3 7 0.5 Z"/></svg><svg class="flame" viewBox="0 0 14 18" fill="currentColor"><path d="M7 0.5 C7 3 9.2 4.5 10.5 6.6 C11.7 8.6 12.2 10.4 11.8 12 C11.2 14.4 9.4 16 7 17.5 C4.6 16 2.8 14.4 2.2 12 C1.8 10.4 2.3 8.6 3.5 6.6 C4.8 4.5 7 3 7 0.5 Z"/></svg><svg class="flame" viewBox="0 0 14 18" fill="currentColor"><path d="M7 0.5 C7 3 9.2 4.5 10.5 6.6 C11.7 8.6 12.2 10.4 11.8 12 C11.2 14.4 9.4 16 7 17.5 C4.6 16 2.8 14.4 2.2 12 C1.8 10.4 2.3 8.6 3.5 6.6 C4.8 4.5 7 3 7 0.5 Z"/></svg><svg class="flame" viewBox="0 0 14 18" fill="currentColor"><path d="M7 0.5 C7 3 9.2 4.5 10.5 6.6 C11.7 8.6 12.2 10.4 11.8 12 C11.2 14.4 9.4 16 7 17.5 C4.6 16 2.8 14.4 2.2 12 C1.8 10.4 2.3 8.6 3.5 6.6 C4.8 4.5 7 3 7 0.5 Z"/></svg>
+          </div>
+        </div>
+        <div class="foot-banner" aria-hidden="true"><div class="tape"><span><em>Hand-made in Wales</em> · Small batch · 70°C · 9 hours · Halal beef · No MSG · No soy · No artificial preservatives · </span><span><em>Hand-made in Wales</em> · Small batch · 70°C · 9 hours · Halal beef · No MSG · No soy · No artificial preservatives · </span><span><em>Hand-made in Wales</em> · Small batch · 70°C · 9 hours · Halal beef · No MSG · No soy · No artificial preservatives · </span><span><em>Hand-made in Wales</em> · Small batch · 70°C · 9 hours · Halal beef · No MSG · No soy · No artificial preservatives · </span><span><em>Hand-made in Wales</em> · Small batch · 70°C · 9 hours · Halal beef · No MSG · No soy · No artificial preservatives · </span><span><em>Hand-made in Wales</em> · Small batch · 70°C · 9 hours · Halal beef · No MSG · No soy · No artificial preservatives · </span></div></div>
+        <div class="foot-bottom"><div class="wt"><em>Net</em> 60 g</div><div class="halal">Made with <em>halal</em> beef</div></div>
+        <div class="gusset"></div>
+      </article>
+      <div class="shadow"></div>
+      <div class="caption masala"><div class="a"><em>The Ember</em></div><div class="b">Masala · <span class="accent">2/5 Heat</span> · Flame & Tandoor</div></div>
+    </div>
+  </section>
+</main>
+</body>
+</html>

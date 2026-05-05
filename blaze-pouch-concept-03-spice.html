@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Blaze & Char — Concept 03 · Spice Arrangement</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,400;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet" />
+<style>
+:root {
+  --bg: oklch(88% 0.04 72);
+  --bg-deep: oklch(82% 0.05 70);
+  --ink-global: oklch(22% 0.03 40);
+  --font-display: 'Fraunces','Newsreader','Iowan Old Style',Georgia,serif;
+  --font-body: 'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;
+  --font-mono: 'JetBrains Mono',ui-monospace,Menlo,monospace;
+}
+*,*::before,*::after{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{min-height:100vh;background:radial-gradient(ellipse at 50% 20%,oklch(90% 0.035 72) 0%,var(--bg) 60%,var(--bg-deep) 120%);color:var(--ink-global);font-family:var(--font-body);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;padding:64px 24px 80px;overflow-x:hidden;}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.5;mix-blend-mode:multiply;z-index:0;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.22  0 0 0 0 0.14  0 0 0 0 0.08  0 0 0 0.06 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");}
+.stage{position:relative;z-index:1;max-width:1280px;margin:0 auto;}
+.crest{text-align:center;margin-bottom:40px;}
+.crest .eyebrow{font-family:var(--font-mono);font-size:11px;letter-spacing:.34em;text-transform:uppercase;color:oklch(55% 0.04 50);margin-bottom:14px;font-weight:600;}
+.crest h1{font-family:var(--font-display);font-weight:500;font-size:42px;letter-spacing:-.025em;margin:0;font-variation-settings:"SOFT" 30,"WONK" 1,"opsz" 144;color:var(--ink-global);line-height:1.05;}
+.crest h1 em{font-style:italic;font-weight:400;color:oklch(54% 0.19 32);}
+.crest .caption{margin-top:14px;font-family:var(--font-display);font-style:italic;font-weight:400;font-size:18px;color:oklch(40% 0.04 45);font-variation-settings:"opsz" 36;max-width:640px;margin-left:auto;margin-right:auto;}
+.crest .caption em{font-style:normal;color:var(--ink-global);font-weight:500;}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:end;justify-items:center;position:relative;}
+@media (max-width:880px){.pair{grid-template-columns:1fr;gap:60px;}}
+@media (max-width:1100px){.pair{grid-template-columns:1fr;gap:60px;}.stage{max-width:560px;}}
+.pouch-cell{display:flex;flex-direction:column;align-items:center;gap:24px;width:100%;}
+.shadow{width:82%;height:30px;margin-top:-20px;background:radial-gradient(ellipse at 50% 50%,oklch(22% 0.03 40 / 0.35) 0%,oklch(22% 0.03 40 / 0.12) 45%,transparent 70%);filter:blur(7px);transform:translateY(-2px);}
+
+/* ========= POUCH BASE (flat pillow) ========= */
+.pouch{position:relative;width:min(460px,44vw);aspect-ratio:130/185;border-radius:4px;overflow:hidden;box-shadow:0 70px 90px -40px oklch(22% 0.03 40 / 0.4),0 22px 44px -20px oklch(22% 0.03 40 / 0.26),inset 0 0 0 1px oklch(22% 0.03 40 / 0.08),inset 0 -50px 80px -40px oklch(22% 0.03 40 / 0.16),inset 0 50px 80px -40px oklch(22% 0.03 40 / 0.06);}
+.pouch.tandoori{--stock:oklch(58% 0.19 32);--stock-hi:oklch(62% 0.17 32);--stock-lo:oklch(50% 0.2 30);--ink:oklch(14% 0.06 30);--ink-dim:oklch(28% 0.08 30);--ink-soft:oklch(42% 0.08 32);--accent:oklch(94% 0.03 80);--accent-deep:oklch(88% 0.03 80);background:linear-gradient(180deg,var(--stock-hi) 0%,var(--stock) 32%,var(--stock) 70%,var(--stock-lo) 100%);}
+.pouch.masala{--stock:oklch(82% 0.16 88);--stock-hi:oklch(86% 0.14 88);--stock-lo:oklch(74% 0.18 85);--ink:oklch(18% 0.05 50);--ink-dim:oklch(32% 0.06 50);--ink-soft:oklch(48% 0.06 52);--accent:oklch(30% 0.1 50);--accent-deep:oklch(22% 0.08 50);background:linear-gradient(180deg,var(--stock-hi) 0%,var(--stock) 32%,var(--stock) 70%,var(--stock-lo) 100%);}
+.pouch::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.42;mix-blend-mode:multiply;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='1.3' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.22  0 0 0 0 0.13  0 0 0 0 0.07  0 0 0 0.12 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");}
+.pouch::after{content:"";position:absolute;inset:0;pointer-events:none;mix-blend-mode:multiply;background:linear-gradient(90deg,oklch(100% 0 0 / 0.32) 0,transparent 6%,transparent 94%,oklch(22% 0.03 40 / 0.1) 100%),linear-gradient(90deg,transparent 49.6%,oklch(22% 0.03 40 / 0.05) 50%,transparent 50.4%);}
+
+/* Seals + hang hole */
+.seal{position:absolute;top:0;left:0;right:0;height:8%;border-bottom:1px solid oklch(22% 0.03 40 / 0.16);background-image:linear-gradient(180deg,var(--stock-lo) 0%,var(--stock) 80%),repeating-linear-gradient(90deg,oklch(22% 0.03 40 / 0.1) 0 1px,transparent 1px 6px);z-index:2;}
+.seal::before{content:"";position:absolute;top:58%;left:50%;transform:translate(-50%,0);width:22px;height:8px;background:oklch(22% 0.03 40 / 0.92);border-radius:999px;box-shadow:inset 0 1px 2px oklch(0% 0 0 / 0.6),0 1px 0 oklch(100% 0 0 / 0.4);}
+.hang-hole{position:absolute;top:1.6%;left:50%;transform:translateX(-50%);width:13px;height:13px;border-radius:50%;background:oklch(22% 0.03 40 / 0.22);box-shadow:inset 0 1px 2px oklch(0% 0 0 / 0.45),inset 0 -1px 1px oklch(100% 0 0 / 0.2),0 0 0 1px oklch(22% 0.03 40 / 0.1);z-index:3;}
+.gusset{position:absolute;left:0;right:0;bottom:0;height:5.5%;background-image:linear-gradient(180deg,var(--stock) 0%,var(--stock-lo) 90%),repeating-linear-gradient(90deg,oklch(22% 0.03 40 / 0.1) 0 1px,transparent 1px 6px);border-top:1px solid oklch(22% 0.03 40 / 0.18);z-index:2;}
+
+.art{position:absolute;top:8%;left:0;right:0;bottom:5.5%;padding:12px 22px 0;display:flex;flex-direction:column;color:var(--ink);z-index:1;}
+.wordmark{text-align:center;padding:2px 0 2px;}
+.wordmark .bc{font-family:var(--font-display);font-weight:700;font-size:clamp(22px,3.6vw,30px);letter-spacing:-.025em;line-height:1;color:var(--ink);font-variation-settings:"SOFT" 30,"WONK" 1,"opsz" 144;display:inline-flex;align-items:baseline;gap:.14em;}
+.wordmark .bc .amp{font-style:italic;font-weight:500;color:var(--accent);font-variation-settings:"SOFT" 80,"WONK" 1,"opsz" 144;font-size:1.1em;margin:0 .02em;}
+.wordmark .tagline{font-family:var(--font-mono);font-size:7px;letter-spacing:.32em;text-transform:uppercase;color:var(--ink-dim);font-weight:600;margin-top:4px;}
+
+/* Foot bar (used on most concepts) */
+.foot{position:absolute;left:0;right:0;bottom:5.5%;background:var(--ink);color:var(--stock);padding:7px 22px 9px;border-top:1px solid oklch(22% 0.03 40 / 0.6);display:flex;justify-content:space-between;align-items:baseline;gap:12px;z-index:2;}
+.foot .wt{font-family:var(--font-display);font-weight:600;font-size:15px;letter-spacing:-.01em;font-variation-settings:"opsz" 36;}
+.foot .wt em{font-style:italic;color:oklch(86% 0.055 68 / 0.55);font-weight:400;margin-right:2px;}
+.foot .halal{font-family:var(--font-mono);font-size:9px;letter-spacing:.26em;text-transform:uppercase;font-weight:700;color:var(--stock);}
+.foot .halal em{font-style:normal;color:var(--accent);}
+
+/* Captions below pouches (gallery context) */
+.caption{display:flex;flex-direction:column;align-items:center;gap:4px;margin-top:6px;}
+.caption .a{font-family:var(--font-display);font-style:italic;font-weight:400;font-size:22px;letter-spacing:-.01em;color:var(--ink-global);font-variation-settings:"opsz" 48,"SOFT" 50;}
+.caption .a em{font-style:normal;font-weight:500;}
+.caption .b{font-family:var(--font-mono);font-size:10px;letter-spacing:.28em;text-transform:uppercase;font-weight:600;color:oklch(40% 0.04 45);}
+.caption .b .accent{color:oklch(54% 0.19 32);}
+.caption.masala .b .accent{color:oklch(48% 0.13 68);}
+
+/* Mobile */
+@media (max-width:640px){body{padding:40px 14px 60px;}.crest h1{font-size:32px;}.pouch{width:min(420px,92vw);}}
+
+
+/* ===== CONCEPT 03: SPICE ARRANGEMENT ===== */
+.c03 .art{padding:12px 22px 0;}
+.c03 .wordmark{padding:4px 0 4px;}
+
+.c03 .top-row{display:flex;justify-content:space-between;align-items:center;margin:6px 0 8px;padding-bottom:8px;border-bottom:.75px solid oklch(22% 0.03 40 / 0.25);}
+.c03 .wales-line{font-family:var(--font-mono);font-size:8px;letter-spacing:.3em;text-transform:uppercase;font-weight:700;color:var(--accent);display:flex;align-items:center;gap:6px;}
+.c03 .wales-line::before{content:"";width:16px;height:1.5px;background:var(--accent);}
+.c03 .num-tag{font-family:var(--font-display);font-style:italic;font-weight:500;font-size:14px;color:var(--ink-dim);font-variation-settings:"opsz" 36,"SOFT" 50;}
+.c03 .num-tag em{font-style:normal;font-weight:700;color:var(--accent);font-size:1.3em;margin-left:2px;}
+
+.c03 .spice-hero{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:6px 0;position:relative;}
+.c03 .spice-hero .illu{width:100%;max-width:220px;aspect-ratio:5/4;color:var(--ink);position:relative;}
+.c03 .spice-hero .illu svg{width:100%;height:100%;}
+.c03 .spice-hero .name{font-family:var(--font-display);font-weight:700;font-size:clamp(36px,6.4vw,52px);letter-spacing:-.02em;line-height:.92;color:var(--ink);text-transform:uppercase;font-variation-settings:"SOFT" 30,"opsz" 144;margin:4px 0 0;text-align:center;}
+.c03 .spice-hero .name em{font-style:italic;font-weight:500;color:var(--accent);}
+.c03 .spice-hero .jerky{font-family:var(--font-display);font-style:italic;font-weight:500;font-size:13px;letter-spacing:0;text-transform:none;color:var(--ink-dim);margin-top:2px;font-variation-settings:"opsz" 36,"SOFT" 60;}
+.c03 .spice-hero .sub{margin-top:2px;font-family:var(--font-mono);font-size:8px;letter-spacing:.3em;text-transform:uppercase;font-weight:700;color:var(--ink-soft);}
+
+.c03 .info-strip{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;align-items:center;gap:10px;margin:6px 0;padding:6px 0;border-top:.75px solid oklch(22% 0.03 40 / 0.3);border-bottom:.75px solid oklch(22% 0.03 40 / 0.3);}
+.c03 .info-strip .sep{width:.75px;height:18px;background:oklch(22% 0.03 40 / 0.3);}
+.c03 .info-strip .c{text-align:center;}
+.c03 .info-strip .k{font-family:var(--font-display);font-weight:700;font-size:13px;line-height:1;color:var(--ink);font-variation-settings:"opsz" 24;}
+.c03 .info-strip .k em{font-style:italic;font-weight:500;color:var(--accent);}
+.c03 .info-strip .l{font-family:var(--font-mono);font-size:6px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-dim);font-weight:700;margin-top:3px;}
+
+.c03 .heat-row{display:flex;align-items:center;justify-content:center;gap:6px;margin:2px 0 2px;}
+.c03 .heat-row .lbl{font-family:var(--font-mono);font-size:7.5px;letter-spacing:.3em;text-transform:uppercase;font-weight:700;color:var(--ink);}
+.c03 .heat-row .chilli{width:10px;height:14px;opacity:.18;color:var(--ink);}
+.c03 .heat-row .chilli.on{opacity:1;color:var(--accent);}
+
+</style>
+</head>
+<body>
+<main class="stage">
+  <header class="crest">
+    <div class="eyebrow">Concept · Spice Arrangement</div>
+    <h1>Concept 03 — <em>Spice arrangement</em></h1>
+    <p class="caption">Whole spices composed as a botanical hero — cardamom pods, dried chillies, kasuri methi, cumin. Most <em>premium food-brand</em> feel. Closest to Burlap &amp; Barrel / Diaspora Co.</p>
+  </header>
+  <section class="pair" aria-label="Front panels, both flavours">
+    <div class="pouch-cell">
+      <article class="pouch tandoori" aria-label="Tandoori Original, 60g front">
+        <div class="seal"></div>
+        <div class="hang-hole" aria-hidden="true"></div>
+        <div class="art c03">
+          <div class="wordmark">
+            <div class="bc">Blaze<span class="amp">&amp;</span>Char</div>
+            <div class="tagline">Hand-made in Wales</div>
+          </div>
+          <div class="top-row">
+            <div class="wales-line">Hand-made in Wales</div>
+            <div class="num-tag">No.<em>01</em></div>
+          </div>
+          <div class="spice-hero">
+            <div class="illu"><svg viewBox="0 0 220 176" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <!-- 2 crossed dried chillies (hero) -->
+  <g transform="translate(110 96) rotate(-22)">
+    <path d="M-80 0 C-76 -4 -60 -8 -30 -6 C0 -4 30 0 55 -2 C72 -3 82 0 84 4 C86 8 82 12 74 12 C48 14 20 12 -10 10 C-42 8 -76 8 -80 0 Z" fill="currentColor" opacity="0.9"/>
+    <path d="M82 2 C86 0 90 -2 92 0 C94 2 93 5 90 6 C87 7 84 6 82 4 Z" fill="currentColor" opacity="0.7"/>
+    <path d="M-78 1 L-84 -1 L-86 2 L-81 3 Z" fill="currentColor" opacity="0.5"/>
+  </g>
+  <g transform="translate(110 96) rotate(20)">
+    <path d="M-80 0 C-76 -4 -60 -8 -30 -6 C0 -4 30 0 55 -2 C72 -3 82 0 84 4 C86 8 82 12 74 12 C48 14 20 12 -10 10 C-42 8 -76 8 -80 0 Z" fill="currentColor" opacity="0.65"/>
+    <path d="M82 2 C86 0 90 -2 92 0 C94 2 93 5 90 6 C87 7 84 6 82 4 Z" fill="currentColor" opacity="0.5"/>
+  </g>
+  <!-- Cardamom pod top-right -->
+  <g transform="translate(170 34) rotate(18)">
+    <path d="M0 -14 C5 -14 9 -10 9 -2 C9 10 6 14 0 14 C-6 14 -9 10 -9 -2 C-9 -10 -5 -14 0 -14 Z" fill="currentColor" opacity="0.75"/>
+    <path d="M0 -14 L-1 -18 L1 -18 Z" fill="currentColor"/>
+    <path d="M-4 -2 L4 -2" stroke="currentColor" stroke-width="0.8" opacity="0.5"/>
+  </g>
+  <!-- Cardamom pod left -->
+  <g transform="translate(44 54) rotate(-34)">
+    <path d="M0 -11 C4 -11 7 -8 7 -1 C7 8 5 11 0 11 C-5 11 -7 8 -7 -1 C-7 -8 -4 -11 0 -11 Z" fill="currentColor" opacity="0.65"/>
+    <path d="M0 -11 L-1 -15 L1 -15 Z" fill="currentColor"/>
+  </g>
+  <!-- Black cardamom bottom-left -->
+  <g transform="translate(40 140) rotate(12)">
+    <ellipse cx="0" cy="0" rx="11" ry="14" fill="currentColor" opacity="0.55"/>
+    <path d="M-5 -9 L-4 -12 M0 -10 L0 -13 M5 -9 L4 -12" stroke="currentColor" stroke-width="1" opacity="0.9"/>
+    <path d="M-6 0 L6 0" stroke="currentColor" stroke-width="0.6" opacity="0.7"/>
+  </g>
+  <!-- Peppercorns scattered -->
+  <g fill="currentColor" opacity="0.55">
+    <circle cx="194" cy="118" r="3.5"/>
+    <circle cx="186" cy="130" r="3"/>
+    <circle cx="202" cy="128" r="2.5"/>
+    <circle cx="16" cy="98" r="3"/>
+    <circle cx="26" cy="110" r="2.5"/>
+  </g>
+  <!-- Kasuri methi leaves top-left -->
+  <g transform="translate(22 22)" fill="currentColor" opacity="0.5">
+    <path d="M0 0 C3 -3 6 -3 7 0 C6 3 3 3 0 0 Z M8 4 C11 1 14 1 15 4 C14 7 11 7 8 4 Z M2 10 C5 7 8 7 9 10 C8 13 5 13 2 10 Z"/>
+  </g>
+  <!-- Cumin seeds bottom-right -->
+  <g transform="translate(180 150)" fill="currentColor" opacity="0.5">
+    <path d="M0 0 Q3 -2 6 0 M8 3 Q11 1 14 3 M-2 6 Q1 4 4 6 M6 9 Q9 7 12 9" stroke="currentColor" stroke-width="1.2" fill="none"/>
+  </g>
+</svg></div>
+            <h1 class="name">Tandoori</h1>
+            <div class="jerky">— Beef Jerky —</div>
+            <p class="sub">Original · 3/5 Heat</p>
+          </div>
+          <div class="info-strip">
+            <div class="c"><div class="k">36<em>g</em></div><div class="l">Protein</div></div>
+            <div class="sep"></div>
+            <div class="c"><div class="k">Halal</div><div class="l">UK Beef</div></div>
+            <div class="sep"></div>
+            <div class="c"><div class="k">70<em>°C</em></div><div class="l">9hr Dried</div></div>
+          </div>
+          <div class="heat-row" aria-label="Heat 3 of 5">
+            <span class="lbl">Heat</span>
+            <svg class="chilli on" viewBox="0 0 14 18" fill="currentColor"><path d="M7 2 C9 2 10 3 11 5 C12 8 11 12 10 14 C9 16 8 17 7 17 C6 17 5 16 4 14 C3 12 2 8 3 5 C4 3 5 2 7 2 Z M7 2 L7 0"/></svg><svg class="chilli on" viewBox="0 0 14 18" fill="currentColor"><path d="M7 2 C9 2 10 3 11 5 C12 8 11 12 10 14 C9 16 8 17 7 17 C6 17 5 16 4 14 C3 12 2 8 3 5 C4 3 5 2 7 2 Z M7 2 L7 0"/></svg><svg class="chilli on" viewBox="0 0 14 18" fill="currentColor"><path d="M7 2 C9 2 10 3 11 5 C12 8 11 12 10 14 C9 16 8 17 7 17 C6 17 5 16 4 14 C3 12 2 8 3 5 C4 3 5 2 7 2 Z M7 2 L7 0"/></svg><svg class="chilli" viewBox="0 0 14 18" fill="currentColor"><path d="M7 2 C9 2 10 3 11 5 C12 8 11 12 10 14 C9 16 8 17 7 17 C6 17 5 16 4 14 C3 12 2 8 3 5 C4 3 5 2 7 2 Z M7 2 L7 0"/></svg><svg class="chilli" viewBox="0 0 14 18" fill="currentColor"><path d="M7 2 C9 2 10 3 11 5 C12 8 11 12 10 14 C9 16 8 17 7 17 C6 17 5 16 4 14 C3 12 2 8 3 5 C4 3 5 2 7 2 Z M7 2 L7 0"/></svg>
+            <span class="lbl">3/5</span>
+          </div>
+        </div>
+        <div class="foot"><div class="wt"><em>Net</em> 60 g</div><div class="halal">Topside · Hand-cut · <em>Halal</em></div></div>
+        <div class="gusset"></div>
+      </article>
+      <div class="shadow"></div>
+      <div class="caption"><div class="a"><em>The Fire</em></div><div class="b">Tandoori · <span class="accent">3/5 Heat</span> · Spice Arrangement</div></div>
+    </div>
+    <div class="pouch-cell">
+      <article class="pouch masala" aria-label="Masala Warm &amp; Rich, 60g front">
+        <div class="seal"></div>
+        <div class="hang-hole" aria-hidden="true"></div>
+        <div class="art c03">
+          <div class="wordmark">
+            <div class="bc">Blaze<span class="amp">&amp;</span>Char</div>
+            <div class="tagline">Hand-made in Wales</div>
+          </div>
+          <div class="top-row">
+            <div class="wales-line">Hand-made in Wales</div>
+            <div class="num-tag">No.<em>02</em></div>
+          </div>
+          <div class="spice-hero">
+            <div class="illu"><svg viewBox="0 0 220 176" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <!-- Cluster of cardamom pods (hero) -->
+  <g transform="translate(110 92)">
+    <g transform="rotate(-18)">
+      <path d="M0 -22 C7 -22 12 -16 12 -4 C12 15 8 22 0 22 C-8 22 -12 15 -12 -4 C-12 -16 -7 -22 0 -22 Z" fill="currentColor" opacity="0.85"/>
+      <path d="M0 -22 L-2 -29 L2 -29 Z" fill="currentColor"/>
+      <path d="M-6 -4 L6 -4 M-4 6 L4 6" stroke="currentColor" stroke-width="1" opacity="0.6"/>
+    </g>
+    <g transform="translate(-26 8) rotate(-44)">
+      <path d="M0 -16 C5 -16 9 -12 9 -2 C9 12 6 16 0 16 C-6 16 -9 12 -9 -2 C-9 -12 -5 -16 0 -16 Z" fill="currentColor" opacity="0.65"/>
+      <path d="M0 -16 L-1 -21 L1 -21 Z" fill="currentColor"/>
+    </g>
+    <g transform="translate(24 10) rotate(28)">
+      <path d="M0 -17 C5 -17 9 -13 9 -2 C9 13 6 17 0 17 C-6 17 -9 13 -9 -2 C-9 -13 -5 -17 0 -17 Z" fill="currentColor" opacity="0.7"/>
+      <path d="M0 -17 L-1 -22 L1 -22 Z" fill="currentColor"/>
+      <path d="M-5 -2 L5 -2" stroke="currentColor" stroke-width="0.9" opacity="0.6"/>
+    </g>
+  </g>
+  <!-- Kasuri methi leaves across top-right -->
+  <g transform="translate(160 30)" fill="currentColor" opacity="0.6">
+    <path d="M0 0 C4 -4 8 -4 10 0 C8 4 4 4 0 0 Z"/>
+    <path d="M12 -2 C16 -6 20 -6 22 -2 C20 2 16 2 12 -2 Z"/>
+    <path d="M6 10 C10 6 14 6 16 10 C14 14 10 14 6 10 Z"/>
+    <path d="M20 8 C24 4 28 4 30 8 C28 12 24 12 20 8 Z"/>
+    <path d="M14 20 C18 16 22 16 24 20 C22 24 18 24 14 20 Z"/>
+  </g>
+  <!-- Black cardamom bottom-left -->
+  <g transform="translate(38 140) rotate(-8)">
+    <ellipse cx="0" cy="0" rx="13" ry="16" fill="currentColor" opacity="0.55"/>
+    <path d="M-6 -10 L-5 -14 M0 -11 L0 -15 M6 -10 L5 -14" stroke="currentColor" stroke-width="1.2" opacity="0.9"/>
+    <path d="M-7 0 L7 0" stroke="currentColor" stroke-width="0.8" opacity="0.6"/>
+  </g>
+  <!-- Cumin seeds scattered across bottom -->
+  <g fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.5">
+    <path d="M170 140 Q173 138 176 140"/>
+    <path d="M180 148 Q183 146 186 148"/>
+    <path d="M168 154 Q171 152 174 154"/>
+    <path d="M190 136 Q193 134 196 136"/>
+    <path d="M200 144 Q203 142 206 144"/>
+    <path d="M182 130 Q185 128 188 130"/>
+  </g>
+  <!-- One star anise bottom-center -->
+  <g transform="translate(110 150)" fill="currentColor" opacity="0.5">
+    <path d="M0 -10 L3 -3 L10 -2 L4 3 L5 10 L0 6 L-5 10 L-4 3 L-10 -2 L-3 -3 Z"/>
+  </g>
+  <!-- Few peppercorns top-left -->
+  <g fill="currentColor" opacity="0.55">
+    <circle cx="28" cy="38" r="3"/>
+    <circle cx="38" cy="48" r="2.5"/>
+    <circle cx="20" cy="50" r="2.5"/>
+  </g>
+</svg></div>
+            <h1 class="name">Masala</h1>
+            <div class="jerky">— Beef Jerky —</div>
+            <p class="sub">Warm &amp; Rich · 2/5 Heat</p>
+          </div>
+          <div class="info-strip">
+            <div class="c"><div class="k">36<em>g</em></div><div class="l">Protein</div></div>
+            <div class="sep"></div>
+            <div class="c"><div class="k">Halal</div><div class="l">UK Beef</div></div>
+            <div class="sep"></div>
+            <div class="c"><div class="k">70<em>°C</em></div><div class="l">9hr Dried</div></div>
+          </div>
+          <div class="heat-row" aria-label="Heat 2 of 5">
+            <span class="lbl">Heat</span>
+            <svg class="chilli on" viewBox="0 0 14 18" fill="currentColor"><path d="M7 2 C9 2 10 3 11 5 C12 8 11 12 10 14 C9 16 8 17 7 17 C6 17 5 16 4 14 C3 12 2 8 3 5 C4 3 5 2 7 2 Z M7 2 L7 0"/></svg><svg class="chilli on" viewBox="0 0 14 18" fill="currentColor"><path d="M7 2 C9 2 10 3 11 5 C12 8 11 12 10 14 C9 16 8 17 7 17 C6 17 5 16 4 14 C3 12 2 8 3 5 C4 3 5 2 7 2 Z M7 2 L7 0"/></svg><svg class="chilli" viewBox="0 0 14 18" fill="currentColor"><path d="M7 2 C9 2 10 3 11 5 C12 8 11 12 10 14 C9 16 8 17 7 17 C6 17 5 16 4 14 C3 12 2 8 3 5 C4 3 5 2 7 2 Z M7 2 L7 0"/></svg><svg class="chilli" viewBox="0 0 14 18" fill="currentColor"><path d="M7 2 C9 2 10 3 11 5 C12 8 11 12 10 14 C9 16 8 17 7 17 C6 17 5 16 4 14 C3 12 2 8 3 5 C4 3 5 2 7 2 Z M7 2 L7 0"/></svg><svg class="chilli" viewBox="0 0 14 18" fill="currentColor"><path d="M7 2 C9 2 10 3 11 5 C12 8 11 12 10 14 C9 16 8 17 7 17 C6 17 5 16 4 14 C3 12 2 8 3 5 C4 3 5 2 7 2 Z M7 2 L7 0"/></svg>
+            <span class="lbl">2/5</span>
+          </div>
+        </div>
+        <div class="foot"><div class="wt"><em>Net</em> 60 g</div><div class="halal">Topside · Hand-cut · <em>Halal</em></div></div>
+        <div class="gusset"></div>
+      </article>
+      <div class="shadow"></div>
+      <div class="caption masala"><div class="a"><em>The Ember</em></div><div class="b">Masala · <span class="accent">2/5 Heat</span> · Spice Arrangement</div></div>
+    </div>
+  </section>
+</main>
+</body>
+</html>
