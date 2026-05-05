@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Blaze & Char — Concept 06 · Welsh Dragon Heritage</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,400;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet" />
+<style>
+:root { --bg: oklch(88% 0.04 72); --bg-deep: oklch(82% 0.05 70); --ink-global: oklch(22% 0.03 40); --font-display: 'Fraunces','Newsreader','Iowan Old Style',Georgia,serif; --font-body: 'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif; --font-mono: 'JetBrains Mono',ui-monospace,Menlo,monospace; }
+*,*::before,*::after{box-sizing:border-box;} html,body{margin:0;padding:0;}
+body{min-height:100vh;background:radial-gradient(ellipse at 50% 20%,oklch(90% 0.035 72) 0%,var(--bg) 60%,var(--bg-deep) 120%);color:var(--ink-global);font-family:var(--font-body);padding:64px 24px 80px;}
+.stage{position:relative;max-width:1280px;margin:0 auto;}
+.crest{text-align:center;margin-bottom:40px;}
+.crest .eyebrow{font-family:var(--font-mono);font-size:11px;letter-spacing:.34em;text-transform:uppercase;color:oklch(55% 0.04 50);margin-bottom:14px;font-weight:600;}
+.crest h1{font-family:var(--font-display);font-weight:500;font-size:42px;letter-spacing:-.025em;margin:0;font-variation-settings:"SOFT" 30,"WONK" 1,"opsz" 144;line-height:1.05;}
+.crest h1 em{font-style:italic;font-weight:400;color:oklch(54% 0.19 32);}
+.crest .caption{margin-top:14px;font-family:var(--font-display);font-style:italic;font-size:18px;color:oklch(40% 0.04 45);max-width:720px;margin-left:auto;margin-right:auto;}
+.crest .caption em{font-style:normal;color:var(--ink-global);font-weight:500;}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:end;justify-items:center;}
+@media (max-width:1100px){.pair{grid-template-columns:1fr;gap:60px;}.stage{max-width:560px;}}
+.pouch-cell{display:flex;flex-direction:column;align-items:center;gap:24px;width:100%;}
+.shadow{width:82%;height:30px;margin-top:-20px;background:radial-gradient(ellipse at 50% 50%,oklch(22% 0.03 40 / 0.35) 0%,oklch(22% 0.03 40 / 0.12) 45%,transparent 70%);filter:blur(7px);}
+.pouch{position:relative;width:min(460px,44vw);aspect-ratio:130/185;border-radius:4px;overflow:hidden;box-shadow:0 70px 90px -40px oklch(22% 0.03 40 / 0.4),0 22px 44px -20px oklch(22% 0.03 40 / 0.26);}
+.pouch.tandoori{--stock:oklch(58% 0.19 32);--stock-hi:oklch(62% 0.17 32);--stock-lo:oklch(50% 0.2 30);--ink:oklch(14% 0.06 30);--ink-dim:oklch(28% 0.08 30);--accent:oklch(94% 0.03 80);--dragon-fill:oklch(94% 0.03 80);--dragon-stroke:oklch(14% 0.06 30);background:linear-gradient(180deg,var(--stock-hi) 0%,var(--stock) 32%,var(--stock) 70%,var(--stock-lo) 100%);}
+.pouch.masala{--stock:oklch(82% 0.16 88);--stock-hi:oklch(86% 0.14 88);--stock-lo:oklch(74% 0.18 85);--ink:oklch(18% 0.05 50);--ink-dim:oklch(32% 0.06 50);--accent:oklch(30% 0.1 50);--dragon-fill:oklch(30% 0.1 50);--dragon-stroke:oklch(18% 0.05 50);background:linear-gradient(180deg,var(--stock-hi) 0%,var(--stock) 32%,var(--stock) 70%,var(--stock-lo) 100%);}
+.seal{position:absolute;top:0;left:0;right:0;height:8%;border-bottom:1px solid oklch(22% 0.03 40 / 0.16);background-image:linear-gradient(180deg,var(--stock-lo) 0%,var(--stock) 80%),repeating-linear-gradient(90deg,oklch(22% 0.03 40 / 0.1) 0 1px,transparent 1px 6px);z-index:2;}
+.hang-hole{position:absolute;top:1.6%;left:50%;transform:translateX(-50%);width:13px;height:13px;border-radius:50%;background:oklch(22% 0.03 40 / 0.22);box-shadow:inset 0 1px 2px oklch(0% 0 0 / 0.45);z-index:3;}
+.gusset{position:absolute;left:0;right:0;bottom:0;height:5.5%;background-image:linear-gradient(180deg,var(--stock) 0%,var(--stock-lo) 90%),repeating-linear-gradient(90deg,oklch(22% 0.03 40 / 0.1) 0 1px,transparent 1px 6px);border-top:1px solid oklch(22% 0.03 40 / 0.18);z-index:2;}
+.art{position:absolute;top:8%;left:0;right:0;bottom:5.5%;padding:10px 22px 0;display:flex;flex-direction:column;color:var(--ink);z-index:1;}
+.wordmark{text-align:center;padding:2px 0;}
+.wordmark .bc{font-family:var(--font-display);font-weight:700;font-size:clamp(20px,3.2vw,26px);letter-spacing:-.025em;line-height:1;color:var(--ink);font-variation-settings:"SOFT" 30,"WONK" 1,"opsz" 144;display:inline-flex;align-items:baseline;gap:.14em;}
+.wordmark .bc .amp{font-style:italic;font-weight:500;color:var(--accent);font-variation-settings:"SOFT" 80,"WONK" 1,"opsz" 144;font-size:1.1em;}
+.wordmark .tagline{font-family:var(--font-mono);font-size:7px;letter-spacing:.32em;text-transform:uppercase;color:var(--ink-dim);font-weight:600;margin-top:3px;}
+.foot{position:absolute;left:0;right:0;bottom:5.5%;background:var(--ink);color:var(--stock);padding:7px 22px 9px;display:flex;justify-content:space-between;align-items:baseline;gap:12px;z-index:2;}
+.foot .wt{font-family:var(--font-display);font-weight:600;font-size:15px;letter-spacing:-.01em;}
+.foot .wt em{font-style:italic;color:oklch(86% 0.055 68 / 0.55);font-weight:400;margin-right:2px;}
+.foot .halal{font-family:var(--font-mono);font-size:9px;letter-spacing:.26em;text-transform:uppercase;font-weight:700;}
+
+.category-line{text-align:center;font-family:var(--font-mono);font-size:9px;letter-spacing:.38em;text-transform:uppercase;color:var(--ink);font-weight:700;margin:4px 0 6px;padding-bottom:4px;border-bottom:1px solid var(--ink);}
+.dragon-crest{position:relative;flex:1;display:flex;align-items:center;justify-content:center;margin:4px 0;min-height:0;}
+.dragon-crest svg{width:78%;max-width:240px;height:auto;}
+.flavour-name{text-align:center;font-family:var(--font-display);font-weight:800;font-size:38px;letter-spacing:.01em;line-height:.95;color:var(--ink);text-transform:uppercase;font-variation-settings:"SOFT" 30,"opsz" 96;margin:2px 0;}
+.sub-name{text-align:center;font-family:var(--font-display);font-style:italic;font-weight:400;font-size:13px;color:var(--ink-dim);margin:0 0 4px;font-variation-settings:"opsz" 36,"SOFT" 50;}
+.stats-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin:4px 0;padding:5px 0;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);}
+.stats-row .stat{text-align:center;position:relative;}
+.stats-row .stat + .stat::before{content:"";position:absolute;left:-3px;top:15%;bottom:15%;width:.75px;background:var(--ink);opacity:.4;}
+.stats-row .k{font-family:var(--font-display);font-weight:700;font-size:14px;line-height:1;color:var(--ink);font-variation-settings:"opsz" 24;}
+.stats-row .v{font-family:var(--font-mono);font-size:6.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-dim);font-weight:700;margin-top:2px;}
+.heritage-line{text-align:center;font-family:var(--font-display);font-style:italic;font-weight:500;font-size:12px;color:var(--ink);margin:4px 0 2px;font-variation-settings:"opsz" 18,"SOFT" 60;}
+</style>
+</head>
+<body>
+<main class="stage">
+  <header class="crest">
+    <div class="eyebrow">Concept 06 · Welsh dragon · Heritage-forward</div>
+    <h1>The <em>Welsh dragon</em> — heritage hero</h1>
+    <p class="caption">A stylised Welsh dragon breathing tandoor flame. Ties the brand's fire-and-spice story to its Welsh provenance in a single memorable mark. Lineage: <em>Kings' crowned cow, Cruga's savanna — but distinctly Welsh-Indian.</em></p>
+  </header>
+  <section class="pair">
+
+    <div class="pouch-cell">
+      <article class="pouch tandoori">
+        <div class="seal"></div><div class="hang-hole"></div>
+        <div class="art">
+          <div class="wordmark"><div class="bc">Blaze<span class="amp">&amp;</span>Char</div><div class="tagline">Made in Cymru · Est. 2026</div></div>
+          <div class="category-line">Halal Beef Jerky · Hand-Cut in Wales</div>
+          <div class="dragon-crest" aria-label="Welsh dragon breathing tandoor flame">
+            <svg viewBox="0 0 240 200" xmlns="http://www.w3.org/2000/svg">
+              <!-- Dragon silhouette (simplified, heraldic) -->
+              <g fill="var(--dragon-fill)" stroke="var(--dragon-stroke)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round">
+                <!-- Body -->
+                <path d="M 60 130 Q 55 105 75 95 Q 95 88 120 90 Q 145 92 160 105 Q 170 115 175 128 Q 180 145 170 158 Q 160 170 140 170 L 80 170 Q 60 168 55 155 Q 52 142 60 130 Z"/>
+                <!-- Head/neck -->
+                <path d="M 120 90 Q 130 65 150 55 Q 168 48 185 52 Q 200 58 205 70 Q 208 82 200 92 Q 190 100 175 98 Q 160 95 150 95 Q 142 95 140 100"/>
+                <!-- Horn/crest -->
+                <path d="M 190 55 L 198 42 L 200 50 L 205 40 L 208 52 L 215 45 L 212 58 L 200 60 Z"/>
+                <!-- Snout/mouth -->
+                <path d="M 200 80 Q 215 78 222 75 L 218 86 Q 210 90 200 88 Z"/>
+                <!-- Eye -->
+                <circle cx="192" cy="70" r="2" fill="var(--dragon-stroke)"/>
+                <!-- Wing (stylized) -->
+                <path d="M 95 95 Q 85 65 95 45 Q 105 35 115 40 Q 115 55 110 70 Q 108 82 105 90 Z"/>
+                <path d="M 115 95 Q 110 72 118 55 Q 125 48 132 52 Q 130 68 125 82 Q 122 90 118 95"/>
+                <!-- Tail -->
+                <path d="M 58 160 Q 40 168 28 165 Q 18 162 20 175 Q 24 182 34 180 L 52 172"/>
+                <path d="M 34 180 L 25 186 L 32 178 L 22 176 Z"/>
+                <!-- Legs (two visible) -->
+                <path d="M 85 165 L 80 185 L 75 188 L 88 188 L 90 170 Z"/>
+                <path d="M 135 168 L 130 188 L 124 190 L 140 190 L 142 172 Z"/>
+              </g>
+              <!-- Flame breath (from mouth, going up-right) -->
+              <g fill="var(--stock-hi)" stroke="var(--dragon-stroke)" stroke-width="1.5" opacity="0.85">
+                <path d="M 222 78 Q 232 68 226 55 Q 222 50 226 45 Q 232 42 234 35 Q 236 28 232 25 Q 238 22 238 16 L 242 22 Q 246 28 242 36 Q 238 44 240 52 Q 242 62 236 70 Q 230 78 222 78 Z"/>
+                <path d="M 232 45 Q 238 38 236 30" fill="none" stroke="var(--dragon-stroke)" stroke-width="1"/>
+              </g>
+              <!-- Spark dots -->
+              <circle cx="240" cy="10" r="1.2" fill="var(--dragon-stroke)"/>
+              <circle cx="248" cy="28" r="1" fill="var(--dragon-stroke)"/>
+              <circle cx="228" cy="8" r="0.8" fill="var(--dragon-stroke)"/>
+            </svg>
+          </div>
+          <h2 class="flavour-name">Tandoori</h2>
+          <p class="sub-name">Slow-marinated · Slow-dried</p>
+          <div class="stats-row">
+            <div class="stat"><div class="k">3/5</div><div class="v">Heat</div></div>
+            <div class="stat"><div class="k">36g</div><div class="v">Protein</div></div>
+            <div class="stat"><div class="k">60g</div><div class="v">Net</div></div>
+          </div>
+          <div class="heritage-line">Wales-born, hand-made — one batch a day</div>
+        </div>
+        <div class="foot"><div class="wt"><em>Net</em> 60 g</div><div class="halal">Made with halal British beef</div></div>
+        <div class="gusset"></div>
+      </article>
+      <div class="shadow"></div>
+    </div>
+
+    <div class="pouch-cell">
+      <article class="pouch masala">
+        <div class="seal"></div><div class="hang-hole"></div>
+        <div class="art">
+          <div class="wordmark"><div class="bc">Blaze<span class="amp">&amp;</span>Char</div><div class="tagline">Made in Cymru · Est. 2026</div></div>
+          <div class="category-line">Halal Beef Jerky · Hand-Cut in Wales</div>
+          <div class="dragon-crest" aria-label="Welsh dragon breathing tandoor flame">
+            <svg viewBox="0 0 240 200" xmlns="http://www.w3.org/2000/svg">
+              <g fill="var(--dragon-fill)" stroke="var(--dragon-stroke)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round">
+                <path d="M 60 130 Q 55 105 75 95 Q 95 88 120 90 Q 145 92 160 105 Q 170 115 175 128 Q 180 145 170 158 Q 160 170 140 170 L 80 170 Q 60 168 55 155 Q 52 142 60 130 Z"/>
+                <path d="M 120 90 Q 130 65 150 55 Q 168 48 185 52 Q 200 58 205 70 Q 208 82 200 92 Q 190 100 175 98 Q 160 95 150 95 Q 142 95 140 100"/>
+                <path d="M 190 55 L 198 42 L 200 50 L 205 40 L 208 52 L 215 45 L 212 58 L 200 60 Z"/>
+                <path d="M 200 80 Q 215 78 222 75 L 218 86 Q 210 90 200 88 Z"/>
+                <circle cx="192" cy="70" r="2" fill="var(--dragon-stroke)"/>
+                <path d="M 95 95 Q 85 65 95 45 Q 105 35 115 40 Q 115 55 110 70 Q 108 82 105 90 Z"/>
+                <path d="M 115 95 Q 110 72 118 55 Q 125 48 132 52 Q 130 68 125 82 Q 122 90 118 95"/>
+                <path d="M 58 160 Q 40 168 28 165 Q 18 162 20 175 Q 24 182 34 180 L 52 172"/>
+                <path d="M 34 180 L 25 186 L 32 178 L 22 176 Z"/>
+                <path d="M 85 165 L 80 185 L 75 188 L 88 188 L 90 170 Z"/>
+                <path d="M 135 168 L 130 188 L 124 190 L 140 190 L 142 172 Z"/>
+              </g>
+              <g fill="var(--stock-hi)" stroke="var(--dragon-stroke)" stroke-width="1.5" opacity="0.85">
+                <path d="M 222 78 Q 232 68 226 55 Q 222 50 226 45 Q 232 42 234 35 Q 236 28 232 25 Q 238 22 238 16 L 242 22 Q 246 28 242 36 Q 238 44 240 52 Q 242 62 236 70 Q 230 78 222 78 Z"/>
+                <path d="M 232 45 Q 238 38 236 30" fill="none" stroke="var(--dragon-stroke)" stroke-width="1"/>
+              </g>
+              <circle cx="240" cy="10" r="1.2" fill="var(--dragon-stroke)"/>
+              <circle cx="248" cy="28" r="1" fill="var(--dragon-stroke)"/>
+              <circle cx="228" cy="8" r="0.8" fill="var(--dragon-stroke)"/>
+            </svg>
+          </div>
+          <h2 class="flavour-name">Masala</h2>
+          <p class="sub-name">Warm &amp; Rich · Aromatic</p>
+          <div class="stats-row">
+            <div class="stat"><div class="k">2/5</div><div class="v">Heat</div></div>
+            <div class="stat"><div class="k">36g</div><div class="v">Protein</div></div>
+            <div class="stat"><div class="k">60g</div><div class="v">Net</div></div>
+          </div>
+          <div class="heritage-line">Wales-born, hand-made — one batch a day</div>
+        </div>
+        <div class="foot"><div class="wt"><em>Net</em> 60 g</div><div class="halal">Made with halal British beef</div></div>
+        <div class="gusset"></div>
+      </article>
+      <div class="shadow"></div>
+    </div>
+
+  </section>
+</main>
+</body>
+</html>

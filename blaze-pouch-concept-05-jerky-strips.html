@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Blaze & Char — Concept 05 · Illustrated Jerky Strips</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,400;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet" />
+<style>
+:root { --bg: oklch(88% 0.04 72); --bg-deep: oklch(82% 0.05 70); --ink-global: oklch(22% 0.03 40); --font-display: 'Fraunces','Newsreader','Iowan Old Style',Georgia,serif; --font-body: 'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif; --font-mono: 'JetBrains Mono',ui-monospace,Menlo,monospace; }
+*,*::before,*::after{box-sizing:border-box;} html,body{margin:0;padding:0;}
+body{min-height:100vh;background:radial-gradient(ellipse at 50% 20%,oklch(90% 0.035 72) 0%,var(--bg) 60%,var(--bg-deep) 120%);color:var(--ink-global);font-family:var(--font-body);padding:64px 24px 80px;}
+.stage{position:relative;max-width:1280px;margin:0 auto;}
+.crest{text-align:center;margin-bottom:40px;}
+.crest .eyebrow{font-family:var(--font-mono);font-size:11px;letter-spacing:.34em;text-transform:uppercase;color:oklch(55% 0.04 50);margin-bottom:14px;font-weight:600;}
+.crest h1{font-family:var(--font-display);font-weight:500;font-size:42px;letter-spacing:-.025em;margin:0;font-variation-settings:"SOFT" 30,"WONK" 1,"opsz" 144;line-height:1.05;}
+.crest h1 em{font-style:italic;font-weight:400;color:oklch(54% 0.19 32);}
+.crest .caption{margin-top:14px;font-family:var(--font-display);font-style:italic;font-size:18px;color:oklch(40% 0.04 45);max-width:720px;margin-left:auto;margin-right:auto;}
+.crest .caption em{font-style:normal;color:var(--ink-global);font-weight:500;}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:end;justify-items:center;}
+@media (max-width:1100px){.pair{grid-template-columns:1fr;gap:60px;}.stage{max-width:560px;}}
+.pouch-cell{display:flex;flex-direction:column;align-items:center;gap:24px;width:100%;}
+.shadow{width:82%;height:30px;margin-top:-20px;background:radial-gradient(ellipse at 50% 50%,oklch(22% 0.03 40 / 0.35) 0%,oklch(22% 0.03 40 / 0.12) 45%,transparent 70%);filter:blur(7px);}
+.pouch{position:relative;width:min(460px,44vw);aspect-ratio:130/185;border-radius:4px;overflow:hidden;box-shadow:0 70px 90px -40px oklch(22% 0.03 40 / 0.4),0 22px 44px -20px oklch(22% 0.03 40 / 0.26);}
+.pouch.tandoori{--stock:oklch(58% 0.19 32);--stock-hi:oklch(62% 0.17 32);--stock-lo:oklch(50% 0.2 30);--ink:oklch(14% 0.06 30);--ink-dim:oklch(28% 0.08 30);--accent:oklch(94% 0.03 80);background:linear-gradient(180deg,var(--stock-hi) 0%,var(--stock) 32%,var(--stock) 70%,var(--stock-lo) 100%);}
+.pouch.masala{--stock:oklch(82% 0.16 88);--stock-hi:oklch(86% 0.14 88);--stock-lo:oklch(74% 0.18 85);--ink:oklch(18% 0.05 50);--ink-dim:oklch(32% 0.06 50);--accent:oklch(30% 0.1 50);background:linear-gradient(180deg,var(--stock-hi) 0%,var(--stock) 32%,var(--stock) 70%,var(--stock-lo) 100%);}
+.seal{position:absolute;top:0;left:0;right:0;height:8%;border-bottom:1px solid oklch(22% 0.03 40 / 0.16);background-image:linear-gradient(180deg,var(--stock-lo) 0%,var(--stock) 80%),repeating-linear-gradient(90deg,oklch(22% 0.03 40 / 0.1) 0 1px,transparent 1px 6px);z-index:2;}
+.hang-hole{position:absolute;top:1.6%;left:50%;transform:translateX(-50%);width:13px;height:13px;border-radius:50%;background:oklch(22% 0.03 40 / 0.22);box-shadow:inset 0 1px 2px oklch(0% 0 0 / 0.45);z-index:3;}
+.gusset{position:absolute;left:0;right:0;bottom:0;height:5.5%;background-image:linear-gradient(180deg,var(--stock) 0%,var(--stock-lo) 90%),repeating-linear-gradient(90deg,oklch(22% 0.03 40 / 0.1) 0 1px,transparent 1px 6px);border-top:1px solid oklch(22% 0.03 40 / 0.18);z-index:2;}
+.art{position:absolute;top:8%;left:0;right:0;bottom:5.5%;padding:10px 22px 0;display:flex;flex-direction:column;color:var(--ink);z-index:1;}
+.wordmark{text-align:center;padding:2px 0;}
+.wordmark .bc{font-family:var(--font-display);font-weight:700;font-size:clamp(20px,3.2vw,26px);letter-spacing:-.025em;line-height:1;color:var(--ink);font-variation-settings:"SOFT" 30,"WONK" 1,"opsz" 144;display:inline-flex;align-items:baseline;gap:.14em;}
+.wordmark .bc .amp{font-style:italic;font-weight:500;color:var(--accent);font-variation-settings:"SOFT" 80,"WONK" 1,"opsz" 144;font-size:1.1em;}
+.wordmark .tagline{font-family:var(--font-mono);font-size:7px;letter-spacing:.32em;text-transform:uppercase;color:var(--ink-dim);font-weight:600;margin-top:3px;}
+.foot{position:absolute;left:0;right:0;bottom:5.5%;background:var(--ink);color:var(--stock);padding:7px 22px 9px;display:flex;justify-content:space-between;align-items:baseline;gap:12px;z-index:2;}
+.foot .wt{font-family:var(--font-display);font-weight:600;font-size:15px;letter-spacing:-.01em;}
+.foot .wt em{font-style:italic;color:oklch(86% 0.055 68 / 0.55);font-weight:400;margin-right:2px;}
+.foot .halal{font-family:var(--font-mono);font-size:9px;letter-spacing:.26em;text-transform:uppercase;font-weight:700;}
+
+/* Concept 05 specific: illustrated jerky strips hero */
+.category-line{text-align:center;font-family:var(--font-mono);font-size:9px;letter-spacing:.38em;text-transform:uppercase;color:var(--ink);font-weight:700;margin:4px 0 6px;padding-bottom:4px;border-bottom:1px solid var(--ink);}
+.jerky-illus{position:relative;flex:1;display:flex;align-items:center;justify-content:center;min-height:0;margin:6px 0;}
+.jerky-illus svg{width:100%;max-width:280px;height:auto;filter:drop-shadow(0 3px 6px rgba(0,0,0,0.22));}
+.flavour-mark{position:absolute;top:4%;right:5%;width:68px;height:68px;border-radius:50%;background:var(--ink);color:var(--stock);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;transform:rotate(6deg);box-shadow:0 4px 10px rgba(0,0,0,0.18);z-index:4;}
+.flavour-mark .num{font-family:var(--font-mono);font-size:8px;letter-spacing:.24em;font-weight:700;}
+.flavour-mark .g{font-family:var(--font-display);font-weight:700;font-size:18px;line-height:1;font-variation-settings:"opsz" 36;}
+.flavour-mark .sub{font-family:var(--font-mono);font-size:7px;letter-spacing:.18em;font-weight:700;margin-top:1px;}
+.wales-stamp{position:absolute;top:4%;left:5%;width:58px;height:58px;border-radius:50%;border:1.5px solid var(--ink);background:transparent;display:flex;flex-direction:column;align-items:center;justify-content:center;transform:rotate(-8deg);z-index:4;}
+.wales-stamp .top{font-family:var(--font-mono);font-size:6px;letter-spacing:.2em;font-weight:700;color:var(--ink);}
+.wales-stamp .mid{font-family:var(--font-display);font-style:italic;font-weight:600;font-size:12px;color:var(--ink);line-height:1;margin:1px 0;font-variation-settings:"opsz" 24,"SOFT" 50;}
+.wales-stamp .bot{font-family:var(--font-mono);font-size:5.5px;letter-spacing:.22em;font-weight:700;color:var(--ink);}
+.flavour-row{display:flex;justify-content:space-between;align-items:baseline;margin:6px 0 4px;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);padding:4px 0;}
+.flavour-row .name{font-family:var(--font-display);font-weight:700;font-size:28px;letter-spacing:-.01em;line-height:1;color:var(--ink);text-transform:uppercase;font-variation-settings:"SOFT" 30,"opsz" 48;}
+.flavour-row .heat{font-family:var(--font-mono);font-size:9px;letter-spacing:.22em;font-weight:700;color:var(--ink);}
+.strip-count{text-align:center;font-family:var(--font-display);font-style:italic;font-size:13px;color:var(--ink-dim);margin:4px 0 2px;font-variation-settings:"opsz" 18;}
+.certs-row{display:flex;justify-content:space-between;align-items:center;gap:6px;margin:4px 0 2px;font-family:var(--font-mono);font-size:6.5px;letter-spacing:.24em;text-transform:uppercase;font-weight:700;color:var(--ink);}
+.certs-row .cert{flex:1;text-align:center;padding:3px 4px;border:1px solid var(--ink);}
+</style>
+</head>
+<body>
+<main class="stage">
+  <header class="crest">
+    <div class="eyebrow">Concept 05 · Illustrated jerky strips · Category-first</div>
+    <h1>The <em>Curators</em> approach — show the jerky</h1>
+    <p class="caption">Hand-drawn illustration of the strips, front and center. No ambiguity about what's in the bag. Lineage: <em>The Curators, Meatsnacks, traditional butcher shop packaging.</em></p>
+  </header>
+  <section class="pair">
+
+    <div class="pouch-cell">
+      <article class="pouch tandoori">
+        <div class="seal"></div><div class="hang-hole"></div>
+        <div class="art">
+          <div class="wordmark"><div class="bc">Blaze<span class="amp">&amp;</span>Char</div><div class="tagline">Hand-made in Wales · Est. 2026</div></div>
+          <div class="category-line">Halal British Beef · Hand-Cut Strips</div>
+          <div class="flavour-row"><div class="name">Tandoori</div><div class="heat">3/5 Heat</div></div>
+          <div class="jerky-illus" aria-label="Illustration of hand-cut jerky strips">
+            <div class="wales-stamp"><div class="top">MADE IN</div><div class="mid">Cymru</div><div class="bot">2026</div></div>
+            <div class="flavour-mark"><div class="num">36G</div><div class="g">Protein</div><div class="sub">PER PACK</div></div>
+            <svg viewBox="0 0 300 180" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="strip-grad-t1" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="oklch(32% 0.1 28)"/><stop offset="50%" stop-color="oklch(22% 0.08 28)"/><stop offset="100%" stop-color="oklch(16% 0.06 28)"/></linearGradient>
+                <linearGradient id="strip-grad-t2" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="oklch(30% 0.09 30)"/><stop offset="100%" stop-color="oklch(18% 0.07 30)"/></linearGradient>
+              </defs>
+              <!-- Strip 1 -->
+              <path d="M 30 55 Q 50 42 90 46 Q 140 50 180 48 Q 220 46 250 54 Q 272 60 268 80 Q 264 96 240 98 Q 200 102 160 98 Q 120 94 80 96 Q 40 98 28 82 Q 18 68 30 55 Z" fill="url(#strip-grad-t1)" stroke="oklch(10% 0.05 28)" stroke-width="1"/>
+              <!-- Strip 2 (behind) -->
+              <path d="M 45 85 Q 70 76 110 80 Q 160 84 200 82 Q 240 80 265 88 Q 280 94 275 110 Q 270 124 245 128 Q 210 132 170 128 Q 130 124 90 126 Q 55 128 45 112 Q 38 98 45 85 Z" fill="url(#strip-grad-t2)" stroke="oklch(10% 0.05 28)" stroke-width="1"/>
+              <!-- Strip 3 (bottom, slight angle) -->
+              <path d="M 40 128 Q 65 118 105 122 Q 150 126 195 124 Q 235 122 260 130 Q 275 136 270 150 Q 264 162 240 164 Q 200 166 160 164 Q 120 160 80 162 Q 48 164 38 150 Q 30 140 40 128 Z" fill="url(#strip-grad-t1)" stroke="oklch(10% 0.05 28)" stroke-width="1"/>
+              <!-- Spice flecks -->
+              <circle cx="80" cy="72" r="1.5" fill="oklch(58% 0.18 45)" opacity="0.7"/>
+              <circle cx="140" cy="78" r="1" fill="oklch(68% 0.16 50)" opacity="0.6"/>
+              <circle cx="180" cy="70" r="1.5" fill="oklch(55% 0.2 35)" opacity="0.7"/>
+              <circle cx="220" cy="80" r="1" fill="oklch(62% 0.17 42)" opacity="0.6"/>
+              <circle cx="100" cy="108" r="1.5" fill="oklch(58% 0.18 45)" opacity="0.7"/>
+              <circle cx="190" cy="110" r="1.2" fill="oklch(65% 0.16 48)" opacity="0.65"/>
+              <circle cx="120" cy="145" r="1.3" fill="oklch(60% 0.17 40)" opacity="0.7"/>
+              <circle cx="210" cy="148" r="1.5" fill="oklch(58% 0.18 45)" opacity="0.7"/>
+              <!-- Edge highlight on top strip -->
+              <path d="M 40 60 Q 60 50 95 52 Q 140 56 175 54" fill="none" stroke="oklch(42% 0.14 34)" stroke-width="1.5" opacity="0.5"/>
+            </svg>
+          </div>
+          <div class="strip-count"><em>8 hand-cut strips · 60g</em></div>
+          <div class="certs-row"><div class="cert">Hand-Cut</div><div class="cert">No MSG</div><div class="cert">Halal</div></div>
+        </div>
+        <div class="foot"><div class="wt"><em>Net</em> 60 g</div><div class="halal">Made with halal British beef</div></div>
+        <div class="gusset"></div>
+      </article>
+      <div class="shadow"></div>
+    </div>
+
+    <div class="pouch-cell">
+      <article class="pouch masala">
+        <div class="seal"></div><div class="hang-hole"></div>
+        <div class="art">
+          <div class="wordmark"><div class="bc">Blaze<span class="amp">&amp;</span>Char</div><div class="tagline">Hand-made in Wales · Est. 2026</div></div>
+          <div class="category-line">Halal British Beef · Hand-Cut Strips</div>
+          <div class="flavour-row"><div class="name">Masala</div><div class="heat">2/5 Heat</div></div>
+          <div class="jerky-illus" aria-label="Illustration of hand-cut jerky strips">
+            <div class="wales-stamp"><div class="top">MADE IN</div><div class="mid">Cymru</div><div class="bot">2026</div></div>
+            <div class="flavour-mark"><div class="num">36G</div><div class="g">Protein</div><div class="sub">PER PACK</div></div>
+            <svg viewBox="0 0 300 180" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="strip-grad-m1" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="oklch(36% 0.08 48)"/><stop offset="50%" stop-color="oklch(24% 0.07 48)"/><stop offset="100%" stop-color="oklch(18% 0.06 48)"/></linearGradient>
+                <linearGradient id="strip-grad-m2" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="oklch(32% 0.07 50)"/><stop offset="100%" stop-color="oklch(20% 0.06 50)"/></linearGradient>
+              </defs>
+              <path d="M 30 55 Q 50 42 90 46 Q 140 50 180 48 Q 220 46 250 54 Q 272 60 268 80 Q 264 96 240 98 Q 200 102 160 98 Q 120 94 80 96 Q 40 98 28 82 Q 18 68 30 55 Z" fill="url(#strip-grad-m1)" stroke="oklch(12% 0.04 48)" stroke-width="1"/>
+              <path d="M 45 85 Q 70 76 110 80 Q 160 84 200 82 Q 240 80 265 88 Q 280 94 275 110 Q 270 124 245 128 Q 210 132 170 128 Q 130 124 90 126 Q 55 128 45 112 Q 38 98 45 85 Z" fill="url(#strip-grad-m2)" stroke="oklch(12% 0.04 48)" stroke-width="1"/>
+              <path d="M 40 128 Q 65 118 105 122 Q 150 126 195 124 Q 235 122 260 130 Q 275 136 270 150 Q 264 162 240 164 Q 200 166 160 164 Q 120 160 80 162 Q 48 164 38 150 Q 30 140 40 128 Z" fill="url(#strip-grad-m1)" stroke="oklch(12% 0.04 48)" stroke-width="1"/>
+              <!-- Warm spice flecks for masala (amber, gold) -->
+              <circle cx="80" cy="72" r="1.5" fill="oklch(72% 0.15 75)" opacity="0.7"/>
+              <circle cx="140" cy="78" r="1" fill="oklch(68% 0.14 80)" opacity="0.6"/>
+              <circle cx="180" cy="70" r="1.5" fill="oklch(65% 0.15 70)" opacity="0.7"/>
+              <circle cx="220" cy="80" r="1" fill="oklch(70% 0.14 72)" opacity="0.6"/>
+              <circle cx="100" cy="108" r="1.5" fill="oklch(72% 0.15 75)" opacity="0.7"/>
+              <circle cx="190" cy="110" r="1.2" fill="oklch(68% 0.14 78)" opacity="0.65"/>
+              <circle cx="120" cy="145" r="1.3" fill="oklch(70% 0.14 74)" opacity="0.7"/>
+              <circle cx="210" cy="148" r="1.5" fill="oklch(72% 0.15 75)" opacity="0.7"/>
+              <path d="M 40 60 Q 60 50 95 52 Q 140 56 175 54" fill="none" stroke="oklch(44% 0.09 50)" stroke-width="1.5" opacity="0.5"/>
+            </svg>
+          </div>
+          <div class="strip-count"><em>8 hand-cut strips · 60g</em></div>
+          <div class="certs-row"><div class="cert">Hand-Cut</div><div class="cert">No MSG</div><div class="cert">Halal</div></div>
+        </div>
+        <div class="foot"><div class="wt"><em>Net</em> 60 g</div><div class="halal">Made with halal British beef</div></div>
+        <div class="gusset"></div>
+      </article>
+      <div class="shadow"></div>
+    </div>
+
+  </section>
+</main>
+</body>
+</html>
