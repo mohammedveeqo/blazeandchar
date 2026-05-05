@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Blaze & Char — Concept 07 · Butcher's Cow Diagram</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,400;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet" />
+<style>
+:root { --bg: oklch(88% 0.04 72); --bg-deep: oklch(82% 0.05 70); --ink-global: oklch(22% 0.03 40); --font-display: 'Fraunces','Newsreader','Iowan Old Style',Georgia,serif; --font-body: 'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif; --font-mono: 'JetBrains Mono',ui-monospace,Menlo,monospace; }
+*,*::before,*::after{box-sizing:border-box;} html,body{margin:0;padding:0;}
+body{min-height:100vh;background:radial-gradient(ellipse at 50% 20%,oklch(90% 0.035 72) 0%,var(--bg) 60%,var(--bg-deep) 120%);color:var(--ink-global);font-family:var(--font-body);padding:64px 24px 80px;}
+.stage{position:relative;max-width:1280px;margin:0 auto;}
+.crest{text-align:center;margin-bottom:40px;}
+.crest .eyebrow{font-family:var(--font-mono);font-size:11px;letter-spacing:.34em;text-transform:uppercase;color:oklch(55% 0.04 50);margin-bottom:14px;font-weight:600;}
+.crest h1{font-family:var(--font-display);font-weight:500;font-size:42px;letter-spacing:-.025em;margin:0;font-variation-settings:"SOFT" 30,"WONK" 1,"opsz" 144;line-height:1.05;}
+.crest h1 em{font-style:italic;font-weight:400;color:oklch(54% 0.19 32);}
+.crest .caption{margin-top:14px;font-family:var(--font-display);font-style:italic;font-size:18px;color:oklch(40% 0.04 45);max-width:720px;margin-left:auto;margin-right:auto;}
+.crest .caption em{font-style:normal;color:var(--ink-global);font-weight:500;}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:end;justify-items:center;}
+@media (max-width:1100px){.pair{grid-template-columns:1fr;gap:60px;}.stage{max-width:560px;}}
+.pouch-cell{display:flex;flex-direction:column;align-items:center;gap:24px;width:100%;}
+.shadow{width:82%;height:30px;margin-top:-20px;background:radial-gradient(ellipse at 50% 50%,oklch(22% 0.03 40 / 0.35) 0%,oklch(22% 0.03 40 / 0.12) 45%,transparent 70%);filter:blur(7px);}
+.pouch{position:relative;width:min(460px,44vw);aspect-ratio:130/185;border-radius:4px;overflow:hidden;box-shadow:0 70px 90px -40px oklch(22% 0.03 40 / 0.4),0 22px 44px -20px oklch(22% 0.03 40 / 0.26);}
+.pouch.tandoori{--stock:oklch(58% 0.19 32);--stock-hi:oklch(62% 0.17 32);--stock-lo:oklch(50% 0.2 30);--ink:oklch(14% 0.06 30);--ink-dim:oklch(28% 0.08 30);--accent:oklch(94% 0.03 80);background:linear-gradient(180deg,var(--stock-hi) 0%,var(--stock) 32%,var(--stock) 70%,var(--stock-lo) 100%);}
+.pouch.masala{--stock:oklch(82% 0.16 88);--stock-hi:oklch(86% 0.14 88);--stock-lo:oklch(74% 0.18 85);--ink:oklch(18% 0.05 50);--ink-dim:oklch(32% 0.06 50);--accent:oklch(30% 0.1 50);background:linear-gradient(180deg,var(--stock-hi) 0%,var(--stock) 32%,var(--stock) 70%,var(--stock-lo) 100%);}
+.seal{position:absolute;top:0;left:0;right:0;height:8%;border-bottom:1px solid oklch(22% 0.03 40 / 0.16);background-image:linear-gradient(180deg,var(--stock-lo) 0%,var(--stock) 80%),repeating-linear-gradient(90deg,oklch(22% 0.03 40 / 0.1) 0 1px,transparent 1px 6px);z-index:2;}
+.hang-hole{position:absolute;top:1.6%;left:50%;transform:translateX(-50%);width:13px;height:13px;border-radius:50%;background:oklch(22% 0.03 40 / 0.22);box-shadow:inset 0 1px 2px oklch(0% 0 0 / 0.45);z-index:3;}
+.gusset{position:absolute;left:0;right:0;bottom:0;height:5.5%;background-image:linear-gradient(180deg,var(--stock) 0%,var(--stock-lo) 90%),repeating-linear-gradient(90deg,oklch(22% 0.03 40 / 0.1) 0 1px,transparent 1px 6px);border-top:1px solid oklch(22% 0.03 40 / 0.18);z-index:2;}
+.art{position:absolute;top:8%;left:0;right:0;bottom:5.5%;padding:10px 22px 0;display:flex;flex-direction:column;color:var(--ink);z-index:1;}
+.wordmark{text-align:center;padding:2px 0;}
+.wordmark .bc{font-family:var(--font-display);font-weight:700;font-size:clamp(20px,3.2vw,26px);letter-spacing:-.025em;line-height:1;color:var(--ink);font-variation-settings:"SOFT" 30,"WONK" 1,"opsz" 144;display:inline-flex;align-items:baseline;gap:.14em;}
+.wordmark .bc .amp{font-style:italic;font-weight:500;color:var(--accent);font-variation-settings:"SOFT" 80,"WONK" 1,"opsz" 144;font-size:1.1em;}
+.wordmark .tagline{font-family:var(--font-mono);font-size:7px;letter-spacing:.32em;text-transform:uppercase;color:var(--ink-dim);font-weight:600;margin-top:3px;}
+.foot{position:absolute;left:0;right:0;bottom:5.5%;background:var(--ink);color:var(--stock);padding:7px 22px 9px;display:flex;justify-content:space-between;align-items:baseline;gap:12px;z-index:2;}
+.foot .wt{font-family:var(--font-display);font-weight:600;font-size:15px;letter-spacing:-.01em;}
+.foot .wt em{font-style:italic;color:oklch(86% 0.055 68 / 0.55);font-weight:400;margin-right:2px;}
+.foot .halal{font-family:var(--font-mono);font-size:9px;letter-spacing:.26em;text-transform:uppercase;font-weight:700;}
+
+.butcher-title{text-align:center;font-family:var(--font-display);font-style:italic;font-weight:500;font-size:13px;color:var(--ink-dim);margin:3px 0;padding-bottom:3px;border-bottom:1px solid var(--ink);font-variation-settings:"opsz" 18,"SOFT" 50;}
+.butcher-title em{font-style:normal;font-weight:700;color:var(--ink);text-transform:uppercase;letter-spacing:.1em;font-size:11px;}
+.cow-diagram{position:relative;flex:1;display:flex;align-items:center;justify-content:center;margin:4px 0;min-height:0;}
+.cow-diagram svg{width:88%;max-width:260px;height:auto;}
+.flavour-row{display:flex;justify-content:space-between;align-items:baseline;margin:4px 0 2px;padding:4px 0;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);}
+.flavour-row .name{font-family:var(--font-display);font-weight:700;font-size:30px;letter-spacing:-.01em;line-height:1;color:var(--ink);text-transform:uppercase;font-variation-settings:"SOFT" 30,"opsz" 48;}
+.flavour-row .meta{font-family:var(--font-mono);font-size:8px;letter-spacing:.22em;font-weight:700;color:var(--ink);text-align:right;line-height:1.3;}
+.flavour-row .meta span{display:block;}
+.mini-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:4px;margin:4px 0;font-family:var(--font-mono);font-size:7px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--ink);}
+.mini-stats .s{text-align:center;padding:3px 2px;border:1px solid var(--ink);}
+.mini-stats .s strong{display:block;font-family:var(--font-display);font-weight:700;font-size:14px;letter-spacing:-.01em;color:var(--ink);font-variation-settings:"opsz" 24;margin-bottom:1px;}
+.provenance{text-align:center;font-family:var(--font-display);font-style:italic;font-weight:500;font-size:11px;color:var(--ink);margin:3px 0 2px;font-variation-settings:"opsz" 18,"SOFT" 60;}
+</style>
+</head>
+<body>
+<main class="stage">
+  <header class="crest">
+    <div class="eyebrow">Concept 07 · Butcher's cow diagram · Cut-specific</div>
+    <h1>The <em>butcher's diagram</em> — cut-specific provenance</h1>
+    <p class="caption">A stylised cow diagram with the topside cut highlighted. Immediately signals "we use real whole-muscle beef, specifically topside" — the most informed way to differentiate from mass-market jerky that uses reformed meat. Lineage: <em>traditional butcher shop poster, Poilâne bread diagrams.</em></p>
+  </header>
+  <section class="pair">
+
+    <div class="pouch-cell">
+      <article class="pouch tandoori">
+        <div class="seal"></div><div class="hang-hole"></div>
+        <div class="art">
+          <div class="wordmark"><div class="bc">Blaze<span class="amp">&amp;</span>Char</div><div class="tagline">From the Topside · Hand-Cut</div></div>
+          <div class="butcher-title"><em>№ 01 ·</em> The butcher's cut</div>
+          <div class="cow-diagram" aria-label="Butcher cow diagram showing the topside cut">
+            <svg viewBox="0 0 260 170" xmlns="http://www.w3.org/2000/svg">
+              <!-- Cow body outline -->
+              <g fill="none" stroke="var(--ink)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round">
+                <!-- Main body + head + tail -->
+                <path d="M 30 90 Q 25 72 32 62 Q 38 55 48 56 L 52 50 Q 55 44 62 44 Q 68 46 68 54 L 72 60 Q 82 60 90 62 L 200 62 Q 218 62 230 70 L 238 68 Q 244 70 244 78 Q 244 86 238 88 L 236 95 L 238 102 Q 240 110 235 115 Q 232 118 226 118 L 224 118 Q 220 110 218 105 L 210 105 Q 208 112 205 118 L 202 120 Q 198 120 196 116 L 196 105 L 90 105 Q 88 112 86 118 L 83 120 Q 79 120 77 116 L 77 105 L 68 105 Q 66 112 63 118 L 60 120 Q 56 120 54 116 L 54 105 L 40 105 Q 36 112 34 118 L 30 120 Q 25 118 24 110 Z"/>
+                <!-- Horn/ear hint -->
+                <path d="M 50 50 L 45 40 L 42 48"/>
+                <path d="M 60 48 L 58 38"/>
+                <!-- Eye -->
+                <circle cx="55" cy="58" r="1.2" fill="var(--ink)"/>
+                <!-- Nostril -->
+                <circle cx="38" cy="76" r="1" fill="var(--ink)"/>
+                <!-- Udder/belly curve -->
+                <path d="M 90 105 Q 110 110 140 108 Q 170 106 196 105" stroke-width="1" opacity="0.5" stroke-dasharray="2 2"/>
+              </g>
+              <!-- Cut divisions (dashed lines) -->
+              <g fill="none" stroke="var(--ink)" stroke-width="0.8" stroke-dasharray="2 2" opacity="0.6">
+                <line x1="88" y1="62" x2="88" y2="105"/>
+                <line x1="120" y1="62" x2="120" y2="105"/>
+                <line x1="155" y1="62" x2="155" y2="105"/>
+                <line x1="195" y1="62" x2="195" y2="105"/>
+              </g>
+              <!-- Topside cut highlighted (hindquarter area) -->
+              <path d="M 155 62 L 195 62 L 195 105 L 155 105 Z" fill="var(--accent)" opacity="0.35" stroke="var(--ink)" stroke-width="2"/>
+              <!-- Topside label -->
+              <g>
+                <line x1="175" y1="62" x2="175" y2="30" stroke="var(--ink)" stroke-width="1"/>
+                <circle cx="175" cy="30" r="2" fill="var(--ink)"/>
+                <text x="175" y="22" text-anchor="middle" font-family="var(--font-mono)" font-size="7" font-weight="700" letter-spacing="1.5" fill="var(--ink)">TOPSIDE</text>
+              </g>
+              <text x="135" y="82" text-anchor="middle" font-family="var(--font-mono)" font-size="5" font-weight="600" letter-spacing="0.8" fill="var(--ink)" opacity="0.6">SIRLOIN</text>
+              <text x="104" y="82" text-anchor="middle" font-family="var(--font-mono)" font-size="5" font-weight="600" letter-spacing="0.8" fill="var(--ink)" opacity="0.6">RIB</text>
+              <text x="215" y="82" text-anchor="middle" font-family="var(--font-mono)" font-size="5" font-weight="600" letter-spacing="0.8" fill="var(--ink)" opacity="0.6">RUMP</text>
+              <!-- Ground/shadow -->
+              <line x1="15" y1="128" x2="250" y2="128" stroke="var(--ink)" stroke-width="0.5" opacity="0.3" stroke-dasharray="1 3"/>
+              <!-- Text below -->
+              <text x="130" y="148" text-anchor="middle" font-family="var(--font-display)" font-style="italic" font-size="10" font-weight="500" fill="var(--ink)">The topside — lean, firm, flavour-dense</text>
+              <text x="130" y="162" text-anchor="middle" font-family="var(--font-mono)" font-size="7" letter-spacing="2" font-weight="700" fill="var(--ink)">HALAL · UK BORN, REARED &amp; SLAUGHTERED</text>
+            </svg>
+          </div>
+          <div class="flavour-row"><div class="name">Tandoori</div><div class="meta"><span>3/5 Heat</span><span>Original</span></div></div>
+          <div class="mini-stats">
+            <div class="s"><strong>60g</strong>Net</div>
+            <div class="s"><strong>36g</strong>Protein</div>
+            <div class="s"><strong>9hrs</strong>Slow-dried</div>
+          </div>
+          <div class="provenance">One cut. One method. One batch a day.</div>
+        </div>
+        <div class="foot"><div class="wt"><em>Net</em> 60 g</div><div class="halal">Made with halal British beef</div></div>
+        <div class="gusset"></div>
+      </article>
+      <div class="shadow"></div>
+    </div>
+
+    <div class="pouch-cell">
+      <article class="pouch masala">
+        <div class="seal"></div><div class="hang-hole"></div>
+        <div class="art">
+          <div class="wordmark"><div class="bc">Blaze<span class="amp">&amp;</span>Char</div><div class="tagline">From the Topside · Hand-Cut</div></div>
+          <div class="butcher-title"><em>№ 02 ·</em> The butcher's cut</div>
+          <div class="cow-diagram" aria-label="Butcher cow diagram showing the topside cut">
+            <svg viewBox="0 0 260 170" xmlns="http://www.w3.org/2000/svg">
+              <g fill="none" stroke="var(--ink)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round">
+                <path d="M 30 90 Q 25 72 32 62 Q 38 55 48 56 L 52 50 Q 55 44 62 44 Q 68 46 68 54 L 72 60 Q 82 60 90 62 L 200 62 Q 218 62 230 70 L 238 68 Q 244 70 244 78 Q 244 86 238 88 L 236 95 L 238 102 Q 240 110 235 115 Q 232 118 226 118 L 224 118 Q 220 110 218 105 L 210 105 Q 208 112 205 118 L 202 120 Q 198 120 196 116 L 196 105 L 90 105 Q 88 112 86 118 L 83 120 Q 79 120 77 116 L 77 105 L 68 105 Q 66 112 63 118 L 60 120 Q 56 120 54 116 L 54 105 L 40 105 Q 36 112 34 118 L 30 120 Q 25 118 24 110 Z"/>
+                <path d="M 50 50 L 45 40 L 42 48"/>
+                <path d="M 60 48 L 58 38"/>
+                <circle cx="55" cy="58" r="1.2" fill="var(--ink)"/>
+                <circle cx="38" cy="76" r="1" fill="var(--ink)"/>
+                <path d="M 90 105 Q 110 110 140 108 Q 170 106 196 105" stroke-width="1" opacity="0.5" stroke-dasharray="2 2"/>
+              </g>
+              <g fill="none" stroke="var(--ink)" stroke-width="0.8" stroke-dasharray="2 2" opacity="0.6">
+                <line x1="88" y1="62" x2="88" y2="105"/>
+                <line x1="120" y1="62" x2="120" y2="105"/>
+                <line x1="155" y1="62" x2="155" y2="105"/>
+                <line x1="195" y1="62" x2="195" y2="105"/>
+              </g>
+              <path d="M 155 62 L 195 62 L 195 105 L 155 105 Z" fill="var(--accent)" opacity="0.35" stroke="var(--ink)" stroke-width="2"/>
+              <g>
+                <line x1="175" y1="62" x2="175" y2="30" stroke="var(--ink)" stroke-width="1"/>
+                <circle cx="175" cy="30" r="2" fill="var(--ink)"/>
+                <text x="175" y="22" text-anchor="middle" font-family="var(--font-mono)" font-size="7" font-weight="700" letter-spacing="1.5" fill="var(--ink)">TOPSIDE</text>
+              </g>
+              <text x="135" y="82" text-anchor="middle" font-family="var(--font-mono)" font-size="5" font-weight="600" letter-spacing="0.8" fill="var(--ink)" opacity="0.6">SIRLOIN</text>
+              <text x="104" y="82" text-anchor="middle" font-family="var(--font-mono)" font-size="5" font-weight="600" letter-spacing="0.8" fill="var(--ink)" opacity="0.6">RIB</text>
+              <text x="215" y="82" text-anchor="middle" font-family="var(--font-mono)" font-size="5" font-weight="600" letter-spacing="0.8" fill="var(--ink)" opacity="0.6">RUMP</text>
+              <line x1="15" y1="128" x2="250" y2="128" stroke="var(--ink)" stroke-width="0.5" opacity="0.3" stroke-dasharray="1 3"/>
+              <text x="130" y="148" text-anchor="middle" font-family="var(--font-display)" font-style="italic" font-size="10" font-weight="500" fill="var(--ink)">The topside — lean, firm, flavour-dense</text>
+              <text x="130" y="162" text-anchor="middle" font-family="var(--font-mono)" font-size="7" letter-spacing="2" font-weight="700" fill="var(--ink)">HALAL · UK BORN, REARED &amp; SLAUGHTERED</text>
+            </svg>
+          </div>
+          <div class="flavour-row"><div class="name">Masala</div><div class="meta"><span>2/5 Heat</span><span>Warm &amp; Rich</span></div></div>
+          <div class="mini-stats">
+            <div class="s"><strong>60g</strong>Net</div>
+            <div class="s"><strong>36g</strong>Protein</div>
+            <div class="s"><strong>9hrs</strong>Slow-dried</div>
+          </div>
+          <div class="provenance">One cut. One method. One batch a day.</div>
+        </div>
+        <div class="foot"><div class="wt"><em>Net</em> 60 g</div><div class="halal">Made with halal British beef</div></div>
+        <div class="gusset"></div>
+      </article>
+      <div class="shadow"></div>
+    </div>
+
+  </section>
+</main>
+</body>
+</html>

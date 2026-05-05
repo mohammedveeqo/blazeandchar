@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Blaze & Char — Concept 08 · Tandoor Oven Scene</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,400;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet" />
+<style>
+:root { --bg: oklch(88% 0.04 72); --bg-deep: oklch(82% 0.05 70); --ink-global: oklch(22% 0.03 40); --font-display: 'Fraunces','Newsreader','Iowan Old Style',Georgia,serif; --font-body: 'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif; --font-mono: 'JetBrains Mono',ui-monospace,Menlo,monospace; }
+*,*::before,*::after{box-sizing:border-box;} html,body{margin:0;padding:0;}
+body{min-height:100vh;background:radial-gradient(ellipse at 50% 20%,oklch(90% 0.035 72) 0%,var(--bg) 60%,var(--bg-deep) 120%);color:var(--ink-global);font-family:var(--font-body);padding:64px 24px 80px;}
+.stage{position:relative;max-width:1280px;margin:0 auto;}
+.crest{text-align:center;margin-bottom:40px;}
+.crest .eyebrow{font-family:var(--font-mono);font-size:11px;letter-spacing:.34em;text-transform:uppercase;color:oklch(55% 0.04 50);margin-bottom:14px;font-weight:600;}
+.crest h1{font-family:var(--font-display);font-weight:500;font-size:42px;letter-spacing:-.025em;margin:0;font-variation-settings:"SOFT" 30,"WONK" 1,"opsz" 144;line-height:1.05;}
+.crest h1 em{font-style:italic;font-weight:400;color:oklch(54% 0.19 32);}
+.crest .caption{margin-top:14px;font-family:var(--font-display);font-style:italic;font-size:18px;color:oklch(40% 0.04 45);max-width:720px;margin-left:auto;margin-right:auto;}
+.crest .caption em{font-style:normal;color:var(--ink-global);font-weight:500;}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:end;justify-items:center;}
+@media (max-width:1100px){.pair{grid-template-columns:1fr;gap:60px;}.stage{max-width:560px;}}
+.pouch-cell{display:flex;flex-direction:column;align-items:center;gap:24px;width:100%;}
+.shadow{width:82%;height:30px;margin-top:-20px;background:radial-gradient(ellipse at 50% 50%,oklch(22% 0.03 40 / 0.35) 0%,oklch(22% 0.03 40 / 0.12) 45%,transparent 70%);filter:blur(7px);}
+.pouch{position:relative;width:min(460px,44vw);aspect-ratio:130/185;border-radius:4px;overflow:hidden;box-shadow:0 70px 90px -40px oklch(22% 0.03 40 / 0.4),0 22px 44px -20px oklch(22% 0.03 40 / 0.26);}
+.pouch.tandoori{--stock:oklch(58% 0.19 32);--stock-hi:oklch(62% 0.17 32);--stock-lo:oklch(50% 0.2 30);--ink:oklch(14% 0.06 30);--ink-dim:oklch(28% 0.08 30);--accent:oklch(94% 0.03 80);--flame-1:oklch(82% 0.18 60);--flame-2:oklch(74% 0.2 50);background:linear-gradient(180deg,var(--stock-hi) 0%,var(--stock) 32%,var(--stock) 70%,var(--stock-lo) 100%);}
+.pouch.masala{--stock:oklch(82% 0.16 88);--stock-hi:oklch(86% 0.14 88);--stock-lo:oklch(74% 0.18 85);--ink:oklch(18% 0.05 50);--ink-dim:oklch(32% 0.06 50);--accent:oklch(30% 0.1 50);--flame-1:oklch(70% 0.2 50);--flame-2:oklch(60% 0.22 40);background:linear-gradient(180deg,var(--stock-hi) 0%,var(--stock) 32%,var(--stock) 70%,var(--stock-lo) 100%);}
+.seal{position:absolute;top:0;left:0;right:0;height:8%;border-bottom:1px solid oklch(22% 0.03 40 / 0.16);background-image:linear-gradient(180deg,var(--stock-lo) 0%,var(--stock) 80%),repeating-linear-gradient(90deg,oklch(22% 0.03 40 / 0.1) 0 1px,transparent 1px 6px);z-index:2;}
+.hang-hole{position:absolute;top:1.6%;left:50%;transform:translateX(-50%);width:13px;height:13px;border-radius:50%;background:oklch(22% 0.03 40 / 0.22);box-shadow:inset 0 1px 2px oklch(0% 0 0 / 0.45);z-index:3;}
+.gusset{position:absolute;left:0;right:0;bottom:0;height:5.5%;background-image:linear-gradient(180deg,var(--stock) 0%,var(--stock-lo) 90%),repeating-linear-gradient(90deg,oklch(22% 0.03 40 / 0.1) 0 1px,transparent 1px 6px);border-top:1px solid oklch(22% 0.03 40 / 0.18);z-index:2;}
+.art{position:absolute;top:8%;left:0;right:0;bottom:5.5%;padding:10px 22px 0;display:flex;flex-direction:column;color:var(--ink);z-index:1;}
+.wordmark{text-align:center;padding:2px 0;}
+.wordmark .bc{font-family:var(--font-display);font-weight:700;font-size:clamp(20px,3.2vw,26px);letter-spacing:-.025em;line-height:1;color:var(--ink);font-variation-settings:"SOFT" 30,"WONK" 1,"opsz" 144;display:inline-flex;align-items:baseline;gap:.14em;}
+.wordmark .bc .amp{font-style:italic;font-weight:500;color:var(--accent);font-variation-settings:"SOFT" 80,"WONK" 1,"opsz" 144;font-size:1.1em;}
+.wordmark .tagline{font-family:var(--font-mono);font-size:7px;letter-spacing:.32em;text-transform:uppercase;color:var(--ink-dim);font-weight:600;margin-top:3px;}
+.foot{position:absolute;left:0;right:0;bottom:5.5%;background:var(--ink);color:var(--stock);padding:7px 22px 9px;display:flex;justify-content:space-between;align-items:baseline;gap:12px;z-index:2;}
+.foot .wt{font-family:var(--font-display);font-weight:600;font-size:15px;letter-spacing:-.01em;}
+.foot .wt em{font-style:italic;color:oklch(86% 0.055 68 / 0.55);font-weight:400;margin-right:2px;}
+.foot .halal{font-family:var(--font-mono);font-size:9px;letter-spacing:.26em;text-transform:uppercase;font-weight:700;}
+
+.category-strip{display:flex;justify-content:space-between;align-items:center;margin:2px 0 4px;padding-bottom:3px;border-bottom:1px solid var(--ink);font-family:var(--font-mono);font-size:7px;letter-spacing:.28em;text-transform:uppercase;font-weight:700;color:var(--ink);}
+.tandoor-scene{position:relative;flex:1;display:flex;align-items:center;justify-content:center;margin:4px 0;min-height:0;}
+.tandoor-scene svg{width:100%;max-width:270px;height:auto;filter:drop-shadow(0 3px 6px rgba(0,0,0,0.15));}
+.protein-stamp{position:absolute;top:3%;right:3%;width:66px;height:66px;border-radius:50%;background:var(--ink);color:var(--stock);display:flex;flex-direction:column;align-items:center;justify-content:center;transform:rotate(5deg);box-shadow:0 4px 10px rgba(0,0,0,0.18);z-index:4;}
+.protein-stamp .top{font-family:var(--font-mono);font-size:6px;letter-spacing:.22em;font-weight:700;}
+.protein-stamp .n{font-family:var(--font-display);font-weight:800;font-size:22px;line-height:1;font-variation-settings:"opsz" 36;}
+.protein-stamp .bot{font-family:var(--font-mono);font-size:6px;letter-spacing:.2em;font-weight:700;margin-top:1px;}
+.flavour-block{text-align:center;margin:4px 0 3px;}
+.flavour-block .name{font-family:var(--font-display);font-weight:800;font-size:34px;letter-spacing:-.005em;line-height:1;color:var(--ink);text-transform:uppercase;font-variation-settings:"SOFT" 30,"opsz" 96;}
+.flavour-block .sub{font-family:var(--font-display);font-style:italic;font-weight:400;font-size:12px;color:var(--ink-dim);margin-top:2px;font-variation-settings:"opsz" 24,"SOFT" 60;}
+.process-row{display:flex;justify-content:space-between;align-items:center;font-family:var(--font-mono);font-size:6.5px;letter-spacing:.24em;text-transform:uppercase;font-weight:700;color:var(--ink);margin:3px 0;padding:4px 0;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);}
+.process-row .item{flex:1;text-align:center;position:relative;}
+.process-row .item + .item::before{content:"";position:absolute;left:-2px;top:20%;bottom:20%;width:.75px;background:var(--ink);opacity:.4;}
+.process-row .item strong{display:block;font-family:var(--font-display);font-weight:700;font-size:12px;letter-spacing:-.01em;color:var(--ink);font-variation-settings:"opsz" 24;margin-bottom:1px;}
+.made-line{text-align:center;font-family:var(--font-display);font-style:italic;font-weight:500;font-size:12px;color:var(--ink);margin:2px 0;font-variation-settings:"opsz" 18,"SOFT" 60;}
+.made-line em{font-style:normal;font-weight:700;}
+</style>
+</head>
+<body>
+<main class="stage">
+  <header class="crest">
+    <div class="eyebrow">Concept 08 · Tandoor oven scene · Fire-and-spice</div>
+    <h1>The <em>tandoor scene</em> — fire, clay, and char</h1>
+    <p class="caption">A clay tandoor oven with flame rising and skewers visible — directly references the "Blaze &amp; Char" name and the 70°C slow-dry method. This is the single move that ties the brand name, the cooking method, and the Indian heritage into one mark. Lineage: <em>Dishoom's brand visuals, Fly By Jing's Sichuan lineage art.</em></p>
+  </header>
+  <section class="pair">
+
+    <div class="pouch-cell">
+      <article class="pouch tandoori">
+        <div class="seal"></div><div class="hang-hole"></div>
+        <div class="art">
+          <div class="wordmark"><div class="bc">Blaze<span class="amp">&amp;</span>Char</div><div class="tagline">From the Tandoor · Hand-Made · Wales</div></div>
+          <div class="category-strip"><span>Halal Beef Jerky</span><span>№ 01</span></div>
+          <div class="tandoor-scene" aria-label="Clay tandoor oven with flame and skewers">
+            <div class="protein-stamp"><div class="top">HIGH IN</div><div class="n">36g</div><div class="bot">PROTEIN</div></div>
+            <svg viewBox="0 0 260 220" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <radialGradient id="flame-rad-t" cx="50%" cy="60%" r="50%"><stop offset="0%" stop-color="var(--flame-1)" stop-opacity="0.95"/><stop offset="70%" stop-color="var(--flame-2)" stop-opacity="0.7"/><stop offset="100%" stop-color="var(--flame-2)" stop-opacity="0"/></radialGradient>
+                <linearGradient id="tandoor-body-t" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="var(--ink-dim)"/><stop offset="100%" stop-color="var(--ink)"/></linearGradient>
+                <linearGradient id="tandoor-mouth-t" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="var(--flame-2)"/><stop offset="100%" stop-color="var(--ink)"/></linearGradient>
+              </defs>
+              <!-- Background flame glow -->
+              <ellipse cx="130" cy="80" rx="80" ry="60" fill="url(#flame-rad-t)" opacity="0.6"/>
+              <!-- Rising flames -->
+              <g fill="var(--flame-1)" opacity="0.85">
+                <path d="M 115 75 Q 118 55 110 35 Q 120 30 125 20 Q 128 28 126 42 Q 130 52 126 60 Q 130 70 120 75 Z"/>
+                <path d="M 135 72 Q 140 50 130 28 Q 142 22 148 10 Q 152 18 148 32 Q 155 42 150 56 Q 158 65 142 72 Z"/>
+                <path d="M 155 78 Q 158 60 148 44 Q 158 38 162 28 Q 166 36 162 48 Q 168 56 164 65 Q 170 72 158 78 Z"/>
+              </g>
+              <g fill="var(--flame-2)" opacity="0.95">
+                <path d="M 120 82 Q 122 68 117 52 Q 125 48 128 40 Q 130 46 128 55 Q 131 62 127 70 Z"/>
+                <path d="M 138 80 Q 142 66 135 50 Q 144 46 148 38 Q 150 44 148 52 Q 152 60 146 68 Z"/>
+              </g>
+              <!-- Tandoor oven body -->
+              <path d="M 80 90 L 75 160 Q 75 175 95 180 L 165 180 Q 185 175 185 160 L 180 90 Q 178 82 170 80 L 90 80 Q 82 82 80 90 Z" fill="url(#tandoor-body-t)" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/>
+              <!-- Top rim -->
+              <ellipse cx="130" cy="90" rx="50" ry="12" fill="var(--ink)" stroke="var(--ink)" stroke-width="1"/>
+              <ellipse cx="130" cy="88" rx="44" ry="9" fill="url(#tandoor-mouth-t)"/>
+              <!-- Inner glow at mouth -->
+              <ellipse cx="130" cy="90" rx="36" ry="7" fill="var(--flame-1)" opacity="0.7"/>
+              <!-- Band details -->
+              <ellipse cx="130" cy="125" rx="52" ry="9" fill="none" stroke="var(--ink)" stroke-width="1" opacity="0.5"/>
+              <ellipse cx="130" cy="155" rx="55" ry="9" fill="none" stroke="var(--ink)" stroke-width="1" opacity="0.5"/>
+              <!-- Decorative dots on the tandoor -->
+              <g fill="var(--ink)" opacity="0.6">
+                <circle cx="100" cy="110" r="1"/><circle cx="160" cy="110" r="1"/>
+                <circle cx="95" cy="140" r="1"/><circle cx="165" cy="140" r="1"/>
+                <circle cx="130" cy="110" r="1"/><circle cx="130" cy="140" r="1"/>
+              </g>
+              <!-- Skewers sticking up from the oven -->
+              <g stroke="var(--ink)" stroke-width="1.5" stroke-linecap="round">
+                <line x1="115" y1="85" x2="110" y2="50"/>
+                <line x1="130" y1="85" x2="130" y2="42"/>
+                <line x1="145" y1="85" x2="148" y2="52"/>
+              </g>
+              <!-- Skewer handle tops (rings) -->
+              <circle cx="110" cy="50" r="3" fill="none" stroke="var(--ink)" stroke-width="1.5"/>
+              <circle cx="130" cy="42" r="3" fill="none" stroke="var(--ink)" stroke-width="1.5"/>
+              <circle cx="148" cy="52" r="3" fill="none" stroke="var(--ink)" stroke-width="1.5"/>
+              <!-- Jerky strips hanging from skewers -->
+              <g fill="var(--ink-dim)" stroke="var(--ink)" stroke-width="0.8">
+                <rect x="106" y="60" width="9" height="14" rx="1"/>
+                <rect x="124" y="52" width="11" height="14" rx="1"/>
+                <rect x="144" y="62" width="9" height="14" rx="1"/>
+              </g>
+              <!-- Ground line -->
+              <line x1="60" y1="185" x2="200" y2="185" stroke="var(--ink)" stroke-width="1.5" opacity="0.6"/>
+              <!-- Smoke/steam wisps -->
+              <g fill="none" stroke="var(--ink)" stroke-width="1" opacity="0.3">
+                <path d="M 95 70 Q 92 62 98 58 Q 92 54 96 48"/>
+                <path d="M 170 68 Q 172 60 166 56 Q 172 52 168 46"/>
+              </g>
+            </svg>
+          </div>
+          <div class="flavour-block">
+            <div class="name">Tandoori</div>
+            <div class="sub">Original · 3/5 heat</div>
+          </div>
+          <div class="process-row">
+            <div class="item"><strong>70°C</strong>Slow-dry</div>
+            <div class="item"><strong>9h</strong>Drying time</div>
+            <div class="item"><strong>60g</strong>Per pack</div>
+          </div>
+          <div class="made-line">Hand-made in <em>Wales</em> · One batch a day</div>
+        </div>
+        <div class="foot"><div class="wt"><em>Net</em> 60 g</div><div class="halal">Made with halal British beef</div></div>
+        <div class="gusset"></div>
+      </article>
+      <div class="shadow"></div>
+    </div>
+
+    <div class="pouch-cell">
+      <article class="pouch masala">
+        <div class="seal"></div><div class="hang-hole"></div>
+        <div class="art">
+          <div class="wordmark"><div class="bc">Blaze<span class="amp">&amp;</span>Char</div><div class="tagline">From the Tandoor · Hand-Made · Wales</div></div>
+          <div class="category-strip"><span>Halal Beef Jerky</span><span>№ 02</span></div>
+          <div class="tandoor-scene" aria-label="Clay tandoor oven with flame and skewers">
+            <div class="protein-stamp"><div class="top">HIGH IN</div><div class="n">36g</div><div class="bot">PROTEIN</div></div>
+            <svg viewBox="0 0 260 220" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <radialGradient id="flame-rad-m" cx="50%" cy="60%" r="50%"><stop offset="0%" stop-color="var(--flame-1)" stop-opacity="0.95"/><stop offset="70%" stop-color="var(--flame-2)" stop-opacity="0.7"/><stop offset="100%" stop-color="var(--flame-2)" stop-opacity="0"/></radialGradient>
+                <linearGradient id="tandoor-body-m" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="var(--ink-dim)"/><stop offset="100%" stop-color="var(--ink)"/></linearGradient>
+                <linearGradient id="tandoor-mouth-m" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="var(--flame-2)"/><stop offset="100%" stop-color="var(--ink)"/></linearGradient>
+              </defs>
+              <ellipse cx="130" cy="80" rx="80" ry="60" fill="url(#flame-rad-m)" opacity="0.6"/>
+              <g fill="var(--flame-1)" opacity="0.85">
+                <path d="M 115 75 Q 118 55 110 35 Q 120 30 125 20 Q 128 28 126 42 Q 130 52 126 60 Q 130 70 120 75 Z"/>
+                <path d="M 135 72 Q 140 50 130 28 Q 142 22 148 10 Q 152 18 148 32 Q 155 42 150 56 Q 158 65 142 72 Z"/>
+                <path d="M 155 78 Q 158 60 148 44 Q 158 38 162 28 Q 166 36 162 48 Q 168 56 164 65 Q 170 72 158 78 Z"/>
+              </g>
+              <g fill="var(--flame-2)" opacity="0.95">
+                <path d="M 120 82 Q 122 68 117 52 Q 125 48 128 40 Q 130 46 128 55 Q 131 62 127 70 Z"/>
+                <path d="M 138 80 Q 142 66 135 50 Q 144 46 148 38 Q 150 44 148 52 Q 152 60 146 68 Z"/>
+              </g>
+              <path d="M 80 90 L 75 160 Q 75 175 95 180 L 165 180 Q 185 175 185 160 L 180 90 Q 178 82 170 80 L 90 80 Q 82 82 80 90 Z" fill="url(#tandoor-body-m)" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/>
+              <ellipse cx="130" cy="90" rx="50" ry="12" fill="var(--ink)" stroke="var(--ink)" stroke-width="1"/>
+              <ellipse cx="130" cy="88" rx="44" ry="9" fill="url(#tandoor-mouth-m)"/>
+              <ellipse cx="130" cy="90" rx="36" ry="7" fill="var(--flame-1)" opacity="0.7"/>
+              <ellipse cx="130" cy="125" rx="52" ry="9" fill="none" stroke="var(--ink)" stroke-width="1" opacity="0.5"/>
+              <ellipse cx="130" cy="155" rx="55" ry="9" fill="none" stroke="var(--ink)" stroke-width="1" opacity="0.5"/>
+              <g fill="var(--ink)" opacity="0.6"><circle cx="100" cy="110" r="1"/><circle cx="160" cy="110" r="1"/><circle cx="95" cy="140" r="1"/><circle cx="165" cy="140" r="1"/><circle cx="130" cy="110" r="1"/><circle cx="130" cy="140" r="1"/></g>
+              <g stroke="var(--ink)" stroke-width="1.5" stroke-linecap="round"><line x1="115" y1="85" x2="110" y2="50"/><line x1="130" y1="85" x2="130" y2="42"/><line x1="145" y1="85" x2="148" y2="52"/></g>
+              <circle cx="110" cy="50" r="3" fill="none" stroke="var(--ink)" stroke-width="1.5"/>
+              <circle cx="130" cy="42" r="3" fill="none" stroke="var(--ink)" stroke-width="1.5"/>
+              <circle cx="148" cy="52" r="3" fill="none" stroke="var(--ink)" stroke-width="1.5"/>
+              <g fill="var(--ink-dim)" stroke="var(--ink)" stroke-width="0.8"><rect x="106" y="60" width="9" height="14" rx="1"/><rect x="124" y="52" width="11" height="14" rx="1"/><rect x="144" y="62" width="9" height="14" rx="1"/></g>
+              <line x1="60" y1="185" x2="200" y2="185" stroke="var(--ink)" stroke-width="1.5" opacity="0.6"/>
+              <g fill="none" stroke="var(--ink)" stroke-width="1" opacity="0.3"><path d="M 95 70 Q 92 62 98 58 Q 92 54 96 48"/><path d="M 170 68 Q 172 60 166 56 Q 172 52 168 46"/></g>
+            </svg>
+          </div>
+          <div class="flavour-block">
+            <div class="name">Masala</div>
+            <div class="sub">Warm &amp; Rich · 2/5 heat</div>
+          </div>
+          <div class="process-row">
+            <div class="item"><strong>70°C</strong>Slow-dry</div>
+            <div class="item"><strong>9h</strong>Drying time</div>
+            <div class="item"><strong>60g</strong>Per pack</div>
+          </div>
+          <div class="made-line">Hand-made in <em>Wales</em> · One batch a day</div>
+        </div>
+        <div class="foot"><div class="wt"><em>Net</em> 60 g</div><div class="halal">Made with halal British beef</div></div>
+        <div class="gusset"></div>
+      </article>
+      <div class="shadow"></div>
+    </div>
+
+  </section>
+</main>
+</body>
+</html>
