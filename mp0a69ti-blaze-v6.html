@@ -1204,19 +1204,6 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
   overflow: hidden;
   border: 1.5px solid var(--fg);
 }
-.story-img img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: inherit;
-  z-index: 0;
-}
-.story-img .caption {
-  position: relative;
-  z-index: 2;
-}
 .story-img::after {
   content: "";
   position: absolute;
@@ -1517,7 +1504,7 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
 @media (max-width: 480px) { .source-card { grid-template-columns: 1fr; } }
 
 .source-card .stamp {
-  width: 148px;
+  width: 132px;
   padding: 14px 12px 16px;
   border-radius: 6px;
   background:
@@ -1554,17 +1541,14 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
   color: oklch(40% 0.06 40);
 }
 .source-card .stamp .sig {
-  font-family: var(--font-display);
-  font-size: 18px;
-  font-weight: 700;
-  line-height: 1.05;
+  font-family: 'Caveat', cursive;
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 1;
   color: var(--tandoori-deep);
-  letter-spacing: -0.005em;
-  margin-top: 4px;
+  letter-spacing: -0.01em;
+  margin-top: 2px;
   text-align: center;
-  font-variation-settings: "SOFT" 30, "opsz" 36;
-  text-transform: uppercase;
-  padding: 0 4px;
 }
 .source-card .stamp .since {
   font-family: var(--font-display);
@@ -1850,26 +1834,22 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
-  gap: 14px 16px;
+  align-items: baseline;
+  gap: 36px 48px;
 }
 .press-strip .pub {
-  font-family: var(--font-body);
-  font-weight: 600;
-  font-style: normal;
-  font-size: 13px;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-style: italic;
+  font-size: clamp(22px, 3vw, 32px);
   color: var(--fg);
-  opacity: 0.85;
-  letter-spacing: 0.02em;
-  padding: 9px 18px;
-  border: 1.5px solid var(--border-strong);
-  border-radius: 999px;
-  background: var(--surface);
-  transition: opacity 0.2s, transform 0.2s;
+  opacity: 0.55;
+  letter-spacing: -0.01em;
+  transition: opacity 0.2s;
 }
-.press-strip .pub:hover { opacity: 1; transform: translateY(-1px); }
-.press-strip .pub.serif { font-family: var(--font-display); font-style: normal; font-weight: 600; letter-spacing: -0.005em; font-size: 15px; }
-.press-strip .pub.cond  { font-family: var(--font-body); font-style: normal; text-transform: uppercase; font-weight: 700; letter-spacing: 0.16em; font-size: 11.5px; }
+.press-strip .pub:hover { opacity: 0.9; }
+.press-strip .pub.serif { font-style: normal; font-weight: 600; letter-spacing: 0.02em; }
+.press-strip .pub.cond  { font-family: var(--font-body); font-style: normal; text-transform: uppercase; font-weight: 700; letter-spacing: 0.18em; font-size: clamp(14px, 1.6vw, 17px); }
 .press-strip .footnote {
   margin-top: 20px;
   font-size: 12px;
@@ -1949,41 +1929,7 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
 .rw-grid-4 { grid-template-columns: repeat(4, 1fr); max-width: 1240px; }
 @media (max-width: 1100px) { .rw-grid-4 { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 960px) { .rw-grid { grid-template-columns: repeat(2, 1fr); } }
-/* Mobile: horizontal scroll carousel */
-@media (max-width: 720px) {
-  .rw-grid,
-  .rw-grid-4 {
-    grid-template-columns: none;
-    display: flex;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    padding: 4px 22px 18px;
-    margin: 0 -22px;
-    gap: 14px;
-    scrollbar-width: none;
-  }
-  .rw-grid::-webkit-scrollbar,
-  .rw-grid-4::-webkit-scrollbar { display: none; }
-  .rw-grid .rw-card,
-  .rw-grid-4 .rw-card {
-    flex: 0 0 82%;
-    scroll-snap-align: start;
-    min-width: 0;
-  }
-  .rw-head::after {
-    content: "‹  swipe  ›";
-    display: block;
-    margin-top: 14px;
-    font-family: var(--font-body);
-    font-size: 10.5px;
-    letter-spacing: 0.28em;
-    text-transform: uppercase;
-    color: var(--muted);
-    font-weight: 700;
-  }
-}
+@media (max-width: 640px) { .rw-grid, .rw-grid-4 { grid-template-columns: 1fr; gap: 16px; } }
 
 .rw-card {
   background: var(--surface);
@@ -2157,80 +2103,66 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
 /* ---------------- Newsletter ---------------- */
 
 .newsletter {
-  padding: 100px 0 90px;
-  background:
-    radial-gradient(ellipse at 18% 0%, oklch(28% 0.09 30 / 0.6), transparent 55%),
-    radial-gradient(ellipse at 90% 100%, oklch(40% 0.13 65 / 0.4), transparent 55%),
-    linear-gradient(180deg, oklch(19% 0.03 35) 0%, oklch(15% 0.025 35) 100%);
-  border-top: 1.5px solid oklch(8% 0.02 30);
-  border-bottom: 1.5px solid oklch(8% 0.02 30);
+  padding: 80px 0;
+  background: var(--bg-deep);
+  border-top: 1.5px solid var(--border);
+  border-bottom: 1.5px solid var(--border);
   position: relative;
   overflow: hidden;
-  color: oklch(96% 0.025 80);
 }
 .newsletter::before {
   content: "";
   position: absolute;
   inset: 0;
   background-image:
-    radial-gradient(circle, oklch(96% 0.025 80 / 0.055) 1px, transparent 1.5px);
-  background-size: 42px 42px;
-  mask-image: radial-gradient(ellipse at 75% 55%, black, transparent 65%);
-  -webkit-mask-image: radial-gradient(ellipse at 75% 55%, black, transparent 65%);
+    radial-gradient(circle, oklch(22% 0.03 40 / 0.1) 1px, transparent 1.5px);
+  background-size: 38px 38px;
+  mask-image: radial-gradient(ellipse at 80% 60%, black, transparent 60%);
+  -webkit-mask-image: radial-gradient(ellipse at 80% 60%, black, transparent 60%);
   pointer-events: none;
 }
 .newsletter-grid {
   display: grid;
   grid-template-columns: 1.3fr 1fr;
   align-items: center;
-  gap: 64px;
+  gap: 56px;
   position: relative;
   z-index: 1;
 }
-@media (max-width: 860px) { .newsletter-grid { grid-template-columns: 1fr; gap: 32px; } }
+@media (max-width: 860px) { .newsletter-grid { grid-template-columns: 1fr; gap: 28px; } }
 
 .newsletter .eyebrow {
-  font-size: 12.5px;
-  letter-spacing: 0.28em;
+  font-size: 13px;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  font-weight: 800;
-  color: oklch(76% 0.17 72);
-  margin-bottom: 18px;
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-}
-.newsletter .eyebrow::before {
-  content: "";
-  width: 28px;
-  height: 1.5px;
-  background: oklch(76% 0.17 72);
-  display: inline-block;
+  font-weight: 700;
+  color: var(--masala-deep);
+  margin-bottom: 14px;
+  display: block;
 }
 .newsletter h2 {
   font-family: var(--font-display);
   font-weight: 500;
-  font-size: clamp(36px, 4.8vw, 58px);
-  line-height: 1;
+  font-size: clamp(34px, 4.4vw, 52px);
+  line-height: 1.02;
   letter-spacing: -0.03em;
-  margin: 0 0 18px;
+  margin: 0 0 14px;
   font-variation-settings: "SOFT" 40, "opsz" 144;
   max-width: 18ch;
-  color: oklch(98% 0.02 80);
 }
-.newsletter h2 em { font-style: italic; color: oklch(76% 0.2 60); font-weight: 500; }
+.newsletter h2 em { font-style: italic; color: var(--tandoori); font-weight: 500; }
 .newsletter p {
-  color: oklch(82% 0.02 80);
-  font-size: 17px;
+  color: var(--muted);
+  font-size: 16px;
   max-width: 42ch;
   margin: 0;
-  line-height: 1.55;
+  line-height: 1.5;
 }
 .news-form {
   display: flex;
   gap: 10px;
-  background: oklch(97% 0.02 80);
-  border: 1.5px solid oklch(96% 0.02 80);
+  background: var(--surface);
+  border: 1.5px solid var(--border-strong);
   border-radius: var(--radius-pill);
   padding: 6px 6px 6px 22px;
   align-items: center;
@@ -2276,8 +2208,7 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
   font-size: 12.5px;
   color: var(--muted);
 }
-.news-fine { color: oklch(76% 0.02 80); }
-.news-fine strong { color: oklch(88% 0.1 72); font-weight: 700; }
+.news-fine strong { color: var(--fg); font-weight: 600; }
 .news-status {
   margin-top: 10px;
   font-size: 13.5px;
@@ -3047,42 +2978,19 @@ footer::before {
 .hero-bundle-up {
   display: flex;
   align-items: center;
-  gap: 18px;
-  padding: 18px 20px 18px 22px;
-  background: linear-gradient(180deg, oklch(94% 0.09 80) 0%, oklch(88% 0.12 72) 100%);
-  border: 2px solid oklch(50% 0.16 70);
-  border-radius: 16px;
+  gap: 16px;
+  padding: 16px 18px 16px 22px;
+  background: linear-gradient(180deg, oklch(97% 0.05 80) 0%, oklch(95% 0.06 70) 100%);
+  border: 1.5px solid var(--masala-deep);
+  border-radius: 14px;
   position: relative;
-  overflow: visible;
-  box-shadow:
-    0 0 0 5px oklch(94% 0.08 80 / 0.35),
-    0 18px 32px -20px oklch(48% 0.15 65 / 0.55),
-    inset 0 1px 0 oklch(100% 0 0 / 0.5);
+  overflow: hidden;
 }
 .hero-bundle-up::before {
   content: "";
   position: absolute; inset: 0;
-  background: radial-gradient(ellipse at 85% 15%, oklch(78% 0.2 75 / 0.45), transparent 55%);
+  background: radial-gradient(ellipse at 90% 20%, oklch(72% 0.17 75 / 0.22), transparent 60%);
   pointer-events: none;
-  border-radius: inherit;
-}
-.bundle-deal-badge {
-  position: absolute;
-  top: -11px;
-  left: 18px;
-  background: var(--tandoori-deep);
-  color: oklch(97% 0.03 80);
-  font-family: var(--font-body);
-  font-size: 10.5px;
-  font-weight: 800;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  padding: 5px 10px 4px;
-  border-radius: 999px;
-  box-shadow: 0 2px 0 oklch(36% 0.13 30), 0 4px 10px -4px oklch(36% 0.13 30 / 0.6);
-  z-index: 2;
-  transform: rotate(-3deg);
-  white-space: nowrap;
 }
 .hero-bundle-up .bundle-label {
   flex: 1;
@@ -3565,11 +3473,9 @@ footer::before {
 
         <!-- bundle upsell -->
         <div class="hero-bundle-up">
-          <span class="bundle-deal-badge" aria-hidden="true">Save £1</span>
           <div class="bundle-label">
-            <span class="bundle-eyebrow">The pair</span>
-            <span class="bundle-title">Get <em>both pouches</em></span>
-            <span class="bundle-pricing"><span class="now">£11.00</span> · one of each · £1 off</span>
+            <span class="bundle-title">Or get <em>both pouches</em></span>
+            <span class="bundle-pricing"><span class="now">£11.00</span> · £1 off vs singles</span>
           </div>
           <button type="button" onclick="heroBuyBundle()">Add the pair →</button>
         </div>
@@ -3607,7 +3513,7 @@ footer::before {
 <section class="story-sec" id="story">
   <div class="wrap story-grid">
     <div class="story-img reveal">
-      <img src="photo-04-ingredients-ready.jpg" alt="Ingredients laid out before a batch — raw topside, whole Kashmiri chilli, cardamom, smoked paprika, kasuri methi, tamarind" loading="lazy" />
+      <div class="spice-dots"></div>
       <div class="caption"><span class="line"></span> Kashmiri chilli, smoked paprika, kasuri methi &mdash; whole, not pre-ground</div>
     </div>
     <div class="story-copy reveal">
@@ -3671,9 +3577,9 @@ footer::before {
   <div class="sourcing-grid">
     <div class="source-card reveal">
       <div class="stamp">
-        <div class="pcap">The cut</div>
-        <div class="sig">British<br>Halal Beef</div>
-        <div class="since">Topside · UK</div>
+        <div class="pcap">Beef</div>
+        <div class="sig">Topside</div>
+        <div class="since">UK</div>
         <div class="seal">№1</div>
       </div>
       <div>
@@ -3685,9 +3591,9 @@ footer::before {
     </div>
     <div class="source-card reveal">
       <div class="stamp">
-        <div class="pcap">The blend</div>
-        <div class="sig">Whole<br>Spices</div>
-        <div class="since">Ground fresh</div>
+        <div class="pcap">Spice</div>
+        <div class="sig">Whole</div>
+        <div class="since">Toasted</div>
         <div class="seal">№2</div>
       </div>
       <div>

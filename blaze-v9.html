@@ -1,6 +1,29 @@
 <!doctype html>
 <html lang="en">
-<head>
+<head><script>(function(){
+  function makeStore(){
+    var data = {};
+    var api = {
+      getItem: function(k){ return Object.prototype.hasOwnProperty.call(data, k) ? data[k] : null; },
+      setItem: function(k, v){ data[k] = String(v); },
+      removeItem: function(k){ delete data[k]; },
+      clear: function(){ data = {}; },
+      key: function(i){ return Object.keys(data)[i] || null; }
+    };
+    Object.defineProperty(api, 'length', { get: function(){ return Object.keys(data).length; } });
+    return api;
+  }
+  function tryShim(name){
+    var works = false;
+    try { works = !!window[name] && typeof window[name].getItem === 'function'; void window[name].length; }
+    catch (_) { works = false; }
+    if (works) return;
+    try { Object.defineProperty(window, name, { configurable: true, value: makeStore() }); }
+    catch (_) { try { window[name] = makeStore(); } catch (__) {} }
+  }
+  tryShim('localStorage');
+  tryShim('sessionStorage');
+})();</script>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Blaze &amp; Char — The UK&rsquo;s first tandoori beef jerky</title>
@@ -8,7 +31,7 @@
 <link rel="apple-touch-icon" href="blaze-monogram.svg" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,400;9..144,500;9..144,600;9..144,700;9..144,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,400;9..144,500;9..144,600;9..144,700;9..144,800&family=Inter:wght@400;500;600;700&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet" />
 <style>
 /* ============================================================
    Blaze & Char — v3.1
@@ -22,41 +45,25 @@
 
 :root {
   /* palette */
-  --bg: #f4ecd8;
   --bg:        oklch(95% 0.035 85);   /* saffron-tinged cream */
-  --bg-deep: #efe4c9;
   --bg-deep:   oklch(92% 0.04 80);    /* slightly warmer cream for section contrast */
-  --surface: #fefcf5;
   --surface:   oklch(99% 0.012 85);   /* paper */
-  --fg: #3b2a1f;
   --fg:        oklch(22% 0.03 40);    /* deep ink-brown, not pure black */
-  --muted: #7a6552;
   --muted:     oklch(48% 0.04 45);    /* warm grey-brown for secondary text */
-  --border: #e2d2b9;
   --border:    oklch(85% 0.04 70);    /* warm hairline */
-  --border-strong: #3b2a1f;
   --border-strong: oklch(22% 0.03 40);
 
-  --tandoori: #c63c28;
   --tandoori:  oklch(55% 0.2 28);     /* paprika red — hot, confident */
-  --tandoori-deep: #9a2f1f;
   --tandoori-deep: oklch(42% 0.17 28);
-  --tandoori-tint: #f3d7ce;
   --tandoori-tint: oklch(88% 0.07 28);
 
-  --masala: #e5a63d;
   --masala:    oklch(72% 0.17 75);    /* toasted turmeric gold */
-  --masala-deep: #c08426;
   --masala-deep: oklch(58% 0.15 70);
-  --masala-tint: #f5e4bd;
   --masala-tint: oklch(90% 0.07 80);
 
-  --coriander: #5f9a5a;
   --coriander: oklch(58% 0.13 145);   /* leafy green for halal/sourcing pills */
-  --coriander-tint: #dbe9d4;
   --coriander-tint: oklch(90% 0.05 140);
 
-  --accent: #c63c28;
   --accent:    oklch(55% 0.2 28);     /* default accent = paprika */
 
   /* type */
@@ -248,6 +255,32 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
   border-radius: 50%;
   box-shadow: 0 0 0 4px oklch(55% 0.2 28 / 0.18);
 }
+
+.hero-proof {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 14px 8px 10px;
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-pill);
+  margin-bottom: 24px;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--fg);
+  font-variant-numeric: tabular-nums;
+}
+.hero-proof .stars-big {
+  display: inline-flex;
+  color: var(--masala-deep);
+  letter-spacing: 1px;
+  font-size: 14px;
+}
+.hero-proof .rule {
+  width: 1px; height: 14px; background: var(--border);
+}
+.hero-proof strong { font-weight: 700; }
+.hero-proof .who { color: var(--muted); }
 .hero h1 {
   font-family: var(--font-display);
   font-weight: 600;
@@ -450,11 +483,21 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
 .hero-buy .hero-voice,
 .hero-buy .flavour-toggle,
 .hero-buy .flavour-copy,
+.hero-buy .hero-proof,
+.hero-buy .hero-spec,
+.hero-buy .hero-buybar,
+.hero-buy .hero-ship,
+.hero-buy .hero-bundle-up {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: heroIn 0.55s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+}
 .hero-buy .hero-eyebrow   { animation-delay: 0.20s; }
 .hero-buy h1              { animation: none; opacity: 1; transform: none; } /* per-word below */
 .hero-buy .hero-voice     { animation-delay: 0.70s; }
 .hero-buy .flavour-toggle { animation-delay: 0.84s; }
 .hero-buy .flavour-copy   { animation-delay: 0.92s; }
+.hero-buy .hero-proof     { animation-delay: 1.00s; }
 .hero-buy .hero-spec      { animation-delay: 1.08s; }
 .hero-buy .hero-buybar    { animation-delay: 1.16s; }
 .hero-buy .hero-ship      { animation-delay: 1.24s; }
@@ -500,7 +543,25 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
   to   { transform: scaleY(1); }
 }
 
-60%  { clip-path: inset(0 -20% 0 -20%); }
+/* Star shimmer in the proof pill — one-time sweep on load --------------- */
+.hero-proof .stars-big {
+  position: relative;
+  overflow: hidden;
+}
+.hero-proof .stars-big::after {
+  content: "★★★★★";
+  position: absolute;
+  inset: 0;
+  color: oklch(100% 0 0 / 0.9);
+  letter-spacing: 1px;
+  pointer-events: none;
+  clip-path: inset(0 100% 0 -20%);
+  animation: starSweep 1.6s 1.3s ease-out forwards;
+  filter: drop-shadow(0 0 6px oklch(72% 0.17 75 / 0.7));
+}
+@keyframes starSweep {
+  0%   { clip-path: inset(0 100% 0 -20%); }
+  60%  { clip-path: inset(0 -20% 0 -20%); }
   100% { clip-path: inset(0 -20% 0 100%); }
 }
 
@@ -535,6 +596,7 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
   .hero h1 .word,
   .hero h1 em.word,
   .hero-voice::before,
+  .hero-proof .stars-big::after,
   .btn.primary::after,
   .flavour-label .fl-arrow,
   .hero-stage .stage-arrow.next::after {
@@ -548,6 +610,10 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
 }
 
 /* ---------------- Product tiles ---------------- */
+
+.products {
+  padding: 40px 0 80px;
+}
 .section-head {
   display: flex;
   align-items: end;
@@ -577,6 +643,14 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
 }
 .section-head h2 em { font-style: italic; color: var(--tandoori); font-weight: 500; }
 .section-head .sub { max-width: 42ch; color: var(--muted); font-size: 17px; margin: 0; }
+
+.tiles {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+@media (max-width: 860px) { .tiles { grid-template-columns: 1fr; } }
+
 .tile {
   border: 1.5px solid var(--border-strong);
   border-radius: var(--radius-lg);
@@ -954,6 +1028,10 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
 }
 
 /* ---------------- Bundle ---------------- */
+
+.bundle-sec {
+  padding: 40px 0 96px;
+}
 .bundle {
   display: grid;
   grid-template-columns: 1fr 1.1fr;
@@ -1046,6 +1124,19 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
   margin-bottom: 26px;
 }
 .bundle-pricing .now {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 56px;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+.bundle-pricing .was {
+  color: oklch(70% 0.03 80);
+  text-decoration: line-through;
+  font-size: 20px;
+  font-variant-numeric: tabular-nums;
+}
 .bundle-pricing .save {
   background: var(--masala);
   color: var(--fg);
@@ -1107,15 +1198,25 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
 .story-img {
   aspect-ratio: 4 / 5;
   background:
-    linear-gradient(180deg, oklch(0% 0 0 / 0) 0%, oklch(0% 0 0 / 0.25) 100%),
-    url("photo-04-ingredients-ready.jpg") center/cover no-repeat;
+    linear-gradient(160deg, var(--tandoori) 0%, var(--tandoori-deep) 100%);
   border-radius: var(--radius-lg);
   position: relative;
   overflow: hidden;
   border: 1.5px solid var(--fg);
-  transition: transform 400ms ease;
 }
-.story-img:hover { transform: scale(1.01); }
+.story-img img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+  z-index: 0;
+}
+.story-img .caption {
+  position: relative;
+  z-index: 2;
+}
 .story-img::after {
   content: "";
   position: absolute;
@@ -1124,7 +1225,20 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
     radial-gradient(circle at 30% 20%, oklch(100% 0 0 / 0.18), transparent 40%),
     radial-gradient(circle at 70% 80%, oklch(0% 0 0 / 0.3), transparent 40%);
 }
-.story-img .spice-dots { display: none; }
+.story-img .spice-dots {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 20% 30%, oklch(82% 0.18 90) 3px, transparent 4px),
+    radial-gradient(circle at 72% 45%, oklch(35% 0.14 35) 4px, transparent 5px),
+    radial-gradient(circle at 35% 70%, oklch(92% 0.1 95) 2.5px, transparent 3.5px),
+    radial-gradient(circle at 80% 75%, oklch(65% 0.17 50) 3px, transparent 4px),
+    radial-gradient(circle at 50% 25%, oklch(88% 0.14 85) 2px, transparent 3px),
+    radial-gradient(circle at 60% 60%, oklch(40% 0.12 30) 3px, transparent 4px),
+    radial-gradient(circle at 15% 85%, oklch(70% 0.15 60) 2.5px, transparent 3.5px);
+  mix-blend-mode: overlay;
+  opacity: 0.85;
+}
 .story-img .caption {
   position: absolute;
   bottom: 22px; left: 22px; right: 22px;
@@ -1314,31 +1428,68 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
 
 /* step art visuals */
 .step-art-1 {
-  background: url("photo-03-spice-paste.jpg") center/cover no-repeat;
-  position: relative;
-}
-.step-art-1::after {
-  content: "";
-  position: absolute; inset: 0;
-  background: linear-gradient(180deg, transparent 60%, oklch(0% 0 0 / 0.2));
+  background: var(--tandoori-tint);
+  background-image:
+    radial-gradient(circle at 18% 30%, oklch(45% 0.14 30) 6px, transparent 7px),
+    radial-gradient(circle at 62% 25%, oklch(68% 0.16 50) 5px, transparent 6px),
+    radial-gradient(circle at 38% 58%, oklch(82% 0.17 90) 7px, transparent 8px),
+    radial-gradient(circle at 80% 65%, oklch(52% 0.2 28) 6px, transparent 7px),
+    radial-gradient(circle at 22% 82%, oklch(72% 0.17 75) 5px, transparent 6px),
+    radial-gradient(circle at 52% 38%, oklch(36% 0.12 30) 4px, transparent 5px),
+    radial-gradient(circle at 88% 25%, oklch(88% 0.12 85) 4px, transparent 5px),
+    radial-gradient(circle at 14% 55%, oklch(62% 0.18 55) 4px, transparent 5px),
+    radial-gradient(circle at 72% 88%, oklch(40% 0.14 28) 5px, transparent 6px);
 }
 .step-art-2 {
-  background: url("photo-07-all-meat-in-marinade.jpg") center/cover no-repeat;
+  background: var(--masala-tint);
   position: relative;
+}
+.step-art-2::before {
+  content: "";
+  position: absolute;
+  inset: 22%;
+  border-radius: 50%;
+  background:
+    radial-gradient(ellipse at 40% 40%, oklch(45% 0.14 30) 0%, oklch(28% 0.11 25) 55%, oklch(22% 0.09 20) 100%);
+  box-shadow: inset 0 4px 8px oklch(0% 0 0 / 0.3);
 }
 .step-art-2::after {
   content: "";
-  position: absolute; inset: 0;
-  background: linear-gradient(180deg, transparent 60%, oklch(0% 0 0 / 0.2));
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 20% 25%, oklch(82% 0.17 90) 2px, transparent 3px),
+    radial-gradient(circle at 80% 30%, oklch(58% 0.17 40) 2px, transparent 3px),
+    radial-gradient(circle at 75% 72%, oklch(88% 0.14 85) 2px, transparent 3px),
+    radial-gradient(circle at 25% 78%, oklch(48% 0.18 35) 2px, transparent 3px);
 }
 .step-art-3 {
-  background: url("photo-11-dried-strips.jpg") center/cover no-repeat;
+  background:
+    linear-gradient(180deg, oklch(92% 0.05 70), oklch(88% 0.06 65));
   position: relative;
+}
+.step-art-3::before {
+  content: "";
+  position: absolute;
+  top: 24%; left: 14%; right: 14%; bottom: 30%;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      oklch(68% 0.08 60) 0px, oklch(68% 0.08 60) 8px,
+      transparent 8px, transparent 14px);
+  opacity: 0.6;
+  border-radius: 2px;
 }
 .step-art-3::after {
   content: "";
-  position: absolute; inset: 0;
-  background: linear-gradient(180deg, transparent 60%, oklch(0% 0 0 / 0.2));
+  position: absolute;
+  inset: 30% 22% 24% 22%;
+  background:
+    radial-gradient(circle at 20% 30%, oklch(38% 0.12 28) 6px, transparent 7px),
+    radial-gradient(circle at 48% 52%, oklch(32% 0.11 25) 7px, transparent 8px),
+    radial-gradient(circle at 75% 32%, oklch(40% 0.13 30) 6px, transparent 7px),
+    radial-gradient(circle at 62% 72%, oklch(35% 0.12 28) 6px, transparent 7px),
+    radial-gradient(circle at 30% 78%, oklch(38% 0.12 30) 5px, transparent 6px);
 }
 
 /* ---------------- Sourcing (named humans, Pipsnacks-style) ---------------- */
@@ -1366,7 +1517,7 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
 @media (max-width: 480px) { .source-card { grid-template-columns: 1fr; } }
 
 .source-card .stamp {
-  width: 132px;
+  width: 148px;
   padding: 14px 12px 16px;
   border-radius: 6px;
   background:
@@ -1404,15 +1555,16 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
 }
 .source-card .stamp .sig {
   font-family: var(--font-display);
-  font-style: italic;
-  font-variation-settings: "SOFT" 50, "opsz" 36;
-  font-size: 32px;
-  font-weight: 600;
-  line-height: 1;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.05;
   color: var(--tandoori-deep);
-  letter-spacing: -0.01em;
-  margin-top: 2px;
+  letter-spacing: -0.005em;
+  margin-top: 4px;
   text-align: center;
+  font-variation-settings: "SOFT" 30, "opsz" 36;
+  text-transform: uppercase;
+  padding: 0 4px;
 }
 .source-card .stamp .since {
   font-family: var(--font-display);
@@ -1698,22 +1850,26 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: baseline;
-  gap: 36px 48px;
+  align-items: center;
+  gap: 14px 16px;
 }
 .press-strip .pub {
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-style: italic;
-  font-size: clamp(22px, 3vw, 32px);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-style: normal;
+  font-size: 13px;
   color: var(--fg);
-  opacity: 0.55;
-  letter-spacing: -0.01em;
-  transition: opacity 0.2s;
+  opacity: 0.85;
+  letter-spacing: 0.02em;
+  padding: 9px 18px;
+  border: 1.5px solid var(--border-strong);
+  border-radius: 999px;
+  background: var(--surface);
+  transition: opacity 0.2s, transform 0.2s;
 }
-.press-strip .pub:hover { opacity: 0.9; }
-.press-strip .pub.serif { font-style: normal; font-weight: 600; letter-spacing: 0.02em; }
-.press-strip .pub.cond  { font-family: var(--font-body); font-style: normal; text-transform: uppercase; font-weight: 700; letter-spacing: 0.18em; font-size: clamp(14px, 1.6vw, 17px); }
+.press-strip .pub:hover { opacity: 1; transform: translateY(-1px); }
+.press-strip .pub.serif { font-family: var(--font-display); font-style: normal; font-weight: 600; letter-spacing: -0.005em; font-size: 15px; }
+.press-strip .pub.cond  { font-family: var(--font-body); font-style: normal; text-transform: uppercase; font-weight: 700; letter-spacing: 0.16em; font-size: 11.5px; }
 .press-strip .footnote {
   margin-top: 20px;
   font-size: 12px;
@@ -1764,6 +1920,25 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
   font-size: 17px;
   margin: 0;
 }
+.reviews-wall .rw-head .tally {
+  margin-top: 18px;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 18px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  font-size: 14px;
+}
+.reviews-wall .rw-head .tally .stars-big {
+  font-size: 16px;
+  letter-spacing: 0.08em;
+  color: var(--masala-deep);
+}
+.reviews-wall .rw-head .tally strong { font-weight: 700; }
+.reviews-wall .rw-head .tally .dot { opacity: 0.4; }
+
 .rw-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1774,7 +1949,41 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
 .rw-grid-4 { grid-template-columns: repeat(4, 1fr); max-width: 1240px; }
 @media (max-width: 1100px) { .rw-grid-4 { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 960px) { .rw-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 640px) { .rw-grid, .rw-grid-4 { grid-template-columns: 1fr; gap: 16px; } }
+/* Mobile: horizontal scroll carousel */
+@media (max-width: 720px) {
+  .rw-grid,
+  .rw-grid-4 {
+    grid-template-columns: none;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding: 4px 22px 18px;
+    margin: 0 -22px;
+    gap: 14px;
+    scrollbar-width: none;
+  }
+  .rw-grid::-webkit-scrollbar,
+  .rw-grid-4::-webkit-scrollbar { display: none; }
+  .rw-grid .rw-card,
+  .rw-grid-4 .rw-card {
+    flex: 0 0 82%;
+    scroll-snap-align: start;
+    min-width: 0;
+  }
+  .rw-head::after {
+    content: "‹  swipe  ›";
+    display: block;
+    margin-top: 14px;
+    font-family: var(--font-body);
+    font-size: 10.5px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 700;
+  }
+}
 
 .rw-card {
   background: var(--surface);
@@ -1948,66 +2157,80 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
 /* ---------------- Newsletter ---------------- */
 
 .newsletter {
-  padding: 80px 0;
-  background: var(--bg-deep);
-  border-top: 1.5px solid var(--border);
-  border-bottom: 1.5px solid var(--border);
+  padding: 100px 0 90px;
+  background:
+    radial-gradient(ellipse at 18% 0%, oklch(28% 0.09 30 / 0.6), transparent 55%),
+    radial-gradient(ellipse at 90% 100%, oklch(40% 0.13 65 / 0.4), transparent 55%),
+    linear-gradient(180deg, oklch(19% 0.03 35) 0%, oklch(15% 0.025 35) 100%);
+  border-top: 1.5px solid oklch(8% 0.02 30);
+  border-bottom: 1.5px solid oklch(8% 0.02 30);
   position: relative;
   overflow: hidden;
+  color: oklch(96% 0.025 80);
 }
 .newsletter::before {
   content: "";
   position: absolute;
   inset: 0;
   background-image:
-    radial-gradient(circle, oklch(22% 0.03 40 / 0.1) 1px, transparent 1.5px);
-  background-size: 38px 38px;
-  mask-image: radial-gradient(ellipse at 80% 60%, black, transparent 60%);
-  -webkit-mask-image: radial-gradient(ellipse at 80% 60%, black, transparent 60%);
+    radial-gradient(circle, oklch(96% 0.025 80 / 0.055) 1px, transparent 1.5px);
+  background-size: 42px 42px;
+  mask-image: radial-gradient(ellipse at 75% 55%, black, transparent 65%);
+  -webkit-mask-image: radial-gradient(ellipse at 75% 55%, black, transparent 65%);
   pointer-events: none;
 }
 .newsletter-grid {
   display: grid;
   grid-template-columns: 1.3fr 1fr;
   align-items: center;
-  gap: 56px;
+  gap: 64px;
   position: relative;
   z-index: 1;
 }
-@media (max-width: 860px) { .newsletter-grid { grid-template-columns: 1fr; gap: 28px; } }
+@media (max-width: 860px) { .newsletter-grid { grid-template-columns: 1fr; gap: 32px; } }
 
 .newsletter .eyebrow {
-  font-size: 13px;
-  letter-spacing: 0.14em;
+  font-size: 12.5px;
+  letter-spacing: 0.28em;
   text-transform: uppercase;
-  font-weight: 700;
-  color: var(--masala-deep);
-  margin-bottom: 14px;
-  display: block;
+  font-weight: 800;
+  color: oklch(76% 0.17 72);
+  margin-bottom: 18px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.newsletter .eyebrow::before {
+  content: "";
+  width: 28px;
+  height: 1.5px;
+  background: oklch(76% 0.17 72);
+  display: inline-block;
 }
 .newsletter h2 {
   font-family: var(--font-display);
   font-weight: 500;
-  font-size: clamp(34px, 4.4vw, 52px);
-  line-height: 1.02;
+  font-size: clamp(36px, 4.8vw, 58px);
+  line-height: 1;
   letter-spacing: -0.03em;
-  margin: 0 0 14px;
+  margin: 0 0 18px;
   font-variation-settings: "SOFT" 40, "opsz" 144;
   max-width: 18ch;
+  color: oklch(98% 0.02 80);
 }
-.newsletter h2 em { font-style: italic; color: var(--tandoori); font-weight: 500; }
+.newsletter h2 em { font-style: italic; color: oklch(76% 0.2 60); font-weight: 500; }
 .newsletter p {
-  color: var(--muted);
-  font-size: 16px;
+  color: oklch(82% 0.02 80);
+  font-size: 17px;
   max-width: 42ch;
   margin: 0;
-  line-height: 1.5;
+  line-height: 1.55;
 }
 .news-form {
   display: flex;
   gap: 10px;
-  background: var(--surface);
-  border: 1.5px solid var(--border-strong);
+  background: oklch(97% 0.02 80);
+  border: 1.5px solid oklch(96% 0.02 80);
   border-radius: var(--radius-pill);
   padding: 6px 6px 6px 22px;
   align-items: center;
@@ -2053,7 +2276,8 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
   font-size: 12.5px;
   color: var(--muted);
 }
-.news-fine strong { color: var(--fg); font-weight: 600; }
+.news-fine { color: oklch(76% 0.02 80); }
+.news-fine strong { color: oklch(88% 0.1 72); font-weight: 700; }
 .news-status {
   margin-top: 10px;
   font-size: 13.5px;
@@ -2286,216 +2510,13 @@ footer::before {
 .hero-pouches .pouch-frame.p-masala {
   transform: rotate(2deg);
 }
-.hero-pouches .pouch-frame { overflow: hidden; border-radius: 4px; }
-
-/* ---- INLINE POUCH ---- */
-/* Replaces the old iframe embed. Self-contained — zero external deps. */
-.pouch-inline {
-  position: relative;
-  width: 100%; height: 100%;
-  display: flex; flex-direction: column;
-  color: var(--cream, #f9efd8);
-  background: linear-gradient(178deg, var(--t-hi) 0%, var(--t-mid) 46%, var(--t-lo) 100%);
-  font-family: var(--font-display);
-  overflow: hidden;
-  isolation: isolate;
-  padding: 14% 9% 4%;
-  --cream: #f9efd8;
-  --cream-soft: #e9dbb8;
+.hero-pouches .pouch-frame iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+  pointer-events: none; /* the hero-stage handles clicks/cycles; iframe doesn't capture */
 }
-.pouch-inline.pouch-t {
-  --t-hi: #e15a3b;
-  --t-mid: #c63c28;
-  --t-lo: #9a2f1f;
-  --ink: #f9efd8;
-  --ink-soft: #e9dbb8;
-}
-.pouch-inline.pouch-m {
-  --t-hi: #efc560;
-  --t-mid: #e5a63d;
-  --t-lo: #b8871e;
-  --ink: #3d2615;
-  --ink-soft: #624427;
-}
-/* jali — geometric overlay */
-.pouch-inline .pi-jali {
-  position: absolute; inset: 0;
-  opacity: 0.13;
-  pointer-events: none;
-  background-image:
-    repeating-linear-gradient(45deg, currentColor 0 1px, transparent 1px 20px),
-    repeating-linear-gradient(-45deg, currentColor 0 1px, transparent 1px 20px);
-  color: var(--ink);
-  z-index: 0;
-}
-.pouch-inline > * { position: relative; z-index: 1; color: var(--ink); }
-
-/* top area: brand + tagline */
-.pouch-inline .pi-head {
-  text-align: center;
-  display: flex; flex-direction: column; gap: 4px;
-}
-.pouch-inline .pi-brand {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: clamp(18px, 3.4vw, 28px);
-  letter-spacing: 0.01em;
-  font-variation-settings: "SOFT" 30, "WONK" 1, "opsz" 144;
-  line-height: 0.95;
-}
-.pouch-inline .pi-brand .pi-amp {
-  font-style: italic;
-  font-weight: 500;
-  font-size: 1.08em;
-  margin: 0 0.04em;
-  color: var(--ink);
-  opacity: 0.92;
-}
-.pouch-inline .pi-tag {
-  font-family: var(--font-body);
-  font-size: clamp(7.5px, 1.1vw, 9.5px);
-  letter-spacing: 0.34em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-  font-weight: 600;
-  margin-top: 6px;
-}
-
-/* meta row: No + flame + protein */
-.pouch-inline .pi-meta {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-  margin: clamp(14px, 2vw, 22px) 0 clamp(8px, 1.2vw, 12px);
-  padding: 10px 0;
-  border-top: 0.5px solid currentColor;
-  border-bottom: 0.5px solid currentColor;
-  gap: 8px;
-}
-.pouch-inline .pi-no {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-weight: 500;
-  font-size: clamp(18px, 2.4vw, 26px);
-  font-variation-settings: "SOFT" 60, "opsz" 36;
-  text-align: left;
-  padding-left: 4%;
-}
-.pouch-inline .pi-flame {
-  font-size: clamp(26px, 4vw, 40px);
-  line-height: 1;
-  filter: saturate(0.9) contrast(1.1);
-}
-.pouch-inline .pi-protein {
-  display: flex; flex-direction: column;
-  align-items: flex-end;
-  gap: 0;
-  padding-right: 4%;
-  line-height: 1;
-}
-.pouch-inline .pi-protein strong {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: clamp(18px, 2.6vw, 26px);
-  letter-spacing: -0.02em;
-  font-variation-settings: "opsz" 36;
-}
-.pouch-inline .pi-protein small {
-  font-family: var(--font-body);
-  font-size: clamp(7px, 0.95vw, 9px);
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  font-weight: 600;
-  opacity: 0.78;
-  margin-top: 3px;
-}
-
-/* hero — the flavour name */
-.pouch-inline .pi-hero {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: clamp(8px, 1.4vw, 14px);
-  padding: clamp(8px, 2vw, 20px) 0;
-  text-align: center;
-}
-.pouch-inline .pi-flavour {
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: clamp(38px, 7.5vw, 72px);
-  letter-spacing: -0.025em;
-  line-height: 0.92;
-  font-variation-settings: "SOFT" 20, "opsz" 144;
-  margin: 0;
-  text-transform: uppercase;
-}
-.pouch-inline .pi-sub {
-  display: flex; align-items: center;
-  gap: 10px;
-  font-family: var(--font-body);
-  font-size: clamp(9px, 1.4vw, 13px);
-  letter-spacing: 0.34em;
-  text-transform: uppercase;
-  font-weight: 700;
-  color: var(--ink);
-}
-.pouch-inline .pi-sub .pi-rule {
-  flex: 0 0 clamp(16px, 4vw, 40px);
-  height: 1px;
-  background: currentColor;
-  opacity: 0.72;
-}
-.pouch-inline .pi-origin {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-weight: 400;
-  font-size: clamp(12px, 1.7vw, 16px);
-  letter-spacing: 0.02em;
-  color: var(--ink-soft);
-  font-variation-settings: "SOFT" 60, "opsz" 36;
-  margin-top: 2px;
-}
-
-/* info strip */
-.pouch-inline .pi-info {
-  display: flex; justify-content: space-between;
-  font-family: var(--font-body);
-  font-size: clamp(7px, 1vw, 9.5px);
-  letter-spacing: 0.26em;
-  text-transform: uppercase;
-  font-weight: 600;
-  color: var(--ink-soft);
-  padding: 8px 0;
-  border-top: 0.5px solid currentColor;
-  margin: 0 -2%;
-  gap: 8px;
-}
-
-/* bottom bar */
-.pouch-inline .pi-foot {
-  margin: 4px -11% 0;
-  background: #1a1209;
-  color: #f9efd8;
-  padding: 9px 12%;
-  display: flex; justify-content: space-between; align-items: center;
-  font-family: var(--font-body);
-  font-size: clamp(8.5px, 1.2vw, 11px);
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  font-weight: 600;
-}
-.pouch-inline .pi-foot .pi-halal b {
-  font-weight: 800;
-  letter-spacing: 0.22em;
-}
-.pouch-inline .pi-foot .pi-weight {
-  font-weight: 700;
-}
-
-/* pouch-frame wrapper can keep its iframe aspect ratio for the inline version too */
-
 .hero-stage[data-flavour="t"] .p-tandoori { opacity: 1; transform: rotate(-2.5deg) scale(1); }
 .hero-stage[data-flavour="t"] .p-masala   { opacity: 0; transform: rotate(4deg) scale(0.94); }
 .hero-stage[data-flavour="m"] .p-tandoori { opacity: 0; transform: rotate(-4.5deg) scale(0.94); }
@@ -2627,6 +2648,8 @@ footer::before {
   max-width: 34ch;
   padding-left: 16px;
 }
+.hero-buy .hero-proof { margin-bottom: 16px; }
+
 /* dual-product framing — makes it obvious the product comes in two */
 .flavour-frame {
   display: flex;
@@ -3024,19 +3047,42 @@ footer::before {
 .hero-bundle-up {
   display: flex;
   align-items: center;
-  gap: 16px;
-  padding: 16px 18px 16px 22px;
-  background: linear-gradient(180deg, oklch(97% 0.05 80) 0%, oklch(95% 0.06 70) 100%);
-  border: 1.5px solid var(--masala-deep);
-  border-radius: 14px;
+  gap: 18px;
+  padding: 18px 20px 18px 22px;
+  background: linear-gradient(180deg, oklch(94% 0.09 80) 0%, oklch(88% 0.12 72) 100%);
+  border: 2px solid oklch(50% 0.16 70);
+  border-radius: 16px;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
+  box-shadow:
+    0 0 0 5px oklch(94% 0.08 80 / 0.35),
+    0 18px 32px -20px oklch(48% 0.15 65 / 0.55),
+    inset 0 1px 0 oklch(100% 0 0 / 0.5);
 }
 .hero-bundle-up::before {
   content: "";
   position: absolute; inset: 0;
-  background: radial-gradient(ellipse at 90% 20%, oklch(72% 0.17 75 / 0.22), transparent 60%);
+  background: radial-gradient(ellipse at 85% 15%, oklch(78% 0.2 75 / 0.45), transparent 55%);
   pointer-events: none;
+  border-radius: inherit;
+}
+.bundle-deal-badge {
+  position: absolute;
+  top: -11px;
+  left: 18px;
+  background: var(--tandoori-deep);
+  color: oklch(97% 0.03 80);
+  font-family: var(--font-body);
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 5px 10px 4px;
+  border-radius: 999px;
+  box-shadow: 0 2px 0 oklch(36% 0.13 30), 0 4px 10px -4px oklch(36% 0.13 30 / 0.6);
+  z-index: 2;
+  transform: rotate(-3deg);
+  white-space: nowrap;
 }
 .hero-bundle-up .bundle-label {
   flex: 1;
@@ -3071,6 +3117,15 @@ footer::before {
   font-variant-numeric: tabular-nums;
 }
 .hero-bundle-up .bundle-pricing .now {
+  color: var(--fg);
+  font-weight: 500;
+  font-size: 16px;
+}
+.hero-bundle-up .bundle-pricing .was {
+  text-decoration: line-through;
+  margin-left: 6px;
+  opacity: 0.6;
+}
 .hero-bundle-up button {
   display: inline-flex;
   align-items: center;
@@ -3131,6 +3186,9 @@ footer::before {
   .hero-buy .hero-voice { display: none; }
 
   .hero-buy .hero-eyebrow { margin-bottom: 12px; font-size: 12px; }
+  .hero-buy .hero-proof { margin-bottom: 14px; font-size: 12.5px; padding: 7px 12px 7px 9px; }
+  .hero-buy .hero-proof .stars-big { font-size: 13px; }
+
   .hero-buybar { flex-wrap: nowrap; gap: 8px; }
   .atc-hero { flex: 1; order: 2; padding: 16px 18px; font-size: 16px; }
   .hero-qty { order: 1; flex-shrink: 0; }
@@ -3326,110 +3384,6 @@ footer::before {
   .flavour-copy .fc { transition: none; }
 }
 
-
-/* Meet the maker section ============================================== */
-.maker { padding: 80px 0; }
-.maker-grid {
-  display: grid;
-  grid-template-columns: 1fr 1.2fr;
-  gap: 48px;
-  align-items: center;
-}
-@media (max-width: 820px) {
-  .maker-grid { grid-template-columns: 1fr; }
-  .maker { padding: 48px 0; }
-}
-.maker-img {
-  aspect-ratio: 4 / 5;
-  background:
-    linear-gradient(180deg, oklch(0% 0 0 / 0) 0%, oklch(0% 0 0 / 0.35) 100%),
-    url("photo-10-meat-being-cut.jpg") center/cover no-repeat;
-  border-radius: var(--radius-lg);
-  border: 1.5px solid var(--fg);
-  position: relative;
-  overflow: hidden;
-  transition: transform 400ms ease;
-}
-.maker-img:hover { transform: scale(1.01); }
-.maker-img .caption {
-  position: absolute;
-  bottom: 22px; left: 22px; right: 22px;
-  color: oklch(97% 0.02 85);
-  z-index: 2;
-  font-size: 14px;
-  font-weight: 500;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.maker-img .caption .line {
-  width: 32px; height: 1.5px; background: currentColor;
-}
-.maker-copy .eyebrow {
-  font-size: 13px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--tandoori);
-  font-weight: 700;
-  margin-bottom: 14px;
-  display: block;
-}
-.maker-copy h2 {
-  font-family: var(--serif);
-  font-size: clamp(32px, 4.5vw, 44px);
-  line-height: 1.05;
-  margin: 0 0 18px 0;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-}
-.maker-copy h2 em {
-  font-style: italic;
-  color: var(--tandoori);
-}
-.maker-copy .lead {
-  font-size: 18px;
-  line-height: 1.55;
-  color: var(--fg);
-  margin: 0 0 14px 0;
-  font-weight: 500;
-}
-.maker-copy p {
-  font-size: 15px;
-  line-height: 1.65;
-  color: var(--muted);
-  margin: 0 0 12px 0;
-}
-.maker-badges {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin-top: 20px;
-}
-.maker-badges .badge {
-  display: inline-flex;
-  align-items: center;
-  padding: 8px 14px;
-  border-radius: 999px;
-  background: var(--tandoori-tint);
-  color: var(--fg);
-  font-size: 13px;
-  font-weight: 600;
-  border: 1px solid var(--tandoori);
-}
-.story-signoff {
-  font-family: var(--serif);
-  font-style: italic;
-  font-size: 17px;
-  color: var(--tandoori);
-  margin-top: 14px !important;
-  padding-top: 14px;
-  border-top: 1.5px solid var(--fg);
-}
-.story-signoff strong {
-  font-weight: 600;
-  font-style: normal;
-  color: var(--fg);
-}
 </style>
 </head>
 <body>
@@ -3499,61 +3453,15 @@ footer::before {
         <div class="hero-pouches">
           <!-- Full canonical pouch via iframe — Tandoori front only -->
           <div class="pouch-frame p-tandoori">
-            <div class="pouch-inline pouch-t" aria-label="Tandoori 60g pouch — front">
-              <div class="pi-jali" aria-hidden="true"></div>
-              <div class="pi-head">
-                <span class="pi-brand">Blaze<span class="pi-amp">&amp;</span>Char</span>
-                <span class="pi-tag">Hand-made in Wales</span>
-              </div>
-              <div class="pi-meta">
-                <span class="pi-no">№&thinsp;01</span>
-                <span class="pi-flame" aria-hidden="true">🔥</span>
-                <span class="pi-protein"><strong>36g</strong><small>protein</small></span>
-              </div>
-              <div class="pi-hero">
-                <h3 class="pi-flavour">Tandoori</h3>
-                <div class="pi-sub"><span class="pi-rule"></span><span class="pi-cat">Beef Jerky</span><span class="pi-rule"></span></div>
-                <div class="pi-origin">Original &middot; 3/5 heat</div>
-              </div>
-              <div class="pi-info">
-                <span>Topside &middot; Hand-cut</span><span>Slow-marinated &middot; Slow-dried</span>
-              </div>
-              <div class="pi-foot">
-                <span class="pi-weight">Net 60g</span>
-                <span class="pi-halal">Made with <b>halal</b>-sourced beef</span>
-              </div>
-            </div>
+            <iframe src="blaze-pouch-v7-final.html?mode=front-only&amp;sku=tandoori" title="Tandoori · 60g — front" loading="eager" frameborder="0" scrolling="no"></iframe>
           </div>
           <!-- Full canonical pouch via iframe — Masala front only -->
           <div class="pouch-frame p-masala">
-            <div class="pouch-inline pouch-m" aria-label="Masala 60g pouch — front">
-              <div class="pi-jali" aria-hidden="true"></div>
-              <div class="pi-head">
-                <span class="pi-brand">Blaze<span class="pi-amp">&amp;</span>Char</span>
-                <span class="pi-tag">Hand-made in Wales</span>
-              </div>
-              <div class="pi-meta">
-                <span class="pi-no">№&thinsp;02</span>
-                <span class="pi-flame" aria-hidden="true">🔥</span>
-                <span class="pi-protein"><strong>36g</strong><small>protein</small></span>
-              </div>
-              <div class="pi-hero">
-                <h3 class="pi-flavour">Masala</h3>
-                <div class="pi-sub"><span class="pi-rule"></span><span class="pi-cat">Beef Jerky</span><span class="pi-rule"></span></div>
-                <div class="pi-origin">Warm &amp; Rich &middot; 2/5 heat</div>
-              </div>
-              <div class="pi-info">
-                <span>Topside &middot; Hand-cut</span><span>Slow-marinated &middot; Slow-dried</span>
-              </div>
-              <div class="pi-foot">
-                <span class="pi-weight">Net 60g</span>
-                <span class="pi-halal">Made with <b>halal</b>-sourced beef</span>
-              </div>
-            </div>
+            <iframe src="blaze-pouch-v7-final.html?mode=front-only&amp;sku=masala" title="Masala · 60g — front" loading="eager" frameborder="0" scrolling="no"></iframe>
           </div>
         </div>
         <div class="stage-vignette"></div>
-        <div class="stage-tag" id="stageTag">Pre-launch · 5 early tasters · Launching Summer 2026</div>
+        <div class="stage-tag" id="stageTag">Launching soon · Be the first to try it</div>
 
         <!-- prev / next — signals the stage is switchable -->
         <button type="button" class="stage-arrow prev" aria-label="Previous flavour" onclick="cycleFlavour(-1)">
@@ -3657,9 +3565,11 @@ footer::before {
 
         <!-- bundle upsell -->
         <div class="hero-bundle-up">
+          <span class="bundle-deal-badge" aria-hidden="true">Save £1</span>
           <div class="bundle-label">
-            <span class="bundle-title">Or get <em>both pouches</em></span>
-            <span class="bundle-pricing"><span class="now">£9.00</span> · £1 off vs singles</span>
+            <span class="bundle-eyebrow">The pair</span>
+            <span class="bundle-title">Get <em>both pouches</em></span>
+            <span class="bundle-pricing"><span class="now">£11.00</span> · one of each · £1 off</span>
           </div>
           <button type="button" onclick="heroBuyBundle()">Add the pair →</button>
         </div>
@@ -3697,15 +3607,14 @@ footer::before {
 <section class="story-sec" id="story">
   <div class="wrap story-grid">
     <div class="story-img reveal">
-      <div class="spice-dots"></div>
+      <img src="photo-04-ingredients-ready.jpg" alt="Ingredients laid out before a batch — raw topside, whole Kashmiri chilli, cardamom, smoked paprika, kasuri methi, tamarind" loading="lazy" />
       <div class="caption"><span class="line"></span> Kashmiri chilli, smoked paprika, kasuri methi &mdash; whole, not pre-ground</div>
     </div>
     <div class="story-copy reveal">
       <span class="eyebrow">The Story</span>
       <h2>Slow&#8209;marinated. Small&#8209;batch. <em>Halal&#8209;sourced.</em></h2>
-      <p class="lead">We marinate premium halal beef in a handcrafted tandoori blend with tamarind, Kashmiri chilli, and smoked paprika &mdash; then slow&#8209;dehydrate at a low 63&ndash;68°C for six hours, then finish hot at 135°C for a clean sear.</p>
+      <p class="lead">We marinate premium halal beef in a handcrafted tandoori blend with tamarind, Kashmiri chilli, and smoked paprika &mdash; then slow&#8209;dehydrate every batch at 70°C for bold, clean flavour.</p>
       <p>No soy sauce. No MSG. No artificial preservatives. Nothing like it exists in the UK. Every pouch is hand-made in small batches, sealed the day it comes off the rack.</p>
-      <p class="story-signoff"><strong>&mdash; Islam</strong>, founder. Making it by hand, one batch at a time.</p>
       <div class="story-nots">
         <div class="not">Soy</div>
         <div class="not">MSG</div>
@@ -3744,7 +3653,7 @@ footer::before {
       <span class="number">03</span>
       <div class="art step-art-3"></div>
       <h3 class="name">Slow dehydrate</h3>
-      <p class="time">6h at 63&ndash;68°C · then 10m at 135°C</p>
+      <p class="time">9 hours · low &amp; steady at 70°C</p>
       <p class="detail">Dried on racks &mdash; not in a tumbler &mdash; so each strip keeps its texture. We pull the batch the moment it pulls cleanly but still tears. No further than that.</p>
     </div>
   </div>
@@ -3762,29 +3671,29 @@ footer::before {
   <div class="sourcing-grid">
     <div class="source-card reveal">
       <div class="stamp">
-        <div class="pcap">Beef</div>
-        <div class="sig">Topside</div>
-        <div class="since">UK</div>
+        <div class="pcap">The cut</div>
+        <div class="sig">British<br>Halal Beef</div>
+        <div class="since">Topside · UK</div>
         <div class="seal">№1</div>
       </div>
       <div>
         <h3>Halal British beef topside</h3>
         <div class="role">From a local halal butcher</div>
-        <p>Beef <em>born, reared and slaughtered in the UK</em>, sourced from a <strong>local halal butcher in Huddersfield</strong>. We use topside &mdash; a lean, flavourful cut that dries cleanly and tears rather than shatters. One butcher, one cut, every batch.</p>
+        <p>Beef <em>born, reared and slaughtered in the UK</em>, sourced from our local halal butcher. We use topside &mdash; a lean, flavourful cut that dries cleanly and tears rather than shatters. As we grow we&rsquo;ll name our butcher publicly once that relationship is fully established.</p>
         <div class="location">United Kingdom</div>
       </div>
     </div>
     <div class="source-card reveal">
       <div class="stamp">
-        <div class="pcap">Spice</div>
-        <div class="sig">Whole</div>
-        <div class="since">Toasted</div>
+        <div class="pcap">The blend</div>
+        <div class="sig">Whole<br>Spices</div>
+        <div class="since">Ground fresh</div>
         <div class="seal">№2</div>
       </div>
       <div>
         <h3>Whole spices, ground to order</h3>
         <div class="role">Toasted the morning we marinate</div>
-        <p>Kashmiri chilli, cumin, smoked paprika, turmeric, kasuri methi and black cardamom &mdash; bought whole from our <strong>local spice merchant</strong> and ground on the day of the batch. Tamarind water, lemon juice and apple cider vinegar do the tenderising work instead of soy sauce or yoghurt.</p>
+        <p>Kashmiri chilli, cumin, smoked paprika, turmeric, kasuri methi and black cardamom &mdash; bought whole and ground on the day of the batch. Tamarind water, lemon juice and apple cider vinegar do the tenderising work instead of soy sauce or yoghurt.</p>
         <div class="location">Spice blend · hand-made</div>
       </div>
     </div>
@@ -3829,7 +3738,7 @@ footer::before {
     <div class="allergens-body hide" data-body="masala">
       <div class="ing-list">
         <h4>Ingredients</h4>
-        <p>British beef topside (82%), tamarind water, tomato pur&eacute;e, lemon juice, apple cider vinegar, garam masala, toasted cumin, coriander powder, amchur, ginger, garlic, turmeric, kasuri methi, fenugreek, sea salt, <strong>MUSTARD</strong> powder, black pepper.</p>
+        <p>British beef topside (82%), tamarind water, tomato pur&eacute;e, lemon juice, apple cider vinegar, garam masala, toasted cumin, ginger, garlic, turmeric, kasuri methi, black cardamom, fenugreek, sea salt, <strong>MUSTARD</strong> powder, black pepper.</p>
         <p class="allergen-line">Allergens: <strong>Mustard</strong></p>
         <div class="halal-note">
           <strong>Halal-sourced.</strong> Made with halal beef, born, reared and slaughtered in the UK, from our local halal butcher.
@@ -3886,8 +3795,8 @@ footer::before {
         <div class="top">
           <span class="verified">03 &middot; The process</span>
         </div>
-        <h3>Low and slow, then hot. <em>One batch a day.</em></h3>
-        <blockquote>Four to six hours in the marinade, then six hours low and steady at 63&ndash;68°C in the drier, finished ten minutes hot at 135°C for the sear. Sealed the day it comes off the rack. Every pouch labelled with its batch and best-before. When we sell out we actually sell out &mdash; because we only make what we can make by hand in a day.</blockquote>
+        <h3>Nine hours at 70&deg;C. <em>One batch a day.</em></h3>
+        <blockquote>Four to six hours in the marinade, then low and steady for nine hours in the drier. Sealed the day it comes off the rack. Every pouch labelled with its batch and best-before. When we sell out we actually sell out &mdash; because we only make what we can make by hand in a day.</blockquote>
         <div class="who">
           <span><span class="name">Slow-dried, by hand</span></span>
           <span class="flavour">One batch a day</span>
@@ -3923,28 +3832,6 @@ footer::before {
   <p class="footnote">No certifications we haven't earned. No fictional farm stories. As we grow we'll add verified credentials here &mdash; only once they're ours to claim.</p>
 </section>
 
-
-<!-- Meet the maker ---------------------------------------------------- -->
-<section class="maker wrap" id="maker">
-  <div class="maker-grid">
-    <div class="maker-img reveal">
-      <div class="caption"><span class="line"></span> Every strip, cut by hand.</div>
-    </div>
-    <div class="maker-copy reveal">
-      <span class="eyebrow">Meet the maker</span>
-      <h2>Hi, I&rsquo;m <em>Islam</em>.</h2>
-      <p class="lead">I started Blaze &amp; Char because I couldn&rsquo;t find a proper tandoori beef jerky anywhere in the UK. So I spent six months getting the recipe right, and now I make it myself &mdash; from my kitchen, one batch at a time.</p>
-      <p>Every pouch is hand-cut, hand-rubbed, slow-dried and hand-sealed by me. When a batch sells out it actually sells out, because I only make what I can make by hand in a day.</p>
-      <p>No HMC certification yet &mdash; I&rsquo;ll display the paperwork when it lands. No press mentions yet &mdash; those will come. What you can trust today is what&rsquo;s on the pack, and what I&rsquo;ve told you here.</p>
-      <div class="maker-badges">
-        <span class="badge">🏴󠁧󠁢󠁷󠁬󠁳󠁿 Hand-made in Wales</span>
-        <span class="badge">🥩 Huddersfield butcher</span>
-        <span class="badge">🌶️ Spices ground fresh</span>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- FAQ ---------------------------------------------------------------- -->
 <section class="wrap faq" id="faq">
   <div class="faq-grid">
@@ -3952,7 +3839,7 @@ footer::before {
       <span class="eyebrow">Straight answers</span>
       <h2>The <em>asked-a-lot</em> list.</h2>
       <p>The questions we get most, answered without marketing-speak. If yours isn't here, drop us a line — we reply to all of them.</p>
-      <a href="mailto:hello@blazeandchar.co.uk" class="ask">
+      <a href="mailto:hi@blazeandchar.co.uk" class="ask">
         <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 4l6 4 6-4"/><rect x="2" y="3" width="12" height="10" rx="1"/></svg>
         Ask us anything
       </a>
@@ -3995,9 +3882,9 @@ footer::before {
       </details>
 
       <details class="faq-item">
-        <summary>Why is it £5 for 60g? That's not cheap.</summary>
+        <summary>Why is it £6 for 60g? That's not cheap.</summary>
         <div class="answer">
-          It isn't. 60g of finished jerky starts as about <strong>190g of raw topside</strong> &mdash; nearly 70% of the weight dries out. Halal British topside, a 4&ndash;6 hour marinade, slow dehydrate, hand-packed in small batches means there's a floor to what this can cost to make properly. We'd rather charge £5 for a proper portion you finish in one sitting than £3 for a nibble that leaves you hungry.
+          It isn't. 60g of finished jerky starts as about <strong>190g of raw topside</strong> &mdash; nearly 70% of the weight dries out. Halal British topside, a 4&ndash;6 hour marinade, slow dehydrate, hand-packed in small batches means there's a floor to what this can cost to make properly. We'd rather charge £6 for a proper portion you finish in one sitting than £3 for a nibble that leaves you hungry.
         </div>
       </details>
 
@@ -4036,7 +3923,7 @@ footer::before {
     <div class="footer-row">
       <div class="footer-brand">
         <div class="mark">Blaze <em>&amp;</em> Char</div>
-        <p>The UK&rsquo;s first tandoori beef jerky. Small-batch, hand-made in Wales by Islam. One batch a day, by hand.</p>
+        <p>The UK's first tandoori beef jerky. Small-batch, hand-made in Wales, halal beef. Made by hand, sold by the pouch.</p>
       </div>
       <div class="footer-col">
         <h4>Shop</h4>
@@ -4077,7 +3964,7 @@ footer::before {
   <div class="thumb" aria-hidden="true"></div>
   <div class="sb-meta">
     <div class="sb-name" id="stickyName"><em>The Fire</em> · Tandoori · 60g</div>
-    <div class="sb-price">60g pouch · <strong id="stickyPrice">£5.00</strong></div>
+    <div class="sb-price">60g pouch · <strong id="stickyPrice">£6.00</strong></div>
   </div>
   <button type="button" class="sb-btn" onclick="heroAddToCart()" aria-label="Add to bag">
     + Add
@@ -4096,11 +3983,11 @@ function smoothScrollTo(id) {
 /* ========= Flavour + buy state ========= */
 /* FLAVOURS[k] drives the hero crossfade, spec strip, proof, and CTA colouring */
 const FLAVOURS = {
-  t: { name: 'Tandoori · 60g', sub: 'Original · 3/5 heat', nick: 'The Fire',  no: '№ 01', tag: 'Launching Summer 2026 · Join the list', heat: 3, marinade: '4&ndash;6', protein: 36 },
-  m: { name: 'Masala · 60g',   sub: 'Warm & Rich · 2/5 heat', nick: 'The Ember', no: '№ 02', tag: 'Launching Summer 2026 · Join the list', heat: 2, marinade: '4&ndash;6', protein: 36 }
+  t: { name: 'Tandoori · 60g', sub: 'Original · 3/5 heat', nick: 'The Fire',  no: '№ 01', tag: 'Launching soon · Be the first to try it', heat: 3, marinade: '4&ndash;6', protein: 30 },
+  m: { name: 'Masala · 60g',   sub: 'Warm & Rich · 2/5 heat', nick: 'The Ember', no: '№ 02', tag: 'Launching soon · Be the first to try it', heat: 2, marinade: '4&ndash;6', protein: 30 }
 };
 const state = { flavour: 't', qty: 1, bag: 0 };
-const PRICE = 5;00;
+const PRICE = 6.00;
 
 function pickFlavour(k) {
   if (!(k in FLAVOURS) || state.flavour === k) return;
