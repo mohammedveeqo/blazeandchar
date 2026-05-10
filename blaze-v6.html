@@ -232,32 +232,6 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
   border-radius: 50%;
   box-shadow: 0 0 0 4px oklch(55% 0.2 28 / 0.18);
 }
-
-.hero-proof {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  padding: 8px 14px 8px 10px;
-  background: var(--surface);
-  border: 1.5px solid var(--border);
-  border-radius: var(--radius-pill);
-  margin-bottom: 24px;
-  font-size: 13.5px;
-  font-weight: 500;
-  color: var(--fg);
-  font-variant-numeric: tabular-nums;
-}
-.hero-proof .stars-big {
-  display: inline-flex;
-  color: var(--masala-deep);
-  letter-spacing: 1px;
-  font-size: 14px;
-}
-.hero-proof .rule {
-  width: 1px; height: 14px; background: var(--border);
-}
-.hero-proof strong { font-weight: 700; }
-.hero-proof .who { color: var(--muted); }
 .hero h1 {
   font-family: var(--font-display);
   font-weight: 600;
@@ -460,21 +434,11 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
 .hero-buy .hero-voice,
 .hero-buy .flavour-toggle,
 .hero-buy .flavour-copy,
-.hero-buy .hero-proof,
-.hero-buy .hero-spec,
-.hero-buy .hero-buybar,
-.hero-buy .hero-ship,
-.hero-buy .hero-bundle-up {
-  opacity: 0;
-  transform: translateY(10px);
-  animation: heroIn 0.55s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
-}
 .hero-buy .hero-eyebrow   { animation-delay: 0.20s; }
 .hero-buy h1              { animation: none; opacity: 1; transform: none; } /* per-word below */
 .hero-buy .hero-voice     { animation-delay: 0.70s; }
 .hero-buy .flavour-toggle { animation-delay: 0.84s; }
 .hero-buy .flavour-copy   { animation-delay: 0.92s; }
-.hero-buy .hero-proof     { animation-delay: 1.00s; }
 .hero-buy .hero-spec      { animation-delay: 1.08s; }
 .hero-buy .hero-buybar    { animation-delay: 1.16s; }
 .hero-buy .hero-ship      { animation-delay: 1.24s; }
@@ -520,25 +484,7 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
   to   { transform: scaleY(1); }
 }
 
-/* Star shimmer in the proof pill — one-time sweep on load --------------- */
-.hero-proof .stars-big {
-  position: relative;
-  overflow: hidden;
-}
-.hero-proof .stars-big::after {
-  content: "★★★★★";
-  position: absolute;
-  inset: 0;
-  color: oklch(100% 0 0 / 0.9);
-  letter-spacing: 1px;
-  pointer-events: none;
-  clip-path: inset(0 100% 0 -20%);
-  animation: starSweep 1.6s 1.3s ease-out forwards;
-  filter: drop-shadow(0 0 6px oklch(72% 0.17 75 / 0.7));
-}
-@keyframes starSweep {
-  0%   { clip-path: inset(0 100% 0 -20%); }
-  60%  { clip-path: inset(0 -20% 0 -20%); }
+60%  { clip-path: inset(0 -20% 0 -20%); }
   100% { clip-path: inset(0 -20% 0 100%); }
 }
 
@@ -573,7 +519,6 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
   .hero h1 .word,
   .hero h1 em.word,
   .hero-voice::before,
-  .hero-proof .stars-big::after,
   .btn.primary::after,
   .flavour-label .fl-arrow,
   .hero-stage .stage-arrow.next::after {
@@ -587,10 +532,6 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
 }
 
 /* ---------------- Product tiles ---------------- */
-
-.products {
-  padding: 40px 0 80px;
-}
 .section-head {
   display: flex;
   align-items: end;
@@ -620,14 +561,6 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
 }
 .section-head h2 em { font-style: italic; color: var(--tandoori); font-weight: 500; }
 .section-head .sub { max-width: 42ch; color: var(--muted); font-size: 17px; margin: 0; }
-
-.tiles {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
-}
-@media (max-width: 860px) { .tiles { grid-template-columns: 1fr; } }
-
 .tile {
   border: 1.5px solid var(--border-strong);
   border-radius: var(--radius-lg);
@@ -1005,10 +938,6 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
 }
 
 /* ---------------- Bundle ---------------- */
-
-.bundle-sec {
-  padding: 40px 0 96px;
-}
 .bundle {
   display: grid;
   grid-template-columns: 1fr 1.1fr;
@@ -1101,19 +1030,6 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
   margin-bottom: 26px;
 }
 .bundle-pricing .now {
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 56px;
-  letter-spacing: -0.03em;
-  font-variant-numeric: tabular-nums;
-  line-height: 1;
-}
-.bundle-pricing .was {
-  color: oklch(70% 0.03 80);
-  text-decoration: line-through;
-  font-size: 20px;
-  font-variant-numeric: tabular-nums;
-}
 .bundle-pricing .save {
   background: var(--masala);
   color: var(--fg);
@@ -1877,25 +1793,6 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
   font-size: 17px;
   margin: 0;
 }
-.reviews-wall .rw-head .tally {
-  margin-top: 18px;
-  display: inline-flex;
-  align-items: center;
-  gap: 14px;
-  padding: 10px 18px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-pill);
-  font-size: 14px;
-}
-.reviews-wall .rw-head .tally .stars-big {
-  font-size: 16px;
-  letter-spacing: 0.08em;
-  color: var(--masala-deep);
-}
-.reviews-wall .rw-head .tally strong { font-weight: 700; }
-.reviews-wall .rw-head .tally .dot { opacity: 0.4; }
-
 .rw-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -2556,8 +2453,6 @@ footer::before {
   max-width: 34ch;
   padding-left: 16px;
 }
-.hero-buy .hero-proof { margin-bottom: 16px; }
-
 /* dual-product framing — makes it obvious the product comes in two */
 .flavour-frame {
   display: flex;
@@ -3002,15 +2897,6 @@ footer::before {
   font-variant-numeric: tabular-nums;
 }
 .hero-bundle-up .bundle-pricing .now {
-  color: var(--fg);
-  font-weight: 500;
-  font-size: 16px;
-}
-.hero-bundle-up .bundle-pricing .was {
-  text-decoration: line-through;
-  margin-left: 6px;
-  opacity: 0.6;
-}
 .hero-bundle-up button {
   display: inline-flex;
   align-items: center;
@@ -3071,9 +2957,6 @@ footer::before {
   .hero-buy .hero-voice { display: none; }
 
   .hero-buy .hero-eyebrow { margin-bottom: 12px; font-size: 12px; }
-  .hero-buy .hero-proof { margin-bottom: 14px; font-size: 12.5px; padding: 7px 12px 7px 9px; }
-  .hero-buy .hero-proof .stars-big { font-size: 13px; }
-
   .hero-buybar { flex-wrap: nowrap; gap: 8px; }
   .atc-hero { flex: 1; order: 2; padding: 16px 18px; font-size: 16px; }
   .hero-qty { order: 1; flex-shrink: 0; }
