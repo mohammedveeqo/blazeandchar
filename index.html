@@ -1,5 +1,6 @@
 <!doctype html>
-<html lang="en">
+<!-- BLAZE v9.4-delight · cache-buster 2026-05-24 01:30 -->
+<html lang="en" data-polish="v9.4-2026-05-24">
 <head><script>(function(){
   function makeStore(){
     var data = {};
@@ -27,6 +28,22 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Blaze &amp; Char — The UK&rsquo;s first tandoori beef jerky</title>
+<meta name="description" content="Proper tandoori beef jerky, hand-made in Wales. Halal British topside, slow-marinated, slow-dried. Two recipes — Tandoori (The Fire) and Masala (The Ember). 60g pouches." />
+<meta name="theme-color" content="#c24a27" />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="en_GB" />
+<meta property="og:site_name" content="Blaze &amp; Char" />
+<meta property="og:title" content="Blaze &amp; Char — The UK’s first tandoori beef jerky" />
+<meta property="og:description" content="Proper tandoori beef jerky. Halal British topside, hand-made in Wales. Two recipes — one fire, one ember." />
+<meta property="og:url" content="https://blazeandchar.co.uk/" />
+<meta property="og:image" content="https://blazeandchar.co.uk/photo-04-ingredients-ready.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Whole spices and topside beef ready for marinating — Blaze &amp; Char." />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Blaze &amp; Char — The UK’s first tandoori beef jerky" />
+<meta name="twitter:description" content="Proper tandoori beef jerky. Halal British topside, hand-made in Wales." />
+<meta name="twitter:image" content="https://blazeandchar.co.uk/photo-04-ingredients-ready.jpg" />
 <link rel="icon" type="image/svg+xml" href="favicon.svg" />
 <link rel="apple-touch-icon" href="blaze-monogram.svg" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -81,7 +98,10 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; }
+html { -webkit-text-size-adjust: 100%; scroll-padding-top: 96px; }
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
 html, body { margin: 0; padding: 0; }
 
 body {
@@ -99,6 +119,53 @@ body {
 a { color: inherit; text-decoration: none; }
 img { max-width: 100%; display: block; }
 button { font: inherit; color: inherit; cursor: pointer; background: none; border: 0; padding: 0; }
+
+/* ============== v9.1 tiny-detail polish ============== */
+
+/* Branded text selection */
+::selection      { background: oklch(55% 0.2 28 / 0.22); color: var(--fg); }
+::-moz-selection { background: oklch(55% 0.2 28 / 0.22); color: var(--fg); }
+
+/* Consistent focus rings — keyboard only, never on click.
+   Page-wide default; section-specific rules below override. */
+:focus { outline: none; }
+button:focus-visible,
+[role="button"]:focus-visible,
+a:focus-visible,
+summary:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--tandoori);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+/* On Masala flavour state, recolour the ring so it doesn't fight the gold */
+.hero-buy[data-flavour="m"] :focus-visible,
+.hero-stage[data-flavour="m"] :focus-visible {
+  outline-color: var(--masala-deep);
+}
+/* Keep the existing flavour-toggle ring (already good) */
+.flavour-toggle button:focus-visible { outline-offset: 2px; }
+
+/* Spec-value flip + qty pop — fires on flavour change / qty change */
+@keyframes flip-up {
+  0%   { transform: translateY(-6px); opacity: 0; }
+  100% { transform: translateY(0);    opacity: 1; }
+}
+@keyframes qty-pop {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(1.18); }
+  100% { transform: scale(1); }
+}
+.spec-flip { display: inline-block; animation: flip-up 220ms cubic-bezier(0.2, 0.8, 0.3, 1); }
+.qty-pop   { display: inline-block; animation: qty-pop 260ms cubic-bezier(0.34, 1.56, 0.64, 1); }
+
+@media (prefers-reduced-motion: reduce) {
+  .spec-flip, .qty-pop { animation: none !important; }
+}
+/* ============== /v9.1 ============== */
+
 
 .wrap { max-width: var(--page-max); margin: 0 auto; padding: 0 28px; }
 @media (max-width: 640px) { .wrap { padding: 0 20px; } }
@@ -487,21 +554,21 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
 .hero-buy .hero-spec,
 .hero-buy .hero-buybar,
 .hero-buy .hero-ship,
-.hero-buy .hero-bundle-up {
+.hero-buy .hero-bundle-line {
   opacity: 0;
   transform: translateY(10px);
   animation: heroIn 0.55s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
 }
-.hero-buy .hero-eyebrow   { animation-delay: 0.20s; }
-.hero-buy h1              { animation: none; opacity: 1; transform: none; } /* per-word below */
-.hero-buy .hero-voice     { animation-delay: 0.70s; }
-.hero-buy .flavour-toggle { animation-delay: 0.84s; }
-.hero-buy .flavour-copy   { animation-delay: 0.92s; }
-.hero-buy .hero-proof     { animation-delay: 1.00s; }
-.hero-buy .hero-spec      { animation-delay: 1.08s; }
-.hero-buy .hero-buybar    { animation-delay: 1.16s; }
-.hero-buy .hero-ship      { animation-delay: 1.24s; }
-.hero-buy .hero-bundle-up { animation-delay: 1.32s; }
+.hero-buy .hero-eyebrow     { animation-delay: 0.20s; }
+.hero-buy h1                { animation: none; opacity: 1; transform: none; } /* per-word below */
+.hero-buy .hero-voice       { animation-delay: 0.70s; }
+.hero-buy .flavour-toggle   { animation-delay: 0.84s; }
+.hero-buy .flavour-copy     { animation-delay: 0.92s; }
+.hero-buy .hero-proof       { animation-delay: 1.00s; }
+.hero-buy .hero-spec        { animation-delay: 1.08s; }
+.hero-buy .hero-buybar      { animation-delay: 1.16s; }
+.hero-buy .hero-ship        { animation-delay: 1.24s; }
+.hero-buy .hero-bundle-line { animation-delay: 1.32s; }
 @keyframes heroIn {
   to { opacity: 1; transform: translateY(0); }
 }
@@ -2159,11 +2226,9 @@ button { font: inherit; color: inherit; cursor: pointer; background: none; borde
 .newsletter {
   padding: 100px 0 90px;
   background:
-    radial-gradient(ellipse at 18% 0%, oklch(28% 0.09 30 / 0.6), transparent 55%),
-    radial-gradient(ellipse at 90% 100%, oklch(40% 0.13 65 / 0.4), transparent 55%),
-    linear-gradient(180deg, oklch(19% 0.03 35) 0%, oklch(15% 0.025 35) 100%);
+    radial-gradient(ellipse at 82% 28%, oklch(45% 0.12 62 / 0.16), transparent 60%),
+    var(--fg);
   border-top: 1.5px solid oklch(8% 0.02 30);
-  border-bottom: 1.5px solid oklch(8% 0.02 30);
   position: relative;
   overflow: hidden;
   color: oklch(96% 0.025 80);
@@ -2472,21 +2537,6 @@ footer::before {
   user-select: none;
   pointer-events: none;
 }
-.hero-stage .stage-tag {
-  position: absolute;
-  bottom: 22px; left: 22px;
-  font-family: var(--font-mono, ui-monospace, monospace);
-  font-size: 10.5px;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  color: oklch(100% 0 0 / 0.72);
-  padding: 6px 10px;
-  border: 1px solid oklch(100% 0 0 / 0.3);
-  border-radius: 2px;
-  background: oklch(0% 0 0 / 0.18);
-  backdrop-filter: blur(6px);
-  transition: opacity 0.4s;
-}
 
 /* hero pouches — iframe-embedded canonical pouch in front-only / single-SKU mode */
 .hero-pouches {
@@ -2587,45 +2637,6 @@ footer::before {
   30%  { opacity: 0.9;  transform: scale(1); }
   80%  { opacity: 0;    transform: scale(1.25); }
   100% { opacity: 0;    transform: scale(1.25); }
-}
-
-/* dot indicator — ambient "2 of 2 flavours" proof */
-.hero-stage .stage-dots {
-  position: absolute;
-  bottom: 22px;
-  right: 22px;
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 7px 14px;
-  background: oklch(0% 0 0 / 0.38);
-  border: 1px solid oklch(100% 0 0 / 0.18);
-  backdrop-filter: blur(10px);
-  border-radius: 999px;
-  z-index: 2;
-  font-family: var(--font-mono, ui-monospace, monospace);
-  font-size: 10.5px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: oklch(100% 0 0 / 0.82);
-}
-.hero-stage .stage-dots .sd-dots {
-  display: inline-flex;
-  gap: 6px;
-}
-.hero-stage .stage-dots .sd-dot {
-  width: 7px; height: 7px;
-  border-radius: 50%;
-  background: oklch(100% 0 0 / 0.32);
-  transition: background 0.3s, transform 0.3s;
-}
-.hero-stage[data-flavour="t"] .sd-dot[data-fl="t"],
-.hero-stage[data-flavour="m"] .sd-dot[data-fl="m"] {
-  background: oklch(100% 0 0 / 1);
-  transform: scale(1.25);
-}
-.hero-stage .stage-tag {
-  transition: opacity 0.4s, transform 0.4s;
 }
 
 /* ---- RIGHT — buy card ---- */
@@ -2788,7 +2799,6 @@ footer::before {
   inset: 0;
   opacity: 0;
   transform: translateY(6px);
-  transition: opacity 0.35s ease, transform 0.35s cubic-bezier(.2,.7,.2,1);
   pointer-events: none;
 }
 .flavour-copy .fc.active {
@@ -2796,6 +2806,7 @@ footer::before {
   transform: translateY(0);
   position: relative;
   pointer-events: auto;
+  transition: opacity 0.35s ease, transform 0.35s cubic-bezier(.2,.7,.2,1);
 }
 
 /* product identity — weight is part of the name */
@@ -2885,42 +2896,86 @@ footer::before {
   font-weight: 600;
 }
 
-/* visible allergen strip — UK distance-selling legal requirement */
+/* heat indicator — small flame chips, lit count = data-heat */
+.hero-spec .heat-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 6px;
+  height: 10px;
+}
+.hero-spec .heat-row .hr-flame {
+  display: inline-block;
+  width: 7px;
+  height: 10px;
+  border-radius: 3px 3px 2px 2px / 6px 6px 2px 2px;
+  background: oklch(88% 0.012 80);
+  transition: background 0.4s ease, transform 0.3s ease, box-shadow 0.4s ease;
+}
+.hero-spec .heat-row[data-heat="3"] .hr-flame:nth-child(-n+3),
+.hero-spec .heat-row[data-heat="2"] .hr-flame:nth-child(-n+2) {
+  background: var(--tandoori);
+}
+.hero-buy[data-flavour="m"] .hero-spec .heat-row[data-heat="2"] .hr-flame:nth-child(-n+2),
+.hero-buy[data-flavour="m"] .hero-spec .heat-row[data-heat="3"] .hr-flame:nth-child(-n+3) {
+  background: var(--masala-deep);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .hero-spec .heat-row[data-heat="3"] .hr-flame:nth-child(3),
+  .hero-spec .heat-row[data-heat="2"] .hr-flame:nth-child(2) {
+    animation: heatFlicker 2.6s ease-in-out 1.5s infinite;
+    transform-origin: 50% 100%;
+  }
+  @keyframes heatFlicker {
+    0%, 100% { transform: scaleY(1); box-shadow: 0 0 0 0 oklch(60% 0.2 28 / 0); }
+    50%      { transform: scaleY(1.18); box-shadow: 0 0 6px 0 oklch(60% 0.2 28 / 0.55); }
+  }
+}
+
+/* visible allergen strip — UK distance-selling legal requirement, quiet treatment */
 .hero-allergen {
   display: flex;
   align-items: center;
   gap: 12px;
   flex-wrap: wrap;
-  padding: 11px 16px;
+  padding: 9px 0;
   margin-bottom: 14px;
-  background: oklch(97% 0.03 28);
-  border: 1px solid oklch(60% 0.18 28 / 0.22);
-  border-left: 3px solid var(--tandoori);
-  border-radius: 6px;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
   font-family: var(--font-mono);
   font-size: 11.5px;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   font-weight: 600;
-  color: var(--tandoori-deep);
+  color: var(--muted);
 }
 .hero-allergen .ha-label {
   color: var(--muted);
-  font-weight: 700;
+  font-weight: 600;
 }
 .hero-allergen .ha-val strong {
-  font-weight: 800;
-  letter-spacing: 0.22em;
-  color: var(--tandoori-deep);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: var(--fg);
 }
 .hero-allergen .ha-link { margin-left: auto; }
 .hero-allergen .ha-link a {
-  color: var(--fg);
+  color: var(--muted);
   text-decoration: none;
-  border-bottom: 1px solid oklch(50% 0.04 60 / 0.3);
-  transition: border-color 0.15s;
+  border-bottom: 1px solid oklch(50% 0.04 60 / 0.25);
+  padding-bottom: 1px;
+  transition: color 0.18s ease, border-bottom-color 0.18s ease;
 }
-.hero-allergen .ha-link a:hover { border-bottom-color: var(--tandoori); }
+.hero-allergen .ha-link a:hover,
+.hero-allergen .ha-link a:focus-visible {
+  color: var(--tandoori-deep);
+  border-bottom-color: var(--tandoori);
+}
+.hero-buy[data-flavour="m"] .hero-allergen .ha-link a:hover,
+.hero-buy[data-flavour="m"] .hero-allergen .ha-link a:focus-visible {
+  color: var(--masala-deep);
+  border-bottom-color: var(--masala-deep);
+}
 
 /* big primary buy CTA + qty */
 .hero-buybar {
@@ -2985,7 +3040,11 @@ footer::before {
   box-shadow: 0 2px 0 0 oklch(42% 0.15 65), 0 10px 24px oklch(55% 0.17 65 / 0.3);
 }
 .atc-hero:hover { transform: translateY(-2px); }
-.atc-hero:active { transform: translateY(0); }
+.atc-hero:active {
+  transform: translateY(1px) scale(0.985);
+  box-shadow: 0 0 0 0 oklch(45% 0.2 28), 0 4px 10px oklch(55% 0.2 28 / 0.18);
+  transition: transform 0.06s ease, box-shadow 0.08s ease;
+}
 .atc-hero .atc-label {
   display: inline-flex;
   align-items: center;
@@ -3034,7 +3093,7 @@ footer::before {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  margin-bottom: 22px;
+  margin-bottom: 8px;
 }
 .hero-ship::before {
   content: "";
@@ -3044,108 +3103,66 @@ footer::before {
   box-shadow: 0 0 0 3px oklch(55% 0.13 140 / 0.2);
 }
 
-.hero-bundle-up {
-  display: flex;
+.hero-bundle-up { display: none !important; } /* legacy gold-card — replaced by .hero-bundle-line */
+
+/* compact inline bundle line — sits under shipping, lets ATC stay the dominant CTA */
+.hero-bundle-line {
+  display: inline-flex;
   align-items: center;
-  gap: 18px;
-  padding: 18px 20px 18px 22px;
-  background: linear-gradient(180deg, oklch(94% 0.09 80) 0%, oklch(88% 0.12 72) 100%);
-  border: 2px solid oklch(50% 0.16 70);
-  border-radius: 16px;
-  position: relative;
-  overflow: visible;
-  box-shadow:
-    0 0 0 5px oklch(94% 0.08 80 / 0.35),
-    0 18px 32px -20px oklch(48% 0.15 65 / 0.55),
-    inset 0 1px 0 oklch(100% 0 0 / 0.5);
-}
-.hero-bundle-up::before {
-  content: "";
-  position: absolute; inset: 0;
-  background: radial-gradient(ellipse at 85% 15%, oklch(78% 0.2 75 / 0.45), transparent 55%);
-  pointer-events: none;
-  border-radius: inherit;
-}
-.bundle-deal-badge {
-  position: absolute;
-  top: -11px;
-  left: 18px;
-  background: var(--tandoori-deep);
-  color: oklch(97% 0.03 80);
+  gap: 10px;
+  padding: 6px 0 0;
+  margin: 0 0 4px;
+  background: transparent;
+  border: 0;
   font-family: var(--font-body);
-  font-size: 10.5px;
-  font-weight: 800;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  padding: 5px 10px 4px;
-  border-radius: 999px;
-  box-shadow: 0 2px 0 oklch(36% 0.13 30), 0 4px 10px -4px oklch(36% 0.13 30 / 0.6);
-  z-index: 2;
-  transform: rotate(-3deg);
-  white-space: nowrap;
+  font-size: 13.5px;
+  color: var(--fg);
+  cursor: pointer;
+  text-align: left;
+  letter-spacing: 0;
+  transition: color 0.18s ease;
+  align-self: flex-start;
 }
-.hero-bundle-up .bundle-label {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  position: relative;
-  z-index: 1;
+.hero-bundle-line .bl-text {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  border-bottom: 1px solid oklch(50% 0.04 60 / 0.28);
+  padding-bottom: 1px;
+  transition: border-bottom-color 0.18s ease;
 }
-.hero-bundle-up .bundle-eyebrow {
-  font-size: 10.5px;
-  letter-spacing: 0.2em;
+.hero-bundle-line .bl-text em {
+  font-style: italic;
+  font-family: var(--font-display);
+  color: var(--fg);
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+.hero-bundle-line .bl-save {
+  display: inline-block;
+  font-size: 11px;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   font-weight: 700;
   color: var(--masala-deep);
-}
-.hero-bundle-up .bundle-title {
-  font-family: var(--font-display);
-  font-size: 17px;
-  font-weight: 500;
-  color: var(--fg);
-  letter-spacing: -0.01em;
-}
-.hero-bundle-up .bundle-title em {
-  font-style: italic;
-  color: var(--masala-deep);
-}
-.hero-bundle-up .bundle-pricing {
-  font-family: var(--font-display);
-  font-size: 14px;
-  color: var(--muted);
-  font-variant-numeric: tabular-nums;
-}
-.hero-bundle-up .bundle-pricing .now {
-  color: var(--fg);
-  font-weight: 500;
-  font-size: 16px;
-}
-.hero-bundle-up .bundle-pricing .was {
-  text-decoration: line-through;
-  margin-left: 6px;
-  opacity: 0.6;
-}
-.hero-bundle-up button {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 12px 18px;
-  font-family: inherit;
-  font-size: 14.5px;
-  font-weight: 600;
-  color: var(--bg);
-  background: var(--masala-deep);
-  border: 0;
-  border-radius: var(--radius-pill);
-  cursor: pointer;
-  font-variant-numeric: tabular-nums;
-  transition: transform 0.12s, background 0.2s;
+  background: var(--masala-tint);
+  padding: 2px 7px 1px;
+  border-radius: 4px;
   white-space: nowrap;
-  position: relative;
-  z-index: 1;
+  transform: translateY(-1px);
 }
-.hero-bundle-up button:hover { transform: translateY(-1px); background: oklch(48% 0.15 65); }
+.hero-bundle-line .bl-arrow {
+  font-family: var(--font-display);
+  font-size: 16px;
+  color: var(--muted);
+  transition: transform 0.2s ease, color 0.18s ease;
+}
+.hero-bundle-line:hover { color: var(--tandoori-deep); }
+.hero-bundle-line:hover .bl-text { border-bottom-color: var(--tandoori); }
+.hero-bundle-line:hover .bl-arrow { transform: translateX(3px); color: var(--tandoori-deep); }
+.hero-buy[data-flavour="m"] .hero-bundle-line:hover { color: var(--masala-deep); }
+.hero-buy[data-flavour="m"] .hero-bundle-line:hover .bl-text { border-bottom-color: var(--masala-deep); }
+.hero-buy[data-flavour="m"] .hero-bundle-line:hover .bl-arrow { color: var(--masala-deep); }
 
 /* ---- responsive ---- */
 @media (max-width: 960px) {
@@ -3165,14 +3182,11 @@ footer::before {
   }
   .hero-pouches .pouch-frame { width: 72%; max-width: 360px; }
   .hero-stage .stage-no { font-size: clamp(48px, 14vw, 76px); }
-  .hero-stage .stage-tag { font-size: 9.5px; padding: 5px 8px; }
 
   /* arrows on mobile: slightly smaller + tighter to edge */
   .hero-stage .stage-arrow { width: 40px; height: 40px; font-size: 17px; }
   .hero-stage .stage-arrow.prev { left: 10px; }
   .hero-stage .stage-arrow.next { right: 10px; }
-  .hero-stage .stage-dots { bottom: 14px; right: 14px; padding: 6px 12px; font-size: 10px; gap: 8px; }
-  .hero-stage .stage-dots .sd-dot { width: 6px; height: 6px; }
 
   /* dual-product framing on mobile — still visible, tighter */
   .flavour-frame { margin: 0 0 2px; gap: 8px; }
@@ -3196,9 +3210,9 @@ footer::before {
   .atc-hero .atc-plus { width: 20px; height: 20px; }
   .atc-hero .atc-price { font-size: 18px; }
 
-  .hero-bundle-up { flex-wrap: wrap; gap: 12px; padding: 14px 16px; }
-  .hero-bundle-up button { flex: 1 1 100%; justify-content: center; min-height: 44px; }
-  .hero-bundle-up .bundle-title { font-size: 16px; }
+  .hero-bundle-up { display: none !important; }
+  .hero-bundle-line { font-size: 13px; padding-top: 4px; }
+  .hero-bundle-line .bl-save { font-size: 10px; padding: 2px 6px 1px; }
 
   .hero-spec { padding: 10px 0; margin: 0 0 14px; }
   .hero-spec .cell { padding: 0 10px; gap: 2px; }
@@ -3229,11 +3243,9 @@ footer::before {
     border-radius: 18px;
   }
   .hero-stage .stage-no { top: 16px; left: 16px; }
-  .hero-stage .stage-tag { bottom: 16px; left: 16px; font-size: 9px; padding: 4px 7px; letter-spacing: 0.18em; }
   .hero-stage .stage-arrow { width: 36px; height: 36px; }
   .hero-stage .stage-arrow.prev { left: 8px; }
   .hero-stage .stage-arrow.next { right: 8px; }
-  .hero-stage .stage-dots { bottom: 11px; right: 11px; padding: 5px 10px; gap: 7px; font-size: 9.5px; letter-spacing: 0.16em; }
 
   .flavour-frame .ff-title { font-size: 17px; }
 
@@ -3384,17 +3396,244 @@ footer::before {
   .flavour-copy .fc { transition: none; }
 }
 
+/* ============================================================
+   v9.4 — moments of delight pass (drop-in overrides)
+   Each block is intentional. Earlier rules above still in force,
+   these win by being later in the cascade at same specificity.
+   ============================================================ */
+
+/* 1. Body grain overlay — subtle clay/smoke texture, ~5% multiply over bg.
+      Painted as a fixed background layer, not above text. */
+body {
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.075 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E") 0 0 / 220px 220px,
+    var(--bg);
+  background-attachment: fixed, scroll;
+}
+@media (prefers-reduced-motion: reduce) {
+  body { background-attachment: scroll, scroll; }
+}
+
+/* 2. Warm radial glow behind the pouch — feels like light coming from
+      behind. Sits between .stage-bg and .hero-pouches. */
+.hero-pouches { position: absolute; z-index: 1; }
+.hero-stage::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at 50% 54%,
+    oklch(88% 0.16 65 / 0.55) 0%,
+    oklch(78% 0.16 70 / 0.22) 28%,
+    transparent 62%);
+  mix-blend-mode: soft-light;
+  opacity: 0.95;
+  z-index: 0;
+  transition: background 0.7s cubic-bezier(.2,.7,.2,1), opacity 0.5s ease;
+}
+.hero-stage[data-flavour="m"]::after {
+  background: radial-gradient(circle at 50% 54%,
+    oklch(86% 0.18 88 / 0.6) 0%,
+    oklch(76% 0.16 78 / 0.22) 30%,
+    transparent 62%);
+}
+/* keep arrows above the glow */
+.hero-stage .stage-arrow { z-index: 3; }
+.hero-stage .stage-vignette { z-index: 2; }
+
+/* 3. Stronger pouch drop shadow + slightly slower crossfade */
+.hero-pouches .pouch-frame {
+  filter:
+    drop-shadow(0 60px 70px oklch(0% 0 0 / 0.5))
+    drop-shadow(0 24px 32px oklch(0% 0 0 / 0.32))
+    drop-shadow(0 6px 10px oklch(0% 0 0 / 0.24));
+  transition: opacity 0.7s cubic-bezier(.2,.7,.2,1),
+              transform 0.7s cubic-bezier(.2,.7,.2,1),
+              filter 0.6s ease;
+}
+
+/* 4. Heat dots — staggered fill, more vivid filled state */
+.hero-spec .heat-row .hr-flame {
+  background: oklch(86% 0.018 70);
+  transition: background 0.45s ease, transform 0.35s ease, box-shadow 0.5s ease;
+}
+.hero-spec .heat-row .hr-flame:nth-child(1) { transition-delay: 0ms,    0ms,    0ms; }
+.hero-spec .heat-row .hr-flame:nth-child(2) { transition-delay: 90ms,   90ms,   90ms; }
+.hero-spec .heat-row .hr-flame:nth-child(3) { transition-delay: 180ms,  180ms,  180ms; }
+.hero-spec .heat-row .hr-flame:nth-child(4) { transition-delay: 270ms,  270ms,  270ms; }
+.hero-spec .heat-row .hr-flame:nth-child(5) { transition-delay: 360ms,  360ms,  360ms; }
+.hero-spec .heat-row[data-heat="3"] .hr-flame:nth-child(-n+3),
+.hero-spec .heat-row[data-heat="2"] .hr-flame:nth-child(-n+2) {
+  background: var(--tandoori);
+  box-shadow: 0 1px 2px oklch(45% 0.18 28 / 0.35),
+              inset 0 1px 0 oklch(100% 0 0 / 0.32);
+}
+.hero-buy[data-flavour="m"] .hero-spec .heat-row[data-heat="2"] .hr-flame:nth-child(-n+2),
+.hero-buy[data-flavour="m"] .hero-spec .heat-row[data-heat="3"] .hr-flame:nth-child(-n+3) {
+  background: var(--masala-deep);
+  box-shadow: 0 1px 2px oklch(45% 0.13 65 / 0.35),
+              inset 0 1px 0 oklch(100% 0 0 / 0.28);
+}
+
+/* 5. Stats row — more vertical room, warmer dividers (saffron-tinted) */
+.hero-spec {
+  padding: 22px 0 20px;
+  margin: 8px 0 18px;
+  border-top: 1.5px solid oklch(80% 0.05 65);
+  border-bottom: 1.5px solid oklch(80% 0.05 65);
+}
+.hero-spec .cell {
+  border-right: 1px solid oklch(80% 0.05 65);
+}
+.hero-spec .cell:last-child { border-right: 0; }
+.hero-spec .value { font-size: 23px; }
+.hero-spec .slabel { color: oklch(45% 0.05 50); }
+
+/* 6. Flavour toggle — sliding active indicator (real slide, not crossfade) */
+.flavour-toggle {
+  position: relative;
+  isolation: isolate;
+}
+.flavour-toggle::before {
+  content: "";
+  position: absolute;
+  top: 5px; bottom: 5px; left: 5px;
+  width: calc(50% - 5px);
+  border-radius: 999px;
+  background: var(--fg);
+  box-shadow: 0 1px 0 oklch(100% 0 0 / 0.08) inset, 0 6px 14px oklch(0% 0 0 / 0.18);
+  transform: translate3d(0, 0, 0);
+  transition: transform 0.34s cubic-bezier(.2,.85,.3,1.05),
+              background 0.45s ease;
+  z-index: 0;
+  pointer-events: none;
+}
+.flavour-toggle[data-active="m"]::before {
+  transform: translate3d(calc(100% + 4px), 0, 0);
+  background: var(--masala-deep);
+}
+.flavour-toggle button {
+  position: relative;
+  z-index: 1;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+.flavour-toggle button[aria-selected="true"] { color: var(--surface); }
+.flavour-toggle button[aria-selected="true"] .fsub { color: oklch(100% 0 0 / 0.72); }
+.flavour-toggle button[aria-selected="true"] .fdot {
+  transform: scale(1.15);
+  box-shadow: 0 0 0 3px oklch(100% 0 0 / 0.22);
+}
+/* warmer hover on inactive — saffron-cream */
+.flavour-toggle button:hover:not([aria-selected="true"]),
+.flavour-toggle button:focus-visible:not([aria-selected="true"]) {
+  color: var(--fg);
+}
+.flavour-toggle button:hover:not([aria-selected="true"])::before {
+  content: "";
+  position: absolute;
+  inset: 2px;
+  border-radius: 999px;
+  background: oklch(92% 0.04 65);
+  z-index: -1;
+  pointer-events: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .flavour-toggle::before { transition: none; }
+}
+
+/* 7. Add-to-bag — tick confirm for ~600ms after click */
+.atc-hero { position: relative; overflow: hidden; }
+.atc-hero .atc-confirm {
+  position: absolute;
+  inset: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-weight: 700;
+  font-size: 17px;
+  color: var(--bg);
+  background: oklch(50% 0.13 145);
+  opacity: 0;
+  transform: translateY(40%);
+  transition: opacity 0.18s ease, transform 0.28s cubic-bezier(.2,.85,.3,1.1);
+  pointer-events: none;
+  letter-spacing: 0.01em;
+}
+.atc-hero .atc-confirm svg { width: 18px; height: 18px; }
+.atc-hero.is-added .atc-confirm {
+  opacity: 1;
+  transform: translateY(0);
+}
+.atc-hero.is-added .atc-label,
+.atc-hero.is-added .atc-price {
+  opacity: 0;
+  transition: opacity 0.18s ease;
+}
+
+/* 8. Trust badges — gentler colours, rust + saffron + leek-green tints */
+.hero-trust .item { gap: 11px; font-weight: 500; }
+.hero-trust .icon { width: 34px; height: 34px; }
+.hero-trust .icon.green { background: var(--coriander-tint); color: oklch(40% 0.13 145); }
+.hero-trust .icon.red   { background: var(--tandoori-tint);  color: var(--tandoori-deep); }
+.hero-trust .icon.gold  { background: var(--masala-tint);    color: var(--masala-deep); }
+
+/* 9. Topstrip auto-rotate (mobile only). Three items, one visible at a time. */
+.topstrip[data-rotate="true"] { gap: 0; }
+.topstrip[data-rotate="true"] .ts-item {
+  position: absolute;
+  left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.topstrip[data-rotate="true"] { position: relative; min-height: 32px; }
+.topstrip[data-rotate="true"] .ts-item.is-active { opacity: 1; }
+.topstrip[data-rotate="true"] .dot { display: none; }
+
+/* 10. Allergens line — slightly bolder, warmer tint */
+.hero-allergen {
+  color: oklch(42% 0.08 35);
+  font-weight: 600;
+}
+.hero-allergen .ha-label { color: oklch(35% 0.1 35); font-weight: 700; }
+.hero-allergen .ha-val strong {
+  color: oklch(45% 0.18 28);
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  background: oklch(96% 0.04 60);
+  padding: 2px 8px 1px;
+  border-radius: 3px;
+}
+.hero-buy[data-flavour="m"] .hero-allergen .ha-val strong {
+  color: var(--masala-deep);
+  background: oklch(96% 0.04 80);
+}
+
+/* 11. Italic accent on two subheadings — pick up the hero "Proper" italic */
+.step:nth-child(2) .name em,
+.step:nth-child(3) .name em {
+  font-style: italic;
+  color: var(--tandoori);
+  font-weight: 500;
+}
+.allergens-head h2 em {
+  font-style: italic;
+  color: var(--tandoori);
+  font-weight: 500;
+}
 </style>
 </head>
 <body>
 
 <!-- Top strip ----------------------------------------------------------- -->
-<div class="topstrip">
-  <span>★ Free UK shipping over £20</span>
+<div class="topstrip" id="topstrip" data-rotate="false">
+  <span class="ts-item is-active">100% UK halal beef</span>
   <span class="dot hide-sm">•</span>
-  <span class="hide-sm">Halal beef · born, reared &amp; slaughtered UK</span>
+  <span class="ts-item hide-sm">Hand-made in Wales</span>
   <span class="dot hide-sm">•</span>
-  <span class="hide-sm">Small-batch, hand-made in Wales</span>
+  <span class="ts-item hide-sm">Free shipping over £20</span>
 </div>
 
 <!-- Nav ---------------------------------------------------------------- -->
@@ -3461,7 +3700,6 @@ footer::before {
           </div>
         </div>
         <div class="stage-vignette"></div>
-        <div class="stage-tag" id="stageTag">Launching soon · Be the first to try it</div>
 
         <!-- prev / next — signals the stage is switchable -->
         <button type="button" class="stage-arrow prev" aria-label="Previous flavour" onclick="cycleFlavour(-1)">
@@ -3474,15 +3712,6 @@ footer::before {
             <polyline points="5,2 11,7 5,12"/>
           </svg>
         </button>
-
-        <!-- dot indicator: "1 of 2 flavours" -->
-        <div class="stage-dots" aria-hidden="true">
-          <span class="sd-label" id="stageDotLabel">1 of 2</span>
-          <span class="sd-dots">
-            <span class="sd-dot" data-fl="t"></span>
-            <span class="sd-dot" data-fl="m"></span>
-          </span>
-        </div>
       </div>
 
       <!-- RIGHT — buy card -->
@@ -3492,7 +3721,7 @@ footer::before {
         <h1><em class="word" style="animation-delay:0.22s">Proper</em> <span class="word" style="animation-delay:0.32s">tandoori.</span> <span class="word" style="animation-delay:0.50s">In</span> <span class="word" style="animation-delay:0.58s">a</span> <span class="word" style="animation-delay:0.66s">pouch.</span></h1>
 
         <!-- flavour toggle -->
-        <div class="flavour-toggle" role="tablist" aria-label="Pick a flavour">
+        <div class="flavour-toggle" role="tablist" aria-label="Pick a flavour" data-active="t">
           <button type="button" role="tab" data-fl="t" aria-selected="true" onclick="pickFlavour('t')">
             <span class="fdot"></span>
             The&nbsp;Fire
@@ -3528,6 +3757,13 @@ footer::before {
           <div class="cell">
             <div class="value"><span id="specHeat">3</span><em>/5</em></div>
             <span class="slabel">Heat</span>
+            <span class="heat-row" id="heatRow" aria-hidden="true" data-heat="3">
+              <span class="hr-flame"></span>
+              <span class="hr-flame"></span>
+              <span class="hr-flame"></span>
+              <span class="hr-flame"></span>
+              <span class="hr-flame"></span>
+            </span>
           </div>
           <div class="cell">
             <div class="value"><span id="specMar">4&ndash;6</span><em>h</em></div>
@@ -3556,6 +3792,10 @@ footer::before {
           <button type="button" class="atc-hero" id="heroAtc" onclick="heroAddToCart()">
             <span class="atc-label"><span class="atc-plus">+</span> Add to bag</span>
             <span class="atc-price">£<span id="heroPrice">6.00</span></span>
+            <span class="atc-confirm" aria-hidden="true">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 8 7 12 13 4"/></svg>
+              Added
+            </span>
           </button>
         </div>
 
@@ -3563,16 +3803,14 @@ footer::before {
           Royal Mail tracked 48h · +£1.55 · free over £20 · ships next day
         </div>
 
-        <!-- bundle upsell -->
-        <div class="hero-bundle-up">
-          <span class="bundle-deal-badge" aria-hidden="true">Save £1</span>
-          <div class="bundle-label">
-            <span class="bundle-eyebrow">The pair</span>
-            <span class="bundle-title">Get <em>both pouches</em></span>
-            <span class="bundle-pricing"><span class="now">£11.00</span> · one of each · £1 off</span>
-          </div>
-          <button type="button" onclick="heroBuyBundle()">Add the pair →</button>
-        </div>
+        <!-- bundle upsell — collapsed inline line; ATC stays the dominant CTA -->
+        <button type="button" class="hero-bundle-line" onclick="heroBuyBundle()">
+          <span class="bl-text">
+            Make it the pair · <em>both pouches £11</em>
+            <span class="bl-save">save £1</span>
+          </span>
+          <span class="bl-arrow" aria-hidden="true">→</span>
+        </button>
 
       </div>
     </div>
@@ -3580,22 +3818,22 @@ footer::before {
     <!-- trust row -->
     <div class="hero-trust">
       <div class="item">
-        <span class="icon">
+        <span class="icon green" aria-hidden="true">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 8 7 12 13 4"/></svg>
         </span>
-        Halal beef · born, reared &amp; slaughtered UK
+        100% UK halal beef
       </div>
       <div class="item">
-        <span class="icon red">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1c1 2-1 3.5 0 5.5S10 9 10 11a2 2 0 1 1-4 0c0-1.2.5-2 0-3C5 6.5 6 3 8 1z"/></svg>
-        </span>
-        Marinated 4&ndash;6 hours
-      </div>
-      <div class="item">
-        <span class="icon gold">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v4M8 10v4M2 8h4M10 8h4"/></svg>
+        <span class="icon gold" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 13.5c-3.6 0-5.5-2.5-5.5-5.5S5 2.5 8 2.5s5.5 2.5 5.5 5.5"/><path d="M5 9.2c1.4-.7 4.6-.7 6 0"/><path d="M8 2.6V13.4"/></svg>
         </span>
         No soy, no artificial preservatives
+      </div>
+      <div class="item">
+        <span class="icon red" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2.5c1.5 1.7 2.4 3.4 2.4 5 0 1.6-1.1 2.9-2.4 2.9S5.6 9.1 5.6 7.5c0-1.6.9-3.3 2.4-5z"/><path d="M5.6 13.5h4.8"/></svg>
+        </span>
+        Hand-made in Wales
       </div>
     </div>
   </div>
@@ -3612,9 +3850,9 @@ footer::before {
     </div>
     <div class="story-copy reveal">
       <span class="eyebrow">The Story</span>
-      <h2>Slow&#8209;marinated. Small&#8209;batch. <em>Halal&#8209;sourced.</em></h2>
+      <h2>Slow&#8209;marinated. Small&#8209;batch. <em>Halal beef. Proper spice.</em></h2>
       <p class="lead">We marinate premium halal beef in a handcrafted tandoori blend with tamarind, Kashmiri chilli, and smoked paprika &mdash; then slow&#8209;dehydrate every batch at 70°C for bold, clean flavour.</p>
-      <p>No soy sauce. No MSG. No artificial preservatives. Nothing like it exists in the UK. Every pouch is hand-made in small batches, sealed the day it comes off the rack.</p>
+      <p>No soy sauce. No MSG. No artificial preservatives. Nothing quite like it exists in the UK. Every pouch is hand-made in small batches, sealed the day it comes off the rack.</p>
       <div class="story-nots">
         <div class="not">Soy</div>
         <div class="not">MSG</div>
@@ -3632,7 +3870,7 @@ footer::before {
   <div class="head-center">
     <span class="eyebrow">How it's made</span>
     <h2>Three steps. <em>No shortcuts.</em></h2>
-    <p>Every batch is small &mdash; a few kilos of beef at a time, hand-rubbed, rested, and slow-dried. One batch a day, max. So when we sell out &mdash; we actually sell out.</p>
+    <p>Every batch is small &mdash; a few kilos of beef at a time, hand-rubbed, rested, and slow-dried.</p>
   </div>
   <div class="steps">
     <div class="step reveal">
@@ -3645,14 +3883,14 @@ footer::before {
     <div class="step reveal">
       <span class="number">02</span>
       <div class="art step-art-2"></div>
-      <h3 class="name">Slow marinate</h3>
+      <h3 class="name">Slow <em>marinate</em></h3>
       <p class="time">4&ndash;6 hours · tamarind, lemon &amp; spice</p>
       <p class="detail">British topside gets a wet marinade of tamarind water, tomato pur&eacute;e, lemon juice, apple cider vinegar, ginger and garlic. It rests cold for a few hours so the spice can go all the way in.</p>
     </div>
     <div class="step reveal">
       <span class="number">03</span>
       <div class="art step-art-3"></div>
-      <h3 class="name">Slow dehydrate</h3>
+      <h3 class="name">Slow <em>dehydrate</em></h3>
       <p class="time">9 hours · low &amp; steady at 70°C</p>
       <p class="detail">Dried on racks &mdash; not in a tumbler &mdash; so each strip keeps its texture. We pull the batch the moment it pulls cleanly but still tears. No further than that.</p>
     </div>
@@ -3706,7 +3944,7 @@ footer::before {
     <div class="allergens-head">
       <div>
         <span class="eyebrow">Ingredients &amp; nutrition</span>
-        <h2>Everything that's in it.</h2>
+        <h2>Everything that's <em>in it.</em></h2>
       </div>
       <div class="tabs">
         <button class="tab active" data-tab="tandoori" onclick="switchTab('tandoori')">Tandoori</button>
@@ -3721,7 +3959,7 @@ footer::before {
         <p>British beef topside (82%), tamarind water, tomato pur&eacute;e, Kashmiri chilli, smoked paprika, lemon juice, apple cider vinegar, ginger, garlic, cumin, turmeric, kasuri methi, black cardamom, sea salt, <strong>MUSTARD</strong> powder, black pepper.</p>
         <p class="allergen-line">Allergens: <strong>Mustard</strong></p>
         <div class="halal-note">
-          <strong>Halal-sourced.</strong> Made with halal beef, born, reared and slaughtered in the UK, from our local halal butcher.
+          <strong>Halal-sourced.</strong> British halal beef from our local butcher in the UK. Full provenance below.
         </div>
       </div>
       <div class="nut-list">
@@ -3741,7 +3979,7 @@ footer::before {
         <p>British beef topside (82%), tamarind water, tomato pur&eacute;e, lemon juice, apple cider vinegar, garam masala, toasted cumin, ginger, garlic, turmeric, kasuri methi, black cardamom, fenugreek, sea salt, <strong>MUSTARD</strong> powder, black pepper.</p>
         <p class="allergen-line">Allergens: <strong>Mustard</strong></p>
         <div class="halal-note">
-          <strong>Halal-sourced.</strong> Made with halal beef, born, reared and slaughtered in the UK, from our local halal butcher.
+          <strong>Halal-sourced.</strong> British halal beef from our local butcher in the UK. Full provenance below.
         </div>
       </div>
       <div class="nut-list">
@@ -3762,7 +4000,7 @@ footer::before {
     <div class="rw-head">
       <span class="eyebrow">What we're serious about</span>
       <h2>Four things we won't <em>compromise on.</em></h2>
-      <p class="rw-sub">Every British jerky on the shelf is either BBQ-sweet or peri-peri hot, made with reformed meat and shortcut spice mixes. We're making the opposite. Here's what that means in practice.</p>
+      <p class="rw-sub">Most British jerky on the shelf is either BBQ-sweet or peri-peri hot, made with reformed meat and shortcut spice mixes. We're making the opposite. Here's what that means in practice.</p>
     </div>
 
     <div class="rw-grid rw-grid-4">
@@ -3799,7 +4037,7 @@ footer::before {
         <blockquote>Four to six hours in the marinade, then low and steady for nine hours in the drier. Sealed the day it comes off the rack. Every pouch labelled with its batch and best-before. When we sell out we actually sell out &mdash; because we only make what we can make by hand in a day.</blockquote>
         <div class="who">
           <span><span class="name">Slow-dried, by hand</span></span>
-          <span class="flavour">One batch a day</span>
+          <span class="flavour">Sealed same day</span>
         </div>
       </div>
 
@@ -3823,7 +4061,7 @@ footer::before {
 <section class="wrap press-strip" aria-label="What's true right now">
   <span class="eyebrow">What's on the pack, today</span>
   <div class="pubs">
-    <span class="pub serif">Halal beef · UK born, reared &amp; slaughtered</span>
+    <span class="pub serif">100% UK halal beef</span>
     <span class="pub cond">Hand-made in Wales</span>
     <span class="pub">Small batch</span>
     <span class="pub cond">No soy · no MSG</span>
@@ -3839,7 +4077,7 @@ footer::before {
       <span class="eyebrow">Straight answers</span>
       <h2>The <em>asked-a-lot</em> list.</h2>
       <p>The questions we get most, answered without marketing-speak. If yours isn't here, drop us a line — we reply to all of them.</p>
-      <a href="mailto:hi@blazeandchar.co.uk" class="ask">
+      <a href="mailto:hello@blazeandchar.co.uk" class="ask">
         <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 4l6 4 6-4"/><rect x="2" y="3" width="12" height="10" rx="1"/></svg>
         Ask us anything
       </a>
@@ -3923,7 +4161,7 @@ footer::before {
     <div class="footer-row">
       <div class="footer-brand">
         <div class="mark">Blaze <em>&amp;</em> Char</div>
-        <p>The UK's first tandoori beef jerky. Small-batch, hand-made in Wales, halal beef. Made by hand, sold by the pouch.</p>
+        <p>The UK's first tandoori beef jerky. Small-batch. Hand-made in Wales. Halal beef. Made by hand, sold by the pouch.</p>
       </div>
       <div class="footer-col">
         <h4>Shop</h4>
@@ -3935,7 +4173,7 @@ footer::before {
       <div class="footer-col">
         <h4>Say hello</h4>
         <a href="mailto:hello@blazeandchar.co.uk">hello@blazeandchar.co.uk</a>
-        <a href="#">Wholesale &amp; stockists</a>
+        <a href="mailto:trade@blazeandchar.co.uk">Wholesale &amp; stockists</a>
         <a href="#">Press</a>
         <div class="social-row">
           <a href="https://instagram.com/blazeandchar" aria-label="Instagram">
@@ -3948,7 +4186,7 @@ footer::before {
       </div>
     </div>
     <div class="footer-fine">
-      <div>© 2026 Blaze &amp; Char. Pre-launch food brand. All allergen information available before purchase.</div>
+      <div>© 2026 Blaze &amp; Char. All allergen information available before purchase.</div>
       <div>Hand-made in Wales.</div>
     </div>
   </div>
@@ -3980,11 +4218,20 @@ function smoothScrollTo(id) {
   window.scrollTo({ top, behavior: 'smooth' });
 }
 
+/* tiny-detail polish (v9.1): retrigger a CSS animation on an element */
+function _bump(el, cls) {
+  if (!el) return;
+  el.classList.remove(cls);
+  // force a reflow so the animation re-runs even on rapid changes
+  void el.offsetWidth;
+  el.classList.add(cls);
+}
+
 /* ========= Flavour + buy state ========= */
 /* FLAVOURS[k] drives the hero crossfade, spec strip, proof, and CTA colouring */
 const FLAVOURS = {
-  t: { name: 'Tandoori · 60g', sub: 'Original · 3/5 heat', nick: 'The Fire',  no: '№ 01', tag: 'Launching soon · Be the first to try it', heat: 3, marinade: '4&ndash;6', protein: 30 },
-  m: { name: 'Masala · 60g',   sub: 'Warm & Rich · 2/5 heat', nick: 'The Ember', no: '№ 02', tag: 'Launching soon · Be the first to try it', heat: 2, marinade: '4&ndash;6', protein: 30 }
+  t: { name: 'Tandoori · 60g', sub: 'Original · 3/5 heat', nick: 'The Fire',  no: '№ 01', tag: '', heat: 3, marinade: '4&ndash;6', protein: 30 },
+  m: { name: 'Masala · 60g',   sub: 'Warm & Rich · 2/5 heat', nick: 'The Ember', no: '№ 02', tag: '', heat: 2, marinade: '4&ndash;6', protein: 30 }
 };
 const state = { flavour: 't', qty: 1, bag: 0 };
 const PRICE = 6.00;
@@ -3998,15 +4245,22 @@ function pickFlavour(k) {
   stage.setAttribute('data-flavour', k);
   buy.setAttribute('data-flavour', k);
   document.getElementById('stageNo').textContent = f.no;
-  document.getElementById('stageTag').textContent = f.tag;
   document.getElementById('specHeat').textContent = f.heat;
   document.getElementById('specMar').innerHTML = f.marinade;
   document.getElementById('specPro').textContent = f.protein;
-  const dotLabel = document.getElementById('stageDotLabel');
-  if (dotLabel) dotLabel.textContent = (k === 't' ? '1' : '2') + ' of 2';
+  /* heat indicator row — drive number of lit chillies via data-heat */
+  const heatRow = document.getElementById('heatRow');
+  if (heatRow) heatRow.setAttribute('data-heat', String(f.heat));
+  /* tiny-detail (v9.1): flip the changing values rather than hard-swap */
+  ['stageNo', 'specHeat', 'specMar', 'specPro'].forEach(id =>
+    _bump(document.getElementById(id), 'spec-flip')
+  );
   document.querySelectorAll('.flavour-toggle button').forEach(b => {
     b.setAttribute('aria-selected', b.dataset.fl === k ? 'true' : 'false');
   });
+  /* v9.4: drive sliding indicator on the toggle parent */
+  const toggleEl = document.querySelector('.flavour-toggle');
+  if (toggleEl) toggleEl.setAttribute('data-active', k);
   document.querySelectorAll('.flavour-copy .fc').forEach(fc => {
     fc.classList.toggle('active', fc.dataset.fl === k);
   });
@@ -4023,9 +4277,13 @@ function cycleFlavour(dir) {
 
 function stepHeroQty(d) {
   const next = Math.max(1, Math.min(9, state.qty + d));
+  if (next === state.qty) return;
   state.qty = next;
   document.getElementById('heroQty').textContent = next;
   document.getElementById('heroPrice').textContent = (PRICE * next).toFixed(2);
+  /* tiny-detail (v9.1): pop the qty + price on change instead of snap-swap */
+  _bump(document.getElementById('heroQty'),   'qty-pop');
+  _bump(document.getElementById('heroPrice'), 'qty-pop');
   _syncStickyBuy();
 }
 
@@ -4057,6 +4315,13 @@ function _addToBag(name, qty, fixedTotal) {
     drawer.classList.add('show');
     clearTimeout(window._ct);
     window._ct = setTimeout(() => drawer.classList.remove('show'), 2200);
+  }
+  /* v9.4: brief tick confirm on the hero Add-to-bag button */
+  const heroAtc = document.getElementById('heroAtc');
+  if (heroAtc) {
+    heroAtc.classList.add('is-added');
+    clearTimeout(window._atcTick);
+    window._atcTick = setTimeout(() => heroAtc.classList.remove('is-added'), 700);
   }
   console.log('[Stripe stub]', name, 'qty', qty, fixedTotal ? `£${fixedTotal}` : `£${(PRICE * qty).toFixed(2)}`);
 }
@@ -4165,6 +4430,39 @@ if ('IntersectionObserver' in window) {
   }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 }
+
+/* -------- v9.4: top-strip auto-rotate on narrow viewports --------
+   Three items live in markup. On <=640px we rotate one at a time so the
+   bar still reads as a single decisive line. >640px shows all three. */
+(function topstripRotate() {
+  const strip = document.getElementById('topstrip');
+  if (!strip) return;
+  const items = Array.from(strip.querySelectorAll('.ts-item'));
+  if (items.length < 2) return;
+  const mq = window.matchMedia('(max-width: 640px)');
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let timer = null, idx = 0;
+  function start() {
+    strip.setAttribute('data-rotate', 'true');
+    items.forEach((el, i) => el.classList.toggle('is-active', i === 0));
+    idx = 0;
+    if (reduce.matches) return;
+    clearInterval(timer);
+    timer = setInterval(() => {
+      items[idx].classList.remove('is-active');
+      idx = (idx + 1) % items.length;
+      items[idx].classList.add('is-active');
+    }, 4200);
+  }
+  function stop() {
+    strip.setAttribute('data-rotate', 'false');
+    items.forEach(el => el.classList.add('is-active'));
+    clearInterval(timer); timer = null;
+  }
+  function update() { mq.matches ? start() : stop(); }
+  update();
+  (mq.addEventListener ? mq.addEventListener('change', update) : mq.addListener(update));
+})();
 </script>
 </body>
 </html>
